@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="LocalStorageModule">
+    <head>
+        <title>Todos</title>
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style/todo.css">
+    </head>
+    <body>
+        <div ng-controller="TodosController" id="wrapper">
+            <span class="right">Your role now is <strong>{{statusInSystem.name}}</strong></span>
+            <div class="clear"></div>
+            <div class="btn-group right">
+              <button type="button" class="btn btn-danger">Select status</button>
+              <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="role in roles">
+                    <a href="#" ng-click="changeStatus(role)">{{role.name}}</a>
+                </li>
+              </ul>
+            </div>
+            <h2 class="inform">You have {{taskQuantity()}} tasks</h2>
+            <div class="clear"></div>
+            <form ng-submit="addNewTodo()" class="form-inline" role="form">
+                <input type="text" ng-model="todoText" placeholder="add new todo here" title="type text here and press Enter" class="form-control" id="focusedInput" ng-disabled="!statusInSystem.rights.add">
+            </form><br>
+            <button ng-click="clearTodos()" class="btn btn-primary btn-lg btn-block" ng-disabled="!statusInSystem.rights.remove">Clear</button>
+            <ul id="list">
+                <li class="task_list" ng-repeat="todo in todoList" ng-mouseover="showRemoveIcon(todo)" ng-mouseout="showRemoveIcon(todo)">
+                    <input type="checkbox" ng-model="todo.done" ng-disabled="!statusInSystem.rights.check" ng-click="markDone(todo)">
+                    <span class="done-{{todo.done}}" contenteditable="{{statusInSystem.rights.edit}}" ng-click="updateTodo(todo)">{{todo.text}}</span>
+                    <span class="glyphicon glyphicon-trash right pointer" ng-click="removeTodo(todo, statusInSystem.rights.remove)" ng-show="todo.showIcon"></span>
+                </li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+        <script src="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
+        <script src="js/angular-local-storage.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="js/controllers.js"></script>
+    </body>
+</html>
