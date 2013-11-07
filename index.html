@@ -10,16 +10,16 @@
             <span class="right">Your role now is <strong>{{statusInSystem.name}}</strong></span>
             <div class="clear"></div>
             <div class="btn-group right">
-              <button type="button" class="btn btn-danger">Select status</button>
-              <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                <span class="caret"></span>
-                <span class="sr-only"></span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li ng-repeat="role in roles">
-                    <a href="#" ng-click="changeStatus(role)">{{role.name}}</a>
-                </li>
-              </ul>
+                <button type="button" class="btn btn-danger">Select status</button>
+                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <span class="sr-only"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li ng-repeat="role in roles">
+                        <a href="#" ng-click="changeStatus(role)">{{role.name}}</a>
+                    </li>
+                </ul>
             </div>
             <h2 class="inform">You have {{taskQuantity()}} tasks</h2>
             <div class="clear"></div>
