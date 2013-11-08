@@ -1,22 +1,22 @@
 <!DOCTYPE HTML>
+<html ng-app="LocalStorageModule">
 <head>
-	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
-	<script src="http://code.angularjs.org/1.0.0rc10/angular-cookies-1.0.0rc10.js"></script>
+	<script src="angular-local-storage.js"></script>
 	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
 	<script src="script.js"></script>
 	<link type="text/css" href="style.css" rel="stylesheet">
 </head>
 <body>
-	<div class="container" ng-app="myApp">
+	<div class="container" ng-app="" ng-controller="MyCtrl" ng-init="initArchive(); initOption();">
 	    <h1 align="center">To-do list</h1>
-	    <div class="input-block" ng-controller="MyCtrl">
+	    <div class="input-block">
 		<input type="text" ng-model="inputText" ng-keypress="putInList()" placeholder="What you wanna do?" autofocus>
 	    </div>
-	    <div class="list" ng-controller="MyList">
+	    <div class="list">
 		<div>
-		    <div ng-repeat="list in lists" ng-mouseenter="hover(list[0])" ng-mouseleave="hover(list[0])" ng-show="list[0].show" ng-init="setOption(list[0])">
-		        <input type="checkbox" ng-click="setArchive(list)" ng-show="list[0].showCheckbox" ng-model="checked" ng-init="checked=list[0].archive">
+		    <div ng-repeat="list in lists" ng-mouseenter="hover(list[0])" ng-mouseleave="hover(list[0])" ng-show="list[0].show">
+		        <input type="checkbox" ng-click="setArchive(list)" ng-show="list[0].showCheckbox" ng-model="list.listCheckbox">
 		        <span ng-style="list.item_style" id="{{list[0].id}}">{{list[0].name}}</span>
 		            <span ng-hide="list[0].hideDelImg" ><img ng-show="list[0].showDelImg" ng-click="deleteItem(list[0])" src="http://png.findicons.com/files/icons/557/creme/16/delete.png"></span>
 		    </div>
@@ -24,8 +24,8 @@
 		<div class="options">
 		    <div class="option">
 		        <label>
-		            <input type="checkbox" ng-model="inputValue" ng-click="setOption()">
-		            <span>Only view (needs to refresh)</span>
+		            <input type="checkbox" ng-click="changeOption()" ng-model="inputValue">
+		            <span>Only view</span>
 		        </label>
 		    </div>
 		</div>

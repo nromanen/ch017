@@ -1,77 +1,132 @@
-angular.module('myApp', ['ngCookies']);
-
-function MyCtrl($scope, $cookieStore, $rootScope) {
-    var listArray = typeof $cookieStore.get('lists') == "object" 
-        ? $cookieStore.get('lists') 
-        : Array( $cookieStore.get('lists') );
-    
+function MyCtrl($scope, localStorageService) {
+    if(localStorageService.get('lists') === null) {
+		$scope.lists = Array();
+	} else {
+		$scope.lists = localStorageService.get('lists');
+	}
+	
     $scope.putInList = function() {
         if(event.keyCode == 13) {
-            var domList = $rootScope.$$childTail.lists;
-            if(domList === undefined) var i = 1;
-            else if(domList[0] === null && domList.length == 1) var i = 1;
-            else {
-                var lastDomElem = domList[ domList.length - 1 ][0];
-                var i = lastDomElem.id + 1;
-            }
-            var item = Array({id: i, 
+			var listId;
+			
+            if($scope.lists.length > 0) {
+                listId = $scope.lists[ $scope.lists.length - 1 ][0].id + 1;
+            } else {
+				listId = 1;
+			}
+			
+            var item = Array({id: listId, 
                               name: $scope.inputText, 
                               archive: false, 
                               show: true, 
                               showDelImg: false,
                               showCheckbox: true,
-                              hideDelImg: true});
-            listArray.push( item );
-            $cookieStore.put('lists', listArray);
-            if(domList === undefined) $rootScope.$$childTail.lists = Array();
-            $rootScope.$$childTail.lists.push( item );
+                              hideDelImg: false});
+            $scope.lists.push( item );
+            localStorageService.add('lists', $scope.lists);
             $scope.inputText = "";
         }
     }
-}
-
-function MyList($scope, $cookieStore) {
-    $scope.lists = $cookieStore.get('lists');
     
     $scope.hover = function(list) {
         return list.showDelImg = ! list.showDelImg;
     };
     
     $scope.deleteItem = function(list) {
-        var listArray = $cookieStore.get('lists');
+        var listArray = localStorageService.get('lists');
         for(var i = 0; i < listArray.length; i++) {
             if(listArray[i] !== null && listArray[i][0].id == list.id) listArray.splice(i, 1);
         }
-        $cookieStore.put('lists', listArray);
+        localStorageService.add('lists', listArray);
         
         return list.show = ! list.show;
     };
     
+    $scope.initArchive = function() {
+        angular.forEach($scope.lists, function(value, key){
+            if($scope.lists[ key ][0].archive === true) {
+				$scope.lists[ key ].listCheckbox = true;
+				$scope.lists[ key ].item_style = { textDecoration: "line-through", color: "gray" };
+			} else {
+				$scope.lists[ key ].listCheckbox = false;
+				$scope.lists[ key ].item_style = { textDecoration: "none", color: "black" };
+			}
+        });
+    }
+    
     $scope.setArchive = function(list) {
-        list.item_style = list[0].archive 
-            ? { textDecoration: "none", color: "black" }
-            : { textDecoration: "line-through", color: "gray" };
+        angular.forEach($scope.lists, function(value, key){
+			if($scope.lists[ key ][0].id === list[0].id) {
+				$scope.lists[ key ][0].archive = list.listCheckbox;
+				$scope.lists[ key ][0].showDelImg = false;
+			}
+        });
+		
+		localStorageService.add('lists', $scope.lists);
+		list[0].showDelImg = true;
+		
+        if(list[0].archive === true) {
+            list.item_style = { textDecoration: "line-through", color: "gray" };
+		} else {
+			list.item_style = { textDecoration: "none", color: "black" };
+		}
         
-        var listArray = $cookieStore.get('lists');
+		console.log(localStorageService.get('lists'));
+		return false;
+		
+        var listArray = localStorageService.get('lists');
         console.log(listArray);
         for(var i = 0; i < listArray.length; i++) {
             if(listArray[i] !== null && listArray[i][0].id == list.id) {
-                //listArray[i][0].archive = true;
+                listArray[i][0].archive = true;
             }
         }
-        //$cookieStore.put('lists', listArray);
+        localStorageService.add('lists', listArray);
         
         return list[0].archive = ! list[0].archive;
     }
     
-    $scope.setOption = function(list) {
-        if($scope.inputValue === undefined) $scope.inputValue = $cookieStore.get('option_onlyView');
+    $scope.initOption = function() {
+		if(localStorageService.get('option_onlyView') === null) {
+			localStorageService.add('option_onlyView', 0);
+		}
+		
+		if(localStorageService.get('option_onlyView') == 1) {
+			$scope.inputValue = true;
+		} else {
+			$scope.inputValue = false;
+		}
         
-        $cookieStore.put('option_onlyView', $scope.inputValue);
-        if(list !== undefined) {
-            list.showCheckbox = $cookieStore.get('option_onlyView') ? false : true;
-            list.hideDelImg = $cookieStore.get('option_onlyView');
-        }
+        $scope.setOption($scope.inputValue);
     }
+    
+    $scope.changeOption = function() {
+		if($scope.inputValue === true) {
+			localStorageService.add('option_onlyView', 1);
+		} else {
+			localStorageService.add('option_onlyView', 0);
+		}
+		
+		$scope.setOption($scope.inputValue);
+    }
+    
+    $scope.setOption = function(inputValue) {
+        if(inputValue === true) {
+            var showCheckbox = false;
+            var hideDelImg = true;
+            var item_style;
+        } else {
+            var showCheckbox = true;
+            var hideDelImg = false;
+            var item_style = { textDecoration: "line-through", color: "gray" };
+        }
+        
+        angular.forEach($scope.lists, function(value, key){
+            $scope.lists[ key ][0].showCheckbox = showCheckbox;
+            $scope.lists[ key ][0].hideDelImg = hideDelImg;
+            if($scope.lists[ key ][0].archive === true) {
+				$scope.lists[ key ].item_style = item_style;
+			}
+        });
+	}
 }
-
