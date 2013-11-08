@@ -1,4 +1,4 @@
-﻿    var acsessLevel = 2; 
+﻿    var acsessLevel = 0; 
 	var btnvalue = 0;	
 		function TodoCtrl($scope) {
 			$scope.todos =[
@@ -11,12 +11,12 @@
 	 
     $scope.addTodo = function() {
 	
-	if (acsessLevel == 1 || acsessLevel == 2 && btnvalue == 0 ){
+	if (acsessLevel === 1 || acsessLevel === 2 && btnvalue === 0 ){
 		$scope.todos.push({text:$scope.todoText, done:false});
 		$scope.todoText = '';
 	}
 	
-	else if (acsessLevel == 1 || acsessLevel == 2 && btnvalue == 1 ) {
+	else if (acsessLevel === 1 || acsessLevel === 2 && btnvalue === 1 ) {
 		this.todos[index] = {text:$scope.todoText, done:false};
 		$scope.todoText = '';
 		btnvalue = 0;
@@ -26,7 +26,7 @@
 	};
     } 
     $scope.del = function(ToRemove) {	
-	if (acsessLevel != 2){
+	if (acsessLevel !== 2){
 	alert('No enought acsess level to do this')
 	}else{
 		var index = this.todos.indexOf(ToRemove);
@@ -36,7 +36,7 @@
 	
 	$scope.edit = function(editme){
 	
-	if (acsessLevel != 2){
+	if (acsessLevel !== 2){
 	alert('No enought acsess level to do this')
 	}else{
 		index = this.todos.indexOf(editme);
