@@ -1,0 +1,68 @@
+body{
+    position:relative;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color: aqua;
+}
+.done-true {
+    text-decoration: line-through;
+    color: grey;
+}
+a.support1 {
+    display: inline-block;
+    position: relative;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #3690f0;
+    font-weight: bold;
+}
+#delete{
+    background: transparent;
+    background-repeat:no-repeat;
+    background-position:center;
+    color: transparent;
+}
+#delete:hover{
+    background: url("status.gif");
+    background-repeat:no-repeat;
+    background-position:center;
+    color: transparent;
+}
+
+.del{
+    background: transparent;
+    background-repeat:no-repeat;
+    background-position:right;
+    color: transparent;
+}
+.del:hover{
+    background: url("status.gif");
+    background-repeat:no-repeat;
+    background-position:right;
+    color: transparent;
+}
+
+
+#block{
+    background-color: aliceblue;
+    color: #000000;
+    cursor: pointer;
+}
+#block:hover {
+    background-color: #D0D941;
+    color: #000;
+}
+table {
+    border:1px solid #CCC;
+    border-collapse:collapse;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto
+}
+td {
+    border:none;
+}
+.right{
+    float: right;
+}

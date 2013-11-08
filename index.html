@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="doing.js"></script>
+    <link rel="stylesheet" href="doing.css">
+</head>
+<body>
+<h2 >Todo</h2>
+<div ng-controller="TodoCtrl">
+    <span>{{remaining()}} of {{todos.length}} remaining</span>
+    [ <a href="" ng-click="archive()">delete</a> ]
+    <table >
+        <div class="del">
+            <tr ng-repeat="todo in todos" id="block" >
+                <td><span class="done-{{todo.done}}" ng-click="select_item($index)">{{todo.text}}</span></td>
+                <td><input type="checkbox" ng-model="todo.done" ng-disabled="visibl()"> </td>
+                <td ><a id="delete" ng-click="removeTodo($index)">.....</a></td>
+            </tr>
+        </div>
+    </table>
+    <form ng-submit="addTodo()">
+        <input type="text" ng-model="todoText"  size="30"  placeholder="add new todo here" onsubmit="add">
+
+    </form>
+    <form>
+        <input type="radio" ng-model="policies" value="allow">allow
+        <input type="radio" ng-model="policies" value="only_add">only add
+        <input type="radio" ng-model="policies" value="deny">deny
+    </form>
+    <tt>right = {{policies}}</tt><br/>
+    <tt>/for change please select item from the list/</tt>
+</div>
+</body>
+</html>
