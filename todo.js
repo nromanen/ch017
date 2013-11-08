@@ -27,7 +27,7 @@
     } 
     $scope.del = function(ToRemove) {	
 	if (acsessLevel !== 2){
-	alert('No enought acsess level to do this')
+	alert('No enought acsess level to do this');
 	}else{
 		var index = this.todos.indexOf(ToRemove);
 		this.todos.splice(index, 1);
