@@ -1,12 +1,22 @@
-angular.module('project', ['mongolab']).
+angular.module('project', ['mongolab', 'LocalStorageModule']).
 	config(function($routeProvider) {
 		$routeProvider.
-		when('/', {controller:ListCtrl, templateUrl:'list.html'}).
+		when('/', {controller:ListCtrl, templateUrl:'view/list.html'}).
 		otherwise({redirectTo:'/'});
 });
 
-function ListCtrl($scope, Project) {
-	$scope.projects = Project.query();
+function ListCtrl($scope, Project, localStorageService) {
+	console.log(localStorageService.get("list"));
+	//if (localStorageService.get("list")){
+        //$scope.projects = localStorageService.get("list");
+    //} else {
+        $scope.projects = Project.query();
+		localStorageService.clearAll();
+		localStorageService.add("list",'Ultimate Frisbee');
+
+			console.log(localStorageService.get("list"));
+				console.log($scope.projects);
+    //}
 	// role section //
 	$scope.d = 0;
 	$scope.c = 0;
