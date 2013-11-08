@@ -1,0 +1,56 @@
+﻿    <!doctype html>
+    <html ng-app>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+	<link rel="stylesheet" href="bootstrap/css/bootstr1ap.css">
+    <script src="todo.js"></script>
+    <link rel="stylesheet" href="todo.css">
+</head>
+
+<body>
+	
+	<div class="all">
+	
+    <center><h2>AngularJS</h2></center>
+	
+    <div ng-controller="TodoCtrl">   
+	{{levelshow}}
+	<center>
+	<span class="mylvl"> My acsess level now is
+	<select>
+		<option selected ng-click="level0()">Read-only</option>
+		<option ng-click="level1()">Read-create</option>
+		<option ng-click="level2()">Root</option>
+	</select>
+	
+	
+	</span>
+	<br><br>
+		<form ng-submit="addTodo()">
+			<input type="text" ng-model="todoText" size="30"
+			placeholder="Enter text">
+			<input class="btn-primary" type="submit" id="buttonSend" value="Add text">
+		</form>
+	</center>
+	
+	<ul class="unstyled">
+	
+    <li class="nost"  ng-model="orderProp" ng-repeat="todo in todos">
+		<div class="test2">
+			<div class="test"> <span type="" class="done-{{todo.done}} todostyle fleft">{{todo.text}}</span>
+				<span class="fright"> <input class="box" type="checkbox" ng-model="todo.done">
+				<span ng-click="edit(todo)" class="ed"> </span>
+				<span ng-click="del(todo)" class="no"> </span></span><br>
+			</div>
+		</div>
+	</li>
+	 
+    
+	</ul>
+		<div class="clear"></div>
+  
+    </div>
+	
+	</div>
+</body>
+    </html>
