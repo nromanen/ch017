@@ -25,7 +25,7 @@
 		alert('No enought acsess level to do this');
 	};
     } 
-    $scope.del = function(ToRemove) {	
+    $scope.del = function(toRemove) {	
 	if (acsessLevel !== 2){
 	alert('No enought acsess level to do this');
 	}else{
