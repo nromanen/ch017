@@ -1,13 +1,12 @@
-﻿    var acsessLevel = 0; 
+    var acsessLevel = 0; 
 	var btnvalue = 0;	
 		function TodoCtrl($scope) {
-			$scope.todos =[
-				{text:'Simple text', done:false},
+			$scope.todos = [
+					{text:'Simple text', done:false},
 					{text:'And this is also simple text', done:false},
 					{text:'And this', done:false},
-					{text:'This is line-through text', done:true
-					
-					}];
+					{text:'This is line-through text', done:true}
+					];
 	 
     $scope.addTodo = function() {
 	
@@ -25,7 +24,7 @@
 		alert('No enought acsess level to do this');
 	};
     } 
-    $scope.del = function(toRemove) {	
+    $scope.del = function(ToRemove) {	
 	if (acsessLevel !== 2){
 	alert('No enought acsess level to do this');
 	}else{
@@ -35,9 +34,8 @@
 	}
 	
 	$scope.edit = function(editme){
-	
 	if (acsessLevel !== 2){
-	alert('No enought acsess level to do this')
+	alert('No enought acsess level to do this');
 	}else{
 		index = this.todos.indexOf(editme);
 		$scope.todoText = this.todos[index].text;
