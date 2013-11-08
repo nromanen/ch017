@@ -28,7 +28,7 @@
             </form><br>
             <button ng-click="clearTodos()" class="btn btn-primary btn-lg btn-block" ng-show="statusInSystem.rights.remove">Clear</button>
             <ul id="list">
-                <li class="task_list" ng-repeat="todo in todoList | filter:searchQuery" ng-mouseover="showRemoveIcon(todo)" ng-mouseout="showRemoveIcon(todo)">
+                <li class="task_list" title="click if you want to edit" ng-repeat="todo in todoList | filter:searchQuery" ng-mouseover="showRemoveIcon(todo)" ng-mouseout="showRemoveIcon(todo)">
                     <input type="checkbox" ng-model="todo.done" ng-show="statusInSystem.rights.check" ng-click="markDone(todo)">
                     <span class="done-{{todo.done}} todo_item" ng-click="updateTodo(todo)" ng-blur="saveUpdateTodo(todo)">{{todo.text}}</span>
                     <span class="glyphicon glyphicon-trash right pointer" ng-click="removeTodo(todo, statusInSystem.rights.remove)" ng-show="todo.showIcon"></span>

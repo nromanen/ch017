@@ -44,7 +44,12 @@
     margin: 5px;
     list-style-type: none;
     font-family: Verdana;
+    padding: 5px;
     font-size: 24px;
+}
+#list .task_list:hover{
+    background: #ffffff;
+    cursor: pointer;
 }
 .no-display{
     display: none;
