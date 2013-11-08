@@ -36,6 +36,10 @@
 #list{
     margin: 20px 10px;
 }
+#list{
+    height: 250px;
+    overflow: auto;
+}
 #list .task_list{
     margin: 5px;
     list-style-type: none;
