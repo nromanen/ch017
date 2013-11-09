@@ -1,4 +1,4 @@
-﻿    <!doctype html>
+    <!doctype html>
     <html ng-app>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
@@ -16,12 +16,11 @@
     <div ng-controller="TodoCtrl">   
 	{{levelshow}}
 	<center>
-	<span class="mylvl"> My acsess level now is
-	<select>
-		<option selected ng-click="level0()">Read-only</option>
-		<option ng-click="level1()">Read-create</option>
-		<option ng-click="level2()">Root</option>
-	</select>
+	<span class="mylvl">
+	
+	<input type="radio" checked ng-change="go()" ng-model="acsessLvl" value="READ_ONLY" /> Read-only
+	<input type="radio" ng-change="go()" ng-model="acsessLvl" value="READ_CREATE" /> Read-Create
+	<input type="radio" ng-change="go()" ng-model="acsessLvl" value="ROOT" /> Root
 	
 	
 	</span>
