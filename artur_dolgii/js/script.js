@@ -5,6 +5,8 @@ function controller($scope, localStorageService) {
         } else {
             $scope.lists = localStorageService.get('lists');
         }
+        
+        return true;
     }
     
     $scope.putInList = function() {
@@ -49,6 +51,8 @@ function controller($scope, localStorageService) {
             $scope.lists[ key ].listCheckbox = $scope.lists[ key ].archive;
             $scope.lists[ key ].itemStyle = $scope.itemArchiveStyle[ $scope.lists[ key ].archive ];
         });
+        
+        return true;
     }
     
     $scope.setArchive = function(list) {
@@ -59,6 +63,8 @@ function controller($scope, localStorageService) {
         list.showDelImg = true;
         
         list.itemStyle = $scope.itemArchiveStyle[ list.archive ];
+        
+        return true;
     }
     
     $scope.initOption = function() {
@@ -73,6 +79,8 @@ function controller($scope, localStorageService) {
         }
         
         $scope.setOption($scope.inputValue);
+        
+        return true;
     }
     
     $scope.changeOption = function() {
@@ -83,6 +91,8 @@ function controller($scope, localStorageService) {
         }
         
         $scope.setOption($scope.inputValue);
+        
+        return true;
     }
     
     $scope.setOption = function(inputValue) {
@@ -108,4 +118,13 @@ function controller($scope, localStorageService) {
     function updateLocalStorageLists() {
         localStorageService.add('lists', $scope.lists);
     }
+    
+    return {
+        initController: $scope.initController,
+        hover: $scope.hover,
+        initArchive: $scope.initArchive,
+        setArchive: $scope.setArchive,
+        initOption: $scope.initOption,
+        changeOption: $scope.changeOption
+    };
 }
