@@ -1,21 +1,46 @@
 <!doctype html>
 <html ng-app="project">
 	<head>
+		<meta charset="UTF-8">
 		<title>todo / angularjs</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular-resource.min.js"></script>
-		<script src="model/sync.js"></script>
-		<script src="model/ls.js"></script>
-		<script src="controller/todo.js"></script>
 		<link rel="stylesheet" href="assets/style.css">
-
 	</head>
 	<body>
-		<div class="pure-g" id="main">
-			<div class="pure-u-1">
-				<div id="content" ng-view>
+		<div class="pure-g" id="main" ng-controller="ListCtrl">
+			<div class="pure-u-1-3 bar colored">
+				<div class="sidebar boxed">
+					<div>
+						<h3>Search</h3>
+						<input type="text" ng-model="search" class="search-query" placeholder="Search" />
+						<h3>Add new item</h3>
+						<form name="myForm">
+							<div class="control-group" ng-class="{error: myForm.name.$invalid}">
+								<input name="text" ng-model="project.text" placeholder="todo" required />
+								<button ng-click="add()" ng-disabled="isClean() || myForm.$invalid">Add</button>
+							</div>
+						</form>
+					</div>
 				</div>
-			</div>
+			</div><div class="pure-u-2-3 bar">
+				<div class="todolist boxed">
+					<table width="100%">
+						<tbody>
+							<tr ng-repeat="project in projects | filter:search | orderBy:'_id.$oid'" class="item">
+								<td class="title" contenteditable="true" >{{project.text}}</td>
+								<td class="checkbox"><label ng-if="c != 1"><input type="checkbox" ng-model="project.todo" ng-click="save();" /></label></td>
+								<td class="delete"><button ng-if="c != 1" class="delete" ng-click="remove();">X</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div><!--<div class="pure-u-1-3 bar">
+				<div class="todocontent boxed">
+				</div>
+			</div>-->
 		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular-resource.min.js"></script>
+		<script src="model/ls.js"></script>
+		<script src="controller/todo.js"></script>
 	</body>
 </html>

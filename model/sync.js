@@ -1,3 +1,4 @@
+/*
 angular.module('mongolab', ['ngResource']).
 	factory('Project', function($resource) {
 		var Project = $resource('https://api.mongolab.com/api/1/databases' +
@@ -18,3 +19,4 @@ angular.module('mongolab', ['ngResource']).
  
 	return Project;
 });
+*/
