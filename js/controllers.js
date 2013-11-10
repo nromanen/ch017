@@ -20,12 +20,12 @@ function TodosController($scope, localStorageService) {
         user: {name: "User", rights: {add: false, remove: false, check: false, edit: false}}
     };
 
-    //function update date in local storage after each change
+    //function update data in local storage after each change
     function updateLocalStorage() {
         localStorageService.add("todos_list", $scope.todoList);
     }
 
-    //curent user status in system
+    //current user status in system
     $scope.statusInSystem = $scope.roles.user;
 
     $scope.changeStatus = function(role) {
@@ -35,6 +35,7 @@ function TodosController($scope, localStorageService) {
     };
 
     $scope.addNewTodo = function() {
+
         if ($scope.todoText.length > 0) {
 
             //compare with >= 0 because 0 is true
@@ -50,6 +51,7 @@ function TodosController($scope, localStorageService) {
             $scope.todoText = '';
         } else {
             alert("Sorry, What are you gonna do?!");
+            return false;
         }
     };
 
@@ -65,10 +67,10 @@ function TodosController($scope, localStorageService) {
 
     $scope.clearTodos = function() {
 
-        //save old list of todos for each loop
+        //save old list of todos for loop
         var oldTodos = $scope.todoList;
 
-        //clear old version of todos. Here we will be save our actual todos
+        //clear old version of todos. Here we will save our actual todos
         $scope.todoList = [];
         oldTodos.forEach(function(todo) {
             if (!todo.done)
@@ -82,7 +84,7 @@ function TodosController($scope, localStorageService) {
 
         /*
         *check can user remove item or not
-        * @have_right gets from @$scope.statusInSystem.rights.remove of current user
+        * parameter @have_right gets from @$scope.statusInSystem.rights.remove of current user
         */
         if (have_right) {
             index = $scope.todoList.indexOf(todo);
@@ -115,112 +117,4 @@ function TodosController($scope, localStorageService) {
             $scope.todoList[index].showIcon = !$scope.todoList[index].showIcon;
     };
 
-    return {
-        removeElement: $scope.removeElement,
-        changeStatus:  $scope.changeStatus,
-        roles: $scope.roles
-    }
-}
-
-//Mock-object needs for tests
-function TodosControllerForTests($scope) {
-
-    //if we call func without parameters
-    $scope = $scope ? $scope : {};
-
-    $scope.todoList = [];
-
-
-    //list of roles
-    $scope.roles = {
-        admin: {name: "Admin", rights: {view: true, add: true, remove: true, check: true, edit: true}},
-        moder: {name: "Moder", rights: {view: true, add: true, remove: false, check: true, edit: false}},
-        user: {name: "User", rights: {view: true, add: false, remove: false, check: false, edit: false}}
-    };
-
-    //function update date in local storage after each change
-    function updateLocalStorage() {
-        //localStorageService.add("todos_list", $scope.todoList);
-    }
-
-    $scope.statusInSystem = $scope.roles.user;
-
-    $scope.changeStatus = function(role) {
-        $scope.statusInSystem = role;
-
-        return role;
-    };
-
-    $scope.addNewTodo = function() {
-        if ($scope.todoText.length > 0) {
-            $scope.todoList.push({text: $scope.todoText, done:false, showIcon: false});
-            updateLocalStorage();
-            //clear input
-            $scope.todoText = '';
-        } else
-            alert("Sorry, What are you gonna do?!");
-    };
-
-    $scope.taskQuantity = function() {
-        var count = 0;
-
-        $scope.todoList.forEach(function(todo) {
-            if (!todo.done)
-                ++count;
-        });
-        return count;
-    };
-
-    $scope.clearTodos = function() {
-
-        //save old list of todos for each loop
-        var oldTodos = $scope.todoList;
-
-        //clear old version of todos. Here we will be save our actual todos
-        $scope.todoList = [];
-        oldTodos.forEach(function(todo) {
-            if (!todo.done)
-                $scope.todoList.push(todo);
-        });
-        updateLocalStorage();
-    };
-
-    $scope.removeTodo = function(todo, have_right) {
-        var index = 0;
-
-        /*
-        *check can user remove item or not
-        * @have_right gets from @$scope.statusInSystem.rights.remove of current user
-        */
-        if (have_right) {
-            index = $scope.todoList.indexOf(todo);
-            $scope.todoList.splice(index, 1);
-            updateLocalStorage();
-        } else {
-            alert("Permission denied!!!");
-            return false;
-        }
-
-    };
-
-    $scope.markDone = function(todo) {
-        updateLocalStorage();
-    };
-
-    $scope.updateTodo = function(todo) {
-        //angular.element(this).text();
-    };
-
-    $scope.showRemoveIcon = function(todo) {
-        var index = $scope.todoList.indexOf(todo);
-
-        if ($scope.statusInSystem.rights.remove)
-            $scope.todoList[index].showIcon = !$scope.todoList[index].showIcon;
-    };
-
-    return {
-        removeTodo: $scope.removeTodo,
-        changeStatus:  $scope.changeStatus,
-        roles: $scope.roles
-    }
 }

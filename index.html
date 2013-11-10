@@ -24,7 +24,7 @@
             <h2 class="inform">You have {{taskQuantity()}} tasks</h2>
             <div class="clear"></div>
             <form ng-submit="addNewTodo()" class="form-inline" role="form">
-                <input type="text" ng-model="todoText" ng-model="todoIndex" placeholder="add new todo here" title="type text here and press Enter" class="form-control" id="focusedInput" ng-show="statusInSystem.rights.add">
+                <input type="text" ng-model="todoText" ng-model="todoIndex" placeholder="add new todo here" title="type text here and press Enter" class="form-control" ng-show="statusInSystem.rights.add">
             </form><br>
             <button ng-click="clearTodos()" class="btn btn-primary btn-lg btn-block" ng-show="statusInSystem.rights.remove">Clear</button>
             <ul id="list">
@@ -34,7 +34,7 @@
                     <span class="glyphicon glyphicon-trash right pointer" ng-click="removeTodo(todo, statusInSystem.rights.remove)" ng-show="todo.showIcon"></span>
                 </li>
             </ul>
-			<input type="text" ng-model="searchQuery" placeholder="Search" title="type text for search here and press Enter" class="form-control" id="focusedInput">
+			<input type="text" ng-model="searchQuery" placeholder="Search" title="type text for search here and press Enter" class="form-control">
             <div class="clear"></div>
         </div>
         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
