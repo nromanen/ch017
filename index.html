@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="LocalStorageModule">
+<html ng-app="App">
     <head>
         <title>Todos</title>
         <link rel="stylesheet" href="frameworks/bootstrap/css/bootstrap.min.css">
@@ -9,6 +9,7 @@
         <div ng-controller="TodosController" id="wrapper">
             <span class="right">Your role now is <strong>{{statusInSystem.name}}</strong></span>
             <div class="clear"></div>
+
             <div class="btn-group right">
                 <button type="button" class="btn btn-danger">Select status</button>
                 <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
@@ -17,24 +18,36 @@
                 </button>
                 <ul class="dropdown-menu" role="menu">
                     <li ng-repeat="role in roles">
-                        <a href="#" ng-click="changeStatus(role)">{{role.name}}</a>
+                        <a href="#" ng-click="changeStatusInSystem(role)">{{role.name}}</a>
                     </li>
                 </ul>
             </div>
-            <h2 class="inform">You have {{taskQuantity()}} tasks</h2>
+            <h2 class="inform">You have {{getActiveTaskQuantity()}} tasks</h2>
             <div class="clear"></div>
-            <form ng-submit="addNewTodo()" class="form-inline" role="form">
-                <input type="text" ng-model="todoText" ng-model="todoIndex" placeholder="add new todo here" title="type text here and press Enter" class="form-control" ng-show="statusInSystem.rights.add">
+
+            <form ng-submit="manageTodoItem()" class="form-inline" role="form">
+                <input type="text" ng-model="todoText" ng-model="todoIndex"
+                       placeholder="add new todo here" title="type text here and press Enter"
+                       class="form-control" ng-show="statusInSystem.rights.edit">
             </form><br>
-            <button ng-click="clearTodos()" class="btn btn-primary btn-lg btn-block" ng-show="statusInSystem.rights.remove">Clear</button>
+
+            <button ng-click="clearDoneTodos()"
+                    class="btn btn-primary btn-lg btn-block"
+                    ng-show="statusInSystem.rights.remove">Clear</button>
+
             <ul id="list">
-                <li class="task_list" title="click if you want to edit" ng-repeat="todo in todoList | filter:searchQuery" ng-mouseover="showRemoveIcon(todo)" ng-mouseout="showRemoveIcon(todo)">
-                    <input type="checkbox" ng-model="todo.done" ng-show="statusInSystem.rights.check" ng-click="markDone(todo)">
+                <li class="task_list" title="click if you want to edit" ng-repeat="todo in todoList | filter:searchQuery"
+                    ng-mouseover="showRemoveIcon(todo)" ng-mouseout="showRemoveIcon(todo)">
+                    <input type="checkbox" ng-model="todo.done" ng-show="statusInSystem.rights.check" ng-click="markDone()">
                     <span class="done-{{todo.done}} todo_item" ng-click="updateTodo(todo)">{{todo.text}}</span>
-                    <span class="glyphicon glyphicon-trash right pointer" ng-click="removeTodo(todo, statusInSystem.rights.remove)" ng-show="todo.showIcon"></span>
+                    <span class="glyphicon glyphicon-trash right pointer"
+                          ng-click="removeTodo(todo, statusInSystem.rights.remove)"
+                          ng-show="todo.showIcon"></span>
                 </li>
             </ul>
-			<input type="text" ng-model="searchQuery" placeholder="Search" title="type text for search here and press Enter" class="form-control">
+
+            <input type="text" ng-model="searchQuery" placeholder="Search"
+                   title="type text for search here and press Enter" class="form-control">
             <div class="clear"></div>
         </div>
         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>

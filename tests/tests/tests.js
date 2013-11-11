@@ -25,7 +25,13 @@ describe('TodosCtrl', function() {
     it('test role in system', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodosController', {$scope: $rootScope, localStorageService: localStorage});
 
-        expect($rootScope.statusInSystem.name).toBe("User");
+        expect($rootScope.statusInSystem.name).toBe("Patient");
+    }));
+
+    it('can edit', inject(function ($controller, $rootScope) {
+        var ctrl = $controller('TodosController', {$scope: $rootScope, localStorageService: localStorage});
+
+        expect($rootScope.updateTodo({text: "123", done: true})).toBeUndefined();
     }));
 
     it('remove Todo', inject(function ($controller, $rootScope) {
