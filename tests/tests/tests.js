@@ -44,7 +44,7 @@ describe('TodosCtrl', function() {
         var ctrl = $controller('TodosController', {$scope: $rootScope, localStorageService: localStorage});
 
         $rootScope.todoText = '';
-        expect($rootScope.addNewTodo()).toBe(false);
+        expect($rootScope.manageTodoItem()).toBe(false);
     }));
 
 });

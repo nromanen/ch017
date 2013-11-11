@@ -46,6 +46,10 @@ function TodosController($scope, localStorageService) {
         $scope.todoList[index].text = text;
     }
 
+    function addNewTodo(text) {
+        $scope.todoList.push({text: $scope.todoText, done:false, showIcon: false});
+    }
+
     $scope.changeStatusInSystem = function(role) {
         $scope.statusInSystem = role;
 
@@ -62,7 +66,7 @@ function TodosController($scope, localStorageService) {
             if ($scope.todoIndex >= 0) {
                 updateSelectedTodo($scope.todoIndex, $scope.todoText);
             } else {
-                $scope.todoList.push({text: $scope.todoText, done:false, showIcon: false});
+                addNewTodo($scope.todoText);
             }
             updateLocalStorage();
             delete $scope.todoIndex;
