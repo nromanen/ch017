@@ -17,15 +17,15 @@
 	{{levelshow}}
 	<center>
 	<span class="mylvl">
-	
-	<input type="radio" checked ng-change="go()" ng-model="acsessLvl" value="READ_ONLY" /> Read-only
-	<input type="radio" ng-change="go()" ng-model="acsessLvl" value="READ_CREATE" /> Read-Create
-	<input type="radio" ng-change="go()" ng-model="acsessLvl" value="ROOT" /> Root
-	
-	
+	My acsess level now is
+	<select ng-change="GetAcsessLvl()" ng-model="acsessLvl">
+		<option selected value="READ_ONLY">Read-only</option>
+		<option value="READ_CREATE">Read-create</option>
+		<option value="ROOT">Root</option>
+	</select>
 	</span>
 	<br><br>
-		<form ng-submit="addTodo()">
+		<form ng-submit="AddTodo()">
 			<input type="text" ng-model="todoText" size="30"
 			placeholder="Enter text">
 			<input class="btn-primary" type="submit" id="buttonSend" value="Add text">
@@ -38,8 +38,8 @@
 		<div class="test2">
 			<div class="test"> <span type="" class="done-{{todo.done}} todostyle fleft">{{todo.text}}</span>
 				<span class="fright"> <input class="box" type="checkbox" ng-model="todo.done">
-				<span ng-click="edit(todo)" class="ed"> </span>
-				<span ng-click="del(todo)" class="no"> </span></span><br>
+				<span ng-click="Edit(todo)" class="ed"> </span>
+				<span ng-click="Del(todo)" class="no"> </span></span><br>
 			</div>
 		</div>
 	</li>
