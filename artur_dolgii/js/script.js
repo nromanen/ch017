@@ -84,11 +84,7 @@ function controller($scope, localStorageService) {
     }
     
     $scope.changeOption = function() {
-        if($scope.inputValue === true) {
-            localStorageService.add('option_onlyView', 1);
-        } else {
-            localStorageService.add('option_onlyView', 0);
-        }
+        localStorageService.add('option_onlyView', +($scope.inputValue));
         
         $scope.setOption($scope.inputValue);
         

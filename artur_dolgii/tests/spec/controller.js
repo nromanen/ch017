@@ -47,6 +47,10 @@ describe("Check controller functioning", function() {
         it("should change option", function() {
             expect(controllerFunc.changeOption()).toBeTruthy();
         });
+        
+        it("should change option", function() {
+            expect(controllerFunc.changeOption()).toBeTruthy();
+        });
     });
     
 });
