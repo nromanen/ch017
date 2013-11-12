@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="style/todo.css">
     </head>
     <body>
-        <div ng-controller="TodosController" id="wrapper">
+        <div ng-controller="TodoCtrl" id="wrapper">
             <span class="right">Your role now is <strong>{{statusInSystem.name}}</strong></span>
             <div class="clear"></div>
 
@@ -25,27 +25,32 @@
             <h2 class="inform">You have {{getActiveTaskQuantity()}} tasks</h2>
             <div class="clear"></div>
 
-            <form ng-submit="manageTodoItem()" class="form-inline" role="form">
-                <input type="text" ng-model="todoText" ng-model="todoIndex"
+            <form ng-submit="addNewTodo()" class="form-inline" role="form">
+                <input type="text" ng-model="todoText"
                        placeholder="add new todo here" title="type text here and press Enter"
-                       class="form-control" ng-show="statusInSystem.rights.edit">
+                       class="form-control" ng-show="canEditTodo()">
             </form><br>
 
             <button ng-click="clearDoneTodos()"
                     class="btn btn-primary btn-lg btn-block"
-                    ng-show="statusInSystem.rights.remove">Clear</button>
-
+                    ng-show="canRemoveTodo()">Clear</button>
             <ul id="list">
-                <li class="task_list" title="click if you want to edit" ng-repeat="todo in todoList | filter:searchQuery"
-                    ng-mouseover="showRemoveIcon(todo)" ng-mouseout="showRemoveIcon(todo)">
-                    <input type="checkbox" ng-model="todo.done" ng-show="statusInSystem.rights.check" ng-click="markDone()">
-                    <span class="done-{{todo.done}} todo_item" ng-model="todo.showInput" ng-click="showEditInput($index)">{{todo.text}}</span>
-					<form ng-submit="updateTodo()" ng-model="todo.showInput" ng-show="todo.showInput">
-						<input class="edit" ng-model="todo.text" ng-blur="blur()">
-					</form>
-                    <span class="glyphicon glyphicon-trash right pointer"
-                          ng-click="removeTodo(todo)"
-                          ng-show="todo.showIcon"></span>
+                <li class="task_list" mouseover mouseout
+                    title="click if you want to edit" ng-repeat="todo in todoList | filter:searchQuery">
+
+                    <div class="content">
+                        <input type="checkbox" class="left check_done"
+                               ng-model="todo.done" ng-show="canCheckTodo()" ng-click="markDone()">
+                        <span class="done-{{todo.done}} todo_item" click>{{todo.text}}</span>
+                        <form ng-submit="updateTodo()" ng-hide="true">
+                            <input class="edit" ng-model="todo.text" blur>
+                        </form>
+                    </div>
+                    <div>
+                        <span class="glyphicon glyphicon-trash pointer right remove-icon"
+                              ng-click="removeTodo($index)"
+                              ng-show="false"></span>
+                    </div>
                 </li>
             </ul>
 
@@ -53,10 +58,14 @@
                    title="type text for search here and press Enter" class="form-control">
             <div class="clear"></div>
         </div>
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
-        <script src="js/angular-local-storage.js"></script>
-        <script src="frameworks/bootstrap/js/bootstrap.min.js"></script>
-        <script src="js/controllers.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/angular-local-storage.js"></script>
+        <script type="text/javascript" src="frameworks/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/controllers.js"></script>
+        <script type="text/javascript" src="js/directive/todo-blur.js"></script>
+        <script type="text/javascript" src="js/directive/todo-click.js"></script>
+        <script type="text/javascript" src="js/directive/removeIcon-hide.js"></script>
+        <script type="text/javascript" src="js/directive/removeIcon-show.js"></script>
     </body>
 </html>

@@ -1,11 +1,20 @@
-var App = angular.module("App", ["LocalStorageModule"]);
+var App = angular.module(
+    "App",
+    [
+        "LocalStorageModule",
+        "todo-blur",
+        "todo-click",
+        "todo-mouseover",
+        "todo-mouseout"
+    ]
+);
 
 App.config(function($routeProvider) {
-      $routeProvider.when('/', {controller: TodosController, templateUrl: 'index.html'});
+      $routeProvider.when('/', {controller: TodoCtrl, templateUrl: 'index.html'});
 });
 
 //our controllers
-function TodosController($scope, localStorageService) {
+function TodoCtrl($scope, localStorageService) {
 
     $scope.roles = {};
     $scope.todoList = [];
@@ -27,8 +36,6 @@ function TodosController($scope, localStorageService) {
         //current user status in system
         $scope.statusInSystem = $scope.roles.patient;
 
-        hideAllRemoveIcon();
-
     }
 
     //function update data in local storage after each change
@@ -36,19 +43,21 @@ function TodosController($scope, localStorageService) {
         localStorageService.add("todos_list", $scope.todoList);
     }
 
-    function hideAllRemoveIcon() {
-        $scope.todoList.forEach(function(todo) {
-            todo.showIcon = false;
-			todo.showInput = false;
-        });
+    //check rules
+    $scope.canAddTodo = function () {
+        return $scope.statusInSystem.rights.add;
     }
 
-    function updateSelectedTodo(index, text) {
-        $scope.todoList[index].text = text;
+    $scope.canEditTodo = function () {
+        return $scope.statusInSystem.rights.edit;
     }
 
-    function addNewTodo(text) {
-        $scope.todoList.push({text: $scope.todoText, done:false, showIcon: false, showInput: false});
+    $scope.canRemoveTodo = function () {
+        return $scope.statusInSystem.rights.remove;
+    }
+
+    $scope.canCheckTodo = function () {
+        return $scope.statusInSystem.rights.check;
     }
 
     $scope.changeStatusInSystem = function(role) {
@@ -57,20 +66,11 @@ function TodosController($scope, localStorageService) {
         return role;
     };
 
-    $scope.manageTodoItem = function() {
+    $scope.addNewTodo = function() {
 
-        /*$scope.todoText contains text from input
-        * $scope.todoIndex init when user want update exists todoItem
-        * */
         if ($scope.todoText) {
-            //use this condition because 0 in js is false but we have item with index 0
-            if ($scope.todoIndex >= 0) {
-                updateSelectedTodo($scope.todoIndex, $scope.todoText);
-            } else {
-                addNewTodo($scope.todoText);
-            }
+            $scope.todoList.push({text: $scope.todoText, done:false});
             updateLocalStorage();
-            delete $scope.todoIndex;
             $scope.todoText = '';
             return true;
         }
@@ -96,9 +96,7 @@ function TodosController($scope, localStorageService) {
         updateLocalStorage();
     };
 
-    $scope.removeTodo = function(todo) {
-        var index = $scope.todoList.indexOf(todo);
-
+    $scope.removeTodo = function(index) {
         $scope.todoList.splice(index, 1);
         updateLocalStorage();
 
@@ -111,22 +109,6 @@ function TodosController($scope, localStorageService) {
 
     $scope.updateTodo = function() {
         updateLocalStorage();
-    };
-	
-	$scope.showEditInput = function(index) {
-		$scope.todoList[index].showInput = !$scope.todoList[index].showInput;
-	};
-	
-	$scope.blur = function(){
-		alert("here");
-	};
-
-    $scope.showRemoveIcon = function(todo) {
-        var index = $scope.todoList.indexOf(todo);
-
-        if ($scope.statusInSystem.rights.remove) {
-            $scope.todoList[index].showIcon = !$scope.todoList[index].showIcon;
-        }
     };
 
 }

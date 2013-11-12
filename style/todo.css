@@ -30,6 +30,11 @@
 .left{
     float: left;
 }
+.check_done{
+    position: relative;
+    right: 20px;
+    top: 8px;
+}
 .right{
     float: right;
 }
@@ -41,6 +46,7 @@
     overflow: auto;
 }
 #list .task_list{
+    position: relative;
     margin: 5px;
     list-style-type: none;
     font-family: Verdana;
@@ -50,6 +56,17 @@
 #list .task_list:hover{
     background: #ffffff;
     cursor: pointer;
+}
+.edit{
+    position: absolute;
+    width: 200px;
+}
+.content{
+    height: 40px;
+}
+.remove-icon{
+    position: relative;
+    top: -30px;
 }
 .no-display{
     display: none;
