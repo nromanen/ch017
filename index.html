@@ -39,7 +39,10 @@
                 <li class="task_list" title="click if you want to edit" ng-repeat="todo in todoList | filter:searchQuery"
                     ng-mouseover="showRemoveIcon(todo)" ng-mouseout="showRemoveIcon(todo)">
                     <input type="checkbox" ng-model="todo.done" ng-show="statusInSystem.rights.check" ng-click="markDone()">
-                    <span class="done-{{todo.done}} todo_item" ng-click="updateTodo(todo)">{{todo.text}}</span>
+                    <span class="done-{{todo.done}} todo_item" ng-model="todo.showInput" ng-click="showEditInput($index)">{{todo.text}}</span>
+					<form ng-submit="updateTodo()" ng-model="todo.showInput" ng-show="todo.showInput">
+						<input class="edit" ng-model="todo.text" ng-blur="blur()">
+					</form>
                     <span class="glyphicon glyphicon-trash right pointer"
                           ng-click="removeTodo(todo)"
                           ng-show="todo.showIcon"></span>
@@ -51,7 +54,7 @@
             <div class="clear"></div>
         </div>
         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
         <script src="js/angular-local-storage.js"></script>
         <script src="frameworks/bootstrap/js/bootstrap.min.js"></script>
         <script src="js/controllers.js"></script>

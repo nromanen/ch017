@@ -19,13 +19,13 @@ function TodosController($scope, localStorageService) {
 
         //list of roles
         $scope.roles = {
-            admin: {name: "Doctor", rights: {add: true, remove: true, check: true, edit: true}},
-            moder: {name: "Nurse", rights: {add: true, remove: false, check: true, edit: false}},
-            user: {name: "Patient", rights: {add: false, remove: false, check: false, edit: false}}
+            doctor: {name: "Doctor", rights: {add: true, remove: true, check: true, edit: true}},
+            nurse: {name: "Nurse", rights: {add: true, remove: false, check: true, edit: false}},
+            patient: {name: "Patient", rights: {add: false, remove: false, check: false, edit: false}}
         };
 
         //current user status in system
-        $scope.statusInSystem = $scope.roles.user;
+        $scope.statusInSystem = $scope.roles.patient;
 
         hideAllRemoveIcon();
 
@@ -36,9 +36,10 @@ function TodosController($scope, localStorageService) {
         localStorageService.add("todos_list", $scope.todoList);
     }
 
-    function hideAllRemoveIcon(){
+    function hideAllRemoveIcon() {
         $scope.todoList.forEach(function(todo) {
             todo.showIcon = false;
+			todo.showInput = false;
         });
     }
 
@@ -47,7 +48,7 @@ function TodosController($scope, localStorageService) {
     }
 
     function addNewTodo(text) {
-        $scope.todoList.push({text: $scope.todoText, done:false, showIcon: false});
+        $scope.todoList.push({text: $scope.todoText, done:false, showIcon: false, showInput: false});
     }
 
     $scope.changeStatusInSystem = function(role) {
@@ -108,15 +109,17 @@ function TodosController($scope, localStorageService) {
         updateLocalStorage();
     };
 
-    $scope.updateTodo = function(todo) {
-        var index = $scope.todoList.indexOf(todo);
-
-        if ($scope.statusInSystem.rights.edit) {
-            $scope.todoText = $scope.todoList[index].text;
-            $scope.todoIndex = index;
-            return true;
-        }
+    $scope.updateTodo = function() {
+        updateLocalStorage();
     };
+	
+	$scope.showEditInput = function(index) {
+		$scope.todoList[index].showInput = !$scope.todoList[index].showInput;
+	};
+	
+	$scope.blur = function(){
+		alert("here");
+	};
 
     $scope.showRemoveIcon = function(todo) {
         var index = $scope.todoList.indexOf(todo);
