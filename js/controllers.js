@@ -95,20 +95,13 @@ function TodosController($scope, localStorageService) {
         updateLocalStorage();
     };
 
-    $scope.removeTodo = function(todo, have_right) {
-        /*
-        *check can user remove item or not
-        * parameter @have_right gets from @$scope.statusInSystem.rights.remove of current user
-        */
-        if (have_right) {
-            var index = $scope.todoList.indexOf(todo);
+    $scope.removeTodo = function(todo) {
+        var index = $scope.todoList.indexOf(todo);
 
-            $scope.todoList.splice(index, 1);
-            updateLocalStorage();
-            return true;
-        }
-        return false;
+        $scope.todoList.splice(index, 1);
+        updateLocalStorage();
 
+        return true;
     };
 
     $scope.markDone = function() {

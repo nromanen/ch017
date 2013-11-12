@@ -41,7 +41,7 @@
                     <input type="checkbox" ng-model="todo.done" ng-show="statusInSystem.rights.check" ng-click="markDone()">
                     <span class="done-{{todo.done}} todo_item" ng-click="updateTodo(todo)">{{todo.text}}</span>
                     <span class="glyphicon glyphicon-trash right pointer"
-                          ng-click="removeTodo(todo, statusInSystem.rights.remove)"
+                          ng-click="removeTodo(todo)"
                           ng-show="todo.showIcon"></span>
                 </li>
             </ul>
