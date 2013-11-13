@@ -5,7 +5,7 @@ angular.module("todo-blur", [])
             link: function (scope, elem, attrs) {
                 elem.bind('blur', function () {
                     scope.$apply(attrs.blur);
-                    elem.hide();
+                    elem.parent().hide();
                     elem.parent().prev("span").show();
                 });
             }
