@@ -43,7 +43,7 @@
                                ng-model="todo.done" ng-show="canCheckTodo()" ng-click="markDone()">
                         <span class="done-{{todo.done}} todo_item" click>{{todo.text}}</span>
                         <form ng-submit="updateTodo()" ng-hide="true">
-                            <input class="edit" ng-model="todo.text" blur>
+                            <input class="edit" ng-model="todo.text" ng-change="updateTodo()" blur>
                         </form>
                     </div>
                     <div>
