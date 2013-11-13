@@ -19,6 +19,7 @@ Thumbs.db
 *.rar
 *.tar
 *.zip
+coverage
 .idea*
 .directory
 .Python
