@@ -11,8 +11,8 @@
             <div class="clear"></div>
 
             <div class="btn-group right">
-                <button type="button" class="btn btn-danger">Select status</button>
-                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                <button type="button" class="btn btn-default">Select status</button>
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                     <span class="caret"></span>
                     <span class="sr-only"></span>
                 </button>
@@ -41,9 +41,10 @@
                     <div class="content">
                         <input type="checkbox" class="left check_done"
                                ng-model="todo.done" ng-show="canCheckTodo()" ng-click="markDone()">
-                        <span class="done-{{todo.done}} todo_item" click>{{todo.text}}</span>
-                        <form ng-submit="updateTodo()" ng-hide="true">
-                            <input class="edit" ng-model="todo.text" ng-change="updateTodo()" blur>
+                        <span class="done-{{todo.done}} todo_item" dbclick>{{todo.text}}</span>
+                        <form ng-submit="updateTodo()" ng-hide="true" class="form-inline edit-form" role="form">
+                            <input class="edit" class="form-control"
+                                   ng-model="todo.text" ng-change="updateTodo()" blur autofocus="">
                         </form>
                     </div>
                     <div>
@@ -62,8 +63,6 @@
 		<script type="text/javascript" src="frameworks/angular/angular.min.js"></script>
         <script type="text/javascript" src="frameworks/angular/angular-local-storage.js"></script>
         <script type="text/javascript" src="frameworks/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/project-conf.js"></script>
-
         <!--controllers-->
         <script type="text/javascript" src="js/controllers/TodoCtrl.js"></script>
 
@@ -72,5 +71,7 @@
         <script type="text/javascript" src="js/directive/todo-click.js"></script>
         <script type="text/javascript" src="js/directive/removeIcon-hide.js"></script>
         <script type="text/javascript" src="js/directive/removeIcon-show.js"></script>
+
+        <script type="text/javascript" src="js/project-conf.js"></script>
     </body>
 </html>
