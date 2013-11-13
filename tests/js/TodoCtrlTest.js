@@ -47,4 +47,18 @@ describe('TodosCtrl', function() {
         expect($rootScope.addNewTodo()).toBe(false);
     }));
 
+    it('check can user add new todo by default', inject(function ($controller, $rootScope) {
+        var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
+
+        $rootScope.todoText = '';
+        expect($rootScope.canAddTodo()).toBe(false);
+    }));
+
+    it('check func for clear done todos', inject(function ($controller, $rootScope) {
+        var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
+
+        $rootScope.todoText = '';
+        expect($rootScope.clearDoneTodos()).toBeUndefined();
+    }));
+
 });
