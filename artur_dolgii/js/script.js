@@ -10,7 +10,6 @@ function controller($scope, localStorageService) {
     }
     
     $scope.putInList = function() {
-        var listId;
         var showCheckboxBool;
         var hideDelImgBool;
         
@@ -31,16 +30,19 @@ function controller($scope, localStorageService) {
         $scope.lists.push( item );
         updateLocalStorageLists();
         $scope.inputText = "";
+        
+        return true;
     }
     
     $scope.hover = function(list) {
         return list.showDelImg = ! list.showDelImg;
     };
     
-    $scope.deleteItem = function(list) {
-        var listId = $scope.lists.indexOf(list);
-        $scope.lists.splice(listId, 1);
+    $scope.deleteItem = function(index) {
+        $scope.lists.splice(index, 1);
         updateLocalStorageLists();
+        
+        return true;
     };
     
     $scope.initArchive = function() {
@@ -109,6 +111,8 @@ function controller($scope, localStorageService) {
                 $scope.lists[ key ].itemStyle = itemStyle;
             }
         });
+        
+        return true;
     }
     
     function updateLocalStorageLists() {
@@ -117,10 +121,13 @@ function controller($scope, localStorageService) {
     
     return {
         initController: $scope.initController,
+        putInList: $scope.putInList,
         hover: $scope.hover,
         initArchive: $scope.initArchive,
         setArchive: $scope.setArchive,
         initOption: $scope.initOption,
-        changeOption: $scope.changeOption
+        changeOption: $scope.changeOption,
+        setOption: $scope.setOption,
+        deleteItem: $scope.deleteItem
     };
 }

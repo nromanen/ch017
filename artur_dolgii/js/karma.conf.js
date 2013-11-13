@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Wed Nov 13 2013 00:31:02 GMT+0200 (EET)
+// Generated on Wed Nov 13 2013 10:08:54 GMT+0200 (EET)
 
 module.exports = function(config) {
   config.set({
@@ -14,7 +14,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      '*.js'
+      'angular.min.js',
+      'angular-mocks.js',
+      'script.js',
+      '../tests/spec/controller.js'
     ],
 
 
@@ -22,12 +25,21 @@ module.exports = function(config) {
     exclude: [
       
     ],
-    
+
+
+    preprocessors: {
+      'script.js': ['coverage']
+    },
+
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
     reporters: ['progress', 'coverage'],
 
+    coverageReporter: {
+      type : 'html',
+      dir : '../coverage/'
+    },
 
     // web server port
     port: 9876,
@@ -55,7 +67,7 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows; has to be installed with `npm install karma-ie-launcher`)
     browsers: ['Chrome'],
-    
+
 
     // If browser does not capture in given timeout [ms], kill it
     captureTimeout: 60000,

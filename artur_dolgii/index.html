@@ -18,7 +18,7 @@
                 <div ng-repeat="list in lists" ng-mouseenter="hover(list)" ng-mouseleave="hover(list)" ng-show="list.show">
                     <input type="checkbox" ng-click="setArchive(list)" ng-show="list.showCheckbox" ng-model="list.listCheckbox" ng-init="list.archive">
                     <span ng-style="list.itemStyle">{{list.name}}</span>
-                    <span ng-hide="list.hideDelImg" ><img ng-show="list.showDelImg" ng-click="deleteItem(list)" src="images/delete.png"></span>
+                    <span ng-hide="list.hideDelImg" ><img ng-show="list.showDelImg" ng-click="deleteItem($index)" src="images/delete.png"></span>
                 </div>
             </div>
             <div class="options">
