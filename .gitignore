@@ -20,7 +20,6 @@ karma.conf.js
 *.rar
 *.tar
 *.zip
-coverage
 .idea*
 .directory
 .Python
