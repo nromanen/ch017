@@ -1,4 +1,3 @@
-
 describe('TodosCtrl', function() {
 
     var localStorage = {};
@@ -145,5 +144,57 @@ describe('TodosCtrl', function() {
         $rootScope.todoText = '';
         expect($rootScope.clearDoneTodos()).toBeUndefined();
     }));
+    it('Roles in system', inject(function ($controller, $rootScope) {
+        var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
+
+	var rolestest = {
+            doctor: {name: "Doctor", rights: {add: true, remove: true, check: true, edit: true}},
+            nurse: {name: "Nurse", rights: {add: true, remove: false, check: true, edit: false}},
+            patient: {name: "Patient", rights: {add: false, remove: false, check: false, edit: false}}
+        };
+
+        expect($rootScope.roles).toEqual(rolestest);
+    }));
+
+    describe('Validate Roles in system', function() {
+       it('Validate doctor ', inject(function ($controller, $rootScope) {
+          var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
+
+          $rootScope.statusInSystem = $rootScope.roles.doctor;
+          expect($rootScope.canAddTodo()).toBe(true);
+          expect($rootScope.canEditTodo()).toBe(true);
+          expect($rootScope.canRemoveTodo()).toBe(true);
+          expect($rootScope.canCheckTodo()).toBe(true);
+       }));
+       it('Validate nurse ', inject(function ($controller, $rootScope) {
+          var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
+
+          $rootScope.statusInSystem = $rootScope.roles.nurse;
+          expect($rootScope.canAddTodo()).toBe(true);
+          expect($rootScope.canEditTodo()).toBe(false);
+          expect($rootScope.canRemoveTodo()).toBe(false);
+          expect($rootScope.canCheckTodo()).toBe(true);
+       }));
+       it('Validate patient ', inject(function ($controller, $rootScope) {
+          var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
+
+          $rootScope.statusInSystem = $rootScope.roles.patient;
+          expect($rootScope.canAddTodo()).toBe(false);
+          expect($rootScope.canEditTodo()).toBe(false);
+          expect($rootScope.canRemoveTodo()).toBe(false);
+          expect($rootScope.canCheckTodo()).toBe(false);
+       }));
+
+
+    });
+
+
+    it('count ActiveTask', inject(function ($controller, $rootScope) {
+        var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
+
+        expect($rootScope.getActiveTaskQuantity()>=0).toBe(true);
+    }));
+
+    
 
 });
