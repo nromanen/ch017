@@ -5,8 +5,7 @@ var App = angular.module(
         "todo-blur",
         "todo-click",
         "todo-mouseover",
-        "todo-mouseout",
-        "roleDecorator"
+        "todo-mouseout"
     ]
 ).config(function($routeProvider) {
         $routeProvider.when('/', {controller: TodoCtrl, templateUrl: 'index.html'});

@@ -1,5 +1,5 @@
 //our controllers
-function TodoCtrl($scope, localStorageService, roleDecorator) {
+function TodoCtrl($scope, localStorageService) {
 
     $scope.roles = {};
     $scope.todoList = [];
@@ -50,17 +50,16 @@ function TodoCtrl($scope, localStorageService, roleDecorator) {
         return role;
     };
 
-    $scope.addNewTodo = roleDecorator.decorateForRight($scope.statusInSystem.rights.add, function() {
+    $scope.addNewTodo = function() {
 
-            if ($scope.todoText) {
-                $scope.todoList.push({text: $scope.todoText, done:false});
-                updateLocalStorage();
-                $scope.todoText = '';
-                return true;
-            }
-            return false;
+        if ($scope.todoText) {
+            $scope.todoList.push({text: $scope.todoText, done:false});
+            updateLocalStorage();
+            $scope.todoText = '';
+            return true;
         }
-    );
+        return false;
+    };
 
     $scope.getActiveTaskQuantity = function() {
         var count = 0;
@@ -73,31 +72,26 @@ function TodoCtrl($scope, localStorageService, roleDecorator) {
         return count;
     };
 
-    $scope.clearDoneTodos = roleDecorator.decorateForRight($scope.statusInSystem.rights.remove, function() {
-            $scope.todoList = $scope.todoList.filter(function(todo) {
-                return !todo.done;
-            });
-            updateLocalStorage();
-        }
-    );
-
-    $scope.removeTodo = roleDecorator.decorateForRight($scope.statusInSystem.rights.remove, function(index) {
-            $scope.todoList.splice(index, 1);
-            updateLocalStorage();
-
-            return true;
-        }
-    );
-
-    $scope.markDone = roleDecorator.decorateForRight($scope.statusInSystem.rights.check, function() {
-            updateLocalStorage();
-        }
-    );
-
-    $scope.updateTodo = roleDecorator.decorateForRight($scope.statusInSystem.rights.edit, function() {
+    $scope.clearDoneTodos = function() {
+        $scope.todoList = $scope.todoList.filter(function(todo) {
+            return !todo.done;
+        });
         updateLocalStorage();
-        }
-    );
+    }
 
+    $scope.removeTodo = function(index) {
+        $scope.todoList.splice(index, 1);
+        updateLocalStorage();
+
+        return true;
+    }
+
+    $scope.markDone = function() {
+        updateLocalStorage();
+    }
+
+    $scope.updateTodo = function() {
+        updateLocalStorage();
+    }
 }
 

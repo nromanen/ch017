@@ -76,7 +76,7 @@ describe('TodosCtrl', function() {
 
         expect($rootScope.markDone()).toBe(undefined);
     }));
-    
+
     it('Should change status in system', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
         var role = $rootScope.roles.nurse;
