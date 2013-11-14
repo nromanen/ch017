@@ -5,10 +5,14 @@ var App = angular.module(
         "todo-blur",
         "todo-click",
         "todo-mouseover",
-        "todo-mouseout"
+        "todo-mouseout",
+        "roleDecorator"
     ]
-);
-
-App.config(function($routeProvider) {
-      $routeProvider.when('/', {controller: TodoCtrl, templateUrl: 'index.html'});
+).config(function($routeProvider) {
+        $routeProvider.when('/', {controller: TodoCtrl, templateUrl: 'index.html'});
+    }
+).run(function($rootScope) {
+    $rootScope.$on('$routeChangeSuccess', function () {
+        //TODO: Get rights from server shall implement here
+    })
 });

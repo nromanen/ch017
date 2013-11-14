@@ -1,5 +1,5 @@
 //our controllers
-function TodoCtrl($scope, localStorageService) {
+function TodoCtrl($scope, localStorageService, roleDecorator) {
 
     $scope.roles = {};
     $scope.todoList = [];
@@ -7,19 +7,18 @@ function TodoCtrl($scope, localStorageService) {
     init();
 
     function init() {
-
          //list of todos
         $scope.todoList = localStorageService.get("todos_list") || [];
 
         //list of roles
         $scope.roles = {
             doctor: {name: "Doctor", rights: {add: true, remove: true, check: true, edit: true}},
-            nurse: {name: "Nurse", rights: {add: true, remove: false, check: true, edit: false}},
+            nurse: {name: "Nurse", rights: {add: false, remove: false, check: true, edit: false}},
             patient: {name: "Patient", rights: {add: false, remove: false, check: false, edit: false}}
         };
 
         //current user status in system
-        $scope.statusInSystem = $scope.roles.patient;
+        $scope.statusInSystem = $scope.roles.doctor;
 
     }
 
@@ -31,19 +30,19 @@ function TodoCtrl($scope, localStorageService) {
     //check rules
     $scope.canAddTodo = function () {
         return $scope.statusInSystem.rights.add;
-    }
+    };
 
     $scope.canEditTodo = function () {
         return $scope.statusInSystem.rights.edit;
-    }
+    };
 
     $scope.canRemoveTodo = function () {
         return $scope.statusInSystem.rights.remove;
-    }
+    };
 
     $scope.canCheckTodo = function () {
         return $scope.statusInSystem.rights.check;
-    }
+    };
 
     $scope.changeStatusInSystem = function(role) {
         $scope.statusInSystem = role;
@@ -51,16 +50,17 @@ function TodoCtrl($scope, localStorageService) {
         return role;
     };
 
-    $scope.addNewTodo = function() {
+    $scope.addNewTodo = roleDecorator.decorateForRight($scope.statusInSystem.rights.add, function() {
 
-        if ($scope.todoText) {
-            $scope.todoList.push({text: $scope.todoText, done:false});
-            updateLocalStorage();
-            $scope.todoText = '';
-            return true;
+            if ($scope.todoText) {
+                $scope.todoList.push({text: $scope.todoText, done:false});
+                updateLocalStorage();
+                $scope.todoText = '';
+                return true;
+            }
+            return false;
         }
-        return false;
-    };
+    );
 
     $scope.getActiveTaskQuantity = function() {
         var count = 0;
@@ -73,28 +73,31 @@ function TodoCtrl($scope, localStorageService) {
         return count;
     };
 
-    $scope.clearDoneTodos = function() {
+    $scope.clearDoneTodos = roleDecorator.decorateForRight($scope.statusInSystem.rights.remove, function() {
+            $scope.todoList = $scope.todoList.filter(function(todo) {
+                return !todo.done;
+            });
+            updateLocalStorage();
+        }
+    );
 
-        $scope.todoList = $scope.todoList.filter(function(todo) {
-            return !todo.done;
-        });
+    $scope.removeTodo = roleDecorator.decorateForRight($scope.statusInSystem.rights.remove, function(index) {
+            $scope.todoList.splice(index, 1);
+            updateLocalStorage();
+
+            return true;
+        }
+    );
+
+    $scope.markDone = roleDecorator.decorateForRight($scope.statusInSystem.rights.check, function() {
+            updateLocalStorage();
+        }
+    );
+
+    $scope.updateTodo = roleDecorator.decorateForRight($scope.statusInSystem.rights.edit, function() {
         updateLocalStorage();
-    };
-
-    $scope.removeTodo = function(index) {
-        $scope.todoList.splice(index, 1);
-        updateLocalStorage();
-
-        return true;
-    };
-
-    $scope.markDone = function() {
-        updateLocalStorage();
-    };
-
-    $scope.updateTodo = function() {
-        updateLocalStorage();
-    };
+        }
+    );
 
 }
 
