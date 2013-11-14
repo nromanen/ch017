@@ -1,17 +1,14 @@
 angular.module("todo-click", [])
-    .directive("dbclick", function () {
+    .directive("click", function () {
         return {
             restrict: "A",
             link: function (scope, elem, attrs) {
-                elem.bind('dblclick', function () {
+                elem.bind('click', function () {
                     scope.$apply(attrs.click);
-
-                    if (scope.statusInSystem.rights.edit) {
-                        angular.element(".todo_item").show();
-                        angular.element(".edit-form").hide();
-                        elem.hide();
-                        elem.next("form").show().focus();
-                    }
+                    angular.element(".todo_item").show();
+                    angular.element(".edit-form").hide();
+                    elem.hide();
+                    elem.next("form").show().focus();
                 });
             }
         }
