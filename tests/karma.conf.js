@@ -32,7 +32,7 @@ module.exports = function(config) {
 
 
     preprocessors: {
-        '/home/ruslan/work/softserve/todos_project/ch017/tests/js/*.js': 'coverage'
+        '/home/ruslan/work/softserve/todos_project/ch017/js/controllers/*.js': 'coverage'
     },
 
     // test results reporter to use

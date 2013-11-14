@@ -52,7 +52,7 @@ describe('TodosCtrl', function() {
         $rootScope.todoText = '';
         expect($rootScope.canAddTodo()).toBe(false);
     }));
-    
+
     it('Should check rights to edit item', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
 
@@ -113,25 +113,25 @@ describe('TodosCtrl', function() {
         var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
         var flag;
         var count;
-        
+
         runs(function() {
             flag = false;
             count = 0;
             $rootScope.todoList = [{done: true}];
-            
+
             expect($rootScope.getActiveTaskQuantity()).toBe(count);
-            
+
             setTimeout(function() {
                 flag = true;
             }, 500);
         });
-        
+
         waitsFor(function() {
             count = 1;
             $rootScope.todoList = [{done: false}];
             return flag;
         }, "Should be some active items", 750);
-        
+
         runs(function() {
             expect($rootScope.getActiveTaskQuantity()).toBe(count);
         });
