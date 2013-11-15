@@ -70,7 +70,7 @@ describe('TodosCtrl', function() {
 
         expect($rootScope.canCheckTodo()).toBe(true);
     }));
-    
+
     it('Should mark item as done', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
 

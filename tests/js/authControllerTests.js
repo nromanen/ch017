@@ -20,7 +20,7 @@ describe('Authorization controller', function() {
             }
         }
     });
-    
+
     it('Should validate authorization form', inject(function ($controller, $rootScope) {
         var ctrl = $controller('authController', {$scope: $rootScope, localStorageService: localStorage});
 

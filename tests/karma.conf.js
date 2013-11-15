@@ -21,6 +21,8 @@ module.exports = function(config) {
       '/home/ruslan/work/softserve/todos_project/ch017/frameworks/angular/angular-local-storage.js',
       '/home/ruslan/work/softserve/todos_project/ch017/frameworks/angular/angular-mocks.js',
       '/home/ruslan/work/softserve/todos_project/ch017/js/controllers/TodoCtrl.js',
+      '/home/ruslan/work/softserve/todos_project/ch017/js/controllers/authController.js',
+      '/home/ruslan/work/softserve/todos_project/ch017/tests/js/authControllerTests.js',
       '/home/ruslan/work/softserve/todos_project/ch017/tests/js/TodoCtrlTest.js'
     ],
 
