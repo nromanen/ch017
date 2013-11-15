@@ -1,0 +1,3 @@
+function authController($scope, localStorageService) {
+    
+}
