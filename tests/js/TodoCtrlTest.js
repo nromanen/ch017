@@ -24,7 +24,7 @@ describe('TodosCtrl', function() {
     it('test role in system', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
 
-        expect($rootScope.statusInSystem.name).toBe("Patient");
+        expect($rootScope.statusInSystem.name).toBe("Doctor");
     }));
 
     it('can edit', inject(function ($controller, $rootScope) {
@@ -50,25 +50,25 @@ describe('TodosCtrl', function() {
         var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
 
         $rootScope.todoText = '';
-        expect($rootScope.canAddTodo()).toBe(false);
+        expect($rootScope.canAddTodo()).toBe(true);
     }));
 
     it('Should check rights to edit item', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
 
-        expect($rootScope.canEditTodo()).toBe(false);
+        expect($rootScope.canEditTodo()).toBe(true);
     }));
     
     it('Should check rights to remove item', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
 
-        expect($rootScope.canRemoveTodo()).toBe(false);
+        expect($rootScope.canRemoveTodo()).toBe(true);
     }));
     
     it('Should check rights to check item', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
 
-        expect($rootScope.canCheckTodo()).toBe(false);
+        expect($rootScope.canCheckTodo()).toBe(true);
     }));
     
     it('Should mark item as done', inject(function ($controller, $rootScope) {
@@ -144,12 +144,13 @@ describe('TodosCtrl', function() {
         $rootScope.todoText = '';
         expect($rootScope.clearDoneTodos()).toBeUndefined();
     }));
+    
     it('Roles in system', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
 
 	var rolestest = {
             doctor: {name: "Doctor", rights: {add: true, remove: true, check: true, edit: true}},
-            nurse: {name: "Nurse", rights: {add: true, remove: false, check: true, edit: false}},
+            nurse: {name: "Nurse", rights: {add: false, remove: false, check: true, edit: false}},
             patient: {name: "Patient", rights: {add: false, remove: false, check: false, edit: false}}
         };
 
@@ -170,7 +171,7 @@ describe('TodosCtrl', function() {
           var ctrl = $controller('TodoCtrl', {$scope: $rootScope, localStorageService: localStorage});
 
           $rootScope.statusInSystem = $rootScope.roles.nurse;
-          expect($rootScope.canAddTodo()).toBe(true);
+          expect($rootScope.canAddTodo()).toBe(false);
           expect($rootScope.canEditTodo()).toBe(false);
           expect($rootScope.canRemoveTodo()).toBe(false);
           expect($rootScope.canCheckTodo()).toBe(true);
