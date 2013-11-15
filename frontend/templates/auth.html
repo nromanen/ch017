@@ -1,12 +1,20 @@
 <div ng-controller="AuthController">
     <form class="form-signin" ng-submit="checkUser()">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" ng-model="authLogin" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{2,}$" title="At least 3 characters" class="form-control" placeholder="Your login" required="" autofocus="">
-        <input type="password" ng-model="authPassword" pattern="[^]{4,}$" title="At least 4 characters" class="form-control" placeholder="Password" required="">
+
+        <input type="text" ng-model="authLogin" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{2,}$"
+               title="At least 3 characters" class="form-control" placeholder="Your login"
+               required="" autofocus="">
+
+        <input type="password" ng-model="authPassword" pattern="[^]{4,}$"
+               title="At least 4 characters" class="form-control"
+               placeholder="Password" required="">
+
         <label class="checkbox">
             <input type="checkbox" ng-model="authRemember" value="remember-me"> Remember me
         </label>
         <div ng-bind="hintText" ng-style="hintStyle" class="hint"></div>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
+    </form>
 </div>

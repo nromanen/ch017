@@ -21,11 +21,10 @@ describe('Authorization controller', function() {
         }
     });
 
-    it('Should validate authorization form', inject(function (_$httpBackend_, $controller, $rootScope) {
+    it('Should validate authorization form', inject(function ($controller, $rootScope) {
         var ctrl = $controller('AuthController', {$scope: $rootScope, localStorageService: localStorage});
-        var $httpBackend = _$httpBackend_;
 
-        expect($rootScope.showHint()).toBe(true);
+        expect($rootScope.hint.show("text", "green")).toBe(true);
     }));
     
     it('Should validate authorization form', inject(function (_$httpBackend_, $controller, $rootScope) {
