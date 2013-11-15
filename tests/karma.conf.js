@@ -20,10 +20,10 @@ module.exports = function(config) {
       '/home/ruslan/work/softserve/todos_project/ch017/frameworks/angular/angular.min.js',
       '/home/ruslan/work/softserve/todos_project/ch017/frameworks/angular/angular-local-storage.js',
       '/home/ruslan/work/softserve/todos_project/ch017/frameworks/angular/angular-mocks.js',
-      '/home/ruslan/work/softserve/todos_project/ch017/js/controllers/TodoCtrl.js',
-      '/home/ruslan/work/softserve/todos_project/ch017/js/controllers/authController.js',
-      '/home/ruslan/work/softserve/todos_project/ch017/tests/js/authControllerTests.js',
-      '/home/ruslan/work/softserve/todos_project/ch017/tests/js/TodoCtrlTest.js'
+      '/home/ruslan/work/softserve/todos_project/ch017/js/controllers/TodoController.js',
+      '/home/ruslan/work/softserve/todos_project/ch017/js/controllers/AuthController.js',
+      '/home/ruslan/work/softserve/todos_project/ch017/tests/js/AuthControllerTest.js',
+      '/home/ruslan/work/softserve/todos_project/ch017/tests/js/TodoControllerTest.js'
     ],
 
 

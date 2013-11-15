@@ -8,7 +8,7 @@ var App = angular.module(
         "todo-mouseout"
     ]
 ).config(function($routeProvider) {
-    $routeProvider.when('/', {controller: TodoCtrl, templateUrl: 'templates/todo.html'})
+    $routeProvider.when('/', {controller: TodoController, templateUrl: 'templates/todo.html'});
     $routeProvider.when('/auth', {controller: '', templateUrl: 'templates/auth.html'});
             
 }).run(function($rootScope) {

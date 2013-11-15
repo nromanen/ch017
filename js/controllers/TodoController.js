@@ -1,5 +1,5 @@
 //our controllers
-function TodoCtrl($scope, localStorageService) {
+function TodoController($scope, localStorageService) {
 
     $scope.roles = {};
     $scope.todoList = [];
