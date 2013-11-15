@@ -15,4 +15,4 @@ var App = angular.module(
     $rootScope.$on('$routeChangeSuccess', function () {
         //TODO: Get rights from server shall implement here
     })
-});
+);
