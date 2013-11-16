@@ -38,7 +38,8 @@ describe('Route on load controller', function() {
         
 */
 
-    var localStorage = {};
+    var localStorage,
+        routeOnLoad;
 
     beforeEach(function () {
         var store = {};
@@ -58,32 +59,42 @@ describe('Route on load controller', function() {
             }
         }
     });
-    
-    it('Should check answer returned from server', inject(function ($controller, $rootScope) {
-        var ctrl = $controller('routeOnLoad', {$rootScope: $rootScope, localStorageService: localStorage});
+
+    beforeEach(function () {
+        module("App");
+    });
+
+    beforeEach(inject(function ($injector, $controller, $rootScope, $location, $httpBackend) {
+        this.$location = $location;
+        this.$httpBackend = $httpBackend;
+        this.scope = $rootScope.$new();
+        routeOnLoad = $injector.get('routeOnLoad');
+    }));
+
+    it('Should check answer returned from server', function ($rootScope) {
         var flag;
         var status;
         var result;
-        
+
         /* condition for status >>> begin */
         runs(function() {
             flag = false;
             status = 501;
             
-            expect($rootScope.checkServerAnswer(status, result)).toBe(false);
+            expect(routeOnLoad.checkServerAnswer(status, result)).toBe(false);
             
             setTimeout(function() {
                 flag = true;
             }, 500);
         });
-        
+
         waitsFor(function() {
             status = 200;
             return flag;
         }, "Status should be HTTP 200", 750);
-        
+
         runs(function() {
-            expect($rootScope.checkServerAnswer(status, result)).toBe(true);
+            expect(routeOnLoad.checkServerAnswer(status, result)).toBe(true);
         });
         /* condition for status >>> end */
         
@@ -92,7 +103,7 @@ describe('Route on load controller', function() {
             flag = false;
             result = false;
             
-            expect($rootScope.checkServerAnswer(status, result)).toBe(false);
+            expect(routeOnLoad.checkServerAnswer(status, result)).toBe(false);
             
             setTimeout(function() {
                 flag = true;
@@ -105,36 +116,33 @@ describe('Route on load controller', function() {
         }, "Result should be true", 750);
         
         runs(function() {
-            expect($rootScope.checkServerAnswer(status, result)).toBe(true);
+            expect(routeOnLoad.checkServerAnswer(status, result)).toBe(true);
         });
         /* condition for result >>> end */
-    }));
+    });
     
-    it('Should save role status into the $rootScope', inject(function ($controller, $rootScope) {
-        var ctrl = $controller('routeOnLoad', {$rootScope: $rootScope, localStorageService: localStorage});
+    it('Should save role status into the $rootScope', function ($rootScope) {
         var data = {};
         
-        expect($rootScope.saveStatusInSystem(data)).toBe(true);
-    }));
+        expect(routeOnLoad.saveStatusInSystem(data)).toBe(true);
+    });
     
-    it('Should redirect to the path', inject(function ($controller, $rootScope) {
-        var ctrl = $controller('routeOnLoad', {$rootScope: $rootScope, localStorageService: localStorage});
+    it('Should redirect to the path', inject(function ($rootScope) {
         var url = '/auth';
         
-        expect($rootScope.redirectTo(url)).toBeUndefined();
+        expect(routeOnLoad.redirectTo(url)).toBeUndefined();
     }));
     
-    it('Should get user data from server', inject(function($controller, $rootScope, $httpBackend) {
-        var controller = $controller('routeOnLoad', {$scope: $rootScope, localStorageService: localStorage});
+    it('Should get user data from server', inject(function($rootScope, $httpBackend) {
         
         $httpBackend.expectGET('backend/get-user.json').respond(200, {});
-        expect($rootScope.getUserData()).toBe(true);
+        expect(routeOnLoad.getUserData()).toBe(true);
         
         $httpBackend.expectGET('backend/get-user.json').respond(200, {"result":false});
-        expect($rootScope.getUserData()).toBe(true);
+        expect(routeOnLoad.getUserData()).toBe(true);
         
         $httpBackend.expectGET('backend/get-user.json').respond(404, false);
-        expect($rootScope.getUserData()).toBe(true);
+        expect(routeOnLoad.getUserData()).toBe(true);
         
         $httpBackend.flush();
     }));

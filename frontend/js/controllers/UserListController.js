@@ -1,4 +1,5 @@
-function UserListController($scope) {
+
+App.controller("UserListController", function ($scope) {
 
     $scope.userList = [
         {name: 'Adam'},
@@ -15,4 +16,4 @@ function UserListController($scope) {
         $scope.currentPatient = this.user.name;
         console.log($scope.currentPatient)
     }
-}
+});

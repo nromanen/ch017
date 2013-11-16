@@ -1,4 +1,5 @@
-function AuthController($scope, localStorageService, $routeParams, $http, $location) {
+
+App.controller("AuthController", function ($scope, localStorageService, $routeParams, $http, $location) {
 
     var hintColors = {red: {color: '#CE2F2F'}, green: {color: '#259117'}};
     var AUTH_ERROR = {};
@@ -84,4 +85,4 @@ function AuthController($scope, localStorageService, $routeParams, $http, $locat
         
         return true;
     };
-}
+});

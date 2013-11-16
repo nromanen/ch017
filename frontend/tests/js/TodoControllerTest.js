@@ -21,6 +21,8 @@ describe('TodoController', function() {
         }
     });
 
+    beforeEach(module('App'));
+
     it('test role in system', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
 

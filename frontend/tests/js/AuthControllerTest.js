@@ -20,7 +20,9 @@ describe('Authorization controller', function() {
             }
         }
     });
-    
+
+    beforeEach(module('App'));
+
     it('Should check answer returned from server', inject(function ($controller, $rootScope) {
         var ctrl = $controller('AuthController', {$scope: $rootScope, localStorageService: localStorage});
         var flag;

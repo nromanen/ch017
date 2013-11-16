@@ -1,5 +1,5 @@
-angular.module("todo-mouseover", [])
-    .directive("mouseover", function () {
+
+App.directive("mouseover", function () {
         return {
             restrict: "A",
             link: function (scope, elem, attrs) {

@@ -1,5 +1,5 @@
-angular.module("todo-click", [])
-    .directive("click", function () {
+
+App.directive("click", function () {
         return {
             restrict: "A",
             link: function (scope, elem, attrs) {

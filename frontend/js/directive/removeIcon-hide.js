@@ -1,5 +1,5 @@
-angular.module("todo-mouseout", [])
-    .directive("mouseout", function () {
+
+App.directive("mouseout", function () {
         return {
             restrict: "A",
             link: function (scope, elem, attrs) {

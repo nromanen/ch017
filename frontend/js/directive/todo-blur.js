@@ -1,5 +1,5 @@
-angular.module("todo-blur", [])
-    .directive("blur", function () {
+
+App.directive("blur", function () {
         return {
             restrict: "A",
             link: function (scope, elem, attrs) {
