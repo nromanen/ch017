@@ -20,21 +20,63 @@ describe('Authorization controller', function() {
             }
         }
     });
-
-    it('Should validate authorization form', inject(function ($controller, $rootScope) {
+    
+    it('Should check answer returned from server', inject(function ($controller, $rootScope) {
         var ctrl = $controller('AuthController', {$scope: $rootScope, localStorageService: localStorage});
-
-        expect($rootScope.hint.show("text", "green")).toBe(true);
+        var flag;
+        var status;
+        var data = {};
+        
+        /* condition for status >>> begin */
+        runs(function() {
+            flag = false;
+            status = 501;
+            
+            expect($rootScope.checkServerAnswer(status)).toBe(false);
+            
+            setTimeout(function() {
+                flag = true;
+            }, 500);
+        });
+        
+        waitsFor(function() {
+            status = 200;
+            return flag;
+        }, "Status should be HTTP 200", 750);
+        
+        runs(function() {
+            expect($rootScope.checkServerAnswer(status, data)).toBe(true);
+        });
+        /* condition for status >>> end */
+        
+        /* condition for result >>> begin */
+        runs(function() {
+            flag = false;
+            data.result = false;
+            data.error = 2;
+            
+            expect($rootScope.checkServerAnswer(status, data)).toBe(false);
+            
+            setTimeout(function() {
+                flag = true;
+            }, 500);
+        });
+        /* condition for result >>> end */
     }));
     
-    it('Should validate authorization form', inject(function (_$httpBackend_, $controller, $rootScope) {
-        var ctrl = $controller('AuthController', {$scope: $rootScope, localStorageService: localStorage});
-        var $httpBackend = _$httpBackend_;
-
-        $httpBackend.expectGET('phones/phones.json').
-          respond([{name: 'Nexus S'}, {name: 'Motorola DROID'}]);
-
-        expect($rootScope.checkUser()).toBe(true);
+    it('Should check user data from server', inject(function($controller, $rootScope, $httpBackend) {
+        var controller = $controller('AuthController', {$scope: $rootScope, localStorageService: localStorage});
+        
+        $httpBackend.expectGET('backend/check-user.json').respond(200, {});
+        expect($rootScope.sendData()).toBe(true);
+        
+        $httpBackend.expectGET('backend/check-user.json').respond(200, {"result":false,"error":1});
+        expect($rootScope.sendData()).toBe(true);
+        
+        $httpBackend.expectGET('backend/check-user.json').respond(404, false);
+        expect($rootScope.sendData()).toBe(true);
+        
+        $httpBackend.flush();
     }));
 
 });

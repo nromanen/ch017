@@ -1,5 +1,30 @@
 function routeOnLoad($rootScope, localStorageService, $http, $location) {
     
+    $rootScope.checkServerAnswer = function(status, result) {
+        if (status !== 200) {
+            $rootScope.redirectTo( '/error/' + status );
+            return false;
+        }
+        
+        if (result === false) {
+            $rootScope.redirectTo('/auth');
+            return false;
+        }
+        
+        return true;
+    }
+    
+    $rootScope.saveStatusInSystem = function(data) {
+        $rootScope.statusInSystem = data; /* !!! Here we will need to save 'statusInSystem' in the $scope !!! */
+        
+        return true;
+    }
+    
+    $rootScope.redirectTo = function(url) {
+        $location.path( url );
+    }
+    
+    $rootScope.getUserData = function() {
         $http({
             method: 'GET', 
             url: 'backend/get-user.json', 
@@ -12,21 +37,16 @@ function routeOnLoad($rootScope, localStorageService, $http, $location) {
 			if(login === true) return data = {"login":"IvanPupkin","name":"Ivan Pupkin","rights":{"add":false,"remove":false,"check":false,"edit":false}};
 			*** */
             
-            if (status !== 200) {
-                /* $rootScope.hint.show( AUTH_ERROR.SERVER, 'red' ); */
-                return false;
-            }
+            if ($rootScope.checkServerAnswer(status, data.result) === false) return false;
             
-            if (data.result === false) {
-                $location.path('/auth');
-                return false;
-            }
+            $rootScope.saveStatusInSystem(data);
             
-            $rootScope.statusInSystem = data; /* !!! Here we will need to save 'statusInSystem' in the $scope !!! */
-            $location.path( '/' + data.type + '/' + data.login );
+            $rootScope.redirectTo( '/' + data.type + '/' + data.login );
         }).
         error(function(data, status, headers, config) {
-            /* $rootScope.hint.show( AUTH_ERROR.SERVER, 'red' ); */
+            $rootScope.redirectTo( '/error/' + status );
         });
         
+        return true;
+    }
 }
