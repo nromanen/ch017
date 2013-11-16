@@ -10,14 +10,18 @@ var App = angular.module(
    ]
 ).config(function($routeProvider) {
 
-    $routeProvider.when('/', {controller: TodoController, templateUrl: 'templates/todo.html'});
+    $routeProvider.when('/', {controller: '', templateUrl: 'templates/todo.html'});
     $routeProvider.when('/auth', {controller: '', templateUrl: 'templates/auth.html'});
     $routeProvider.when('/userList', {controller: '', templateUrl: 'templates/userList.html'});
+    
+    $routeProvider.when('/patient/:login', {controller: '', templateUrl: 'templates/todo.html'});
+    $routeProvider.when('/nurse/:login', {controller: '', templateUrl: 'templates/todo.html'});
+    $routeProvider.when('/doctor/:login', {controller: '', templateUrl: 'templates/todo.html'});
            
-}).run(function($rootScope) {
+}).run(function($rootScope, localStorageService, $http, $location) {
 
-   $rootScope.$on('$routeChangeSuccess', function () {
-       //TODO: Get rights from server shall implement here
-   })
-
+    $rootScope.$on('$routeChangeSuccess', function () {
+        routeOnLoad($rootScope, localStorageService, $http, $location);
+    });
+    
 });
