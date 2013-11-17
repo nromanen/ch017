@@ -51,7 +51,7 @@ App.controller("TodoController", function ($scope, localStorageService) {
     };
 
     $scope.addNewTodo = function() {
-
+        angular.element(".but_log").trigger("click");
         if ($scope.todoText) {
             $scope.todoList.push({text: $scope.todoText, done:false});
             updateLocalStorage();
