@@ -1,43 +1,5 @@
 describe('Route on load controller', function() {
 
-    /* mock for $http */
-/*
-    var $http = function(headers) {
-        return {
-            status: 200,
-            data: {
-                "login":"VasyaPupkin",
-                "name":"Vasia Pupkin",
-                "type":"patient",
-                "rights":{
-                    "add":false,
-                    "remove":false,
-                    "check":false,
-                    "edit":false
-                }
-            },
-            success: function(data, status) {
-                console.log(this.status);
-                return this;
-            },
-            error: function(data, status) {
-                //console.log(status);
-                return this;
-            }
-        }
-    }
-    
-        var http = 
-        $http({
-            method: 'GET', 
-            url: 'backend/get-user.json', 
-            data: {'login': 'VasyaPupkin'}
-        }).
-        success().
-        error();
-        
-*/
-
     var localStorage,
         routeOnLoad;
 
@@ -64,7 +26,7 @@ describe('Route on load controller', function() {
         module("App");
     });
 
-    beforeEach(inject(function ($injector, $controller, $rootScope, $location, $httpBackend) {
+    beforeEach(inject(function ($injector, $rootScope, $location, $httpBackend) {
         this.$location = $location;
         this.$httpBackend = $httpBackend;
         this.scope = $rootScope.$new();
