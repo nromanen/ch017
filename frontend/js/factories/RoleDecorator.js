@@ -1,4 +1,4 @@
-angular.module("roleDecorator", []).factory("roleDecorator", ["$rootScope", function($rootScope) {
+App.factory("roleDecorator", function($rootScope) {
     return {
 
         /*parameter @func is method that shall be decorated
@@ -13,5 +13,5 @@ angular.module("roleDecorator", []).factory("roleDecorator", ["$rootScope", func
             };
         }
     }
-}]);
+});
 
