@@ -76,7 +76,7 @@ describe('Route on load controller', function() {
             result = true;
             return flag;
         }, "Result should be true", 750);
-        
+
         runs(function() {
             expect(routeOnLoad.checkServerAnswer(status, result)).toBe(true);
         });

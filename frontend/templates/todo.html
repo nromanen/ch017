@@ -20,6 +20,8 @@
         </div>
         <h2 class="inform">You have {{getActiveTaskQuantity()}} tasks</h2>
     </div>
+
+    <!-- Modal Window -->
     <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -79,7 +81,8 @@
         <input type="text" ng-model="todoText"
                placeholder="add new todo here" title="type text here and press Enter"
                class="form-control" ng-show="canEditTodo()"  >
-        <button type="button" class="but_log but_add no-display" data-toggle="modal" data-target="#myModal" >Ok</button>
+        <button type="button" class="but_log but_add no-display"
+                data-toggle="modal" data-target="#myModal" >Ok</button>
     </form><br>
 
     <button ng-click="clearDoneTodos()"
@@ -92,7 +95,8 @@
             <div class="content">
                 <input type="checkbox" class="left check_done"
                        ng-model="todo.done" ng-show="canCheckTodo()" ng-click="markDone()">
-                <div class="done-{{todo.done}} todo_item" contenteditable="true" ng-model="todo" todo-item="{{$index}}">{{todo.text}}</div>
+                <div class="done-{{todo.done}} todo_item"
+                     contenteditable="{{canEditTodo()}}" todo-item="{{$index}}">{{todo.text}}</div>
                 <!--<form ng-submit="updateTodo()" ng-hide="true" class="form-inline edit-form" role="form">
                     <input type="text" class="edit" class="form-control"
                            ng-model="todo.text" ng-change="updateTodo()" blur autofocus="">
