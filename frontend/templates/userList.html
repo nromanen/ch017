@@ -1,0 +1,14 @@
+<div ng-controller="UserListController" >
+    <div class="userListWidth modal-content">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Now active patient is <b>{{currentPatient}}</b>
+            </div>
+            <ul class="list-group nodecorate ">
+                <li ng-click="getActivePatient()" ng-model="text" ng-repeat="user in userList">
+                    <center><a href="" class="list-group-item">{{user.name}}</a></center>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

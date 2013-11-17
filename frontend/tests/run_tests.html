@@ -10,13 +10,15 @@
   <script type="text/javascript" src="../frameworks/jasmine/lib/jasmine-1.3.0/jasmine-html.js"></script>
 
   <!-- include source files here... -->
-  <script type="text/javascript" src="../frameworks/jasmine/src/Player.js"></script>
-  <script type="text/javascript" src="../frameworks/jasmine/src/Song.js"></script>
-  <script type="text/javascript" src="../js/controllers.js"></script>
-
-  <!-- include spec files here... -->
-  <script type="text/javascript" src="../frameworks/jasmine/spec/SpecHelper.js"></script>
-  <script type="text/javascript" src="../frameworks/jasmine/spec/PlayerSpec.js"></script>
+  <script type="text/javascript" src="../frameworks/jquery/jquery-1.10.2.min.js"></script>
+  <script src="../frameworks/angular/angular.min.js"></script>
+  <script type="text/javascript" src="../frameworks/angular/angular-mocks.js"></script>
+  <script src="../frameworks/angular/angular-local-storage.js"></script>
+  <script type="text/javascript" src="../js/project-conf.js"></script>
+  <script src="../js/controllers/TodoController.js"></script>
+  <script src="../js/controllers/AuthController.js"></script>
+  <script src="../js/controllers/UserListController.js"></script>
+  <script src="../js/factories/RouteOnLoad.js"></script>
 
   <script type="text/javascript">
     (function() {
@@ -51,6 +53,9 @@
 
 <body>
     <!-- Here my own tests-->
-    <script type="text/javascript" src="../js/tests.js"></script>
+    <script type="text/javascript" src="js/TodoControllerTest.js"></script>
+    <script type="text/javascript" src="js/AuthControllerTest.js"></script>
+    <script type="text/javascript" src="js/RouteOnLoadTest.js"></script>
+    <script type="text/javascript" src="js/UserListControllerTest.js"></script>
 </body>
 </html>
