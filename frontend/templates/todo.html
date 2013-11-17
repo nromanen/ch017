@@ -92,11 +92,11 @@
             <div class="content">
                 <input type="checkbox" class="left check_done"
                        ng-model="todo.done" ng-show="canCheckTodo()" ng-click="markDone()">
-                <span class="done-{{todo.done}} todo_item" click>{{todo.text}}</span>
-                <form ng-submit="updateTodo()" ng-hide="true" class="form-inline edit-form" role="form">
+                <div class="done-{{todo.done}} todo_item" contenteditable="true" ng-model="todo" todo-item="{{$index}}">{{todo.text}}</div>
+                <!--<form ng-submit="updateTodo()" ng-hide="true" class="form-inline edit-form" role="form">
                     <input type="text" class="edit" class="form-control"
                            ng-model="todo.text" ng-change="updateTodo()" blur autofocus="">
-                </form>
+                </form>-->
             </div>
             <div>
                 <span class="glyphicon glyphicon-trash pointer right remove-icon"
