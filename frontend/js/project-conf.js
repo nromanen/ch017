@@ -16,11 +16,12 @@ var App = angular.module(
     $routeProvider.when('/:type/:login', {controller: '', templateUrl: 'templates/todo.html'});
     $routeProvider.otherwise({redirectTo:'/'});
            
-}).run(function($rootScope, localStorageService, $http, $location) {
-
-    $rootScope.$on('$routeChangeSuccess', function () {
-        routeOnLoad($rootScope, localStorageService, $http, $location);
-        $rootScope.getUserData();
-    });
-    
 });
+
+/*.run(function($rootScope, localStorageService, $http, $location) {
+
+ $rootScope.$on('$routeChangeSuccess', function () {
+ routeOnLoad($rootScope, localStorageService, $http, $location);
+ $rootScope.getUserData();
+ });
+ });*/

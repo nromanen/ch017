@@ -19,7 +19,7 @@
         </div>
         <h2 class="inform">You have {{getActiveTaskQuantity()}} tasks</h2>
     </div>
-    <form ng-submit="addNewTodo()" class="form-inline" role="form">
+    <form ng-submit="addNewTodo()" class="form-inline" ng-click="addNewTodo()" role="form">
         <input type="text" ng-model="todoText"
                placeholder="add new todo here" title="type text here and press Enter"
                class="form-control" ng-show="canEditTodo()">
