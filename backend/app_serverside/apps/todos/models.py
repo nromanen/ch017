@@ -19,7 +19,8 @@ class User(models.Model):
     login = models.CharField(max_length=255, blank=False, null=False)
     password = models.CharField(max_length=255, blank=False, null=False)
     role = models.ForeignKey(Role, blank=False, null=False)
-    todo = models.ManyToManyField("Todo")
+    todo = models.ManyToManyField("Todo", blank=True, null=True)
+    access_token = models.CharField(max_length=40, blank=False, null=False)
 
     def __unicode__(self):
         return "{} {}".format(self.first_name, self.last_name)

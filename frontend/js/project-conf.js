@@ -14,6 +14,6 @@ var App = angular.module(
 }).run(function($rootScope, localStorageService, $http, $location) {
 
     $rootScope.$on('$routeChangeSuccess', function () {
-        routeOnLoad.getUserData($rootScope, localStorageService, $http, $location);
+        //routeOnLoad.getUserData($rootScope, localStorageService, $http, $location);
     });
 });
