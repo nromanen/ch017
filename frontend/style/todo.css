@@ -54,12 +54,12 @@ body{
     margin: 20px 10px;
 }
 #list{
-    height: 250px;
     overflow: auto;
 }
 #list .task_list{
     position: relative;
     margin: 5px;
+    height: 50px;
     list-style-type: none;
     font-family: Verdana;
     padding: 5px;
@@ -79,6 +79,9 @@ body{
 .remove-icon{
     position: relative;
     top: -30px;
+}
+.absolute{
+    position: absolute;
 }
 .no-display{
     display: none !important;
