@@ -11,7 +11,12 @@ App.controller("UserListController", function ($scope) {
         {name: 'Andrew'},
         {name: 'John J'}
     ];
-
+	function sortByAlphabet(personA, personB) { //sort patient's by alphabet
+		return personA.name > personB.name;
+	}
+	
+	$scope.userList.sort(sortByAlphabet); //call sort function
+	
     $scope.getActivePatient = function () {
         $scope.currentPatient = this.user.name;
         console.log($scope.currentPatient)

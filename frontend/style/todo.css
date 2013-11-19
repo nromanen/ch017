@@ -1,6 +1,9 @@
 body{
     background-image: url(../images/bodybg.jpg);
 }
+.bartext{
+margin-top:9px;
+}
 .main{
     margin: 0 auto;
     position:relative;
@@ -85,7 +88,7 @@ body{
     display: none !important;
 }
 body {
-    padding-top: 40px;
+    padding-top: 20px;
     padding-bottom: 40px;
     background-color: #eee;
 }
