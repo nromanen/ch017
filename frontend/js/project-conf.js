@@ -11,9 +11,10 @@ var App = angular.module(
     $routeProvider.when('/:type/:login', {controller: '', templateUrl: 'templates/todo.html'});
     $routeProvider.otherwise({redirectTo:'/'});
 
-}).run(function($rootScope, localStorageService, $http, $location) {
+}).run(function($rootScope, localStorageService, $http, $location, routeOnLoad) {
 
     $rootScope.$on('$routeChangeSuccess', function () {
+        /* To uncomment this when we will have an access to the server. */
         //routeOnLoad.getUserData($rootScope, localStorageService, $http, $location);
     });
 });

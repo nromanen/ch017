@@ -1,7 +1,6 @@
 
 App.controller("AuthController", function ($scope, localStorageService, $routeParams, $http, $location) {
 
-    var hintColors = {red: {color: '#CE2F2F'}, green: {color: '#259117'}};
     var AUTH_ERROR = {};
 		AUTH_ERROR.SERVER = 'Sorry, there was an error at our server side. Please, try again later.';
 		AUTH_ERROR.LOGIN = 'You had entered an unknown login. Please, try again.';
@@ -12,29 +11,23 @@ App.controller("AuthController", function ($scope, localStorageService, $routePa
 	$scope.authPassword = '1111';
 	/* TEMP */
     
-    $scope.hint = {
-		show: function(str, color) {
-			$scope.hintStyle = hintColors[ color ];
-			$scope.hintText = str;
-		},
-		clear: function() {
-			$scope.hintText = '';
-		}
+    $scope.hint = function(str) {
+		$scope.hintText = str;
     };
     
     $scope.checkServerAnswer = function(status, data) {
         if (status !== 200) {
-            $scope.hint.show( AUTH_ERROR.SERVER, 'red' );
+            $scope.hint(AUTH_ERROR.SERVER);
             return false;
         }
         
         if (data.result === false && data.error === 1) {
-            $scope.hint.show( AUTH_ERROR.LOGIN, 'red' );
+            $scope.hint(AUTH_ERROR.LOGIN);
             return false;
         }
         
         if (data.result === false && data.error === 2) {
-            $scope.hint.show( AUTH_ERROR.PASSWORD, 'red' );
+            $scope.hint(AUTH_ERROR.PASSWORD);
             return false;
         }
         
@@ -71,7 +64,7 @@ App.controller("AuthController", function ($scope, localStorageService, $routePa
 			if(login === true && password === true) return data = {"login":"IvanPupkin","name":"Ivan Pupkin","rights":{"add":false,"remove":false,"check":false,"edit":false}};
 			*** */
             
-            $scope.hint.clear();
+            $scope.hint('');
             
             if ($scope.checkServerAnswer(status, data) === false) return false;
             
@@ -80,7 +73,7 @@ App.controller("AuthController", function ($scope, localStorageService, $routePa
             $scope.redirectTo( '/' + data.type + '/' + data.login );
         }).
         error(function(data, status, headers, config) {
-            $scope.hint.show( AUTH_ERROR.SERVER, 'red' );
+            $scope.hint(AUTH_ERROR.SERVER);
         });
         
         return true;

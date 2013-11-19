@@ -1,5 +1,5 @@
 
-App.controller("TodoController", function ($scope, localStorageService) {
+App.controller("TodoController", function ($scope, localStorageService, $rootScope) {
 
     $scope.roles = {};
     $scope.todoList = [];
@@ -9,7 +9,11 @@ App.controller("TodoController", function ($scope, localStorageService) {
     function init() {
          //list of todos
         $scope.todoList = localStorageService.get("todos_list") || [];
-
+        
+        /* To uncomment this when we will have an access to the server. */
+        //$scope.statusInSystem = localStorageService.get("statusInSystem");
+        /* And remove all that we have below. */
+        
         //list of roles
         $scope.roles = {
             doctor: {name: "Doctor", rights: {add: true, remove: true, check: true, edit: true}},

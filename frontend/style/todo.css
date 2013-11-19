@@ -129,6 +129,7 @@ body {
 }
 .hint {
     margin-bottom: 10px;
+    color: #CE2F2F;
 }
 .form-signin button[type="submit"] {
     outline: none;
