@@ -32,7 +32,8 @@ describe('TodoController', function() {
 
     it('Should check rights to add item', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-        $rootScope.statusInSystem = {"login":"VasyaPupkin","name":"Vasya Pupkin","type":"patient","rights":{"add":false,"remove":false,"check":false,"edit":false}};
+        $rootScope.statusInSystem = {
+            "login":"VasyaPupkin","name":"Vasya Pupkin","type":"patient","rights":{"add":false,"remove":false,"check":false,"edit":false}};
         
         expect($rootScope.canAddTodo()).toBe(false);
     }));

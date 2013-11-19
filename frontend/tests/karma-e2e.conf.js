@@ -5,12 +5,12 @@ module.exports = function(config){
     basePath : '../',
 
     files : [
-        '../tests/js/EndtoEnd.js'
+        'tests/js/EndtoEnd.js'
     ],
 
     autoWatch : false,
 
-    browsers : ['Chrome'],
+    browsers : ['Firefox'],
 
     frameworks: ['ng-scenario'],
 

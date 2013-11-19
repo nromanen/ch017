@@ -6,6 +6,8 @@ settings_local.py
 Icon?
 Thumbs.db
 karma.conf.js
+karma-e2e.conf.js
+node_modules
 *.com
 coverage
 *.class
