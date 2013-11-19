@@ -79,7 +79,7 @@ App.controller("AuthController", function ($scope, localStorageService, $routePa
             
             $scope.redirectTo( '/' + data.type + '/' + data.login );
         }).
-        error(function(data, status, headers, config) {x
+        error(function(data, status, headers, config) {
             $scope.hint.show( AUTH_ERROR.SERVER, 'red' );
         });
         

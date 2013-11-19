@@ -26,14 +26,13 @@ describe('Route on load controller', function() {
         module("App");
     });
 
-    beforeEach(inject(function ($injector, $rootScope, $location, $httpBackend) {
+    beforeEach(inject(function ($injector, $location, $httpBackend) {
         this.$location = $location;
         this.$httpBackend = $httpBackend;
-        this.scope = $rootScope.$new();
         routeOnLoad = $injector.get('routeOnLoad');
     }));
 
-    it('Should check answer returned from server', function ($rootScope) {
+    it('Should check answer returned from server', function () {
         var flag;
         var status;
         var result;
@@ -83,19 +82,19 @@ describe('Route on load controller', function() {
         /* condition for result >>> end */
     });
     
-    it('Should save role status into the $rootScope', function ($rootScope) {
+    it('Should save role status into the $scope', function () {
         var data = {};
         
         expect(routeOnLoad.saveStatusInSystem(data)).toBe(true);
     });
     
-    it('Should redirect to the path', inject(function ($rootScope) {
+    it('Should redirect to the path', inject(function () {
         var url = '/auth';
         
         expect(routeOnLoad.redirectTo(url)).toBeUndefined();
     }));
     
-    it('Should get user data from server', inject(function($rootScope, $httpBackend) {
+    it('Should get user data from server', inject(function($httpBackend) {
         
         $httpBackend.expectGET('backend/get-user.json').respond(200, {});
         expect(routeOnLoad.getUserData()).toBe(true);

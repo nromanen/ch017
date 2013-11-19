@@ -1,10 +1,9 @@
 
 App.factory("routeOnLoad", [
-    "$rootScope",
     "localStorageService",
     "$http",
     "$location",
-    function ($rootScope, localStorageService, $http, $location) {
+    function (localStorageService, $http, $location) {
 
     var routeOnLoad = {};
 
@@ -23,7 +22,7 @@ App.factory("routeOnLoad", [
     }
 
     routeOnLoad.saveStatusInSystem = function(data) {
-        $rootScope.statusInSystem = data; /* !!! Here we will need to save 'statusInSystem' in the $scope !!! */
+        routeOnLoad.statusInSystem = data; /* !!! Here we will need to save 'statusInSystem' in the $scope !!! */
 
         return true;
     }
