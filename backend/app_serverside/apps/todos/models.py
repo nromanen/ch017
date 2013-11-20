@@ -61,5 +61,7 @@ try:
     admin.site.register(Role, ViewRoleInAdmin)
     admin.site.register(User, ViewUserInAdmin)
     admin.site.register(Todo, ViewTodoInAdmin)
+    #temp
+    admin.site.register(Time)
 except Exception:
     pass
