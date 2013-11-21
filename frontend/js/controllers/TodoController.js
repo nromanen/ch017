@@ -1,5 +1,5 @@
 
-App.controller("TodoController", function ($scope, localStorageService, $rootScope) {
+App.controller("TodoController", function ($scope, localStorageService) {
 
     $scope.roles = {};
     $scope.todoList = [];

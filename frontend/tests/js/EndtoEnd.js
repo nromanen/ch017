@@ -63,7 +63,7 @@ describe('Todo_e2e', function() {
             element('button.btn-info.btn:first').click();    //ne povunno vudaliatu kolu ne check
             expect(repeater('#list li').count()).toBe(3);
         });
-        it('should delete first item with deletebutton', function() {
+        it('should delete first item with delete button', function() {
             element('.glyphicon.glyphicon-trash.pointer.right.remove-icon:first').click();
             expect(repeater('#list li').count()).toBe(2);
         });

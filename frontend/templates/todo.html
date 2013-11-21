@@ -23,7 +23,7 @@
     <!--Modal Window-->
    <modal></modal>
 
-    <form class="form-inline" role="form" submit="addNewTodo" ng-click="addNewTodo">
+    <form class="form-inline" role="form" submit="addNewTodo()" ng-click="addNewTodo()">
         <input type="text" ng-model="todoText"
                placeholder="add new todo here" title="type text here and press Enter"
                class="form-control" ng-show="canEditTodo()">
