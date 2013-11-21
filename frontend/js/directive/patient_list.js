@@ -2,6 +2,6 @@
 App.directive('list', function() {
     return {
         restrict: "E",
-        templateUrl: './templates/userList.html'
+        templateUrl: './templates/patientList.html'
     }
 });

@@ -8,24 +8,8 @@ App.factory("routeOnLoad", [
 
     var routeOnLoad = {};
 
-    routeOnLoad.checkServerAnswer = function(status, result) {
-        if (status !== 200) {
-            routeOnLoad.redirectTo( '/error/' + status );
-            return false;
-        }
-
-        if (result === false) {
-            routeOnLoad.redirectTo('/auth');
-            return false;
-        }
-
-        return true;
-    }
-
     routeOnLoad.saveStatusInSystem = function(data) {
         localStorageService.add("statusInSystem", data);
-        
-        return true;
     }
 
     routeOnLoad.redirectTo = function(url) {
@@ -46,7 +30,10 @@ App.factory("routeOnLoad", [
 			"rights":{"add":false,"remove":false,"check":false,"edit":false}};
 			*** */
 
-            if (routeOnLoad.checkServerAnswer(status, data.result) === false) return false;
+            if (data.result === false) {
+                routeOnLoad.redirectTo('/auth');
+                return false;
+            }
 
             routeOnLoad.saveStatusInSystem(data);
 
@@ -55,8 +42,6 @@ App.factory("routeOnLoad", [
         error(function(data, status, headers, config) {
             routeOnLoad.redirectTo( '/error/' + status );
         });
-
-        return true;
     }
 
     return routeOnLoad;

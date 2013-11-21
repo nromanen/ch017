@@ -7,7 +7,7 @@ var App = angular.module(
 
     $routeProvider.when('/', {controller: 'TodoController', templateUrl: 'templates/todo.html'});
     $routeProvider.when('/auth', {controller: 'AuthController', templateUrl: 'templates/auth.html'});
-    $routeProvider.when('/userList', {controller: 'UserListController', templateUrl: 'templates/userList.html'});
+    $routeProvider.when('/patientList', {controller: 'PatientListController', templateUrl: 'templates/patientList.html'});
     $routeProvider.when('/:type/:login', {controller: '', templateUrl: 'templates/todo.html'});
     $routeProvider.otherwise({redirectTo:'/'});
 

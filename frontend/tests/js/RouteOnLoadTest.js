@@ -31,61 +31,11 @@ describe('Route on load controller', function() {
         this.$httpBackend = $httpBackend;
         routeOnLoad = $injector.get('routeOnLoad');
     }));
-
-    it('Should check answer returned from server', function () {
-        var flag;
-        var status;
-        var result;
-
-        /* condition for status >>> begin */
-        runs(function() {
-            flag = false;
-            status = 501;
-            
-            expect(routeOnLoad.checkServerAnswer(status, result)).toBe(false);
-            
-            setTimeout(function() {
-                flag = true;
-            }, 500);
-        });
-
-        waitsFor(function() {
-            status = 200;
-            return flag;
-        }, "Status should be HTTP 200", 750);
-
-        runs(function() {
-            expect(routeOnLoad.checkServerAnswer(status, result)).toBe(true);
-        });
-        /* condition for status >>> end */
-        
-        /* condition for result >>> begin */
-        runs(function() {
-            flag = false;
-            result = false;
-            
-            expect(routeOnLoad.checkServerAnswer(status, result)).toBe(false);
-            
-            setTimeout(function() {
-                flag = true;
-            }, 500);
-        });
-        
-        waitsFor(function() {
-            result = true;
-            return flag;
-        }, "Result should be true", 750);
-
-        runs(function() {
-            expect(routeOnLoad.checkServerAnswer(status, result)).toBe(true);
-        });
-        /* condition for result >>> end */
-    });
     
     it('Should save role status into the $scope', function () {
         var data = {};
         
-        expect(routeOnLoad.saveStatusInSystem(data)).toBe(true);
+        expect(routeOnLoad.saveStatusInSystem(data)).toBeUndefined();
     });
     
     it('Should redirect to the path', inject(function () {
@@ -97,13 +47,13 @@ describe('Route on load controller', function() {
     it('Should get user data from server', inject(function($httpBackend) {
         
         $httpBackend.expectGET('backend/get-user.json').respond(200, {});
-        expect(routeOnLoad.getUserData()).toBe(true);
+        expect(routeOnLoad.getUserData()).toBeUndefined();
         
         $httpBackend.expectGET('backend/get-user.json').respond(200, {"result":false});
-        expect(routeOnLoad.getUserData()).toBe(true);
+        expect(routeOnLoad.getUserData()).toBeUndefined();
         
         $httpBackend.expectGET('backend/get-user.json').respond(404, false);
-        expect(routeOnLoad.getUserData()).toBe(true);
+        expect(routeOnLoad.getUserData()).toBeUndefined();
         
         $httpBackend.flush();
     }));

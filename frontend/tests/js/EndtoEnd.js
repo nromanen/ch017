@@ -85,9 +85,9 @@ describe('Todo_e2e', function() {
             browser().navigateTo('#/auth');
             expect(browser().location().path()).toBe("/auth");
         });
-        it('should jump to the /userList home path when #/userList is accessed', function() {
-            browser().navigateTo('#/userList');
-            expect(browser().location().path()).toBe("/userList");
+        it('should jump to the /patientList home path when #/patientList is accessed', function() {
+            browser().navigateTo('#/patientList');
+            expect(browser().location().path()).toBe("/patientList");
         });
 
     });
@@ -101,8 +101,8 @@ describe('Todo_e2e', function() {
         });
 
         it('should have a working welcome directive apply it\'s logic to the page', function() {
-            browser().navigateTo('#/userList');
-            expect(browser().location().path()).toBe("/userList");
+            browser().navigateTo('#/patientList');
+            expect(browser().location().path()).toBe("/patientList");
             expect(element('#list').html()).toContain('Now active patient');
         });
 
