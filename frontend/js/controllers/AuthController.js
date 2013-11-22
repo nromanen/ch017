@@ -1,5 +1,13 @@
+<<<<<<< Updated upstream
 
 App.controller("AuthController", function ($scope, localStorageService, $routeParams, $http, $location, $routeParams) {
+=======
+function jsonp_callback(data) {
+    // returning from async callbacks is (generally) meaningless
+    console.log(data);
+}
+App.controller("AuthController", function ($scope, localStorageService, $routeParams, $http, $location) {
+>>>>>>> Stashed changes
 
 	/* TEMP */
 	$scope.authLogin = 'Doctor';
@@ -29,6 +37,7 @@ App.controller("AuthController", function ($scope, localStorageService, $routePa
     $scope.redirectTo = function(url) {
         $location.path( url );
     }
+<<<<<<< Updated upstream
 
     $scope.sendData = function() {
 
@@ -71,6 +80,12 @@ App.controller("AuthController", function ($scope, localStorageService, $routePa
             $scope.hint(data.error);
         });
 
+=======
+
+    $scope.sendData = function() {
+        var url = "http://127.0.0.1:8000/user/1/?callback=jsonp_callback";
+        $http.jsonp(url);
+>>>>>>> Stashed changes
     };
 
     init();

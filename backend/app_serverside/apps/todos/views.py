@@ -1,11 +1,15 @@
 from piston.handler import BaseHandler
 from models import User, Todo
 from piston.utils import rc
+from django.shortcuts import get_object_or_404
 import base64
 
 
 class AuthUserHandler(BaseHandler):
     allowed_methods = ('GET',)
+
+class UserHandler(BaseHandler):
+    allowed_methods = ('GET', )
     model = User
 
     def read(self, request, login=None, password=None):
