@@ -1,18 +1,37 @@
 from piston.handler import BaseHandler
 from models import User, Todo
-from django.shortcuts import get_object_or_404
 from piston.utils import rc
+import base64
 
 
-class UserHandler(BaseHandler):
+class AuthUserHandler(BaseHandler):
     allowed_methods = ('GET',)
     model = User
 
-    def read(self, request, user_id=None):
+    def read(self, request, login=None, password=None):
 
-        if user_id:
-            return get_object_or_404(User, pk=user_id)
-        else:
+        if login:
+            password = base64.b64decode(password)
+            return User.objects.get(login=login, password=password)
+
+
+class GetUserHandler(BaseHandler):
+    allowed_methods = ('GET',)
+    model = User
+
+    def read(self, request, login=None):
+
+        if login:
+            return User.objects.get(login=login)
+
+
+class UsersHandler(BaseHandler):
+    allowed_methods = ('GET',)
+    model = User
+
+    def read(self, request):
+
+        if request:
             return User.objects.all()
 
 

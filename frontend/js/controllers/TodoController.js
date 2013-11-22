@@ -9,21 +9,15 @@ App.controller("TodoController", function ($scope, localStorageService) {
     function init() {
          //list of todos
         $scope.todoList = localStorageService.get("todos_list") || [];
-        
-        /* To uncomment this when we will have an access to the server. */
-        //$scope.statusInSystem = localStorageService.get("statusInSystem");
-        /* And remove all that we have below. */
-        
-        //list of roles
+
+        $scope.statusInSystem = localStorageService.get("statusInSystem");
+
+        /* TEMP */
         $scope.roles = {
-            doctor: {name: "Doctor", rights: {add: true, remove: true, check: true, edit: true}},
-            nurse: {name: "Nurse", rights: {add: false, remove: false, check: true, edit: false}},
-            patient: {name: "Patient", rights: {add: false, remove: false, check: false, edit: false}}
+            doctor: {name: "Doctor", role: {name: "doctor", add: true, remove: true, check: true, edit: true}},
+            nurse: {name: "Nurse", role: {name: "nurse", add: false, remove: false, check: true, edit: false}},
+            patient: {name: "Patient", role: {name: "patient", add: false, remove: false, check: false, edit: false}}
         };
-
-        //current user status in system
-        $scope.statusInSystem = $scope.roles.doctor;
-
     }
 
     //function update data in local storage after each change
@@ -33,19 +27,19 @@ App.controller("TodoController", function ($scope, localStorageService) {
 
     //check rules
     $scope.canAddTodo = function () {
-        return $scope.statusInSystem.rights.add;
+        return $scope.statusInSystem.role.add;
     };
 
     $scope.canEditTodo = function () {
-        return $scope.statusInSystem.rights.edit;
+        return $scope.statusInSystem.role.edit;
     };
 
     $scope.canRemoveTodo = function () {
-        return $scope.statusInSystem.rights.remove;
+        return $scope.statusInSystem.role.remove;
     };
 
     $scope.canCheckTodo = function () {
-        return $scope.statusInSystem.rights.check;
+        return $scope.statusInSystem.role.check;
     };
 
     $scope.changeStatusInSystem = function(role) {

@@ -1,10 +1,9 @@
 
 App.factory("routeOnLoad", [
-    "$rootScope",
     "localStorageService",
     "$http",
     "$location",
-    function ($rootScope, localStorageService, $http, $location) {
+    function (localStorageService, $http, $location) {
 
     var routeOnLoad = {};
 
@@ -17,18 +16,24 @@ App.factory("routeOnLoad", [
     }
 
     routeOnLoad.getUserData = function() {
-        $http({
-            method: 'GET',
-            url: 'backend/get-user.json',
-            data: {'login': localStorageService.get('userLogin')}
-        }).
-        success(function(data, status, headers, config) {
 
-			/* ***I NEED FROM SERVER***
-			if(login === false) return data = {"result":false};
-			if(login === true) return data = {"login":"VasyaPupkin","name":"Vasya Pupkin",
-			"rights":{"add":false,"remove":false,"check":false,"edit":false}};
-			*** */
+        if (localStorageService.get('userLogin') === null) {
+            routeOnLoad.redirectTo('/auth');
+            return false;
+        }
+
+        var login = localStorageService.get('userLogin');
+        var host = 'http://localhost:6543';
+        var url = host + '/get/user/' + login + '/?callback=JSON_CALLBACK';
+
+        $http.jsonp(url).
+        success(function(data, status) {
+
+            /* *** I AM GETTING FROM DJANGO *** */
+            /*
+            if(login === false) return data = {"result":false};
+            if(login === true) return data = {{Object with the role}};
+            */
 
             if (data.result === false) {
                 routeOnLoad.redirectTo('/auth');
@@ -37,11 +42,13 @@ App.factory("routeOnLoad", [
 
             routeOnLoad.saveStatusInSystem(data);
 
-            routeOnLoad.redirectTo( '/' + data.type + '/' + data.login );
+            routeOnLoad.redirectTo( '/' + data.role.name + '/' + data.login );
+
         }).
-        error(function(data, status, headers, config) {
+        error(function(data, status) {
             routeOnLoad.redirectTo( '/error/' + status );
         });
+
     }
 
     return routeOnLoad;
