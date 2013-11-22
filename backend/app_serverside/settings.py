@@ -94,7 +94,7 @@ SECRET_KEY = '!#vbfkovis!@&55^3t%p64r0fn5jwxieyg)0t67_a9yf#0*jo!'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+#    'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,7 +108,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_PATH,'templates'),
+
 )
 
 INSTALLED_APPS = (

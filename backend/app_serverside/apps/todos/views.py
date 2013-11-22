@@ -1,41 +1,26 @@
 from piston.handler import BaseHandler
-from models import User, Todo
+from models import User, Todo, Role
+from django.shortcuts import get_object_or_404, get_list_or_404
+from django.http import Http404
 from piston.utils import rc
-from django.shortcuts import get_object_or_404
 import base64
 
 
-class AuthUserHandler(BaseHandler):
-    allowed_methods = ('GET',)
-
 class UserHandler(BaseHandler):
-    allowed_methods = ('GET', )
-    model = User
-
-    def read(self, request, login=None, password=None):
-
-        if login:
-            password = base64.b64decode(password)
-            return User.objects.get(login=login, password=password)
-
-
-class GetUserHandler(BaseHandler):
     allowed_methods = ('GET',)
+    exclude = ('password',)
     model = User
 
-    def read(self, request, login=None):
+    def users_by_role(self, role):
+        return User.objects.filter(role__name=role)
 
-        if login:
-            return User.objects.get(login=login)
-
-
-class UsersHandler(BaseHandler):
-    allowed_methods = ('GET',)
-    model = User
-
-    def read(self, request):
-
-        if request:
+    def read(self, request, role=None):
+        if role:
+            try:
+                return self.users_by_role(role)
+            except AttributeError:
+                return rc.BAD_REQUEST
+        else:
             return User.objects.all()
 
 
@@ -52,10 +37,12 @@ class TodoHandler(BaseHandler):
         )
     )
 
-    def read(self, request, todo_id=None):
+    def read(self, request, login=None, password=None):
 
-        if todo_id:
-            return get_object_or_404(Todo, pk=todo_id)
+        if login and password:
+            user = User.objects.get(login=login, password=password)
+            if user:
+                return user.todo.all()
         else:
             return Todo.objects.all()
 

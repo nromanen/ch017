@@ -16,6 +16,7 @@ class Role(models.Model):
 class User(models.Model):
     first_name = models.CharField(max_length=255, blank=False, null=False)
     last_name = models.CharField(max_length=255, blank=False, null=False)
+    foto = models.ImageField(upload_to='fotos/')
     login = models.CharField(max_length=255, blank=False, null=False)
     password = models.CharField(max_length=255, blank=False, null=False)
     role = models.ForeignKey(Role, blank=False, null=False)
