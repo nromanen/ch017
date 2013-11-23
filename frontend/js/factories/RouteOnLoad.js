@@ -7,10 +7,6 @@ App.factory("routeOnLoad", [
 
     var routeOnLoad = {};
 
-    routeOnLoad.saveStatusInSystem = function(data) {
-        localStorageService.add("statusInSystem", data);
-    }
-
     routeOnLoad.redirectTo = function(url) {
         $location.path( url );
     }
@@ -22,32 +18,11 @@ App.factory("routeOnLoad", [
             return false;
         }
 
-        var login = localStorageService.get('userLogin');
-        var host = 'http://localhost:6543';
-        var url = host + '/get/user/' + login + '/?callback=JSON_CALLBACK';
+        var statusInSystem = localStorageService.get('statusInSystem');
+        var roleName = statusInSystem.role.name;
+        var login = statusInSystem.login;
 
-        $http.jsonp(url).
-        success(function(data, status) {
-
-            /* *** I AM GETTING FROM DJANGO *** */
-            /*
-            if(login === false) return data = {"result":false};
-            if(login === true) return data = {{Object with the role}};
-            */
-
-            if (data.result === false) {
-                routeOnLoad.redirectTo('/auth');
-                return false;
-            }
-
-            routeOnLoad.saveStatusInSystem(data);
-
-            routeOnLoad.redirectTo( '/' + data.role.name + '/' + data.login );
-
-        }).
-        error(function(data, status) {
-            routeOnLoad.redirectTo( '/error/' + status );
-        });
+        routeOnLoad.redirectTo( '/' + roleName + '/' + login );
 
     }
 

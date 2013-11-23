@@ -1,6 +1,8 @@
 
-App.controller("TopPanelController", function ($scope) {
+App.controller("TopPanelController", function ($scope, localStorageService) {
 
-    $scope.topPanelText = "test";
+    var statusInSystem = localStorageService.get("statusInSystem");
+
+    $scope.currentUser = statusInSystem.first_name + ' ' + statusInSystem.last_name;
 
 });

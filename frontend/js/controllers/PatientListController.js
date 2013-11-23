@@ -1,19 +1,27 @@
 
-App.controller("PatientListController", function ($scope) {
+App.controller("PatientListController", function ($scope, $http) {
 
-    $scope.userList = [
-        {name: 'Adam'},
-        {name: 'Moel'},
-        {name: 'Mello'},
-        {name: 'John'},
-        {name: 'Andrew'},
-        {name: 'Nick'},
-        {name: 'Andrew'},
-        {name: 'John J'}
-    ];
+    $scope.getPatients = (function() {
+
+        var url = 'http://localhost:8000/api/users_by_role/patient/?callback=JSON_CALLBACK';
+
+        $http.jsonp(url).
+            success(function(data, status) {
+
+                /* *** I AM GETTING FROM DJANGO *** */
+                /*
+                data = {{An array of objects only with patients}};
+                */
+
+                $scope.patientList = data;
+
+        }).
+        error(function(data, status) {
+            console.log('error');
+        });
+    })();
 
     $scope.getActivePatient = function () {
-        $scope.currentPatient = this.user.name;
-        console.log($scope.currentPatient)
+        $scope.currentPatient = this.patient.first_name + ' ' + this.patient.last_name;
     }
 });

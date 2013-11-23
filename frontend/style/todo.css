@@ -132,9 +132,12 @@ body{
 .form-signin button[type="submit"] {
     outline: none;
 }
-.userListWidth{
+.patientListWidth{
     width:250px;
-
+}
+.patientListWidth .panel {
+    border-radius: 6px !important;
+    margin-bottom: 0 !important;
 }
 
 .view-animate {
@@ -167,4 +170,19 @@ body{
 
 .btn {
     margin-bottom: 5px;
+}
+.navbar .container {
+    padding-left: 0;
+}
+.navbar .user-name {
+    float: left;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    color: #777;
+    margin-left: 15px;
+}
+.navbar .user-photo {
+    width: 51px;
+    float: left;
 }

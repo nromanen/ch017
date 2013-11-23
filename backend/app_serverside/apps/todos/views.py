@@ -23,7 +23,15 @@ class UserHandler(BaseHandler):
         else:
             return User.objects.all()
 
+class OneUserHandler(BaseHandler):
+    allowed_methods = ('GET',)
+    model = User
 
+    def read(self, request, login=None, password=None):
+        if login and password:
+            password = base64.b64decode(password)
+            return User.objects.get(login=login, password=password)
+            
 class TodoHandler(BaseHandler):
     allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
     model = Todo
