@@ -1,4 +1,4 @@
-<div ng-controller="TopPanelController" class="top-panel">
+<div ng-controller="TopPanelController" class="top-panel" ng-show="showTopPanel">
 
     <div class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container">
@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <div class="user-photo"><img src="http://www.alaskanwindows.co.uk/images/image_thumb_man6.png"></div>
+                <div class="user-photo"><img ng-src="{{userPhoto}}"></div>
                 <div class="user-name">{{currentUser}}</div>
             </div>
             <div class="navbar-collapse collapse">

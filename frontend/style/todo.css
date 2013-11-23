@@ -171,6 +171,9 @@ body{
 .btn {
     margin-bottom: 5px;
 }
+.navbar {
+    border: none;
+}
 .navbar .container {
     padding-left: 0;
 }

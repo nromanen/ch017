@@ -3,7 +3,8 @@ var App = angular.module(
    [
        "LocalStorageModule"
    ]
-).config(function ($routeProvider) {
+).
+config(function ($routeProvider) {
 
     $routeProvider.when('/', {controller: 'TodoController', templateUrl: 'templates/todo.html'});
     $routeProvider.when('/auth', {controller: 'AuthController', templateUrl: 'templates/auth.html'});
@@ -12,11 +13,18 @@ var App = angular.module(
     $routeProvider.when('/:type/:login', {controller: '', templateUrl: 'templates/todo.html'});
     $routeProvider.otherwise({redirectTo:'/'});
 
-}).run(function($rootScope, localStorageService, $http, $location, $routeParams, routeOnLoad) {
+}).
+run(function($rootScope, localStorageService, $http, $location, $routeParams, routeOnLoad) {
 
     $rootScope.$on('$routeChangeSuccess', function () {
         if($routeParams.param === 'logout') return false;
 
         routeOnLoad.getUserData($rootScope, localStorageService, $http, $location);
     });
+
+}).
+constant('config', {
+    serverUrl: 'http://localhost:8000/',
+    imagesPath: 'media/',
+    apiUrl: 'api/'
 });

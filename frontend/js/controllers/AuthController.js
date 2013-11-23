@@ -1,19 +1,19 @@
 
-App.controller("AuthController", function ($scope, localStorageService, $routeParams, $http, $location, $routeParams) {
-
-	/* TEMP */
-	$scope.authLogin = 'Doctor';
-	$scope.authPassword = '1111';
-	/* TEMP */
+App.controller("AuthController", function ($scope, $rootScope, localStorageService, $routeParams, $http, $location, config) {
 
     function init () {
         if($routeParams.param === 'logout') $scope.logout();
+
+        /* TEMP */
+        $scope.authLogin = 'doctor';
+        $scope.authPassword = '1111';
+        /* TEMP */
+
+        $rootScope.showTopPanel = false;
     }
 
     $scope.logout = function() {
-        localStorageService.add('userLogin', '');
-        localStorageService.add('statusInSystem', '');
-        localStorageService.add('todos_list', '');
+        localStorageService.clearAll();
 
         $scope.redirectTo('/auth');
 
@@ -37,8 +37,8 @@ App.controller("AuthController", function ($scope, localStorageService, $routePa
 
         var login = $scope.authLogin;
         var password = btoa($scope.authPassword);
-        var host = 'http://localhost:8000';
-        var url = host + '/api/user/' + login + '/' + password + '/?callback=JSON_CALLBACK';
+        var path = config.serverUrl + config.apiUrl;
+        var url = path + 'user/' + login + '/' + password + '/?callback=JSON_CALLBACK';
 
         $http.jsonp(url).
         success(function(data, status) {

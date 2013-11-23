@@ -1,5 +1,5 @@
 
-App.controller("TodoController", function ($scope, localStorageService) {
+App.controller("TodoController", function ($scope, $rootScope, localStorageService, config) {
 
     $scope.roles = {};
     $scope.todoList = [];
@@ -11,6 +11,16 @@ App.controller("TodoController", function ($scope, localStorageService) {
         $scope.todoList = localStorageService.get("todos_list") || [];
 
         $scope.statusInSystem = localStorageService.get("statusInSystem");
+
+        $rootScope.showTopPanel = true;
+        $rootScope.currentUser = $scope.statusInSystem.first_name + ' ' + $scope.statusInSystem.last_name;
+        $rootScope.userPhoto = config.serverUrl + config.imagesPath + $scope.statusInSystem.foto;
+
+        if($scope.statusInSystem.role.name === "patient") {
+            $rootScope.patientListHide = true;
+        } else {
+            $rootScope.patientListHide = false;
+        }
 
         /* TEMP */
         $scope.roles = {
@@ -92,4 +102,3 @@ App.controller("TodoController", function ($scope, localStorageService) {
         updateLocalStorage();
     }
 });
-
