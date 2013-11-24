@@ -15,14 +15,39 @@ describe('Authorization controller', function() {
                 return store[key] = value + '';
             },
 
-            clear: function () {
+            clearAll: function () {
                 store = {};
             }
         }
     });
 
     beforeEach(module('App'));
-    
+
+    it('Should logout user', inject(function($controller, $rootScope, $httpBackend) {
+        var controller = $controller('AuthController', {$scope: $rootScope, localStorageService: localStorage});
+
+        expect($rootScope.logout()).toBe(false);
+    }));
+
+    it('Should show hint', inject(function($controller, $rootScope, $httpBackend) {
+        var controller = $controller('AuthController', {$scope: $rootScope, localStorageService: localStorage});
+
+        expect($rootScope.hint()).toBeUndefined();
+    }));
+
+    it('Should save role in the local storage', inject(function($controller, $rootScope, $httpBackend) {
+        var controller = $controller('AuthController', {$scope: $rootScope, localStorageService: localStorage});
+        var data = true;
+
+        expect($rootScope.saveRole(data)).toBeUndefined();
+    }));
+
+    it('Should redirect to path', inject(function($controller, $rootScope, $httpBackend) {
+        var controller = $controller('AuthController', {$scope: $rootScope, localStorageService: localStorage});
+
+        expect($rootScope.redirectTo()).toBeUndefined();
+    }));
+
     it('Should check user data from server', inject(function($controller, $rootScope, $httpBackend) {
         var controller = $controller('AuthController', {$scope: $rootScope, localStorageService: localStorage});
         

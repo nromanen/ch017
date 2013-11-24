@@ -32,30 +32,35 @@ describe('Route on load controller', function() {
         routeOnLoad = $injector.get('routeOnLoad');
     }));
     
-    it('Should save role status into the $scope', function () {
-        var data = {};
-        
-        expect(routeOnLoad.saveStatusInSystem(data)).toBeUndefined();
-    });
-    
     it('Should redirect to the path', inject(function () {
         var url = '/auth';
         
         expect(routeOnLoad.redirectTo(url)).toBeUndefined();
     }));
     
-    it('Should get user data from server', inject(function($httpBackend) {
-        
-        $httpBackend.expectGET('backend/get-user.json').respond(200, {});
-        expect(routeOnLoad.getUserData()).toBeUndefined();
-        
-        $httpBackend.expectGET('backend/get-user.json').respond(200, {"result":false});
-        expect(routeOnLoad.getUserData()).toBeUndefined();
-        
-        $httpBackend.expectGET('backend/get-user.json').respond(404, false);
-        expect(routeOnLoad.getUserData()).toBeUndefined();
-        
-        $httpBackend.flush();
+    it('Should get user data from local storage', inject(function(localStorageService) {
+        var flag;
+
+        runs(function() {
+            flag = false;
+            localStorageService.add('userLogin', null);
+
+            expect(routeOnLoad.getUserData()).toBe(false);
+
+            setTimeout(function() {
+                flag = true;
+            }, 500);
+        });
+
+        waitsFor(function() {
+            localStorageService.add('userLogin', true);
+            localStorageService.add('statusInSystem', {login: true, role: {name: true}})
+            return flag;
+        }, "User login should not be empty", 750);
+
+        runs(function() {
+            expect(routeOnLoad.getUserData()).toBeUndefined();
+        });
     }));
     
 });

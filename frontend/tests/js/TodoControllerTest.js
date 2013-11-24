@@ -12,80 +12,80 @@ describe('TodoController', function() {
             },
 
             add: function (key, value) {
-                return store[key] = value + '';
+                return store[key] = value;
             },
 
             clear: function () {
                 store = {};
             }
         }
+        localStorage.add("statusInSystem", {first_name: true, role: {name: 'doctor'}});
     });
 
     beforeEach(module('App'));
 
-    it('Should test role in system', inject(function ($controller, $rootScope) {
+    it('Should initialize contorller', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-        $rootScope.statusInSystem = {"login":"VasyaPupkin","name":"Vasya Pupkin","type":"patient","rights":{"add":false,"remove":false,"check":false,"edit":false}};
-        
-        expect($rootScope.statusInSystem.name).toBe("Vasya Pupkin");
+        /* here we need to test init()
+        expect($rootScope.patientListHide).toBe(false);
+         */
     }));
 
     it('Should check rights to add item', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-        $rootScope.statusInSystem = {
-            "login":"VasyaPupkin","name":"Vasya Pupkin","type":"patient","rights":{"add":false,"remove":false,"check":false,"edit":false}};
-        
+        $rootScope.statusInSystem = {role: {add: false}};
+
         expect($rootScope.canAddTodo()).toBe(false);
     }));
 
     it('Should check rights to edit item', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-        $rootScope.statusInSystem = {"login":"VasyaPupkin","name":"Vasya Pupkin","type":"patient","rights":{"add":false,"remove":false,"check":false,"edit":false}};
-        
+        $rootScope.statusInSystem = {role: {edit: false}};
+
         expect($rootScope.canEditTodo()).toBe(false);
     }));
-    
+
     it('Should check rights to remove item', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-        $rootScope.statusInSystem = {"login":"VasyaPupkin","name":"Vasya Pupkin","type":"patient","rights":{"add":false,"remove":false,"check":false,"edit":false}};
-        
+        $rootScope.statusInSystem = {role: {remove: false}};
+
         expect($rootScope.canRemoveTodo()).toBe(false);
     }));
-    
+
     it('Should check rights to check item', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-        $rootScope.statusInSystem = {"login":"VasyaPupkin","name":"Vasya Pupkin","type":"patient","rights":{"add":false,"remove":false,"check":false,"edit":false}};
-        
+        $rootScope.statusInSystem = {role: {check: false}};
+
         expect($rootScope.canCheckTodo()).toBe(false);
     }));
 
     it('Should change status in system', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
         var role = $rootScope.roles.nurse;
-        
+
         expect($rootScope.changeStatusInSystem(role)).toBe(role);
     }));
 
     it('Should add item', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
         var flag;
-        
+
         runs(function() {
             flag = false;
             $rootScope.todoText = true;
-            
+
             expect($rootScope.addNewTodo()).toBe(true);
-            
+
             setTimeout(function() {
                 flag = true;
             }, 500);
         });
-        
+
         waitsFor(function() {
             $rootScope.todoText = false;
             return flag;
         }, "Input text should not be empty", 750);
-        
+
         runs(function() {
             expect($rootScope.addNewTodo()).toBe(false);
         });
@@ -122,7 +122,7 @@ describe('TodoController', function() {
     it('Should clear done items', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
         $rootScope.todoList = [{done: true}];
-        
+
         $rootScope.todoText = '';
         expect($rootScope.clearDoneTodos()).toBeUndefined();
     }));
