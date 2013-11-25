@@ -48,6 +48,7 @@ class TodoHandler(BaseHandler):
     def read(self, request, login=None, password=None):
 
         if login and password:
+            password = base64.b64decode(password)
             user = User.objects.get(login=login, password=password)
             if user:
                 return user.todo.all()

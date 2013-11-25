@@ -89,6 +89,35 @@ describe('Todo_e2e', function() {
             browser().navigateTo('#/patientList');
             expect(browser().location().path()).toBe("/patientList");
         });
+        xit("test contenteditable directive", function () {
+            var element = $compile('' +
+                '<div class="done-true todo_item" contenteditable="true" todo-item="1">' +
+                'todo text' +
+                '</div>')($rootScope);
+
+            element.click();
+            expect(element.is(":focus")).toBe(false);
+        });
+
+        xit("test removeIcon-hide directive", function () {
+
+        });
+
+        xit("test removeIcon-show directive", function () {
+
+        });
+
+        xit("test todo-blur directive", function () {
+
+        });
+
+        xit("test todo-click directive", function () {
+
+        });
+
+        xit("test todo-submit directive", function () {
+
+        });
 
     });
     //
