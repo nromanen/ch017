@@ -31,8 +31,8 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     }
 
     //function update data in local storage after each change
-    function updateLocalStorage() {
-        localStorageService.add("todos_list", $scope.todoList);
+    $scope.updateLocalStorage = function() {
+        localStorageService.add('todos_list', $scope.todoList);
     }
 
     //check rules
@@ -59,14 +59,12 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     };
 
     $scope.addNewTodo = function() {
+        if (!$scope.todoText) return false;
 
-        if ($scope.todoText) {
-            $scope.todoList.push({text: $scope.todoText, done:false});
-            updateLocalStorage();
-            $scope.todoText = '';
-            return true;
-        }
-        return false;
+        var item = {text: $scope.todoText, done: false};
+
+        $scope.todoList.push(item);
+        $scope.todoText = '';
     };
 
     $scope.getActiveTaskQuantity = function() {
@@ -84,21 +82,10 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         $scope.todoList = $scope.todoList.filter(function(todo) {
             return !todo.done;
         });
-        updateLocalStorage();
-    }
+    };
 
     $scope.removeTodo = function(index) {
         $scope.todoList.splice(index, 1);
-        updateLocalStorage();
-
-        return true;
     }
 
-    $scope.markDone = function() {
-        updateLocalStorage();
-    }
-
-    $scope.updateTodo = function() {
-        updateLocalStorage();
-    }
 });

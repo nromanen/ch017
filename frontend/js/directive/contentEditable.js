@@ -5,7 +5,6 @@ App.directive('contenteditable', function() {
             elm.on('blur', function() {
                 scope.$apply(function() {
                     scope.todoList[attrs.todoItem].text = elm.html();
-                    scope.updateTodo();
                 });
             });
         }

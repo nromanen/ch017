@@ -46,19 +46,19 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body">
-                    <ul id="list">
+                    <ul id="list" update-local-storage-on-change>
                         <li class="task_list" mouseover mouseout
                             title="click if you want to edit" ng-repeat="todo in todoList | filter:searchQuery">
 
                             <div class="content">
                                 <input type="checkbox" class="left check_done"
-                                       ng-model="todo.done" ng-show="canCheckTodo()" ng-click="markDone()">
+                                       ng-model="todo.done" ng-show="canCheckTodo()">
                                 <div class="done-{{todo.done}} todo_item"
                                      contenteditable="{{canEditTodo()}}" todo-item="{{$index}}">{{todo.text}}</div>
 
-                                <!--<form ng-submit="updateTodo()" ng-hide="true" class="form-inline edit-form" role="form">
+                                <!--<form ng-hide="true" class="form-inline edit-form" role="form">
                                     <input type="text" class="edit" class="form-control"
-                                           ng-model="todo.text" ng-change="updateTodo()" blur autofocus="">
+                                           ng-model="todo.text" blur autofocus>
                                 </form>-->
                             </div>
                             <div>
