@@ -9,6 +9,7 @@ import base64
 class UserHandler(BaseHandler):
     allowed_methods = ('GET',)
     exclude = ('password',)
+    include = ('pk_id',)
     model = User
 
     def users_by_role(self, role):

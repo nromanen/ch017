@@ -1,7 +1,15 @@
+<div ng-controller="TodoController">
+
+
 <!--patient list-->
 <list class="left absolute"></list>
 
-<div ng-controller="TodoController" id="wrapper" class="modal-content">
+
+
+<div id="wrapper" class="modal-content">
+
+
+
 
     <div>
         <span class="left">Your role now is <strong>{{statusInSystem.role.name}}</strong></span>
@@ -23,6 +31,12 @@
     <!--Modal Window-->
    <modal></modal>
 
+   
+   
+   
+   <button type="button" class="but_log but_add modalstartbutton" data-toggle="modal" data-target="#myModal" >Add new task</button>
+   
+   <!--
     <form class="form-inline" role="form" submit="addNewTodo()" ng-click="addNewTodo()">
         <input type="text" ng-model="todoText"
                placeholder="add new todo here" title="type text here and press Enter"
@@ -30,6 +44,11 @@
         <button type="button" class="but_log but_add no-display"
                 data-toggle="modal" data-target="#myModal" >Ok</button>
     </form><br>
+    -->
+
+
+
+
 
     <button ng-click="clearDoneTodos()"
             class="btn-info btn"
@@ -48,13 +67,14 @@
                 <div class="panel-body">
                     <ul id="list" update-local-storage-on-change>
                         <li class="task_list" mouseover mouseout
-                            title="click if you want to edit" ng-repeat="todo in todoList | filter:searchQuery">
+                            title="click if you want to edit" ng-repeat="todo in activePatientList | filter:searchQuery">
 
                             <div class="content">
                                 <input type="checkbox" class="left check_done"
                                        ng-model="todo.done" ng-show="canCheckTodo()">
                                 <div class="done-{{todo.done}} todo_item"
                                      contenteditable="{{canEditTodo()}}" todo-item="{{$index}}">{{todo.text}}</div>
+
 
                                 <!--<form ng-hide="true" class="form-inline edit-form" role="form">
                                     <input type="text" class="edit" class="form-control"
@@ -103,4 +123,10 @@
     <input type="text" ng-model="searchQuery" placeholder="Search"
            title="type text for search here and press Enter" class="form-control">
     <div class="clear"></div>
+    
+    
+    
+</div>
+
+
 </div>

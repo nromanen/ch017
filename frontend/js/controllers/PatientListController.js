@@ -1,6 +1,6 @@
 
 App.controller("PatientListController", function ($scope, $http, config) {
-
+return false;
     $scope.getPatients = (function() {
 
         var url = config.serverUrl + config.apiUrl + 'users_by_role/patient/?callback=JSON_CALLBACK';

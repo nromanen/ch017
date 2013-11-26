@@ -1,10 +1,10 @@
 
-App.directive('updateLocalStorageOnChange',['localStorageService', function() {
+App.directive('updateLocalStorageOnChange', function() {
     return {
         link: function($scope, elm, attrs) {
-            $scope.$watch('todoList', function(){
+            $scope.$watch('allTodos', function(){
                 $scope.updateLocalStorage();
             }, true);
         }
     };
-}]);
+});

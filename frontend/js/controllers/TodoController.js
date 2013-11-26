@@ -1,15 +1,32 @@
 
-App.controller("TodoController", function ($scope, $rootScope, localStorageService, config) {
+App.controller("TodoController", function ($scope, $rootScope, localStorageService, $http, config) {
 
     $scope.roles = {};
     $scope.todoList = [];
 
+    
+    $scope.activePatientList = [];
+    
+    
+    
     init();
 
     function init() {
          //list of todos
-        $scope.todoList = localStorageService.get("todos_list") || [];
+        //$scope.todoList = localStorageService.get("todos_list") || [];
 
+        
+        
+        
+        
+
+        $scope.allTodos = localStorageService.get("allTodos") || [[],[],[],[],[],[],[],[],[],[],[]];
+        
+        
+        
+        
+        
+        
         $scope.statusInSystem = localStorageService.get("statusInSystem");
 
         $rootScope.showTopPanel = true;
@@ -30,9 +47,61 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         };
     }
 
+    
+    
+    
+    
+    
+    
+    $scope.getPatients = (function() {
+
+        var url = config.serverUrl + config.apiUrl + 'users_by_role/patient/?callback=JSON_CALLBACK';
+
+        $http.jsonp(url).
+        success(function(data, status) {
+
+            /* *** I AM GETTING FROM DJANGO *** */
+            /*
+            data = {{An array of objects only with patients}};
+            */
+            
+            $scope.patientList = data;
+            
+            $scope.patientList.sort(sortByAlphabet);
+
+        }).
+        error(function(data, status) {
+            console.log('error');
+        });
+
+    })();
+
+    //Sort function
+
+    function sortByAlphabet(personA, personB) { //sort patient's by alphabet
+        return personA.first_name > personB.first_name;
+    }
+
+    //active patient functions
+    
+    $scope.getActivePatient = function () { //get avtive patient (realy we don't need it now)
+        $scope.currentPatient = this.patient.name;
+    }
+    
+    $scope.setActivePatient = function(patientId) { //set activ patient
+        $scope.activePatientList = $scope.allTodos[ patientId ];
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     //function update data in local storage after each change
     $scope.updateLocalStorage = function() {
-        localStorageService.add('todos_list', $scope.todoList);
+        localStorageService.add('allTodos', $scope.allTodos);
     }
 
     //check rules
@@ -63,14 +132,14 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
 
         var item = {text: $scope.todoText, done: false};
 
-        $scope.todoList.push(item);
+        $scope.activePatientList.push(item);
         $scope.todoText = '';
     };
 
     $scope.getActiveTaskQuantity = function() {
         var count = 0;
 
-        $scope.todoList.forEach(function(todo) {
+        $scope.activePatientList.forEach(function(todo) {
             if (!todo.done) {
                 ++count;
             }
@@ -79,13 +148,13 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     };
 
     $scope.clearDoneTodos = function() {
-        $scope.todoList = $scope.todoList.filter(function(todo) {
+        $scope.activePatientList = $scope.activePatientList.filter(function(todo) {
             return !todo.done;
         });
     };
 
     $scope.removeTodo = function(index) {
-        $scope.todoList.splice(index, 1);
+        $scope.activePatientList.splice(index, 1);
     }
 
 });
