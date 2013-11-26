@@ -32,8 +32,8 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     }
 
     $scope.getTodos = (function() {
-        
-        if($scope.allTodos) return false;
+    
+        if($scope.allTodos.length !== 0) return false;
         
         var url = config.serverUrl + config.apiUrl + 'todos/?callback=JSON_CALLBACK';
 
