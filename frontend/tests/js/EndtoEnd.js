@@ -7,6 +7,32 @@ describe('Todo_e2e', function() {
         beforeEach(function() {
             browser().navigateTo('index.html');
         });
+        it('should have a working authentification page controller ', function() {
+            browser().navigateTo('#/');
+            expect(browser().location().path()).toBe("/auth");
+            expect(element('div[ng-view]').html()).toContain('AuthController');
+        });
+        it('should have not a working "TodoController" controller ', function() {
+            browser().navigateTo('#/');
+            expect(browser().location().path()).toBe("/auth");
+            expect(element('div[ng-view]').html()).toContain('TodoController');
+        });
+        it('should be doctor login', function() {
+            input('authLogin').enter('doctor');
+            input('authPassword').enter('1111');
+            element('button.btn.btn-lg.btn-primary.btn-block').click();
+            expect(browser().location().path()).toBe("/doctor/doctor");
+        });
+        it('should have a working "TodoController" controller ', function() {
+            browser().navigateTo('#/');
+            expect(browser().location().path()).toBe("/doctor/doctor");
+            expect(element('div[ng-view]').html()).toContain('TodoController');
+        });
+        it('should have a working "PatientListController" controller ', function() {
+            browser().navigateTo('#/');
+            expect(browser().location().path()).toBe("/doctor/doctor");
+            expect(element('div[ng-view]').html()).toContain('PatientListController');
+        });
         it('should be count list 0', function() {
 
             expect(repeater('.todoList li').count()).toBe(0);
@@ -77,18 +103,24 @@ describe('Todo_e2e', function() {
             expect(repeater('#list li').count()).toBe(0);
         });
 
-        it('should jump to the / home path when / is accessed', function() {
+        it('should jump to the /doctor/doctor home path when / is accessed', function() {
             browser().navigateTo('#/');
-            expect(browser().location().path()).toBe("/");
+            expect(browser().location().path()).toBe("/doctor/doctor");
         });
+        it('should logout from app', function() {
+            element('.nav.navbar-nav.navbar-right a').click();
+            expect(browser().location().path()).toBe("/auth");
+        });
+
         it('should jump to the /auth home path when #/auth is accessed', function() {
             browser().navigateTo('#/auth');
             expect(browser().location().path()).toBe("/auth");
+            browser().navigateTo('#/');
+            expect(browser().location().path()).toBe("/auth");
+            browser().navigateTo('/');                          //chu potribno
+            expect(browser().location().path()).toBe("/auth");
         });
-        it('should jump to the /patientList home path when #/patientList is accessed', function() {
-            browser().navigateTo('#/patientList');
-            expect(browser().location().path()).toBe("/patientList");
-        });
+
         xit("test contenteditable directive", function () {
             var element = $compile('' +
                 '<div class="done-true todo_item" contenteditable="true" todo-item="1">' +
@@ -120,6 +152,7 @@ describe('Todo_e2e', function() {
         });
 
     });
+
     //
 // test/e2e/directives/directivesSpec.js
 ///
