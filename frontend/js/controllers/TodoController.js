@@ -2,7 +2,6 @@
 App.controller("TodoController", function ($scope, $rootScope, localStorageService, $http, config) {
 
     $scope.roles = {};
-    $scope.todoList = [];
     $scope.activePatientList = [];
     // this variable uses for edit todos and here will be new todo_item before save
     $scope.todoExample = {
@@ -16,7 +15,7 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     function init() {
     
         $scope.allTodos = localStorageService.get("allTodos") || [];
-        $scope.activePatientList = [];
+        
         $scope.statusInSystem = localStorageService.get("statusInSystem");
 
         $rootScope.showTopPanel = true;
@@ -117,15 +116,13 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
 
     })();
 
+    //Sort function
     function sortByAlphabet(personA, personB) { //sort patients by alphabet
         return personA.first_name > personB.first_name;
     }
 
     //active patient functions
-    $scope.getActivePatient = function () { //get avtive patient (realy we don't need it now)
-        $scope.currentPatient = this.patient.name;
-    }
-
+    
     $scope.getActivePatient = function() { //get avtive patient (realy we don't need it now)
         $scope.currentPatient = this.patient.first_name + ' ' + this.patient.last_name;
     }
@@ -165,13 +162,24 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     $scope.addNewTodo = function() {
         if (!$scope.todoExample.text) return false;
 
-        $scope.activePatientList.push($scope.todoExample);
-        $scope.todoExample = {
-            text: '',
-            done: false,
-            todo: []
+        var item = {
+            "date_finished": "2013-11-23T05:18:43", 
+            "text": $scope.todoText, 
+            "amount": 1, 
+            "done": false,
+            "time": [
+                {
+                    "time": "2013-11-23T05:18:04"
+                }, 
+                {
+                    "time": "2013-11-24T12:00:00"
+                }
+            ], 
+            "date_created": "2013-11-23T05:18:52.505"
         };
-        console.log($scope.activePatientList)
+
+        $scope.activePatientList.push(item);
+        $scope.todoText = '';
     };
 
     $scope.addNewDateTimeToTodo = function () {
