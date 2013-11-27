@@ -1,127 +1,99 @@
 <div ng-controller="TodoController">
 
+    <!--patient list-->
+    <list class="left absolute"></list>
 
-<!--patient list-->
-<list class="left absolute"></list>
+    <div id="wrapper" class="modal-content">
+        <div>
+            <span class="left">Your role now is <strong>{{statusInSystem.role.name}}</strong></span>
 
-
-
-<div id="wrapper" class="modal-content">
-
-
-
-
-    <div>
-        <span class="left">Your role now is <strong>{{statusInSystem.role.name}}</strong></span>
-
-        <div class="btn-group right">
-            <button type="button" class="btn btn-default">Select status</button>
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <span class="caret"></span>
-                <span class="sr-only"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li ng-repeat="role in roles">
-                    <a href="" ng-click="changeStatusInSystem(role)">{{role.name}}</a>
-                </li>
-            </ul>
+            <div class="btn-group right">
+                <button type="button" class="btn btn-default">Select status</button>
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <span class="sr-only"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li ng-repeat="role in roles">
+                        <a href="" ng-click="changeStatusInSystem(role)">{{role.name}}</a>
+                    </li>
+                </ul>
+            </div>
+            <h2 class="inform">You have {{getActiveTaskQuantity()}} tasks</h2>
         </div>
-        <h2 class="inform">You have {{getActiveTaskQuantity()}} tasks</h2>
+        
+        <!--Modal Window-->
+        <modal></modal>
+        
+        <br><br><br>
+        <button type="button" class="btn-info btn modalstartbutton" data-toggle="modal" data-target="#myModal" ng-show="canAddTodo()">Add new task</button>
+        
+        <button ng-click="clearDoneTodos()" class="btn-info btn" ng-show="canRemoveTodo()">Clear</button>
+        
+        <div class="clear"></div>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            Morning
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <ul id="list" update-local-storage-on-change>
+                            <li class="task_list" mouseover mouseout
+                                title="click if you want to edit" ng-repeat="todo in activePatientList | filter:searchQuery">
+
+                                <div class="content">
+                                    <input type="checkbox" class="left check_done"
+                                           ng-model="todo.done" ng-show="canCheckTodo()">
+                                    <div class="done-{{todo.done}} todo_item"
+                                         contenteditable="{{canEditTodo()}}" todo-item="{{$index}}">{{todo.text}}</div>
+                                </div>
+                                <div>
+                                    <span class="glyphicon glyphicon-trash pointer right remove-icon"
+                                          ng-click="removeTodo($index)"
+                                          ng-show="false"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                           Noontime
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                            Evening
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="text" ng-model="searchQuery" placeholder="Search"
+               title="type text for search here and press Enter" class="form-control">
+        <div class="clear"></div>
     </div>
-    <!--Modal Window-->
-   <modal></modal>
-
-   <div class="clear"></div>
-   <button type="button" class="but_log but_add modalstartbutton btn-info btn left controll-button"
-           data-toggle="modal" data-target="#myModal" >Add new task</button>
-   
-   <!--
-    <form class="form-inline" role="form" submit="addNewTodo()" ng-click="addNewTodo()">
-        <input type="text" ng-model="todoText"
-               placeholder="add new todo here" title="type text here and press Enter"
-               class="form-control" ng-show="canEditTodo()">
-        <button type="button" class="but_log but_add no-display"
-                data-toggle="modal" data-target="#myModal" >Ok</button>
-    </form><br>
-    -->
-
-    <button ng-click="clearDoneTodos()"
-            class="btn-info btn controll-button"
-            ng-show="canRemoveTodo()">Clear</button>
-    <div class="clear"></div>
-    <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                        Morning
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse in">
-                <div class="panel-body">
-                    <ul id="list" update-local-storage-on-change>
-                        <li class="task_list" mouseover mouseout
-                            title="click if you want to edit" ng-repeat="todo in activePatientList | filter:searchQuery">
-
-                            <div class="content">
-                                <input type="checkbox" class="left check_done"
-                                       ng-model="todo.done" ng-show="canCheckTodo()">
-                                <div class="done-{{todo.done}} todo_item"
-                                     contenteditable="{{canEditTodo()}}" todo-item="{{$index}}">{{todo.text}}</div>
-
-
-                                <!--<form ng-hide="true" class="form-inline edit-form" role="form">
-                                    <input type="text" class="edit" class="form-control"
-                                           ng-model="todo.text" blur autofocus>
-                                </form>-->
-                            </div>
-                            <div>
-                                <span class="glyphicon glyphicon-trash pointer right remove-icon"
-                                      ng-click="removeTodo($index)"
-                                      ng-show="false"></span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                       Noontime
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseTwo" class="panel-collapse collapse">
-                <div class="panel-body">
-
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                        Evening
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseThree" class="panel-collapse collapse">
-                <div class="panel-body">
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <input type="text" ng-model="searchQuery" placeholder="Search"
-           title="type text for search here and press Enter" class="form-control">
-    <div class="clear"></div>
     
-    
-    
-</div>
-
-
 </div>
