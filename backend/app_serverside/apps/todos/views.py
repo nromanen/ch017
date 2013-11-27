@@ -1,5 +1,5 @@
 from piston.handler import BaseHandler
-from models import User, Todo, Role
+from models import Users, Todo, Role
 from django.shortcuts import get_object_or_404, get_list_or_404
 from django.http import Http404
 from piston.utils import rc
@@ -8,31 +8,43 @@ import base64
 
 class UserHandler(BaseHandler):
     allowed_methods = ('GET',)
-    exclude = ('password',)
-    include = ('pk_id',)
-    model = User
+    model = Users
+    fields = (
+        'id',
+        ('todo',
+            (
+                'text',
+                'date_created',
+                'date_finished',
+                'amount',
+                'done',
+                ('time',
+                    ('time', )
+                )
+            )
+        )
+    )
 
     def users_by_role(self, role):
-        return User.objects.filter(role__name=role)
+        return Users.objects.filter(role__name=role)
 
-    def read(self, request, role=None):
+    def get_user(self, login=None, password=None):
+        if login and password:
+            password = base64.b64decode(password)
+            return Users.objects.get(login=login, password=password)
+
+    def read(self, request, role=None, login=None, password=None):
         if role:
             try:
                 return self.users_by_role(role)
             except AttributeError:
                 return rc.BAD_REQUEST
+        elif login and password:
+            return self.get_user(login, password)
         else:
-            return User.objects.all()
+            return Users.objects.all()
 
-class OneUserHandler(BaseHandler):
-    allowed_methods = ('GET',)
-    model = User
 
-    def read(self, request, login=None, password=None):
-        if login and password:
-            password = base64.b64decode(password)
-            return User.objects.get(login=login, password=password)
-            
 class TodoHandler(BaseHandler):
     allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
     model = Todo
@@ -41,6 +53,7 @@ class TodoHandler(BaseHandler):
         'date_created',
         'date_finished',
         'amount',
+        'done',
         ('time',
             ('time', )
         )
@@ -50,7 +63,7 @@ class TodoHandler(BaseHandler):
 
         if login and password:
             password = base64.b64decode(password)
-            user = User.objects.get(login=login, password=password)
+            user = Users.objects.get(login=login, password=password)
             if user:
                 return user.todo.all()
         else:

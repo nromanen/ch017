@@ -8,46 +8,29 @@
                 </div>
                 <div class="modal-body">
                     <div class="well">
-                    <form ng-submit="addNewTodo()" class="form-inline" role="form"  >
-                        <input type="text" ng-model="todoText"
-                               placeholder="add new todso here" title="type text here and press Enter"
-                               class="form-control" ng-show="canEditTodo()"
-                      </form>
+                        <form class="form-inline" role="form">
+                            <input type="text" ng-model="todoExample.text"
+                                   placeholder="add new todso here" title="type text here and press Enter"
+                                   class="form-control" ng-show="canEditTodo()"
+                        </form>
                     </div>
                     <div class="well">
-                        <div id="datetimepicker1" class="input-append">
-                            <input data-format="yyyy-MM-dd" type="text">
-                                <span class="add-on">
-                                    <i><span class="glyphicon glyphicon-calendar pointer bottom-right "></span>
-                                    </i>
-                                </span>
-                        </div>
+                        <form ng-submit="addNewDateTimeToTodo()" class="form-inline" role="form">
+                            <div id="datetimepicker1" class="input-append">
+                                <input data-format="yyyy-MM-dd" type="text" ng-model="date" date-picker class="add-on">
+                            </div>
+                            <div id="datetimepicker2" class="input-append ">
+                                <input ng-model="time" data-format="hh:mm:ss" type="text" time-picker class="add-on">
+                            </div>
+                            <button type="button" class="btn btn-primary"
+                                    ng-click="addNewDateTimeToTodo()">Add Time </button>
+                        </form>
                     </div>
-                    <script type="text/javascript">
-                        $(function() {
-                            $('#datetimepicker1').datetimepicker({
-                                pickTime: false
-                            });
-                        });
-                    </script>
-
-                    <div class="well">
-                        <div id="datetimepicker2" class="input-append ">
-                            <input ng-model="time" data-format="hh:mm:ss" type="text">
-                                <span class="add-on">
-                                    <i><span class="glyphicon glyphicon-time pointer bottom-right "></span></i>
-
-                                </span>
-                        </div>
-                    </div>
-
-                    <script type="text/javascript">
-                        $(function() {
-                            $('#datetimepicker2').datetimepicker({
-                                pickDate: false
-                            });
-                        });
-                    </script>
+                    <ul>
+                        <li ng-repeat="datetime in todoExample.todo">
+                            <span>{{ datetime.date }} {{ datetime.time }}</span>
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="modal-footer">
@@ -57,6 +40,18 @@
 
             </div>
         </div>
+        <script type="text/javascript">
+            $(function() {
+                $('#datetimepicker2').datetimepicker({
+                    pickDate: false
+                });
+            });
+            $(function() {
+                $('#datetimepicker1').datetimepicker({
+                    pickTime: false
+                });
+            });
+        </script>
     </div>
 
 

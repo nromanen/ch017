@@ -13,7 +13,7 @@ class Role(models.Model):
         return self.name
 
 
-class User(models.Model):
+class Users(models.Model):
     first_name = models.CharField(max_length=255, blank=False, null=False)
     last_name = models.CharField(max_length=255, blank=False, null=False)
     foto = models.ImageField(upload_to='fotos/')
@@ -36,6 +36,7 @@ class Todo(models.Model):
     date_finished = models.DateTimeField(null=True)
     amount = models.IntegerField(default=1)
     time = models.ManyToManyField("Time", blank=False, null=False)
+    done = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.text
@@ -60,7 +61,7 @@ class ViewTodoInAdmin(admin.ModelAdmin):
 
 try:
     admin.site.register(Role, ViewRoleInAdmin)
-    admin.site.register(User, ViewUserInAdmin)
+    admin.site.register(Users, ViewUserInAdmin)
     admin.site.register(Todo, ViewTodoInAdmin)
     #temp
     admin.site.register(Time)

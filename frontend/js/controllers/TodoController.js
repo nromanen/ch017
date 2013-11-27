@@ -3,30 +3,22 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
 
     $scope.roles = {};
     $scope.todoList = [];
-
-    
     $scope.activePatientList = [];
-    
-    
-    
+    // this variable uses for edit todos and here will be new todo_item before save
+    $scope.todoExample = {
+        text: '',
+        done: false,
+        todo: []
+    };
+
     init();
 
     function init() {
          //list of todos
         //$scope.todoList = localStorageService.get("todos_list") || [];
 
-        
-        
-        
-        
-
         $scope.allTodos = localStorageService.get("allTodos") || [[],[],[],[],[],[],[],[],[],[],[]];
-        
-        
-        
-        
-        
-        
+
         $scope.statusInSystem = localStorageService.get("statusInSystem");
 
         $rootScope.showTopPanel = true;
@@ -47,12 +39,6 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         };
     }
 
-    
-    
-    
-    
-    
-    
     $scope.getPatients = (function() {
 
         var url = config.serverUrl + config.apiUrl + 'users_by_role/patient/?callback=JSON_CALLBACK';
@@ -77,13 +63,11 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     })();
 
     //Sort function
-
     function sortByAlphabet(personA, personB) { //sort patient's by alphabet
         return personA.first_name > personB.first_name;
     }
 
     //active patient functions
-    
     $scope.getActivePatient = function () { //get avtive patient (realy we don't need it now)
         $scope.currentPatient = this.patient.name;
     }
@@ -91,14 +75,7 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     $scope.setActivePatient = function(patientId) { //set activ patient
         $scope.activePatientList = $scope.allTodos[ patientId ];
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
     //function update data in local storage after each change
     $scope.updateLocalStorage = function() {
         localStorageService.add('allTodos', $scope.allTodos);
@@ -128,12 +105,19 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     };
 
     $scope.addNewTodo = function() {
-        if (!$scope.todoText) return false;
+        if (!$scope.todoExample.text) return false;
 
-        var item = {text: $scope.todoText, done: false};
+        $scope.activePatientList.push($scope.todoExample);
+        $scope.todoExample = {
+            text: '',
+            done: false,
+            todo: []
+        };
+        console.log($scope.activePatientList)
+    };
 
-        $scope.activePatientList.push(item);
-        $scope.todoText = '';
+    $scope.addNewDateTimeToTodo = function () {
+        $scope.todoExample.todo.push({date: $scope.date, time: $scope.time})
     };
 
     $scope.getActiveTaskQuantity = function() {

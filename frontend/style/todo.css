@@ -42,6 +42,9 @@ body{
 .left{
     float: left;
 }
+.controll-button{
+    margin: 5px;
+}
 .check_done{
     position: relative;
     right: 20px;

@@ -31,10 +31,9 @@
     <!--Modal Window-->
    <modal></modal>
 
-   
-   
-   
-   <button type="button" class="but_log but_add modalstartbutton" data-toggle="modal" data-target="#myModal" >Add new task</button>
+   <div class="clear"></div>
+   <button type="button" class="but_log but_add modalstartbutton btn-info btn left controll-button"
+           data-toggle="modal" data-target="#myModal" >Add new task</button>
    
    <!--
     <form class="form-inline" role="form" submit="addNewTodo()" ng-click="addNewTodo()">
@@ -46,12 +45,8 @@
     </form><br>
     -->
 
-
-
-
-
     <button ng-click="clearDoneTodos()"
-            class="btn-info btn"
+            class="btn-info btn controll-button"
             ng-show="canRemoveTodo()">Clear</button>
     <div class="clear"></div>
     <div class="panel-group" id="accordion">
