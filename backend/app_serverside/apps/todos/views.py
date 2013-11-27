@@ -11,6 +11,18 @@ class UserHandler(BaseHandler):
     model = Users
     fields = (
         'id',
+        'first_name',
+        'last_name',
+        'foto',
+        'login',
+        ('role', (
+            'name',
+            'add',
+            'edit',
+            'remove',
+            'check'
+        )),
+        'access_token',
         ('todo',
             (
                 'text',
@@ -30,7 +42,7 @@ class UserHandler(BaseHandler):
 
     def get_user(self, login=None, password=None):
         if login and password:
-            password = base64.b64decode(password)
+            #password = base64.b64decode(password)
             return Users.objects.get(login=login, password=password)
 
     def read(self, request, role=None, login=None, password=None):
