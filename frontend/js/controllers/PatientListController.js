@@ -1,20 +1,10 @@
 
-App.controller("PatientListController", function (localStorageService, $scope, $http, config) {
+App.controller("PatientListController", function (localStorageService, db) {
 
-    $scope.getPatients = (function() {
+    var currentUser = localStorageService.get('currentUser');
 
-        var url = config.serverUrl + config.apiUrl + 'users_by_role/Patient/?callback=JSON_CALLBACK';
+    if (!currentUser.role.check) return false;
 
-        var currentUser = localStorageService.get('currentUser');
-        if (currentUser.role.check) {
-            $http.jsonp(url).
-            success(function(data, status) {
-                $scope.patientList = data;
-                localStorageService.add('users', data);
-            }).
-            error(function(data, status) {
-                console.log('error');
-            });
-        }
-    })();
+    db.getPatientList();
+
 });

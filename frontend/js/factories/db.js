@@ -1,38 +1,41 @@
-App.factory("db", function($rootScope, localStorageService, $http, $location, config) {
-    function hint (str) {
-        $rootScope.hintText = str;
-    }
-
-    function saveRole (data) {
-        localStorageService.add('currentUser', data);
-    }
-
-    function redirectTo (redirectUrl) {
-        $location.path(redirectUrl);
-    }
-
+App.factory("db", function($rootScope, $http, config, aux) {
     return {
+
         getUserData: function (login, password) {
             var password = btoa(password);
             var path = config.serverUrl + config.apiUrl;
-            var url = path + 'user/' + login + '/' + password + '/?callback=JSON_CALLBACK';
+            var queryUrl = path + 'user/' + login + '/' + password + '/?callback=JSON_CALLBACK';
 
-            $http.jsonp( url ).
+            $http.jsonp(queryUrl).
             success(function(data, status) {
 
                 if (data.result === false) {
-                    hint(data.error);
+                    aux.showHint('hintText', data.error);
                     return false;
                 }
 
-                saveRole(data);
+                aux.addToLocalStorage('currentUser', data);
 
-                redirectTo( '/' + data.role.name + '/' + data.login );
+                aux.redirectTo( '/' + data.role.name + '/' + data.login );
 
             }).
             error(function(data, status) {
-                hint(data.error);
+                aux.showHint('hintText', data.error);
+            });
+        },
+
+        getPatientList: function () {
+            var queryUrl = config.serverUrl + config.apiUrl + 'users_by_role/patient/?callback=JSON_CALLBACK';
+
+            $http.jsonp(queryUrl).
+            success(function(data, status) {
+                $rootScope.patientList = data;
+                aux.addToLocalStorage('users', data);
+            }).
+            error(function(data, status) {
+                aux.redirectTo( '/error/' + status );
             });
         }
+
     }
 });
