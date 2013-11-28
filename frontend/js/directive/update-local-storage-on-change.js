@@ -2,7 +2,7 @@
 App.directive('updateLocalStorageOnChange', function() {
     return {
         link: function($scope, elm, attrs) {
-            $scope.$watch('allTodos', function(){
+            $scope.$watch('currentPatient', function(){
                 $scope.updateLocalStorage();
             }, true);
         }

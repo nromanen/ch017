@@ -3,13 +3,6 @@ App.controller("AuthController", function ($scope, $rootScope, localStorageServi
 
     function init () {
         if($routeParams.param === 'logout') $scope.logout();
-
-        /* TEMP */
-        $scope.authLogin = 'doctor';
-        $scope.authPassword = '1111';
-        /* TEMP */
-
-        $rootScope.showTopPanel = false;
     }
 
     $scope.logout = function() {
@@ -25,8 +18,7 @@ App.controller("AuthController", function ($scope, $rootScope, localStorageServi
     };
     
     $scope.saveRole = function(data) {
-        localStorageService.add('userLogin', data.login);
-        localStorageService.add('statusInSystem', data);
+        localStorageService.add('currentUser', data);
     }
     
     $scope.redirectTo = function(url) {
@@ -40,41 +32,29 @@ App.controller("AuthController", function ($scope, $rootScope, localStorageServi
         var path = config.serverUrl + config.apiUrl;
         var url = path + 'user/' + login + '/' + password + '/?callback=JSON_CALLBACK';
 
-        $http.jsonp(url).
-        success(function(data, status) {
-
-            /* *** I AM GETTING FROM DJANGO *** */
-            /*
-            if(login === false) {
-                var data = {
-                    "result":false,
-                    "error":"You had entered an unknown login. Please, try again."
-                };
-            }
-            if(login === true && password === false) {
-                var data = {
-                    "result":false,
-                    "error":"You had entered unknown data. Please, try again."
-                };
-            }
-            if(login === true && password === true) return data = {{Object with the role}};
-            */
-
-            if (data.result === false) {
-                $scope.hint(data.error);
-                return false;
-            }
-
-            $scope.saveRole(data);
-
-            $scope.redirectTo( '/' + data.role.name + '/' + data.login );
-
-        }).
-        error(function(data, status) {
-            $scope.hint(data.error);
-        });
+        $scope.getUser(url);
 
     };
+
+    $scope.getUser = function (url) {
+
+        $http.jsonp(url).
+            success(function(data, status) {
+
+                if (data.result === false) {
+                    $scope.hint(data.error);
+                    return false;
+                }
+
+                $scope.saveRole(data);
+
+                $scope.redirectTo( '/' + data.role.name + '/' + data.login );
+
+            }).
+            error(function(data, status) {
+                $scope.hint(data.error);
+            });
+    }
 
     init();
 

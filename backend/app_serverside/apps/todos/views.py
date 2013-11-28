@@ -42,7 +42,7 @@ class UserHandler(BaseHandler):
 
     def get_user(self, login=None, password=None):
         if login and password:
-            #password = base64.b64decode(password)
+            password = base64.b64decode(password)
             return Users.objects.get(login=login, password=password)
 
     def read(self, request, role=None, login=None, password=None):

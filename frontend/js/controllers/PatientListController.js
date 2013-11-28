@@ -1,28 +1,20 @@
 
-App.controller("PatientListController", function ($scope, $http, config) {
-return false;
+App.controller("PatientListController", function (localStorageService, $scope, $http, config) {
+
     $scope.getPatients = (function() {
 
-        var url = config.serverUrl + config.apiUrl + 'users_by_role/patient/?callback=JSON_CALLBACK';
+        var url = config.serverUrl + config.apiUrl + 'users_by_role/Patient/?callback=JSON_CALLBACK';
 
-        $http.jsonp(url).
-        success(function(data, status) {
-
-            /* *** I AM GETTING FROM DJANGO *** */
-            /*
-            data = {{An array of objects only with patients}};
-            */
-
-            $scope.patientList = data;
-
-        }).
-        error(function(data, status) {
-            console.log('error');
-        });
-
+        var currentUser = localStorageService.get('currentUser');
+        if (currentUser.role.check) {
+            $http.jsonp(url).
+            success(function(data, status) {
+                $scope.patientList = data;
+                localStorageService.add('users', data);
+            }).
+            error(function(data, status) {
+                console.log('error');
+            });
+        }
     })();
-
-    $scope.getActivePatient = function () {
-        $scope.currentPatient = this.patient.first_name + ' ' + this.patient.last_name;
-    }
 });

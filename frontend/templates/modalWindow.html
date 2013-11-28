@@ -14,7 +14,7 @@
                                    class="form-control" ng-show="canEditTodo()"
                         </form>
                     </div>
-                    <div class="well">
+                    <div class="well" hide-picker>
                         <form ng-submit="addNewDateTimeToTodo()" class="form-inline" role="form">
                             <div id="datetimepicker1" class="input-append">
                                 <input data-format="yyyy-MM-dd" type="text" ng-model="date" date-picker class="add-on" >
@@ -22,6 +22,7 @@
                             <div id="datetimepicker2" class="input-append ">
                                 <input ng-model="time" data-format="hh:mm:ss" type="text" time-picker class="add-on">
                             </div>
+                            <div><input type="range" name="quantity" min="1" max="5"></div>
                             <button type="button" class="btn btn-primary"
                                     ng-click="addNewDateTimeToTodo()">Add Time </button>
                         </form>

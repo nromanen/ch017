@@ -2,10 +2,10 @@
     <div class="patientListWidth modal-content">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Active patient is: <b>{{currentPatient}}</b>
+                Active patient is: <b>{{currentPatient.first_name}} {{currentPatient.last_name}}   {{currentPatient.todo.length}}</b>
             </div>
             <ul class="list-group nodecorate ">
-                <li ng-click="getActivePatient(); setActivePatient(patient.id);" ng-style="activePatient"
+                <li ng-click="setActivePatient(patient.id);" ng-style="activePatient"
                     ng-model="text" ng-repeat="patient in patientList">
                     <center><a href="" class="list-group-item">
                         {{patient.first_name}} {{patient.last_name}}

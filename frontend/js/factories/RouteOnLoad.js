@@ -13,16 +13,14 @@ App.factory("routeOnLoad", [
 
     routeOnLoad.getUserData = function() {
 
-        if (localStorageService.get('userLogin') === null) {
+        if (localStorageService.get('currentUser') === null) {
             routeOnLoad.redirectTo('/auth');
             return false;
         }
 
-        var statusInSystem = localStorageService.get('statusInSystem');
-        var roleName = statusInSystem.role.name;
-        var login = statusInSystem.login;
+        var currentUser = localStorageService.get('currentUser');
 
-        routeOnLoad.redirectTo( '/' + roleName + '/' + login );
+        routeOnLoad.redirectTo( '/' + currentUser.role.name + '/' + currentUser.login );
 
     }
 
