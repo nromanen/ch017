@@ -1,7 +1,7 @@
 
-App.controller("PatientListController", function (localStorageService, db) {
+App.controller("PatientListController", function (db, aux) {
 
-    var currentUser = localStorageService.get('currentUser');
+    var currentUser = aux.getFromLocalStorage('currentUser');
 
     if (!currentUser.role.check) return false;
 

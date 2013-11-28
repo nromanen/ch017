@@ -9,6 +9,14 @@ App.factory("aux", function($rootScope, localStorageService, $location) {
             localStorageService.add(key, value);
         },
 
+        getFromLocalStorage: function (key) {
+            return localStorageService.get(key);
+        },
+
+        clearLocalStorage: function () {
+            localStorageService.clearAll();
+        },
+
         redirectTo: function (url) {
             $location.path(url);
         }
