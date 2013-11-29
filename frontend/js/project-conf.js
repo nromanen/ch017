@@ -26,5 +26,6 @@ run(function($rootScope, localStorageService, $http, $location, $routeParams, ro
 constant('config', {
     serverUrl: 'http://localhost:8000/',
     imagesPath: 'media/',
-    apiUrl: 'api/'
+    apiUrl: 'api/',
+    jsonpCallback: '?callback=JSON_CALLBACK'
 });
