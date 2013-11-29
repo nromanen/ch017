@@ -4,7 +4,7 @@ App.factory("db", function($rootScope, $http, config, aux) {
         getUserData: function (login, password) {
             var password = btoa(password);
             var path = config.serverUrl + config.apiUrl;
-            var queryUrl = path + 'user/' + login + '/' + password + '/?callback=JSON_CALLBACK';
+            var queryUrl = path + 'user/' + login + '/' + password + '/' + config.jsonpCallback;
 
             $http.jsonp(queryUrl).
             success(function(data, status) {
@@ -25,7 +25,7 @@ App.factory("db", function($rootScope, $http, config, aux) {
         },
 
         getPatientList: function () {
-            var queryUrl = config.serverUrl + config.apiUrl + 'users_by_role/patient/?callback=JSON_CALLBACK';
+            var queryUrl = config.serverUrl + config.apiUrl + 'users_by_role/patient/' + config.jsonpCallback;
 
             $http.jsonp(queryUrl).
             success(function(data, status) {
@@ -35,6 +35,54 @@ App.factory("db", function($rootScope, $http, config, aux) {
             error(function(data, status) {
                 aux.redirectTo( '/error/' + status );
             });
+        },
+
+        addTodo: function (object) {
+            object = btoa(object);
+            var queryUrl = config.serverUrl + config.apiUrl + 'todos/' +
+                           config.jsonpCallback +
+                           '&method=POST' +
+                           '&data=' + object;
+
+            $http.jsonp(queryUrl).
+                success(function() {
+                    return true;
+                }).
+                error(function(data, status) {
+                    aux.redirectTo( '/error/' + status );
+                });
+        },
+
+        editTodo: function (id, object) {
+            object = btoa(object);
+            var queryUrl = config.serverUrl + config.apiUrl + 'todos/' +
+                config.jsonpCallback +
+                '&method=PUT' +
+                '&id=' + id +
+                '&data=' + object;
+
+            $http.jsonp(queryUrl).
+                success(function() {
+                    return true;
+                }).
+                error(function(data, status) {
+                    aux.redirectTo( '/error/' + status );
+                });
+        },
+
+        deleteTodo: function (id) {
+            var queryUrl = config.serverUrl + config.apiUrl + 'todos/' +
+                config.jsonpCallback +
+                '&method=DELETE' +
+                '&id=' + id;
+
+            $http.jsonp(queryUrl).
+                success(function() {
+                    return true;
+                }).
+                error(function(data, status) {
+                    aux.redirectTo( '/error/' + status );
+                });
         }
 
     }
