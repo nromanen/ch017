@@ -1,9 +1,10 @@
 from piston.handler import BaseHandler
-from models import Users, Todo, Role
+from models import Users, Todo, Role, Time
 from django.shortcuts import get_object_or_404, get_list_or_404
 from django.http import Http404
 from piston.utils import rc
 import base64
+from django.utils.simplejson import dumps, loads
 
 
 class UserHandler(BaseHandler):
@@ -72,39 +73,46 @@ class TodoHandler(BaseHandler):
     )
 
     def read(self, request, login=None, password=None):
+        method = request.GET.get("method")
+        todo_id = request.GET.get("id")
+        data = request.GET.get("data")
 
         if login and password:
             password = base64.b64decode(password)
             user = Users.objects.get(login=login, password=password)
             if user:
                 return user.todo.all()
+        elif method == "PUT":
+            return self.update(request, todo_id, data)
+        elif method == "POST":
+            return self.create(request, data)
+        elif method == "DELETE":
+            return self.delete(request, todo_id)
         else:
             return Todo.objects.all()
 
-    def create(self, request):
-        new_todo = request.POST['new_todo']
+    def create(self, request, data):
+        todo = base64.b64decode(data)
+        todo = loads(todo)
+        #TODO: implement code for parsing data and save to db
+        #print todo["text"]
 
-        #here must to be more code to implement this method
-        todo_item, created = Todo.objects.get_or_create(new_todo)
+        return {"success": True}
 
-        if created:
-            return todo_item
-        else:
-            response = rc.BAD_REQUEST
-            response.write('Record already exists')
-            return response
 
-    def update(self, request, post_id):
-        todo_item = get_object_or_404(Todo, pk=post_id)
-        #here must to be more code to update all attr of todo_item
-        todo_item.text = request.POST['text']
-        todo_item.save()
+    def update(self, request, todo_id, data):
+        todo_item = get_object_or_404(Todo, pk=todo_id)
+        todo = base64.b64decode(data)
+        todo = loads(todo)
+        #TODO: implement code for parsing data and save to db
+        #print todo["text"]
+        #todo_item.save()
 
-        return todo_item
+        return {"success": True}
 
-    def delete(self, request, post_id):
-        todo_item = get_object_or_404(Todo, pk=post_id)
+    def delete(self, request, todo_id):
+        todo_item = get_object_or_404(Todo, pk=todo_id)
 
         todo_item.delete()
 
-        return rc.DELETED
+        return {"success": True}

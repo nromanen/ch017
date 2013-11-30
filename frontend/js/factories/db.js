@@ -40,7 +40,8 @@ App.factory("db", function($rootScope, $http, config, aux) {
         },
 
         addTodo: function (object) {
-            object = btoa(object);
+            object = btoa(JSON.stringify(object));
+
             var queryUrl = config.serverUrl + config.apiUrl + 'todos/' +
                            config.jsonpCallback +
                            '&method=POST' +
@@ -56,7 +57,8 @@ App.factory("db", function($rootScope, $http, config, aux) {
         },
 
         editTodo: function (id, object) {
-            object = btoa(object);
+            object = btoa(JSON.stringify(object));
+
             var queryUrl = config.serverUrl + config.apiUrl + 'todos/' +
                 config.jsonpCallback +
                 '&method=PUT' +
