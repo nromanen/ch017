@@ -1,5 +1,5 @@
 
-App.controller("TodoController", function ($scope, $rootScope, localStorageService, $http, config) {
+App.controller("TodoController", function ($scope, $rootScope, localStorageService, config) {
 
     $scope.roles = {};
     // this variable uses for edit todos and here will be new todo_item before save
@@ -8,6 +8,24 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         done: false,
         todo: []
     };
+
+    init();
+
+    function init() {
+
+        $scope.users = localStorageService.get("users") || [];
+        $rootScope.currentUser = localStorageService.get("currentUser");
+        $rootScope.userPhoto = config.serverUrl + config.imagesPath + $scope.currentUser.foto;
+
+        if (!$scope.currentUser.role.add && !$scope.currentUser.role.edit &&
+            !$scope.currentUser.role.remove && !$scope.currentUser.role.check) {
+            $scope.patientListHide = true;
+            $scope.currentPatient = $scope.currentUser;
+        } else {
+            $scope.patientListHide = false;
+            $scope.currentPatient = $scope.users[0];
+        }
+    }
 
     function getPatientFromUsers(patientId) {
 

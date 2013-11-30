@@ -6,12 +6,17 @@ var App = angular.module(
 ).
 config(function ($routeProvider) {
 
-    $routeProvider.when('/', {controller: 'TodoController', templateUrl: 'templates/todo.html'});
-    $routeProvider.when('/auth', {controller: 'AuthController', templateUrl: 'templates/auth.html'});
-    $routeProvider.when('/auth/:param', {controller: 'AuthController', templateUrl: 'templates/auth.html'});
-    $routeProvider.when('/patientList', {controller: 'PatientListController', templateUrl: 'templates/patientList.html'});
-    $routeProvider.when('/:type/:login', {controller: '', templateUrl: 'templates/todo.html'});
-    $routeProvider.otherwise({redirectTo:'/'});
+    $routeProvider.
+    when('/auth', {controller: 'AuthController', templateUrl: 'templates/auth.html'}).
+    when('/auth/:param', {controller: 'AuthController', templateUrl: 'templates/auth.html'}).
+    when('/:type/:login', {controller: 'TodoController', templateUrl: 'templates/todo.html',
+        resolve: {
+            data: function (db) {
+                return db.getPatientList();
+            }
+        }
+    }).
+    otherwise({redirectTo: '/auth'});
 
 }).
 run(function($rootScope, localStorageService, $http, $location, $routeParams, routeOnLoad) {

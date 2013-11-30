@@ -27,14 +27,16 @@ App.factory("db", function($rootScope, $http, config, aux) {
         getPatientList: function () {
             var queryUrl = config.serverUrl + config.apiUrl + 'users_by_role/patient/' + config.jsonpCallback;
 
-            $http.jsonp(queryUrl).
-            success(function(data, status) {
-                $rootScope.patientList = data;
-                aux.addToLocalStorage('users', data);
-            }).
-            error(function(data, status) {
-                aux.redirectTo( '/error/' + status );
-            });
+            return (
+                $http.jsonp(queryUrl).
+                success(function(data, status) {
+                    $rootScope.patientList = data;
+                    aux.addToLocalStorage('users', data);
+                }).
+                error(function(data, status) {
+                    aux.redirectTo( '/error/' + status );
+               })
+            );
         },
 
         addTodo: function (object) {
