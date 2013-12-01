@@ -5,7 +5,6 @@ ehthumbs.db
 settings_local.py
 Icon?
 Thumbs.db
-karma-e2e.conf.js
 node_modules
 *.com
 *.class
@@ -29,3 +28,5 @@ bin
 include
 .env
 todoenv
+frontend/tests/coverage/coverage-Chrome*
+frontend/tests/coverage/coverage-Firefox*
