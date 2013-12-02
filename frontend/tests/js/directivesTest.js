@@ -1,4 +1,4 @@
-describe("Test all directives of our project", function () {
+xdescribe("Test all directives of our project", function () {
 
     var $compile, $rootScope;
     var $httpBackend;
@@ -14,7 +14,7 @@ describe("Test all directives of our project", function () {
         }]
     ));
 
-    beforeEach(inject(
+    xbeforeEach(inject(
         ['$httpBackend', function($h) {
             $httpBackend = $h;
             $httpBackend.whenGET('./templates/modalWindow.html').passThrough();

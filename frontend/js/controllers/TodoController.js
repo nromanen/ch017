@@ -1,5 +1,5 @@
 
-App.controller("TodoController", function ($scope, $rootScope, localStorageService, config) {
+App.controller("TodoController", function ($scope, $rootScope, localStorageService, config, db) {
 
     $scope.roles = {};
     // this variable uses for edit todos and here will be new todo_item before save
@@ -54,6 +54,12 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         if (!$scope.todoExample.text) return false;
 
         $scope.currentPatient.todo.push($scope.todoExample);
+        db.addTodo($scope.currentPatient.id, $scope.todoExample);
+        $scope.todoExample = {
+            text: '',
+            done: false,
+            todo: []
+        };
     };
 
     $scope.addNewDateTimeToTodo = function () {
