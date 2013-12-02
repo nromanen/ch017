@@ -6,6 +6,7 @@ settings_local.py
 Icon?
 Thumbs.db
 node_modules
+coverage
 *.com
 *.class
 *.dll

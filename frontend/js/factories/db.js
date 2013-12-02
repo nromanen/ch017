@@ -40,12 +40,13 @@ App.factory("db", function($rootScope, $http, config, aux) {
             );
         },
 
-        addTodo: function (object) {
+        addTodo: function (id, object) {
             object = btoa(JSON.stringify(object));
 
             var queryUrl = config.serverUrl + config.apiUrl + 'todos/' +
                            config.jsonpCallback +
                            '&method=POST' +
+                           '&id=' + id +
                            '&data=' + object;
 
             $http.jsonp(queryUrl).
@@ -57,13 +58,12 @@ App.factory("db", function($rootScope, $http, config, aux) {
                 });
         },
 
-        editTodo: function (id, object) {
+        editTodo: function (object) {
             object = btoa(JSON.stringify(object));
 
             var queryUrl = config.serverUrl + config.apiUrl + 'todos/' +
                 config.jsonpCallback +
                 '&method=PUT' +
-                '&id=' + id +
                 '&data=' + object;
 
             $http.jsonp(queryUrl).

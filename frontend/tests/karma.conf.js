@@ -36,17 +36,17 @@ module.exports = function(config) {
 
     coverageReporter: {
         type : 'html',
-        dir : '../../../coverage/',
+        dir : 'coverage/',
         file: 'coverage.html'
     },
 
     plugins: [
         'karma-jasmine',
         'karma-coverage',
-        'karma-chrome-launcher'
+        'karma-firefox-launcher'
     ],
 
-    browsers: ['Chrome'],
+    browsers: ['Firefox'],
     port: 7000,
     colors: true,
     logLevel: config.LOG_INFO,

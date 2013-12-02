@@ -63,6 +63,7 @@ class TodoHandler(BaseHandler):
     allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
     model = Todo
     fields = (
+        'id',
         'text',
         'date_created',
         'date_finished',
@@ -75,7 +76,7 @@ class TodoHandler(BaseHandler):
 
     def read(self, request, login=None, password=None):
         method = request.GET.get("method")
-        todo_id = request.GET.get("id")
+        identify = request.GET.get("id")
         data = request.GET.get("data")
 
         if login and password:
@@ -84,18 +85,19 @@ class TodoHandler(BaseHandler):
             if user:
                 return user.todo.all()
         elif method == "PUT":
-            return self.update(request, todo_id, data)
+            return self.update(request, data)
         elif method == "POST":
-            return self.create(request, data)
+            return self.create(request, identify, data)
         elif method == "DELETE":
-            return self.delete(request, todo_id)
+            return self.delete(request, identify)
         else:
             return Todo.objects.all()
 
-    def create(self, request, data):
+    def create(self, request, user_id, data):
         todo = base64.b64decode(data)
         todo = loads(todo)
         new_todo = Todo.objects.create(text=todo["text"], done=todo["done"])
+        new_todo.users_set.add(Users.objects.get(pk=user_id))
         new_todo.save()
         for date in  todo["todo"]:
             time = Time.objects.create(time=datetime.datetime.strptime(date["date"] + ' ' +  date["time"], '%Y-%m-%d %H:%M:%S'))
@@ -105,15 +107,14 @@ class TodoHandler(BaseHandler):
         return {"success": True}
 
 
-    def update(self, request, todo_id, data):
-        todo_item = get_object_or_404(Todo, pk=todo_id)
+    def update(self, request, data):
         todo = base64.b64decode(data)
         todo = loads(todo)
-
+        todo_item = get_object_or_404(Todo, pk=todo["id"])
         todo_item.text = todo["text"]
         todo_item.done = todo["done"]
         todo_item.save()
-        Time.objects.filter(todo__id=todo_id).delete()
+        Time.objects.filter(todo__id=todo["id"]).delete()
         for date in  todo["todo"]:
             time = Time.objects.create(time=datetime.datetime.strptime(date["date"] + ' ' +  date["time"], '%Y-%m-%d %H:%M:%S'))
             time.todo_set.add(todo_item)

@@ -37,8 +37,7 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     }
 
     function updatePatientFromUsers(patientId) {
-
-        $scope.users.forEach(function (index, user) {
+        $scope.users.forEach(function (user, index) {
             if (user.id === patientId) {
                 $scope.users[index] = $scope.currentPatient;
             }
@@ -55,11 +54,6 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         if (!$scope.todoExample.text) return false;
 
         $scope.currentPatient.todo.push($scope.todoExample);
-        $scope.todoExample = {
-            text: '',
-            done: false,
-            todo: []
-        };
     };
 
     $scope.addNewDateTimeToTodo = function () {
@@ -90,7 +84,7 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     $scope.getActiveTaskQuantity = function() {
         var count = 0;
 
-        if(!$scope.currentPatient.todo.length) return false;
+        if(!$scope.currentPatient.todo.length) return 0;
 
         $scope.currentPatient.todo.forEach(function(todo) {
             if (!todo.done) {
