@@ -43,7 +43,7 @@ describe('Route on load controller', function() {
 
         runs(function() {
             flag = false;
-            localStorageService.add('userLogin', null);
+            localStorageService.add('currentUser', null);
 
             expect(routeOnLoad.getUserData()).toBe(false);
 
@@ -53,8 +53,7 @@ describe('Route on load controller', function() {
         });
 
         waitsFor(function() {
-            localStorageService.add('userLogin', true);
-            localStorageService.add('statusInSystem', {login: true, role: {name: true}})
+            localStorageService.add('currentUser', {login: true, role: {name: true}});
             return flag;
         }, "User login should not be empty", 750);
 

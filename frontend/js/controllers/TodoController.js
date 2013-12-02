@@ -66,11 +66,6 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         $scope.todoExample.todo.push({date: $scope.date, time: $scope.time})
     };
 
-     //Sort function
-    function sortByAlphabet(personA, personB) {
-        return personA.first_name > personB.first_name;
-    }
-
     //check rules
     $scope.canAddTodo = function () {
         return $scope.currentUser.role.add;

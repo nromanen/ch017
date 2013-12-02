@@ -19,6 +19,10 @@ App.factory("aux", function($rootScope, localStorageService, $location) {
 
         redirectTo: function (url) {
             $location.path(url);
+        },
+
+        sortByAlphabet: function (personA, personB) {
+            return personA.first_name > personB.first_name;
         }
 
     }

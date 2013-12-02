@@ -1,5 +1,5 @@
 
-App.controller("TopPanelController", function ($scope) {
+App.controller("TopPanelController", function () {
 
 
 
