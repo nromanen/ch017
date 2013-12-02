@@ -1,6 +1,3 @@
-// Karma configuration
-// Generated on Wed Nov 13 2013 10:30:14 GMT+0200 (EET)
-
 module.exports = function(config) {
   config.set({
 
@@ -20,6 +17,7 @@ module.exports = function(config) {
 	'../js/factories/*.js',
 	'../js/directive/*.js',
 
+    'js/*/*.js',
     'js/*.js'
 
     ],
@@ -45,11 +43,10 @@ module.exports = function(config) {
     plugins: [
         'karma-jasmine',
         'karma-coverage',
-        'karma-chrome-launcher',
-        'karma-firefox-launcher',
+        'karma-chrome-launcher'
     ],
 
-    browsers: ['Chrome', 'Firefox'],
+    browsers: ['Chrome'],
     port: 7000,
     colors: true,
     logLevel: config.LOG_INFO,

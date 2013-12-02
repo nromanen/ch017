@@ -30,6 +30,7 @@ App.factory("db", function($rootScope, $http, config, aux) {
             return (
                 $http.jsonp(queryUrl).
                 success(function(data, status) {
+                    data.sort(aux.sortByAlphabet);
                     $rootScope.patientList = data;
                     aux.addToLocalStorage('users', data);
                 }).
