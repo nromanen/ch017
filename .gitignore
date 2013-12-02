@@ -28,5 +28,3 @@ bin
 include
 .env
 todoenv
-frontend/tests/coverage/coverage-Chrome*
-frontend/tests/coverage/coverage-Firefox*
