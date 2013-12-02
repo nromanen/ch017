@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 from django.http import Http404
 from piston.utils import rc
 import base64
+import datetime
 from django.utils.simplejson import dumps, loads
 
 
@@ -94,8 +95,12 @@ class TodoHandler(BaseHandler):
     def create(self, request, data):
         todo = base64.b64decode(data)
         todo = loads(todo)
-        #TODO: implement code for parsing data and save to db
-        #print todo["text"]
+        new_todo = Todo.objects.create(text=todo["text"], done=todo["done"])
+        new_todo.save()
+        for date in  todo["todo"]:
+            time = Time.objects.create(time=datetime.datetime.strptime(date["date"] + ' ' +  date["time"], '%Y-%m-%d %H:%M:%S'))
+            time.todo_set.add(new_todo)
+            time.save()
 
         return {"success": True}
 
@@ -104,9 +109,15 @@ class TodoHandler(BaseHandler):
         todo_item = get_object_or_404(Todo, pk=todo_id)
         todo = base64.b64decode(data)
         todo = loads(todo)
-        #TODO: implement code for parsing data and save to db
-        #print todo["text"]
-        #todo_item.save()
+
+        todo_item.text = todo["text"]
+        todo_item.done = todo["done"]
+        todo_item.save()
+        Time.objects.filter(todo__id=todo_id).delete()
+        for date in  todo["todo"]:
+            time = Time.objects.create(time=datetime.datetime.strptime(date["date"] + ' ' +  date["time"], '%Y-%m-%d %H:%M:%S'))
+            time.todo_set.add(todo_item)
+            time.save()
 
         return {"success": True}
 
