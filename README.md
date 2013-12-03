@@ -1,3 +1,5 @@
+Link for mobile version try demo http://skrypsky.name/todop/#/employees
+
 Simple todo 
 
 KISS and 
