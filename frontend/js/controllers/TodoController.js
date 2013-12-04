@@ -1,12 +1,12 @@
 
 App.controller("TodoController", function ($scope, $rootScope, localStorageService, config, db) {
 
-    $scope.roles = {};
     // this variable uses for edit todos and here will be new todo_item before save
-    $scope.todoExample = {
+    $rootScope.todoExample = {
+        edit: false,
         text: '',
         done: false,
-        todo: []
+        time: []
     };
 
     init();
@@ -25,6 +25,15 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
             $scope.patientListHide = false;
             $scope.currentPatient = $scope.users[0];
         }
+    }
+
+    function clearTodoExamle () {
+        $rootScope.todoExample = {
+            edit: false,
+            text: '',
+            done: false,
+            time: []
+        };
     }
 
     function getPatientFromUsers(patientId) {
@@ -51,19 +60,25 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     }
 
     $scope.addNewTodo = function() {
-        if (!$scope.todoExample.text) return false;
+        if (!$rootScope.todoExample.text) return false;
 
-        $scope.currentPatient.todo.push($scope.todoExample);
-        db.addTodo($scope.currentPatient.id, $scope.todoExample);
-        $scope.todoExample = {
-            text: '',
-            done: false,
-            todo: []
-        };
+        $scope.currentPatient.todo.push($rootScope.todoExample);
+        db.addTodo($scope.currentPatient.id, $rootScope.todoExample);
+        clearTodoExamle();
+    };
+
+    $scope.updateTodo = function () {
+
+        $scope.currentPatient.todo.forEach(function (todo, index) {
+            if (todo.id === $rootScope.todoExample.id) {
+                $scope.currentPatient.todo[index] = $rootScope.todoExample;
+                db.editTodo($rootScope.todoExample);
+            }
+        });
     };
 
     $scope.addNewDateTimeToTodo = function () {
-        $scope.todoExample.todo.push({date: $scope.date, time: $scope.time})
+        $rootScope.todoExample.time.push({date: $scope.date, time: $scope.time})
     };
 
     //check rules
@@ -102,12 +117,16 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     };
 
     $scope.clearDoneTodos = function() {
-        $scope.currentPatient.todo = $scope.currentPatient.todo.filter(function(todo) {
-            return !todo.done;
+        $scope.currentPatient.todo.forEach(function(todo, index) {
+            if (todo.done) {
+                db.deleteTodo($scope.currentPatient.todo[index].id);
+                $scope.currentPatient.todo.splice(index, 1);
+            }
         });
     };
 
     $scope.removeTodo = function(index) {
+        db.deleteTodo($scope.currentPatient.todo[index].id);
         $scope.currentPatient.todo.splice(index, 1);
     }
 

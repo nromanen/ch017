@@ -11,7 +11,7 @@
                         <form class="form-inline" role="form">
                             <input type="text" ng-model="todoExample.text"
                                    placeholder="add new todso here" title="type text here and press Enter"
-                                   class="form-control" ng-show="canEditTodo()"
+                                   class="form-control" ng-show="canEditTodo()">
                         </form>
                     </div>
                     <div class="well" hide-picker>
@@ -28,15 +28,18 @@
                         </form>
                     </div>
                     <ul>
-                        <li ng-repeat="datetime in todoExample.todo">
+                        <li ng-repeat="datetime in todoExample.time">
                             <span>{{ datetime.date }} {{ datetime.time }}</span>
                         </li>
                     </ul>
                 </div>
-
-                <div class="modal-footer">
+                <div class="modal-footer" ng-hide="todoExample.edit">
                     <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
-                    <button type="button" class="btn btn-primary" ng-click="addNewTodo()">Save </button>
+                    <button type="button" class="btn btn-primary" ng-click="addNewTodo()">Add </button>
+                </div>
+                <div class="modal-footer" ng-show="todoExample.edit">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="updateTodo()">Update </button>
                 </div>
 
             </div>

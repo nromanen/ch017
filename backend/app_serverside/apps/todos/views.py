@@ -41,18 +41,14 @@ class UserHandler(BaseHandler):
         )
     )
 
-    def users_by_role(self, role):
-        return Users.objects.filter(role__name=role)
-
-    def get_user(self, login=None, password=None):
-        if login and password:
-            password = base64.b64decode(password)
-            return Users.objects.get(login=login, password=password)
+    def get_user(self, login, password):
+        password = base64.b64decode(password)
+        return Users.objects.get(login=login, password=password)
 
     def read(self, request, role=None, login=None, password=None):
         if role:
             try:
-                return self.users_by_role(role)
+                return Users.objects.filter(role__name=role)
             except AttributeError:
                 return rc.BAD_REQUEST
         elif login and password:
@@ -84,8 +80,7 @@ class TodoHandler(BaseHandler):
         if login and password:
             password = base64.b64decode(password)
             user = Users.objects.get(login=login, password=password)
-            if user:
-                return user.todo.all()
+            return user.todo.all() if user else rc.BAD_REQUEST
         elif method == "PUT":
             return self.update(request, data)
         elif method == "POST":
@@ -100,7 +95,7 @@ class TodoHandler(BaseHandler):
         new_todo = Todo.objects.create(text=todo["text"], done=todo["done"])
         new_todo.users_set.add(Users.objects.get(pk=user_id))
         new_todo.save()
-        for date in  todo["todo"]:
+        for date in  todo["time"]:
             time = Time.objects.create(
                 time=datetime.datetime.strptime(date["date"] + ' ' +  date["time"], '%Y-%m-%d %H:%M:%S')
             )
@@ -117,7 +112,7 @@ class TodoHandler(BaseHandler):
         todo_item.done = todo["done"]
         todo_item.save()
         Time.objects.filter(todo__id=todo["id"]).delete()
-        for date in  todo["todo"]:
+        for date in  todo["time"]:
             time = Time.objects.create(
                 time=datetime.datetime.strptime(date["date"] + ' ' +  date["time"], '%Y-%m-%d %H:%M:%S')
             )
