@@ -20,6 +20,22 @@ body{
     box-shadow: -5px -3px 20px rgba(100, 100, 100, 0.5);
 
 }
+.buttonChengeDate{
+    height: 21px;
+    padding-top: 2px;
+    margin-left: 5px;
+
+}
+
+.actualTime{
+    float:left;
+    padding-top: 14px;
+    padding-left:235px;
+    display:inline-flex;
+}
+.actualTime .navbar-text{
+    margin-top:0!important;
+}
 .done-true{
     text-decoration: line-through;
     color: #00a000;
