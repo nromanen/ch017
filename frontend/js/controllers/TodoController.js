@@ -12,7 +12,7 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     init();
 
     function init() {
-
+        $scope.sortedTodoList=[];
         $scope.users = localStorageService.get("users") || [];
         $rootScope.currentUser = localStorageService.get("currentUser");
         $rootScope.userPhoto = config.serverUrl + config.imagesPath + $scope.currentUser.foto;
@@ -100,34 +100,64 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
 
     $scope.setActivePatient = function( patientId ) {
         $scope.currentPatient = getPatientFromUsers(patientId);
+        $scope.getAllTodosWithTodayDate();
     }
 
-    $scope.getActiveTaskQuantity = function() {
-        var count = 0;
+        $scope.getActiveTaskQuantity = function() {
+            var count = 0;
+            if(!$scope.sortedTodoList.length) return 0;
+            $scope.sortedTodoList.forEach(function(todo) {
 
-        if(!$scope.currentPatient.todo.length) return 0;
+              //  $filter('byTime')($scope.sortedTodoList, $scope.currentDate)
+                count += todo.time.filter(function(time) {
+                    console.log(time)
+                    return !time.done;
+                }).length;
+            });
+            return count;
+        };
 
-        $scope.currentPatient.todo.forEach(function(todo) {
-            if (!todo.done) {
-                ++count;
-            }
-        });
-
-        return count;
-    };
 
     $scope.clearDoneTodos = function() {
-        $scope.currentPatient.todo.forEach(function(todo, index) {
+        $scope.sortedTodoList.forEach(function(todo, index) {
             if (todo.done) {
                 db.deleteTodo($scope.currentPatient.todo[index].id);
                 $scope.currentPatient.todo.splice(index, 1);
+                $scope.removeTodo()
             }
         });
     };
 
     $scope.removeTodo = function(index) {
-        db.deleteTodo($scope.currentPatient.todo[index].id);
-        $scope.currentPatient.todo.splice(index, 1);
+        for (i = 0; i < $scope.currentPatient.todo.length; i++ ){
+            if ($scope.sortedTodoList[index].id === $scope.currentPatient.todo[i].id && $scope.currentPatient.todo[i].time.length === 1){
+                db.deleteTodo($scope.currentPatient.todo[i].id);
+                $scope.currentPatient.todo.splice(i, 1);
+                alert(1)
+            }else{
+                for (k = 0; k < $scope.currentPatient.todo[i].time.length; k++){
+                    if ($scope.sortedTodoList[index].id === $scope.currentPatient.todo[i].id && $scope.currentPatient.todo[i].time[k].time.substring(0,10) === $rootScope.currentDate){
+                        $scope.currentPatient.todo[i].time.splice(k,1);
+                        //delete time from db
+                    }
+                }
+            }
+        }
+        $scope.sortedTodoList.splice(index, 1);
+    }
+
+    $scope.getAllTodosWithTodayDate = function(){
+        $scope.sortedTodoList = [];
+        for ( i = 0; i < $scope.currentPatient.todo.length; i++ ){
+            for (z = 0; z < $scope.currentPatient.todo[i].time.length; z++){
+                $scope.currentPatient.todo[i].time[z].done = false;
+                if ($scope.currentPatient.todo[i].time.length >= z && $scope.currentPatient.todo[i].time[z].time.substring(0,10) === $rootScope.currentDate){
+                    $scope.sortedTodoList.push($scope.currentPatient.todo[i]);
+                }
+            }
+
+        }
+       // console.log($scope.sortedTodoList.time);
     }
 
 });

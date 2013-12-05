@@ -33,12 +33,12 @@
                     <div class="panel-body">
                         <ul id="list" update-local-storage-on-change>
                             <li class="task_list" mouseover mouseout
-                                title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery">
+                                title="click if you want to edit" ng-repeat="todo in sortedTodoList | filter:searchQuery">
                                 <div class="content">
                                     <input type="checkbox" class="left check_done"
-                                           ng-model="todo.done" ng-show="canCheckTodo()">
-                                    <div class="done-{{todo.done}} todo_item" data-toggle="modal" data-target="#myModal"
-                                         edit="{{canEditTodo()}}" todo-item="{{$index}}">{{todo.text}}</div>
+                                           ng-model="todo.time[$index].done" ng-show="canCheckTodo()">
+                                    <div class="done-{{todo.time[$index].done}} todo_item" data-toggle="modal" data-target="#myModal"
+                                         edit="{{canEditTodo()}}" todo-item="{{$index}}">{{todo.time[0].time.substring(11,20)}} {{todo.text}}</div>
                                 </div>
                                 <div>
                                     <span class="glyphicon glyphicon-trash pointer right remove-icon"
