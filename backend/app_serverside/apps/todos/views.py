@@ -114,7 +114,7 @@ class TodoHandler(BaseHandler):
         Time.objects.filter(todo__id=todo["id"]).delete()
         for date in  todo["time"]:
             time = Time.objects.create(
-                time=datetime.datetime.strptime(date["date"] + ' ' +  date["time"], '%Y-%m-%d %H:%M:%S')
+                time=datetime.datetime.strptime(date["time"].replace('T', ' '), '%Y-%m-%d %H:%M:%S')
             )
             time.todo_set.add(todo_item)
             time.save()

@@ -78,7 +78,7 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     };
 
     $scope.addNewDateTimeToTodo = function () {
-        $rootScope.todoExample.time.push({date: $scope.date, time: $scope.time})
+        $rootScope.todoExample.time.push({time: [$scope.date, $scope.time].join(' ')})
     };
 
     //check rules
