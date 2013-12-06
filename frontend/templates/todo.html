@@ -39,7 +39,7 @@
                                         <input type="checkbox" class="left check_done"
                                              ng-model="time.done" ng-show="canCheckTodo()">
                                         <span data-target="#myModal"  data-toggle="modal"
-                                              todo-item="{{todo.id}}" edit="{{canEditTodo()}}">
+                                              todo-item="{{todo.id}}" time-item="{{ time.id }}" edit="{{canEditTodo()}}">
                                             {{todo.text}}
                                         </span><br>
                                         <div class="done-{{time.done}} todo_item left">{{time.time.replace('T', ' ')}}</div>
