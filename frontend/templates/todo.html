@@ -33,16 +33,21 @@
                     <div class="panel-body">
                         <ul id="list" update-local-storage-on-change>
                             <li class="task_list" mouseover mouseout
-                                title="click if you want to edit" ng-repeat="todo in sortedTodoList | filter:searchQuery">
-                                <div class="content">
-                                    <input type="checkbox" class="left check_done"
-                                           ng-model="todo.time[$index].done" ng-show="canCheckTodo()">
-                                    <div class="done-{{todo.time[$index].done}} todo_item" data-toggle="modal" data-target="#myModal"
-                                         edit="{{canEditTodo()}}" todo-item="{{$index}}">{{todo.time[0].time.substring(11,20)}} {{todo.text}}</div>
+                                title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery">
+                                <div ng-repeat="time in todo.time | filter:currentDate">
+                                    <div class="content">
+                                        <input type="checkbox" class="left check_done"
+                                             ng-model="time.done" ng-show="canCheckTodo()">
+                                        <span data-target="#myModal"  data-toggle="modal"
+                                              todo-item="{{todo.id}}" edit="{{canEditTodo()}}">
+                                            {{todo.text}}
+                                        </span><br>
+                                        <div class="done-{{time.done}} todo_item left">{{time.time.replace('T', ' ')}}</div>
+                                    </div>
                                 </div>
                                 <div>
                                     <span class="glyphicon glyphicon-trash pointer right remove-icon"
-                                          ng-click="removeTodo($index)"
+                                          ng-click="removeTodo(todo.id)"
                                           ng-show="false"></span>
                                 </div>
                             </li>

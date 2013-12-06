@@ -4,7 +4,9 @@ App.directive('edit', ['$rootScope', function($rootScope) {
         link: function(scope, elm, attrs, ctrl) {
             elm.on('click', function() {
                 scope.$apply(function() {
-                    $rootScope.todoExample = scope.currentPatient.todo[attrs.todoItem];
+                    $rootScope.todoExample = scope.currentPatient.todo.filter(function (todo) {
+                        return todo.id == attrs.todoItem;
+                    })[0];
                     $rootScope.todoExample.edit = true;
                 });
             });

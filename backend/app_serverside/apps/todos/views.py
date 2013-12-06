@@ -68,7 +68,7 @@ class TodoHandler(BaseHandler):
         'amount',
         'done',
         ('time',
-            ('time', )
+            ('id', 'time')
         )
     )
 

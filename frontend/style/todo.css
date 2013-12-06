@@ -16,8 +16,10 @@ body{
     padding: 10px;
     padding-bottom: 20px;
     font-size: 16px;
-    width: 400px;
-    box-shadow: -5px -3px 20px rgba(100, 100, 100, 0.5);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    width: 30em;
+    box-shadow: 10px -3px 20px rgba(100, 100, 100, 0.5);
 
 }
 .buttonChengeDate{
@@ -82,7 +84,7 @@ body{
     list-style-type: none;
     font-family: Verdana;
     padding: 5px;
-    font-size: 24px;
+    font-size: 20px;
 }
 #list .task_list:hover{
     background: #ffffff;
@@ -94,6 +96,7 @@ body{
 }
 .content{
     height: 40px;
+    margin: 30px 0;
 }
 .remove-icon{
     position: relative;
@@ -152,7 +155,12 @@ body{
     outline: none;
 }
 .patientListWidth{
-    width:250px;
+    position: relative;
+    width:20em;
+    right: 38px !important;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+
 }
 .patientListWidth .panel {
     border-radius: 6px !important;

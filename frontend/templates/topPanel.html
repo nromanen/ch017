@@ -16,9 +16,10 @@
                 <div class="actualTime">
                     <div id="datetimepicker3" class="input-append">
                         <p class="navbar-text ">  Current date is <b>{{currentDate}}</b> </p>
-                        <input id="testid"  data-format="yyyy-MM-dd" type="text" ng-change="setCurrentDate()"  ng-model="todayDate"  class="add-on" placeholder="{{currentDate}}" datePicker / >
+                        <input id="testid"  data-format="yyyy-MM-dd" type="text" ng-change="setCurrentDate()"
+                               ng-model="todayDate"  class="add-on" placeholder="{{currentDate}}" datePicker>
                     </div>
-                    <input class="btn-info btn buttonChengeDate" type="button" ng-click="getDate()" value="Change date" />
+                    <input class="btn-info btn buttonChengeDate" type="button" ng-click="getDate()" value="Change date">
                 </div>
                 <script>
                     $(function() {
