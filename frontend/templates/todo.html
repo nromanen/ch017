@@ -1,0 +1,90 @@
+<div ng-controller="TodoController">
+
+    <!--patient list-->
+    <list class="left absolute"></list>
+
+    <!--patient calendar-->
+    <calendar class="left absolute"></calendar>
+
+    <div id="wrapper" class="modal-content">
+        <div>
+            <span class="left">Your role now is <strong>{{currentUser.role.name}}</strong></span>
+            <div class="clear"></div>
+            <h2 class="inform">You have {{getActiveTaskQuantity()}} tasks</h2>
+        </div>
+        
+        <!--Modal Window-->
+        <modal></modal>
+        
+        <br><br><br>
+        <button type="button" class="btn-info btn modalstartbutton" data-toggle="modal"
+                clear data-target="#myModal" ng-show="canAddTodo()">Add new task</button>
+        
+        <button ng-click="clearDoneTodos()" class="btn-info btn" ng-show="canRemoveTodo()">Clear</button>
+        
+        <div class="clear"></div>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            Morning
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <ul id="list" update-local-storage-on-change>
+                            <li class="task_list" mouseover mouseout
+                                title="click if you want to edit" ng-repeat="todo in sortedTodoList | filter:searchQuery">
+                                <div class="content">
+                                    <input type="checkbox" class="left check_done"
+                                           ng-model="todo.time[$index].done" ng-show="canCheckTodo()">
+                                    <div class="done-{{todo.time[$index].done}} todo_item" data-toggle="modal" data-target="#myModal"
+                                         edit="{{canEditTodo()}}" todo-item="{{$index}}">{{todo.time[0].time.substring(11,20)}} {{todo.text}}</div>
+                                </div>
+                                <div>
+                                    <span class="glyphicon glyphicon-trash pointer right remove-icon"
+                                          ng-click="removeTodo($index)"
+                                          ng-show="false"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                           Noontime
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                            Evening
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="text" ng-model="searchQuery" placeholder="Search"
+               title="type text for search here and press Enter" class="form-control">
+        <div class="clear"></div>
+    </div>
+
+</div>

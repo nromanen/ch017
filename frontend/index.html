@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="App">
+    <head>
+        <meta charset="utf-8">
+        <title>Todos</title>
+        <link rel="stylesheet" href="frameworks/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="frameworks/bootstrap/css/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" href="frameworks/bootstrap/css/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="style/todo.css">
+    </head>
+    <body>
+        <top_panel></top_panel>
+
+        <div class="main">
+            <div ng-view ng-animate="{enter: 'enter-animation', leave: 'leave-animation'}"></div>
+        </div>
+        <script type="text/javascript" src="frameworks/jquery/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="frameworks/angular/angular.min.js"></script>
+        <script type="text/javascript" src="frameworks/angular/angular-local-storage.js"></script>
+        <script type="text/javascript" src="frameworks/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="frameworks/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript" src="frameworks/bootstrap/js/bootstrap-datepicker.js"></script>
+
+
+        <!--config file-->
+        <script type="text/javascript" src="js/project-conf.js"></script>
+
+        <!--factories-->
+        <script type="text/javascript" src="js/factories/auxiliaryMethods.js"></script>
+        <script type="text/javascript" src="js/factories/RoleDecorator.js"></script>
+        <script type="text/javascript" src="js/factories/RouteOnLoad.js"></script>
+        <script type="text/javascript" src="js/factories/db.js"></script>
+
+        <!--controllers-->
+        <script type="text/javascript" src="js/controllers/TodoController.js"></script>
+        <script type="text/javascript" src="js/controllers/AuthController.js"></script>
+        <script type="text/javascript" src="js/controllers/PatientListController.js"></script>
+        <script type="text/javascript" src="js/controllers/TopPanelController.js"></script>
+        <script type="text/javascript" src="js/controllers/patientCalendarController.js"></script>
+
+        <!--directives-->
+        <script type="text/javascript" src="js/directive/todo-blur.js"></script>
+        <script type="text/javascript" src="js/directive/todo-click.js"></script>
+        <script type="text/javascript" src="js/directive/removeIcon-hide.js"></script>
+        <script type="text/javascript" src="js/directive/removeIcon-show.js"></script>
+        <script type="text/javascript" src="js/directive/patient_list.js"></script>
+        <script type="text/javascript" src="js/directive/modal_window.js"></script>
+        <script type="text/javascript" src="js/directive/contentEditable.js"></script>
+        <script type="text/javascript" src="js/directive/todo-submit.js"></script>
+        <script type="text/javascript" src="js/directive/password-validation.js"></script>
+        <script type="text/javascript" src="js/directive/login-validation.js"></script>
+        <script type="text/javascript" src="js/directive/top_panel.js"></script>
+        <script type="text/javascript" src="js/directive/update-local-storage-on-change.js"></script>
+        <script type="text/javascript" src="js/directive/datePicker.js"></script>
+        <script type="text/javascript" src="js/directive/timePicker.js"></script>
+        <script type="text/javascript" src="js/directive/hide-datetimepicker.js"></script>
+        <script type="text/javascript" src="js/directive/edit.js"></script>
+        <script type="text/javascript" src="js/directive/clearTodoForm.js"></script>
+        <script type="text/javascript" src="js/directive/patientCalendar.js"></script>
+    </body>
+</html>

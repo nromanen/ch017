@@ -1,0 +1,113 @@
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modalwindowstyle">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel">Add New Todo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="well">
+                        <form class="form-inline" role="form">
+                            <input type="text" ng-model="todoExample.text"
+                                   placeholder="add new todso here" title="type text here and press Enter"
+                                   class="form-control" ng-show="canEditTodo()">
+                        </form>
+                    </div>
+                    <div class="well" hide-picker>
+                        <form ng-submit="addNewDateTimeToTodo()" class="form-inline" role="form">
+                            <div id="datetimepicker1" class="input-append">
+                                <input data-format="yyyy-MM-dd" type="text" ng-model="date" date-picker class="add-on datetime">
+                            </div>
+                            <div id="datetimepicker2" class="input-append ">
+                                <input ng-model="time" data-format="hh:mm:ss" type="text" time-picker class="add-on datetime">
+                            </div>
+                            <div><input type="range" name="quantity" min="1" max="5"></div>
+                            <button type="button" class="btn btn-primary"
+                                    ng-click="addNewDateTimeToTodo()">Add Time </button>
+                        </form>
+                    </div>
+                    <ul>
+                        <li ng-repeat="datetime in todoExample.time">
+                            <span>{{ datetime.time.replace('T', ' ') }}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer" ng-hide="todoExample.edit">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="addNewTodo()">Add </button>
+                </div>
+                <div class="modal-footer" ng-show="todoExample.edit">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="updateTodo()">Update </button>
+                </div>
+
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function() {
+                $('#datetimepicker2').datetimepicker({
+                    pickDate: false
+                });
+            });
+
+            $(function() {
+                $('#datetimepicker1').datetimepicker({
+                    pickTime: false
+                });
+            });
+        </script>
+    </div>
+
+
+<!-- Modal Window -->
+<!--
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title" id="myModalLabel">Add New Todo</h4>
+            </div>
+            <div class="modal-body">
+                <div class="well">
+                    <div id="datetimepicker1" class="input-append">
+                        <input data-format="yyyy-MM-dd" type="text">
+                                <span class="add-on">
+                                    <i><span class="glyphicon glyphicon-calendar pointer bottom-right "></span>
+                                    </i>
+                                </span>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $(function() {
+                        $('#datetimepicker1').datetimepicker({
+                            pickTime: false
+                        });
+                         $('#datetimepicker2').datetimepicker({
+                            pickDate: false
+                        });
+                    });
+                </script>
+
+                <div class="well">
+                    <div id="datetimepicker2" class="input-append ">
+                        <input data-format="hh:mm:ss" type="text">
+                                <span class="add-on">
+                                    <i><span class="glyphicon glyphicon-time pointer bottom-right "></span></i>
+
+                                </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                <button type="button" class="btn btn-primary">Save </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+-->
