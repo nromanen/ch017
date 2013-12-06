@@ -16,6 +16,8 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         $rootScope.currentUser = localStorageService.get("currentUser");
         $rootScope.userPhoto = config.serverUrl + config.imagesPath + $scope.currentUser.foto;
 
+        $rootScope.topPanelHider = false;
+
         if (!$scope.currentUser.role.add && !$scope.currentUser.role.edit &&
             !$scope.currentUser.role.remove && !$scope.currentUser.role.check) {
             $scope.patientListHide = true;

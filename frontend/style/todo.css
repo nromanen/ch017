@@ -240,3 +240,15 @@ body{
 .margin-left5{
     margin-left:5px;
 }
+
+.datepicker-inline {
+    width: auto;
+}
+.patient-calendar {
+    display: inline-block;
+    border-radius: 6px 0 0 6px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #F5F5F5;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    margin-left: 26px;
+}
