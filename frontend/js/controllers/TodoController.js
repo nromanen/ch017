@@ -81,6 +81,10 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         $rootScope.todoExample.time.push({time: [$scope.date, $scope.time].join(' ')})
     };
 
+    $scope.removeDateTimeTodo = function(index){
+        $rootScope.todoExample.time.splice(index, 1);
+    }
+
     //check rules
     $scope.canAddTodo = function () {
         return $scope.currentUser.role.add;

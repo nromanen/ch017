@@ -221,3 +221,28 @@ body{
     margin-left: 39px;
     margin-top: 1px;
 }
+
+.input-width{
+    width:150px;
+}
+.right{
+    float:right;
+}
+
+.button-input{
+    height:25px;
+    padding-top: 2px;
+
+}
+.margin-left20{
+    margin-left:20px;
+}
+
+.button-delete{
+    height:25px;
+    padding-top: 3px;
+    width:5px;
+}
+.margin-left5{
+    margin-left:5px;
+}
