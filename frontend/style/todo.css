@@ -208,3 +208,16 @@ body{
     width: 51px;
     float: left;
 }
+
+.datepicker-inline {
+    width: auto;
+}
+.patient-calendar {
+    display: inline-block;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #FFF;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    margin-left: 39px;
+    margin-top: 1px;
+}
