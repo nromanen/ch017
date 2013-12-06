@@ -1,3 +1,4 @@
+artur_dolgii/modules/node_modules
 *.pyc
 *.log
 .DS_Store*
@@ -5,6 +6,8 @@ ehthumbs.db
 settings_local.py
 Icon?
 Thumbs.db
+node_modules
+coverage
 *.com
 *.class
 *.dll
@@ -26,3 +29,5 @@ media/cache
 bin
 include
 .env
+todoenv
+

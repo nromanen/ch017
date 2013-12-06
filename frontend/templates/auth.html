@@ -1,0 +1,18 @@
+<div ng-controller="AuthController">
+    <form class="form-signin" ng-submit="sendData()">
+        <h2 class="form-signin-heading">Please sign in</h2>
+
+        <input type="text" ng-model="authLogin" title="At least 3 characters"
+               class="form-control" placeholder="Login" required login autofocus>
+
+        <input type="password" ng-model="authPassword" title="At least 4 characters"
+               class="form-control" placeholder="Password" required  password>
+
+        <label class="checkbox">
+            <input type="checkbox" ng-model="authRemember" value="remember-me"> Remember me
+        </label>
+        <div ng-style="hintStyle" class="hint">{{hintText}}</div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</div>
