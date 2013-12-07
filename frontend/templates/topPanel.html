@@ -16,21 +16,12 @@
                 <div ng-show="currentUser.role.check">
                     <div class="actualTime">
                         <div id="datetimepicker3" class="input-append">
-                            <p class="navbar-text ">Current date is:</p>
-                            <input id="testid"  data-format="yyyy-MM-dd" type="text" ng-change="setCurrentDate()"
+                            <p class="navbar-text ">Current date:</p>
+                            <input id="testid"  type="text" ng-change="setCurrentDate()"
                                    ng-model="todayDate"  class="add-on form-control"
                                    placeholder="{{currentDate}}" datePicker>
                         </div>
-                        <input class="btn-info btn buttonChengeDate"
-                               type="button" ng-click="getDate()" value="Change date">
                     </div>
-                    <script>
-                        $(function() {
-                            $('#datetimepicker3').datetimepicker({
-                                pickTime: false
-                            });
-                        });
-                    </script>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#/auth/logout">Logout</a></li>

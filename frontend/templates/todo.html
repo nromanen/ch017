@@ -6,18 +6,17 @@
     <!--patient calendar-->
     <calendar class="left absolute"></calendar>
 
+    <!--Modal Window-->
+    <modal></modal>
+
     <div id="wrapper" class="modal-content">
         <div class="inform">You have {{getActiveTaskQuantity()}} tasks</div>
-        
-        <!--Modal Window-->
-        <modal></modal>
 
-
-        <button type="button" class="btn-info btn modalstartbutton" data-toggle="modal"
-                clear data-target="#myModal" ng-show="canAddTodo()">Add new task</button>
-        
-        <button ng-click="clearDoneTodos()" class="btn-info btn" ng-show="canRemoveTodo()">Clear</button>
-        <br><br>
+        <div class="moderation-buttons">
+            <button class="btn-primary btn modalstartbutton" data-toggle="modal"
+                    clear data-target="#myModal" ng-show="canAddTodo()">Add new task</button>
+            <button ng-click="clearDoneTodos()" class="btn-primary btn" ng-show="canRemoveTodo()">Clear</button>
+        </div>
 
         <div class="clear"></div>
         <div class="panel-group" id="accordion">
@@ -59,7 +58,7 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                           Noontime
+                           Noon
                         </a>
                     </h4>
                 </div>
@@ -84,8 +83,7 @@
                 </div>
             </div>
         </div>
-        <input type="text" ng-model="searchQuery" placeholder="Search"
-               title="type text for search here and press Enter" class="form-control">
+        <input type="text" ng-model="searchQuery" placeholder="Search" class="form-control search-input">
         <div class="clear"></div>
     </div>
 

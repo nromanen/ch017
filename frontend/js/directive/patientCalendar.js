@@ -5,6 +5,10 @@ App.directive('calendar', function($rootScope, aux) {
         templateUrl: './templates/patientCalendar.html',
         link: function(scope, element, attrs) {
 
+            if($rootScope.currentUser.role.check) return false;
+
+            $.fn.datepicker.dates['en'].daysMin = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
             $('#patient-datepicker div').datepicker({
                 format: "yyyy-mm-dd",
                 weekStart: 1,
@@ -12,7 +16,15 @@ App.directive('calendar', function($rootScope, aux) {
                 startDate: $rootScope.dateMin,
                 endDate: $rootScope.dateMax
             }).
-            datepicker('update', $rootScope.dateMax).
+            datepicker('update', (function(){
+
+                var dayMax = new Date($rootScope.dateMax || 0).getDay() + 1;
+                var today = new Date().getDay() + 1;
+
+                if(dayMax < today) return $rootScope.dateMax;
+
+                return $rootScope.dateMax.replace(dayMax, today);
+            })()).
             on('changeDate', function(dateScope) {
 
                 $rootScope.currentDate = aux.getDateFromUTC(dateScope.date);
@@ -20,9 +32,7 @@ App.directive('calendar', function($rootScope, aux) {
 
             });
 
-            if(!$rootScope.currentUser.role.check) {
-                $rootScope.currentDate = aux.getDateFromUTC($('#patient-datepicker div').datepicker('getDate'));
-            }
+            $rootScope.currentDate = aux.getDateFromUTC($('#patient-datepicker div').datepicker('getDate'));
 
         }
     }
