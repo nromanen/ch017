@@ -5,7 +5,7 @@
                 Active patient is: <b>{{currentPatient.first_name}} {{currentPatient.last_name}}</b>
             </div>
             <ul class="list-group nodecorate ">
-                <li ng-click="setActivePatient(patient.id);" ng-style="activePatient"
+                <li ng-click="setActivePatient(patient.id);" ng-style="activePatient.style"
                     ng-model="text" ng-repeat="patient in patientList">
                     <center><a href="" class="list-group-item">
                         {{patient.first_name}} {{patient.last_name}}

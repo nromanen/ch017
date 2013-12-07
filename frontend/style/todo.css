@@ -14,7 +14,6 @@ body{
     margin: auto;
     background: #f5f5f5;
     padding: 10px;
-    padding-bottom: 20px;
     font-size: 16px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -36,20 +35,34 @@ body{
     display:inline-flex;
 }
 .actualTime .navbar-text{
-    margin-top:0!important;
+    margin-top: 1px !important;
+    margin-right: 10px;
+}
+.actualTime input {
+    width: 100px;
+    padding: 10px;
+    height: 25px;
+    margin-top: -2px;
+}
+.actualTime .btn-info {
+    margin-top: -2px;
+    height: 25px;
+    margin-left: 10px;
+    width: 100px;
+    padding-left: 7px;
+    outline: none;
+    padding-top: 2px;
 }
 .done-true{
     text-decoration: line-through;
-    color: #00a000;
+    color: #777;
 }
 .done-false{
-    color: #7d4514;
+    color: #333;
 }
 .inform{
-    font-family: Arial;
-    color: #000000;
-    float: left;
-    margin-top: 0px;
+    font-size: 125%;
+    margin-bottom: 12px;
 }
 .pointer{
     cursor: pointer;
@@ -71,24 +84,22 @@ body{
 .right{
     float: right;
 }
-#list{
-    margin: 20px 10px;
-}
-#list{
+#list {
     overflow: auto;
+    margin-left: -10px;
+    margin-bottom: 0;
 }
 #list .task_list{
     position: relative;
-    margin: 5px;
-    height: 50px;
     list-style-type: none;
-    font-family: Verdana;
-    padding: 5px;
-    font-size: 20px;
 }
 #list .task_list:hover{
     background: #ffffff;
     cursor: pointer;
+}
+#list .task_list > div > span {
+    height: 0px;
+    margin-right: 5px;
 }
 .edit{
     position: absolute;
@@ -96,11 +107,17 @@ body{
 }
 .content{
     height: 40px;
-    margin: 30px 0;
+}
+.content > input[type=checkbox] {
+    margin-top: 6px;
+}
+.content > span {
+    display: inline-block;
+    margin-top: 10px;
 }
 .remove-icon{
     position: relative;
-    top: -30px;
+    top: -26px;
 }
 .absolute{
     position: absolute;
@@ -250,5 +267,20 @@ body{
     border: 1px solid rgba(0, 0, 0, 0.2);
     background-color: #F5F5F5;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    margin-left: 26px;
+    margin-left: 27px;
+}
+
+.form-control {
+    margin-top: 10px;
+}
+
+.edittodo-liremovedate {
+    list-style-type: none;
+}
+
+.edittodo-removedate {
+    margin-right: 10px;
+    margin-top: 1px;
+    display: inline-table;
+    cursor: pointer;
 }

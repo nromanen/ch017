@@ -7,21 +7,18 @@
     <calendar class="left absolute"></calendar>
 
     <div id="wrapper" class="modal-content">
-        <div>
-            <span class="left">Your role now is <strong>{{currentUser.role.name}}</strong></span>
-            <div class="clear"></div>
-            <h2 class="inform">You have {{getActiveTaskQuantity()}} tasks</h2>
-        </div>
+        <div class="inform">You have {{getActiveTaskQuantity()}} tasks</div>
         
         <!--Modal Window-->
         <modal></modal>
-        
-        <br><br><br>
+
+
         <button type="button" class="btn-info btn modalstartbutton" data-toggle="modal"
                 clear data-target="#myModal" ng-show="canAddTodo()">Add new task</button>
         
         <button ng-click="clearDoneTodos()" class="btn-info btn" ng-show="canRemoveTodo()">Clear</button>
-        
+        <br><br>
+
         <div class="clear"></div>
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
@@ -42,14 +39,14 @@
                                         <input type="checkbox" class="left check_done"
                                              ng-model="time.done" ng-show="canCheckTodo()">
                                         <span data-target="#myModal"  data-toggle="modal"
-                                              todo-item="{{todo.id}}" time-item="{{ time.id }}" edit="{{canEditTodo()}}">
-                                            {{todo.text}}
-                                        </span><br>
-                                        <div class="done-{{time.done}} todo_item left">{{time.time.replace('T', ' ')}}</div>
+                                              todo-item="{{todo.id}}" time-item="{{ time.id }}"
+                                              edit="{{canEditTodo()}}" class="done-{{time.done}}">
+                                            {{time.time.split('T')[1]}}: {{todo.text}}
+                                        </span>
                                     </div>
                                 </div>
                                 <div>
-                                    <span class="glyphicon glyphicon-trash pointer right remove-icon"
+                                    <span class="glyphicon glyphicon-remove pointer right remove-icon"
                                           ng-click="removeTodo(todo.id)"
                                           ng-show="false"></span>
                                 </div>
