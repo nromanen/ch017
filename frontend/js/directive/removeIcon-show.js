@@ -6,7 +6,7 @@ App.directive("mouseover", function () {
             elem.bind('mouseover', function () {
                 scope.$apply(attrs.mouseover);
                 if (scope.canRemoveTodo()) {
-                    elem.children().last().children().show();
+                    elem.children(".remove-icon").show();
                 }
             });
         }

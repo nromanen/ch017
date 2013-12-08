@@ -130,9 +130,17 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         });
     };
 
-    $scope.removeTodo = function(index) {
-        db.deleteTodo($scope.currentPatient.todo[index].id);
-        $scope.currentPatient.todo.splice(index, 1);
+    $scope.removeTodo = function(todo, time) {
+        var todoItem = $.grep($scope.currentPatient.todo, function(todoItem) {
+            return todoItem.id == todo;
+        })[0];
+
+        todoItem.time.forEach(function(timeItem, index) {
+            if (timeItem.id == time) {
+                todoItem.time.splice(index, 1);
+            }
+        });
+        db.deleteTodo(time);
     }
 
 });

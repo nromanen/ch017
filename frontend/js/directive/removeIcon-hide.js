@@ -5,7 +5,7 @@ App.directive("mouseout", function () {
         link: function (scope, elem, attrs) {
             elem.bind('mouseout', function () {
                 scope.$apply(attrs.mouseout);
-                    elem.children().last().children().hide();
+                    elem.children(".remove-icon").hide();
             });
         }
     }
