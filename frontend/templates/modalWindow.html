@@ -33,11 +33,12 @@
                                     ng-click="addNewDateTimeToTodo()">Add Time</button>
                         </form>
                     </div>
+                    <p>This task shall be done at:</p>
                     <ul>
-                        <li class="edittodo-liremovedate" ng-repeat="datetime in todoExample.time">
-                            <div class="glyphicon glyphicon-remove edittodo-removedate"
-                                 ng-click="removeDateTimeTodo($index)"></div>
+                        <li ng-repeat="datetime in todoExample.time">
                             <span>{{ datetime.time.replace('T', ' ') }}</span>
+                            <div class="glyphicon glyphicon-remove edittodo-removedate remove-time-icon"
+                                 ng-click="removeDateTimeTodo($index)"></div>
                         </li>
                     </ul>
                 </div>

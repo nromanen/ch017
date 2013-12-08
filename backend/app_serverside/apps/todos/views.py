@@ -42,6 +42,7 @@ class UserHandler(BaseHandler):
     )
 
     def get_user(self, login, password):
+        base64.b64encode()
         password = base64.b64decode(password)
         return Users.objects.get(login=login, password=password)
 
@@ -96,8 +97,9 @@ class TodoHandler(BaseHandler):
         new_todo.users_set.add(Users.objects.get(pk=user_id))
         new_todo.save()
         for date in  todo["time"]:
+            print date
             time = Time.objects.create(
-                time=datetime.datetime.strptime(date["date"] + ' ' +  date["time"], '%Y-%m-%d %H:%M:%S')
+                time=datetime.datetime.strptime(date["time"], '%Y-%m-%d %H:%M:%S')
             )
             time.todo_set.add(new_todo)
             time.save()
@@ -121,9 +123,9 @@ class TodoHandler(BaseHandler):
 
         return {"success": True}
 
-    def delete(self, request, todo_id):
-        todo_item = get_object_or_404(Todo, pk=todo_id)
+    def delete(self, request, time_id):
+        todo_time = get_object_or_404(Time, pk=time_id)
 
-        todo_item.delete()
+        todo_time.delete()
 
         return {"success": True}

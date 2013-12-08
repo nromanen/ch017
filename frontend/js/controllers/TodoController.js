@@ -28,7 +28,7 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         }
     }
 
-    function clearTodoExamle () {
+    function clearTodoExamle() {
         $rootScope.todoExample = {
             edit: false,
             text: '',
@@ -68,7 +68,7 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         clearTodoExamle();
     };
 
-    $scope.updateTodo = function () {
+    $scope.updateTodo = function() {
 
         $scope.currentPatient.todo.forEach(function (todo, index) {
             if (todo.id === $rootScope.todoExample.id) {
@@ -78,7 +78,7 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         });
     };
 
-    $scope.addNewDateTimeToTodo = function () {
+    $scope.addNewDateTimeToTodo = function() {
         $rootScope.todoExample.time.push( {time: [$scope.date, $scope.time].join(' ')} )
     };
 
@@ -87,23 +87,23 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     }
 
     //check rules
-    $scope.canAddTodo = function () {
+    $scope.canAddTodo = function() {
         return $scope.currentUser.role.add;
     };
 
-    $scope.canEditTodo = function () {
+    $scope.canEditTodo = function() {
         return $scope.currentUser.role.edit;
     };
 
-    $scope.canRemoveTodo = function () {
+    $scope.canRemoveTodo = function() {
         return $scope.currentUser.role.remove;
     };
 
-    $scope.canCheckTodo = function () {
+    $scope.canCheckTodo = function() {
         return $scope.currentUser.role.check;
     };
 
-    $scope.setActivePatient = function( patientId ) {
+    $scope.setActivePatient = function(patientId) {
         $scope.currentPatient = getPatientFromUsers(patientId);
     }
 
@@ -130,9 +130,17 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         });
     };
 
-    $scope.removeTodo = function(index) {
-        db.deleteTodo($scope.currentPatient.todo[index].id);
-        $scope.currentPatient.todo.splice(index, 1);
+    $scope.removeTodo = function(todo, time) {
+        var todoItem = $.grep($scope.currentPatient.todo, function(todoItem) {
+            return todoItem.id == todo;
+        })[0];
+
+        todoItem.time.forEach(function(timeItem, index) {
+            if (timeItem.id == time) {
+                todoItem.time.splice(index, 1);
+            }
+        });
+        db.deleteTodo(time);
     }
 
 });

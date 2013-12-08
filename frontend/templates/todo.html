@@ -31,10 +31,10 @@
                 <div id="collapseOne" class="panel-collapse collapse in">
                     <div class="panel-body">
                         <ul id="list" update-local-storage-on-change>
-                            <li class="task_list" mouseover mouseout
+                            <li class="task_list"
                                 title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery">
                                 <div ng-repeat="time in todo.time | filter:currentDate">
-                                    <div class="content">
+                                    <div class="content" mouseover mouseout>
                                         <input type="checkbox" class="left check_done"
                                              ng-model="time.done" ng-show="canCheckTodo()">
                                         <span data-target="#myModal"  data-toggle="modal"
@@ -42,12 +42,12 @@
                                               edit="{{canEditTodo()}}" class="done-{{time.done}}">
                                             {{time.time.split('T')[1]}}: {{todo.text}}
                                         </span>
+                                        <span class="glyphicon glyphicon-remove pointer right remove-icon"
+                                          ng-click="removeTodo(todo.id, time.id)"
+                                          ng-show="false"></span>
                                     </div>
                                 </div>
                                 <div>
-                                    <span class="glyphicon glyphicon-remove pointer right remove-icon"
-                                          ng-click="removeTodo(todo.id)"
-                                          ng-show="false"></span>
                                 </div>
                             </li>
                         </ul>

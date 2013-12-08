@@ -27,22 +27,23 @@ body{
     margin-left: 5px;
 
 }
-
+.remove-time-icon{
+    margin: 1em 2em;
+    padding-top: 2px;
+}
 .actualTime{
+    position: relative;
+    width: 30em;
+    left: 50%;
+    margin-left: -20em;
     float:left;
     padding-top: 14px;
-    padding-left:235px;
     display:inline-flex;
 }
-.actualTime .navbar-text{
-    margin-top: 1px !important;
-    margin-right: 10px;
-}
 .actualTime input {
-    width: 100px;
-    padding: 10px;
-    height: 25px;
-    margin-top: -2px;
+    width: 200px;
+    margin-top: -0.4em;
+    margin-left: 1em;
 }
 .actualTime .btn-info {
     margin-top: -2px;
@@ -120,7 +121,7 @@ body{
 }
 .remove-icon{
     position: relative;
-    top: -26px !important;
+    top: 0.2em !important;
 }
 .absolute{
     position: absolute;
@@ -177,7 +178,8 @@ body{
 .patientListWidth{
     position: relative;
     width:20em;
-    right: 38px !important;
+    border: 1px solid #ccc;
+    right: 39px !important;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
 

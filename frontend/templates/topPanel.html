@@ -15,9 +15,9 @@
             <div class="navbar-collapse collapse">
                 <div ng-show="currentUser.role.check">
                     <div class="actualTime">
+                        <label for="current-date" class="left datetime-filter">Filter by Date</label>
                         <div id="datetimepicker3" class="input-append">
-                            <p class="navbar-text ">Current date:</p>
-                            <input id="testid"  type="text" ng-change="setCurrentDate()"
+                            <input id="current-date"  type="text" ng-change="setCurrentDate()"
                                    ng-model="todayDate"  class="add-on form-control"
                                    placeholder="{{currentDate}}" datePicker>
                         </div>
