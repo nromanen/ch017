@@ -25,6 +25,11 @@ describe("Test all directives of our project", function () {
         }]
     ));
 
+    it("test clear directive", function () {
+        var element = $compile('<tag clear></tag>')($rootScope);
+        element.click();
+    });
+
     it("test contenteditable directive", function () {
         var element = $compile('<tag contenteditable todo-item="0"></tag>')($rootScope);
         $rootScope.currentPatient = {todo: [{id: 1, text: true}]};
@@ -36,8 +41,35 @@ describe("Test all directives of our project", function () {
         element.blur();
     });
 
+    it("test edit directive", function () {
+        var element = $compile('<tag edit></tag>')($rootScope);
+        $rootScope.currentPatient = {
+            todo: [
+                {
+                    id: 1,
+                    text: true,
+                    time: [
+                        {
+                            id: 1,
+                            time: ''
+                        },
+                        {
+                            id: 2,
+                            time: ''
+                        }
+                    ]
+                }
+            ]
+        };
+
+        element.click();
+    });
+
     it("test hidePicker directive", function () {
         var element = $compile('<tag hide-picker></tag>')($rootScope);
+        var elm = $compile('<tag class="datepicker-days"></tag>')($rootScope);
+
+        angular.element(elm).click();
     });
 
     it("test login validation directive", function () {
@@ -49,8 +81,6 @@ describe("Test all directives of our project", function () {
 
     it("test modal window directive", function () {
         var element = $compile('<modal></modal>')($rootScope);
-
-        expect(element.html()).toBe('');
     });
 
     it("test password validation directive", function () {
@@ -58,6 +88,10 @@ describe("Test all directives of our project", function () {
             'class="form-control" placeholder="Password" required  password>')($rootScope);
 
         expect(element.attr("pattern")).toBe("[^]{4,}$");
+    });
+
+    it("test patient calendar directive", function () {
+        var element = $compile('<tag calendar></tag>')($rootScope);
     });
 
     it("test patient list directive", function () {

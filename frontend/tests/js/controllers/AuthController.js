@@ -22,7 +22,7 @@ describe('Authorization controller', function() {
                 store = {};
             }
         }
-        $routeParams.param = 'logout';
+        //$routeParams.param = 'logout';
     });
 
     beforeEach(module('App'));
@@ -37,7 +37,7 @@ describe('Authorization controller', function() {
         expect($rootScope.logout()).toBe(false);
     }));
 
-    xit('Should check user data from server', inject(function($controller, $rootScope, $httpBackend) {
+    xit('Should check user data from server', inject(function($controller, $rootScope) {
         var controller = $controller('AuthController', {$scope: $rootScope});
 
         expect($rootScope.sendData()).toBeUndefined();

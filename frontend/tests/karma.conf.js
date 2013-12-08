@@ -43,10 +43,10 @@ module.exports = function(config) {
     plugins: [
         'karma-jasmine',
         'karma-coverage',
-        'karma-firefox-launcher'
+        'karma-chrome-launcher'
     ],
 
-    browsers: ['Firefox'],
+    browsers: ['Chrome'],
     port: 7000,
     colors: true,
     logLevel: config.LOG_INFO,
