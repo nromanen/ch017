@@ -37,6 +37,7 @@
                         <li class="edittodo-liremovedate" ng-repeat="datetime in todoExample.time">
                             <div class="glyphicon glyphicon-remove edittodo-removedate"
                                  ng-click="removeDateTimeTodo($index)"></div>
+                        <li ng-repeat="datetime in todoExample.time | filter:currentDate">
                             <span>{{ datetime.time.replace('T', ' ') }}</span>
                         </li>
                     </ul>
