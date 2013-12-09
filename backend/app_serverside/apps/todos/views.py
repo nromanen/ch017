@@ -42,7 +42,6 @@ class UserHandler(BaseHandler):
     )
 
     def get_user(self, login, password):
-        base64.b64encode()
         password = base64.b64decode(password)
         return Users.objects.get(login=login, password=password)
 
