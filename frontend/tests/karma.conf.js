@@ -10,6 +10,7 @@ module.exports = function(config) {
 	'../frameworks/angular/angular.min.js',
 	'../frameworks/angular/angular-local-storage.js',
 	'../frameworks/angular/angular-mocks.js',
+    '../frameworks/bootstrap/js/bootstrap-datepicker.min.js',
 
 	'../js/project-conf.js',
 

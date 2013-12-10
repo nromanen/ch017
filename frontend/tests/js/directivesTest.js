@@ -17,9 +17,7 @@ describe("Test all directives of our project", function () {
     beforeEach(inject(
         ['$httpBackend', function($h) {
             $httpBackend = $h;
-            $httpBackend.whenGET('./templates/modalWindow.html').respond();
             $httpBackend.whenGET('./templates/patientList.html').respond();
-            $httpBackend.whenGET('./templates/topPanel.html').respond();
             $httpBackend.whenJSONP('http://localhost:8000/api/todos/' +
                 '?callback=JSON_CALLBACK&method=PUT&data={"id":1,"text":""}').respond();
         }]
@@ -73,25 +71,65 @@ describe("Test all directives of our project", function () {
     });
 
     it("test login validation directive", function () {
-        var element = $compile('<input type="text" ng-model="authLogin" title="At least 3 characters ' +
-            'class="form-control" placeholder="Login" required login autofocus>')($rootScope);
+        var element = $compile('<input login>')($rootScope);
 
         expect(element.attr("pattern")).toBe("^[a-zA-Z][a-zA-Z0-9-_\.]{2,}$");
     });
 
-    it("test modal window directive", function () {
+    it('test modal window directive', inject(function($compile, $rootScope, $templateCache) {
+        $templateCache.put('./templates/modalWindow.html', '<tag></tag>');
+
         var element = $compile('<modal></modal>')($rootScope);
-    });
+        var scope = element.scope();
+
+        scope.$apply();
+    }));
 
     it("test password validation directive", function () {
-        var element = $compile('<input type="password" ng-model="authPassword" title="At least 4 characters" ' +
-            'class="form-control" placeholder="Password" required  password>')($rootScope);
+        var element = $compile('<input password>')($rootScope);
 
         expect(element.attr("pattern")).toBe("[^]{4,}$");
     });
 
-    it("test patient calendar directive", function () {
-        var element = $compile('<tag calendar></tag>')($rootScope);
+    describe("test patient calendar directive", function () {
+        it('Role should be === true', inject(function($compile, $rootScope, $templateCache) {
+            $templateCache.put('./templates/patientCalendar.html', '<tag id="patient-datepicker"><div></div></tag>');
+
+            var element = $compile('<calendar></calendar>')($rootScope);
+            var scope = element.scope();
+
+            $rootScope.currentUser = {"role": {}};
+            $rootScope.currentUser.role.check = true;
+
+            scope.$apply();
+        }));
+
+        it('Role should be === false AND dateMax should be ++than today', inject(function($compile, $rootScope, $templateCache) {
+            $templateCache.put('./templates/patientCalendar.html', '<tag id="patient-datepicker"><div></div></tag>');
+
+            var element = $compile('<calendar></calendar>')($rootScope);
+            var scope = element.scope();
+
+            $rootScope.currentUser = {"role": {}};
+            $rootScope.currentUser.role.check = false;
+            $rootScope.dateMax = '2013-12-31';
+
+            scope.$apply();
+        }));
+
+        it('Role should be === false AND dateMax should be --than today', inject(function($compile, $rootScope, $templateCache) {
+            $templateCache.put('./templates/patientCalendar.html', '<tag id="patient-datepicker"><div></div></tag>');
+
+            var element = $compile('<calendar></calendar>')($rootScope);
+            var scope = element.scope();
+
+            $rootScope.currentUser = {"role": {}};
+            $rootScope.currentUser.role.check = false;
+            $rootScope.dateMax = '2013-11-31';
+            dateScope = '2013-11-31';
+
+            scope.$apply();
+        }));
     });
 
     it("test patient list directive", function () {
@@ -151,9 +189,14 @@ describe("Test all directives of our project", function () {
         element.submit();
     });
 
-    it("test top-panel directive", function () {
+    it('test top-panel directive', inject(function($compile, $rootScope, $templateCache) {
+        $templateCache.put('./templates/topPanel.html', '<tag></tag>');
+
         var element = $compile('<top_panel></top_panel>')($rootScope);
-    });
+        var scope = element.scope();
+
+        scope.$apply();
+    }));
 
     it("test updateLocalStorageOnChange directive", function () {
         var element = $compile('<ul update-local-storage-on-change></ul>')($rootScope);

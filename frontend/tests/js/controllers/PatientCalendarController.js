@@ -24,12 +24,14 @@ describe('PatientCalendarController', function() {
     beforeEach(module('App'));
 
     it('Should get all dates from all todos', inject(function ($controller, $rootScope) {
-        $rootScope.currentPatient = {todo: []};
-        $rootScope.currentPatient.todo.push({time: [{}, {}]});
-        $rootScope.currentPatient.todo.push({time: [{}, {}]});
+        var currentPatient = {"todo": [{"time": [{"time": ""}, {"time": ""}]}]};
+        $rootScope.currentPatient = currentPatient;
 
-        var ctrl = $controller('PatientCalendarController', {$scope: $rootScope, localStorageService: localStorage});
+        var ctrl = $controller('PatientCalendarController', {
+            $scope: $rootScope, localStorageService: localStorage
+        });
         var flag;
+        var flag1;
 
         runs(function() {
             flag = false;
@@ -48,6 +50,32 @@ describe('PatientCalendarController', function() {
 
         runs(function() {
             expect($rootScope.getDates()).toBeUndefined();
+
+            /* dates.length === 0 => begin */
+            $rootScope.currentPatient = {"todo": [{"time": []}]};
+            var ctrl = $controller('PatientCalendarController', {
+                $scope: $rootScope, localStorageService: localStorage
+            });
+
+            runs(function() {
+                flag1 = false;
+
+                expect($rootScope.getDates()).toBeUndefined();
+
+                setTimeout(function() {
+                    flag1 = true;
+                }, 500);
+            });
+
+            waitsFor(function() {
+                $rootScope.currentPatient = {todo: []};
+                return flag1;
+            }, "Should not be empty", 750);
+
+            runs(function() {
+                expect($rootScope.getDates()).toBeUndefined();
+            });
+            /* dates.length === 0 => end */
         });
     }));
 

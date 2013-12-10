@@ -71,12 +71,11 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     };
 
     $scope.updateTodo = function() {
-
         $scope.currentPatient.todo.forEach(function (todo, index) {
-            if (todo.id === $rootScope.todoExample.id) {
-                $scope.currentPatient.todo[index] = $rootScope.todoExample;
-                db.editTodo($rootScope.todoExample);
-            }
+            if (todo.id !== $rootScope.todoExample.id) return false;
+
+            $scope.currentPatient.todo[index] = $rootScope.todoExample;
+            db.editTodo($rootScope.todoExample);
         });
     };
 
