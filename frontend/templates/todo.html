@@ -10,7 +10,7 @@
     <modal></modal>
 
     <div id="wrapper" class="modal-content">
-        <div class="inform">You have {{getActiveTaskQuantity()}} tasks</div>
+        <div class="inform">You have {{activeTodoAmount}} tasks</div>
 
         <div class="moderation-buttons">
             <button class="btn-primary btn modalstartbutton" data-toggle="modal"
@@ -34,8 +34,8 @@
                             <li class="task_list"
                                 title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery ">
                                 <div ng-repeat="time in todo.time | filter:currentDate">
-                                    <div class="content" mouseover mouseout>
-                                        <input type="checkbox" class="left check_done"
+                                    <div class="content" mouseover mouseout counter>
+                                        <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo, time)"
                                              ng-model="time.done" ng-show="canCheckTodo()">
                                         <span data-target="#myModal"  data-toggle="modal"
                                               todo-item="{{todo.id}}" time-item="{{ time.id }}"
@@ -46,8 +46,7 @@
                                           ng-click="removeTodo(todo.id, time.id)"
                                           ng-show="false"></span>
                                     </div>
-                                </div>
-                                <div>
+                                    {{getTodoAmount($index + 1)}}
                                 </div>
                             </li>
                         </ul>

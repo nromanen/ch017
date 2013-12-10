@@ -7,6 +7,8 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         done: false,
         time: []
     };
+    $scope.todoToRemove = [];
+    $scope.activeTodoAmount = 0
 
     init();
 
@@ -78,6 +80,10 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         });
     };
 
+    $scope.getTodoAmount = function(index) {
+        $scope.activeTodoAmount = index;
+    };
+
     $scope.addNewDateTimeToTodo = function() {
         $rootScope.todoExample.time.push( {time: [$scope.date, $scope.time].join(' ')} )
     };
@@ -122,21 +128,35 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     };
 
     $scope.clearDoneTodos = function() {
-        $scope.currentPatient.todo.forEach(function(todo, index) {
-            if (time.done) {
-                db.deleteTodo($scope.currentPatient.todo[index].id);
-                $scope.currentPatient.todo.splice(index, 1);
-            }
+        $scope.todoToRemove.forEach(function(todo, index) {
+            var todoItem = $.grep($scope.currentPatient.todo, function(todoItem) {
+                return todoItem.id === todo.todo;
+            })[0];
+            todoItem.time.forEach(function(timeItem, index) {
+                if (timeItem.id === todo.time) {
+                    todoItem.time.splice(index, 1);
+                    db.deleteTodo(todo.time);
+                }
+            });
         });
+    };
+
+    $scope.prepareToRemove = function(todo, time) {
+        if (time.done) {
+            $scope.todoToRemove.push({todo: todo.id, time: time.id});
+        } else {
+            var index = $scope.todoToRemove.indexOf({todo: todo.id, time: time.id});
+            $scope.todoToRemove.splice(index, 1);
+        }
     };
 
     $scope.removeTodo = function(todo, time) {
         var todoItem = $.grep($scope.currentPatient.todo, function(todoItem) {
-            return todoItem.id == todo;
+            return todoItem.id === todo;
         })[0];
 
         todoItem.time.forEach(function(timeItem, index) {
-            if (timeItem.id == time) {
+            if (timeItem.id === time) {
                 todoItem.time.splice(index, 1);
             }
         });
