@@ -15,7 +15,7 @@
         <div class="moderation-buttons">
             <button class="btn-primary btn modalstartbutton" data-toggle="modal"
                     clear data-target="#myModal" ng-show="canAddTodo()">Add new task</button>
-            <button ng-click="clearDoneTodos()" class="btn-primary btn" ng-show="canRemoveTodo()">Clear</button>
+            <button ng-click="clearDoneTodos()" class="btn-primary btn btn-block" ng-show="canRemoveTodo()">Clear</button>
         </div>
 
         <div class="clear"></div>
@@ -32,7 +32,7 @@
                     <div class="panel-body">
                         <ul id="list" update-local-storage-on-change>
                             <li class="task_list"
-                                title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery">
+                                title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery ">
                                 <div ng-repeat="time in todo.time | filter:currentDate">
                                     <div class="content" mouseover mouseout>
                                         <input type="checkbox" class="left check_done"

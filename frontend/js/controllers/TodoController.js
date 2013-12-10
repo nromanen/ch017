@@ -123,7 +123,7 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
 
     $scope.clearDoneTodos = function() {
         $scope.currentPatient.todo.forEach(function(todo, index) {
-            if (todo.done) {
+            if (time.done) {
                 db.deleteTodo($scope.currentPatient.todo[index].id);
                 $scope.currentPatient.todo.splice(index, 1);
             }
