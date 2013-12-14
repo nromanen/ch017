@@ -35,7 +35,10 @@ class UserHandler(BaseHandler):
                 'amount',
                 'done',
                 ('time',
-                    ('time', )
+                    ('id',
+                     'date',
+                     'time'
+                    )
                 )
             )
         )
@@ -68,7 +71,10 @@ class TodoHandler(BaseHandler):
         'amount',
         'done',
         ('time',
-            ('id', 'time')
+            ('id',
+             'date',
+             'time'
+            )
         )
     )
 
@@ -95,10 +101,9 @@ class TodoHandler(BaseHandler):
         new_todo = Todo.objects.create(text=todo["text"], done=todo["done"])
         new_todo.users_set.add(Users.objects.get(pk=user_id))
         new_todo.save()
-        for date in  todo["time"]:
-            print date
+        for date in todo["time"]:
             time = Time.objects.create(
-                time=datetime.datetime.strptime(date["time"], '%Y-%m-%d %H:%M:%S')
+                datetime=datetime.datetime.strptime(' '.join([date["date"], date["time"]]), '%Y-%m-%d %H:%M:%S')
             )
             time.todo_set.add(new_todo)
             time.save()
@@ -113,9 +118,9 @@ class TodoHandler(BaseHandler):
         todo_item.done = todo["done"]
         todo_item.save()
         Time.objects.filter(todo__id=todo["id"]).delete()
-        for date in  todo["time"]:
+        for date in todo["time"]:
             time = Time.objects.create(
-                time=datetime.datetime.strptime(date["time"].replace('T', ' '), '%Y-%m-%d %H:%M:%S')
+                datetime=datetime.datetime.strptime(' '.join([date["date"], date["time"]]), '%Y-%m-%d %H:%M:%S')
             )
             time.todo_set.add(todo_item)
             time.save()

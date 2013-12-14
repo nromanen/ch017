@@ -3,8 +3,7 @@ var App = angular.module(
    [
        "LocalStorageModule"
    ]
-).
-config(function ($routeProvider) {
+).config(function ($routeProvider) {
 
     $routeProvider.
     when('/auth', {controller: 'AuthController', templateUrl: 'templates/auth.html'}).
@@ -18,8 +17,7 @@ config(function ($routeProvider) {
     }).
     otherwise({redirectTo: '/auth'});
 
-}).
-run(function($rootScope, localStorageService, $http, $location, $routeParams, routeOnLoad) {
+}).run(function($rootScope, localStorageService, $http, $location, $routeParams, routeOnLoad) {
 
     $rootScope.$on('$routeChangeSuccess', function () {
         if($routeParams.param === 'logout') return false;
@@ -27,10 +25,15 @@ run(function($rootScope, localStorageService, $http, $location, $routeParams, ro
         routeOnLoad.getUserData($rootScope, localStorageService, $http, $location);
     });
 
-}).
-constant('config', {
-    serverUrl: 'http://localhost:8000/',
-    imagesPath: 'media/',
-    apiUrl: 'api/',
-    jsonpCallback: '?callback=JSON_CALLBACK'
-});
+}).constant('config', {
+        serverUrl: 'http://localhost:8000/',
+        imagesPath: 'media/',
+        apiUrl: 'api/',
+        jsonpCallback: '?callback=JSON_CALLBACK'
+    }
+).constant('dayPart', {
+        morning: 0,
+        noon: 12,
+        evening: 18
+    }
+);

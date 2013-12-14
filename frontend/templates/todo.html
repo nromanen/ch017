@@ -32,21 +32,21 @@
                     <div class="panel-body">
                         <ul id="list" update-local-storage-on-change>
                             <li class="task_list"
-                                title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery ">
-                                <div ng-repeat="time in todo.time | filter:currentDate">
-                                    <div class="content" mouseover mouseout counter>
+                                title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery">
+                                <div ng-repeat="(id, time) in todo.time | filter:currentDate | morning">
+                                    <div class="content" mouseover mouseout>
+                                        {{setTodoAmount(id)}}
                                         <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo, time)"
                                              ng-model="time.done" ng-show="canCheckTodo()">
                                         <span data-target="#myModal"  data-toggle="modal"
                                               todo-item="{{todo.id}}" time-item="{{ time.id }}"
                                               edit="{{canEditTodo()}}" class="done-{{time.done}}">
-                                            {{time.time.split('T')[1]}}: {{todo.text}}
+                                            {{time.time}}: {{todo.text}}
                                         </span>
                                         <span class="glyphicon glyphicon-remove pointer right remove-icon"
                                           ng-click="removeTodo(todo.id, time.id)"
                                           ng-show="false"></span>
                                     </div>
-                                    {{getTodoAmount($index + 1)}}
                                 </div>
                             </li>
                         </ul>
@@ -63,7 +63,26 @@
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse">
                     <div class="panel-body">
-
+                        <ul id="list" update-local-storage-on-change>
+                            <li class="task_list"
+                                title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery">
+                                <div ng-repeat="(id, time) in todo.time | filter:currentDate | noon">
+                                    <div class="content" mouseover mouseout>
+                                        {{setTodoAmount(id)}}
+                                        <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo, time)"
+                                             ng-model="time.done" ng-show="canCheckTodo()">
+                                        <span data-target="#myModal"  data-toggle="modal"
+                                              todo-item="{{todo.id}}" time-item="{{ time.id }}"
+                                              edit="{{canEditTodo()}}" class="done-{{time.done}}">
+                                            {{time.time}}: {{todo.text}}
+                                        </span>
+                                        <span class="glyphicon glyphicon-remove pointer right remove-icon"
+                                          ng-click="removeTodo(todo.id, time.id)"
+                                          ng-show="false"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -77,7 +96,26 @@
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse">
                     <div class="panel-body">
-
+                        <ul id="list" update-local-storage-on-change>
+                            <li class="task_list"
+                                title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery">
+                                <div ng-repeat="(id, time) in todo.time | filter:currentDate | evening">
+                                    <div class="content" mouseover mouseout>
+                                        {{setTodoAmount(id)}}
+                                        <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo, time)"
+                                             ng-model="time.done" ng-show="canCheckTodo()">
+                                        <span data-target="#myModal"  data-toggle="modal"
+                                              todo-item="{{todo.id}}" time-item="{{ time.id }}"
+                                              edit="{{canEditTodo()}}" class="done-{{time.done}}">
+                                            {{time.time}}: {{todo.text}}
+                                        </span>
+                                        <span class="glyphicon glyphicon-remove pointer right remove-icon"
+                                          ng-click="removeTodo(todo.id, time.id)"
+                                          ng-show="false"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

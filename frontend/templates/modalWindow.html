@@ -36,7 +36,7 @@
                     <p>This task shall be done at:</p>
                     <ul>
                         <li ng-repeat="datetime in todoExample.time">
-                            <span>{{ datetime.time.replace('T', ' ') }}</span>
+                            <span>{{ datetime.date}} {{ datetime.time}}</span>
                             <div class="glyphicon glyphicon-remove edittodo-removedate remove-time-icon"
                                  ng-click="removeDateTimeTodo($index)"></div>
                         </li>

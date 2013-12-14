@@ -8,7 +8,7 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         time: []
     };
     $scope.todoToRemove = [];
-    $scope.activeTodoAmount = 0
+    $scope.activeTodoAmount = 0;
 
     init();
 
@@ -79,12 +79,12 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         });
     };
 
-    $scope.getTodoAmount = function(index) {
+    $scope.setTodoAmount = function(index) {
         $scope.activeTodoAmount = index;
     };
 
     $scope.addNewDateTimeToTodo = function() {
-        $rootScope.todoExample.time.push( {time: [$scope.date, $scope.time].join(' ')} )
+        $rootScope.todoExample.time.push( {time: $scope.time, date: $scope.date} )
     };
 
     $scope.removeDateTimeTodo = function(index){

@@ -32,8 +32,8 @@ class Users(models.Model):
 
 class Todo(models.Model):
     text = models.TextField(blank=False, null=False)
-    date_created = models.DateTimeField(auto_now=True)
-    date_finished = models.DateTimeField(null=True)
+    datetime_created = models.DateTimeField(auto_now=True)
+    datetime_finished = models.DateTimeField(null=True)
     amount = models.IntegerField(default=1)
     time = models.ManyToManyField("Time", blank=False, null=False)
     done = models.BooleanField(default=False)
@@ -41,9 +41,30 @@ class Todo(models.Model):
     def __unicode__(self):
         return self.text
 
+    def get_date_created(self):
+        return str(self.datetime_created).replace('T', ' ')
+
+    def get_date_finished(self):
+        return str(self.datetime_finished).replace('T', ' ')
+
+    date_created = property(get_date_created, )
+    date_finished = property(get_date_finished, )
+
 
 class Time(models.Model):
-    time = models.DateTimeField(blank=False, null=False)
+    datetime = models.DateTimeField(blank=False, null=False)
+
+    def __unicode__(self):
+        return "{}".format(self.datetime)
+
+    def get_time(self):
+        return str(self.datetime).split(' ')[::-1][0]
+
+    def get_date(self):
+        return str(self.datetime).split(' ')[0]
+
+    date =  property(get_date, )
+    time = property(get_time, )
 
 
 #include models to the admin
