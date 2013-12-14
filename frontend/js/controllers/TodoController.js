@@ -8,7 +8,6 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         time: []
     };
     $scope.todoToRemove = [];
-    $scope.activeTodoAmount = 0;
 
     init();
 
@@ -79,8 +78,15 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         });
     };
 
-    $scope.setTodoAmount = function(index) {
-        $scope.activeTodoAmount = index;
+    $scope.getTodoAmount = function() {
+        var amount = 0;
+
+        for(var index = 0; index < $scope.currentPatient.todo.length; index++) {
+            amount += $scope.currentPatient.todo[index].time.filter(function(time) {
+                return time.date.split("-").reverse()[0] === $scope.currentDate.split("-").reverse()[0];
+            }).length;
+        }
+        return amount;
     };
 
     $scope.addNewDateTimeToTodo = function() {

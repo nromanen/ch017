@@ -10,7 +10,7 @@
     <modal></modal>
 
     <div id="wrapper" class="modal-content">
-        <div class="inform">You have {{activeTodoAmount}} tasks</div>
+        <div class="inform">You have {{ getTodoAmount() }} tasks</div>
 
         <div class="moderation-buttons">
             <button class="btn-primary btn modalstartbutton" data-toggle="modal"
@@ -33,9 +33,8 @@
                         <ul id="list" update-local-storage-on-change>
                             <li class="task_list"
                                 title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery">
-                                <div ng-repeat="(id, time) in todo.time | filter:currentDate | morning">
+                                <div ng-repeat="time in todo.time | filter:currentDate | morning:this">
                                     <div class="content" mouseover mouseout>
-                                        {{setTodoAmount(id)}}
                                         <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo, time)"
                                              ng-model="time.done" ng-show="canCheckTodo()">
                                         <span data-target="#myModal"  data-toggle="modal"
@@ -66,9 +65,8 @@
                         <ul id="list" update-local-storage-on-change>
                             <li class="task_list"
                                 title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery">
-                                <div ng-repeat="(id, time) in todo.time | filter:currentDate | noon">
+                                <div ng-repeat="time in todo.time | filter:currentDate | noon:this">
                                     <div class="content" mouseover mouseout>
-                                        {{setTodoAmount(id)}}
                                         <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo, time)"
                                              ng-model="time.done" ng-show="canCheckTodo()">
                                         <span data-target="#myModal"  data-toggle="modal"
@@ -99,9 +97,8 @@
                         <ul id="list" update-local-storage-on-change>
                             <li class="task_list"
                                 title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery">
-                                <div ng-repeat="(id, time) in todo.time | filter:currentDate | evening">
+                                <div ng-repeat="time in todo.time | filter:currentDate | evening:this">
                                     <div class="content" mouseover mouseout>
-                                        {{setTodoAmount(id)}}
                                         <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo, time)"
                                              ng-model="time.done" ng-show="canCheckTodo()">
                                         <span data-target="#myModal"  data-toggle="modal"
