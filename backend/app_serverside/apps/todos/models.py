@@ -51,6 +51,13 @@ class Todo(models.Model):
     date_finished = property(get_date_finished, )
 
 
+class Medicines(models.Model):
+    title = models.TextField(blank=False, null=False)
+
+    def __unicode__(self):
+        return self.title
+
+
 class Time(models.Model):
     datetime = models.DateTimeField(blank=False, null=False)
 
@@ -80,10 +87,15 @@ class ViewTodoInAdmin(admin.ModelAdmin):
     list_display = ['text', 'date_created', 'date_finished', 'amount']
 
 
+class ViewMedicinesInAdmin(admin.ModelAdmin):
+    list_display = ['title']
+
+
 try:
     admin.site.register(Role, ViewRoleInAdmin)
     admin.site.register(Users, ViewUserInAdmin)
     admin.site.register(Todo, ViewTodoInAdmin)
+    admin.site.register(Medicines, ViewMedicinesInAdmin)
     #temp
     admin.site.register(Time)
 except Exception:

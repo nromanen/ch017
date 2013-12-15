@@ -88,6 +88,21 @@ App.factory("db", function($rootScope, $http, config, aux) {
                 error(function(data, status) {
                     aux.redirectTo( '/error/' + status );
                 });
+        },
+
+        getMedicines: function () {
+            var queryUrl = config.serverUrl + config.apiUrl + 'medicines/' + config.jsonpCallback;
+
+            return (
+                $http.jsonp(queryUrl).
+                success(function(data, status) {
+                    $rootScope.medicines = data;
+                    aux.addToLocalStorage('medicines', data);
+                }).
+                error(function(data, status) {
+                    aux.redirectTo( '/error/' + status );
+               })
+            );
         }
 
     }

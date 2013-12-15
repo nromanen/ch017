@@ -3,6 +3,7 @@ App.directive('modal', function($rootScope, aux) {
         restrict: "E",
         templateUrl: './templates/modalWindow.html',
         link: function() {
+
 /*
             $('#datetimepicker1 input').datepicker({
                 format: 'yyyy-mm-dd',
@@ -21,6 +22,11 @@ App.directive('modal', function($rootScope, aux) {
                 pickDate: false
             });
 */
+
+            $('#myModal').on('shown.bs.modal', function(e) {
+                $("[ng-model='todoExample.text']").focus();
+            });
+
             $rootScope.currentTime = aux.getTimeFromUTC(new Date());
 
         }

@@ -1,6 +1,6 @@
 #-*-coding:UTF-8-*-
 from piston.handler import BaseHandler
-from models import Users, Todo, Role, Time
+from models import Users, Todo, Role, Time, Medicines
 from django.shortcuts import get_object_or_404, get_list_or_404
 from django.http import Http404
 from piston.utils import rc
@@ -133,3 +133,11 @@ class TodoHandler(BaseHandler):
         todo_time.delete()
 
         return {"success": True}
+
+
+class MedicineHandler(BaseHandler):
+    allowed_methods = ('GET',)
+    model = Medicines
+
+    def read(self, request):
+        return Medicines.objects.filter()

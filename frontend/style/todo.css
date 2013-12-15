@@ -345,3 +345,21 @@ body{
     font-weight: bold;
     color: #555 !important;
 }
+
+.modalwindow_description-hint {
+    position: absolute;
+    width: 390px;
+}
+
+.modalwindow_description-hint .dropdown-menu {
+    display: block;
+    width: 100%;
+}
+
+.dropdown-menu > li > a {
+    outline: none;
+}
+
+.dropdown-menu > li {
+    cursor: pointer;
+}
