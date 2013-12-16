@@ -40,17 +40,18 @@ App.factory("db", function($rootScope, $http, config, aux) {
             );
         },
 
-        addTodo: function (id, object) {
-            object = JSON.stringify(object);
+        addTodo: function (currentPatient, id, object) {
 
             var queryUrl = config.serverUrl + config.apiUrl + 'todos/' +
                            config.jsonpCallback +
                            '&method=POST' +
                            '&id=' + id +
-                           '&data=' + object;
+                           '&data=' + JSON.stringify(object);
 
             $http.jsonp(queryUrl).
-                success(function() {
+                success(function(data) {
+                    object.id = data.todo_id;
+                    $rootScope.currentPatient.todo.push(object);
                     return true;
                 }).
                 error(function(data, status) {

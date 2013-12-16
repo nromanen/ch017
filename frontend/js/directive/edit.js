@@ -7,7 +7,6 @@ App.directive('edit', ['$rootScope', function($rootScope) {
                     $rootScope.todoExample = scope.currentPatient.todo.filter(function(todo) {
                         return todo.id == attrs.todoItem;
                     })[0];
-
                     $rootScope.todoExample.edit = true;
                 });
             });

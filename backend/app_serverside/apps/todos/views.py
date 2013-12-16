@@ -108,7 +108,7 @@ class TodoHandler(BaseHandler):
             time.todo_set.add(new_todo)
             time.save()
 
-        return {"success": True}
+        return {"todo_id": new_todo.id}
 
 
     def update(self, request, data):
