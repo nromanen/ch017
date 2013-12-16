@@ -33,18 +33,18 @@
                             <div id="datetimepicker1" class="input-group input-append left">
                                 <span class="input-group-addon glyphicon glyphicon-calendar"></span>
                                 <input data-format="yyyy-MM-dd" type="text" ng-model="date" date-picker
-                                       class="form-control add-on datetime" placeholder="{{currentDate}}">
+                                       class="form-control add-on datetime" placeholder="{{date}}">
                             </div>
                             <div id="datetimepicker2" class="input-group input-append left">
                                 <span class="input-group-addon glyphicon glyphicon-time"></span>
                                 <input type="text" data-format="hh:mm:ss" time-picker ng-model="time"
-                                       class="form-control add-on datetime" placeholder="{{currentTime}}">
+                                       class="form-control add-on datetime" placeholder="{{time}}">
                             </div>
                             <button type="button" class="btn btn-primary"
                                     ng-click="addNewDateTimeToTodo()">Add Time</button>
                         </form>
                     </div>
-                    <p>This task shall be done at:</p>
+                    <p ng-show="todoExample.time.length">This task shall be done at:</p>
                     <ul>
                         <li ng-repeat="datetime in todoExample.time">
                             <span>{{ datetime.date}} {{ datetime.time}}</span>
@@ -54,27 +54,16 @@
                     </ul>
                 </div>
                 <div class="modal-footer" ng-hide="todoExample.edit">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
-                    <button type="button" class="btn btn-primary" ng-click="addNewTodo()">Add </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            ng-click="addNewTodo()">Add</button>
                 </div>
                 <div class="modal-footer" ng-show="todoExample.edit">
                     <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
-                    <button type="button" class="btn btn-primary" ng-click="updateTodo()">Update </button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            ng-click="updateTodo()">Update </button>
                 </div>
 
             </div>
         </div>
-        <script type="text/javascript">
-            $(function() {
-                $('#datetimepicker2').datetimepicker({
-                    pickDate: false
-                });
-            });
-
-            $(function() {
-                $('#datetimepicker1').datetimepicker({
-                    pickTime: false
-                });
-            });
-        </script>
     </div>

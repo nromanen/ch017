@@ -1,15 +1,18 @@
-body{
-    background-image: url(../images/bodybg.jpg);
+body {
+    background-image: url("../images/bodybg.jpg");
 }
-.main{
+
+.main {
     margin: 0 auto;
-    position:relative;
-    width:960px;
+    position: relative;
+    width: 960px;
 }
-.nodecorate{
+
+.nodecorate {
     list-style: none;
 }
-#wrapper{
+
+#wrapper {
     position: relative;
     margin: auto;
     background: #f5f5f5;
@@ -21,17 +24,20 @@ body{
     box-shadow: 10px -3px 20px rgba(100, 100, 100, 0.5);
 
 }
-.buttonChengeDate{
+
+.buttonChengeDate {
     height: 21px;
     padding-top: 2px;
     margin-left: 5px;
 
 }
-.remove-time-icon{
+
+.remove-time-icon {
     margin: 1em 2em;
     padding-top: 2px;
 }
-.actualTime{
+
+.actualTime {
     position: relative;
     width: 30em;
     left: 50%;
@@ -40,11 +46,13 @@ body{
     padding-top: 14px;
     display:inline-flex;
 }
+
 .actualTime input {
     width: 200px;
     margin-top: -0.4em;
     margin-left: 1em;
 }
+
 .actualTime .btn-info {
     margin-top: -2px;
     height: 25px;
@@ -54,79 +62,99 @@ body{
     outline: none;
     padding-top: 2px;
 }
-.done-true{
+
+.done-true {
     text-decoration: line-through;
     color: #777;
 }
-.done-false{
+
+.done-false {
     color: #333;
 }
-.inform{
+
+.inform {
     font-size: 125%;
     margin-top: 2px;
     float: left;
     margin-bottom: 5px;
     color: #555;
 }
-.pointer{
+
+.pointer {
     cursor: pointer;
 }
-.clear{
+
+.clear {
     clear: both;
 }
-.left{
+
+.left {
     float: left;
 }
-.controll-button{
+
+.controll-button {
     margin: 5px;
 }
-.check_done{
+
+.check_done {
     position: relative;
     right: 20px;
     top: 8px;
 }
-.right{
+
+.right {
     float: right;
 }
+
 #list {
     overflow: auto;
-    margin-left: -10px;
     margin-bottom: 0;
+    width: 97%;
 }
-#list .task_list{
+
+#list .task_list {
     position: relative;
     list-style-type: none;
 }
-#list .task_list:hover{
+
+#list .task_list:hover {
     background: #ffffff;
     cursor: pointer;
 }
+
 #list .task_list > div > span {
     height: 0px;
     margin-right: 5px;
 }
-.edit{
+
+.edit {
     position: absolute;
     width: 200px;
 }
-.content{
+
+.content {
     height: 40px;
 }
+
 .content > input[type=checkbox] {
     margin-top: 6px;
 }
+
 .content > span {
     display: inline-block;
     margin-top: 10px;
 }
-.remove-icon{
+
+.remove-icon {
     position: relative;
     top: 0.2em !important;
 }
-.absolute{
+
+.absolute {
     position: absolute;
 }
-.no-display{
+
+.no-display {
     display: none !important;
 }
 
@@ -135,13 +163,15 @@ body{
     padding: 15px;
     margin: 0 auto;
 }
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
     margin-bottom: 10px;
 }
+
 .form-signin .checkbox {
     font-weight: normal;
 }
+
 .form-signin .form-control {
     position: relative;
     font-size: 16px;
@@ -152,80 +182,95 @@ body{
     box-sizing: border-box;
 
 }
+
 .form-signin .form-control:focus {
     z-index: 2;
 }
+
 .form-signin input[type="text"] {
     margin-bottom: -1px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
+
 .form-signin input[type="password"] {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
 :invalid {
     color: #B32C2C;
 }
+
 .hint {
     margin-bottom: 10px;
     color: #CE2F2F;
 }
+
 .form-signin button[type="submit"] {
     outline: none;
 }
-.patientListWidth{
+
+.patientListWidth {
     position: relative;
-    width:20em;
+    width: 20em;
     border: 1px solid #ccc;
     right: 39px !important;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
 
 }
+
 .patientListWidth .panel {
     border-radius: 6px !important;
     margin-bottom: 0 !important;
 }
 
 .view-animate {
-    padding:10px;
+    padding: 10px;
 }
+
 .view-animate.ng-enter, .view-animate.ng-leave {
-    -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
-    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
 
-    display:block;
-    width:100%;
-    border-left:1px solid black;
+    display: block;
+    width: 100%;
+    border-left: 1px solid black;
 
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    padding:10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
 }
+
 .view-animate.ng-enter {
-    left:100%;
+    left: 100%;
 }
+
 .view-animate.ng-enter.ng-enter-active {
-    left:0;
+    left: 0;
 }
+
 .view-animate.ng-leave.ng-leave-active {
-    left:-100%;
+    left: -100%;
 }
 
 .btn {
     margin-bottom: 5px;
 }
+
 .navbar {
     border: none;
 }
+
 .navbar .container {
     padding-left: 0;
 }
+
 .navbar .user-name {
     float: left;
     padding: 15px 15px;
@@ -234,38 +279,43 @@ body{
     color: #777;
     margin-left: 15px;
 }
+
 .navbar .user-photo {
     width: 51px;
     float: left;
 }
-.input-width{
-    width:150px;
-}
-.right{
-    float:right;
+
+.input-width {
+    width: 150px;
 }
 
-.button-input{
-    height:25px;
+.right {
+    float: right;
+}
+
+.button-input {
+    height: 25px;
     padding-top: 2px;
 
 }
-.margin-left20{
-    margin-left:20px;
+.margin-left20 {
+    margin-left: 20px;
 }
 
-.button-delete{
-    height:25px;
+.button-delete {
+    height: 25px;
     padding-top: 3px;
-    width:5px;
+    width: 5px;
 }
-.margin-left5{
-    margin-left:5px;
+
+.margin-left5 {
+    margin-left: 5px;
 }
 
 .datepicker-inline {
     width: auto;
 }
+
 .patient-calendar {
     display: inline-block;
     border-radius: 6px 0 0 6px;
@@ -293,17 +343,28 @@ body{
 #patient-datepicker th, .datepicker .datepicker-days .table-condensed thead tr th {
     padding: 3px;
 }
+
 #patient-datepicker .day:not(.disabled) {
     font-weight: bold;
 }
+
 .moderation-buttons {
     margin-bottom: 10px;
     float: right;
+    width: 153px;
 }
-.moderation-buttons .btn-info {
-    outline: none;
-    margin-left: 8px;
-    float: right;
+
+.moderation-buttons button {
+    padding: 6px;
+}
+
+.moderation-buttons .modalstartbutton {
+    float: left;
+    margin-right: 6px;
+}
+
+.moderation-buttons .btn-block {
+    width: auto;
 }
 
 .btn {
@@ -362,4 +423,28 @@ body{
 
 .dropdown-menu > li {
     cursor: pointer;
+}
+
+.bootstrap-datetimepicker-widget {
+    width: auto;
+}
+
+.bootstrap-datetimepicker-widget .btn {
+    padding: 3px 10px;
+    margin: 0;
+}
+
+.bootstrap-datetimepicker-widget .timepicker-hour, .bootstrap-datetimepicker-widget .timepicker-minute {
+    width: 40px;
+    margin-left: 11px;
+}
+
+.bootstrap-datetimepicker-widget .separator {
+    width: 3px;
+    padding: 0;
+}
+
+.bootstrap-datetimepicker-widget td span {
+    height: 30px;
+    line-height: 30px;
 }

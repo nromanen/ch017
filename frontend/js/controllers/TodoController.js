@@ -91,6 +91,7 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
 
     $scope.addNewDateTimeToTodo = function() {
         $rootScope.todoExample.time.push( {time: $scope.time, date: $scope.date} )
+        console.log($rootScope.todoExample.time);
     };
 
     $scope.removeDateTimeTodo = function(index){
