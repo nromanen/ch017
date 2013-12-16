@@ -18,14 +18,14 @@ App.controller("PatientCalendarController", function($scope, $rootScope) {
         $scope.allDates = [];
         for (var i = 0; i < $scope.currentPatient.todo.length; i++) {
             for (var j = 0; j < $scope.currentPatient.todo[i].time.length; j++) {
-                $scope.allDates.push($scope.currentPatient.todo[i].time[j].time);
+                $scope.allDates.push($scope.currentPatient.todo[i].time[j].date);
             }
         }
         return $scope.allDates;
     }
 
     $scope.sortDates = function(datesArray) {
-        return datesArray.sort(function(a,b){return(a>b)});
+        return datesArray.sort();
     }
 
     $scope.getDateLimit = function(sortedDatesArray) {
