@@ -52,7 +52,7 @@ class Todo(models.Model):
 
 
 class Medicines(models.Model):
-    title = models.TextField(blank=False, null=False)
+    title = models.CharField(blank=False, null=False, max_length=255)
 
     def __unicode__(self):
         return self.title

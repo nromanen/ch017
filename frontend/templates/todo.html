@@ -25,7 +25,7 @@
             <ul id="list" class="list-group" update-local-storage-on-change>
                 <li class="task_list"
                     title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery">
-                    <div ng-repeat="time in todo.time | filter:currentDate | morning:this">
+                    <div ng-repeat="time in todo.time | filter:currentDate | morning:this" class="width9 right">
                         <div class="content" mouseover mouseout>
                             <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo, time)"
                                    ng-model="time.done" ng-show="canCheckTodo()">

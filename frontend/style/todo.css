@@ -101,7 +101,9 @@ body {
     right: 20px;
     top: 8px;
 }
-
+.width9{
+    width: 91%;
+}
 .right {
     float: right;
 }

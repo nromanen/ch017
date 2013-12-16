@@ -1,8 +1,10 @@
 
 App.directive("keywatcher", function($rootScope) {
 
-    this.setElement = function(elements) {
-        $rootScope.todoExample.text = elements.filter(".active").text().trim();
+    this.setElement = function(scope, elements) {
+        scope.$apply(function() {
+           $rootScope.todoExample.text = elements.filter(".active").text().trim();
+        });
     };
 
     this.selectPrevElement = function(elements) {
@@ -26,16 +28,14 @@ App.directive("keywatcher", function($rootScope) {
     };
 
     return function(scope, element) {
-        element.on("keydown", function() {
-            scope.$apply(function() {
+        element.on("keydown", function(event) {
+            var elements = $(".modalwindow_description-hint ul li");
+            var event = event || window.event;
+            console.log(event.keyCode);
+            if(event.keyCode === 13) setElement(scope, elements); /* Enter */
+            if(event.keyCode === 38) selectPrevElement(elements); /* Up-arrow */
+            if(event.keyCode === 40) selectNextElement(elements); /* Down-arrow */
 
-                var elements = $(".modalwindow_description-hint ul li");
-
-                if(event.keyCode === 13) setElement(elements); /* Enter */
-                if(event.keyCode === 38) selectPrevElement(elements); /* Up-arrow */
-                if(event.keyCode === 40) selectNextElement(elements); /* Down-arrow */
-
-            });
         });
     };
 

@@ -140,4 +140,4 @@ class MedicineHandler(BaseHandler):
     model = Medicines
 
     def read(self, request):
-        return Medicines.objects.filter()
+        return Medicines.objects.all()
