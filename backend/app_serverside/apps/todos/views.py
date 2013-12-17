@@ -73,7 +73,8 @@ class TodoHandler(BaseHandler):
         ('time',
             ('id',
              'date',
-             'time'
+             'time',
+             'done'
             )
         )
     )
@@ -120,7 +121,8 @@ class TodoHandler(BaseHandler):
         Time.objects.filter(todo__id=todo["id"]).delete()
         for date in todo["time"]:
             time = Time.objects.create(
-                datetime=datetime.datetime.strptime(' '.join([date["date"], date["time"]]), '%Y-%m-%d %H:%M:%S')
+                datetime=datetime.datetime.strptime(' '.join([date["date"], date["time"]]), '%Y-%m-%d %H:%M:%S'),
+                done=date["done"]
             )
             time.todo_set.add(todo_item)
             time.save()

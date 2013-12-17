@@ -148,6 +148,7 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
             var index = $scope.todoToRemove.indexOf({todo: todo.id, time: time.id});
             $scope.todoToRemove.splice(index, 1);
         }
+        db.editTodo(todo);
     };
 
     $scope.removeTodo = function(todo, time) {

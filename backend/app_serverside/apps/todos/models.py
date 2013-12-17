@@ -60,6 +60,7 @@ class Medicines(models.Model):
 
 class Time(models.Model):
     datetime = models.DateTimeField(blank=False, null=False)
+    done = models.BooleanField(default=False)
 
     def __unicode__(self):
         return "{}".format(self.datetime)
