@@ -450,3 +450,7 @@ body {
     height: 30px;
     line-height: 30px;
 }
+
+.width-input{
+    width:140px;
+}

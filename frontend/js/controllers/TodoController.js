@@ -87,10 +87,6 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         return amount;
     };
 
-    $scope.removeDateTimeTodo = function(index){
-        $rootScope.todoExample.time.splice(index, 1);
-    }
-
     //check rules
     $scope.canAddTodo = function() {
         return $scope.currentUser.role.add;
@@ -162,5 +158,8 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         });
         db.deleteTodo(time);
     }
+
+
+    //$scope.setTime()
 
 });

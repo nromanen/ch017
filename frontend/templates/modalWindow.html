@@ -30,33 +30,53 @@
                     <div class="well" hide-picker>
                         <p>Time:</p>
                         <form ng-submit="addNewDateTimeToTodo()" class="form-inline" role="form">
-                            <div id="datetimepicker1" class="input-group input-append left">
-                                <span class="input-group-addon glyphicon glyphicon-calendar"></span>
-                                <input data-format="yyyy-MM-dd" type="text" ng-model="date" date-picker
-                                       class="form-control add-on datetime" placeholder="{{date}}">
-                            </div>
                             <div id="datetimepicker2" class="input-group input-append left">
                                 <span class="input-group-addon glyphicon glyphicon-time"></span>
                                 <input type="text" data-format="hh:mm:ss" time-picker ng-model="time"
                                        class="form-control add-on datetime" placeholder="{{time}}">
                             </div>
+
                             <button type="button" class="btn btn-primary"
-                                    ng-click="addNewDateTimeToTodo()">Add Time</button>
+                                    ng-click="setTimeModal()">Add Time</button>
                         </form>
                     </div>
                     <p ng-show="todoExample.time.length">This task shall be done at:</p>
                     <ul>
-                        <li ng-repeat="datetime in todoExample.time">
-                            <span>{{ datetime.date}} {{ datetime.time}}</span>
+                        <li ng-repeat="time in timeArr">
+                            <span>{{time}}</span>
                             <div class="glyphicon glyphicon-remove edittodo-removedate remove-time-icon"
                                  ng-click="removeDateTimeTodo($index)"></div>
                         </li>
                     </ul>
+                    <div class="well" hide-picker>
+                        <p>Starting date:</p>
+                        <form ng-submit="addNewDateTimeToTodo()" class="form-inline" role="form">
+                        <div id="datetimepicker1" class="input-group input-append left">
+                            <span class="input-group-addon glyphicon glyphicon-calendar"></span>
+                            <input data-format="yyyy-MM-dd" type="text" ng-model="date" date-picker
+                                   class="form-control add-on datetime" placeholder="{{date}}">
+                        </div>
+                        <button type="button" class="btn btn-primary"
+                                ng-click="getStartDate()">Set Date</button>
+                        <br>
+                        </form><br>
+                            <div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Day's count:&nbsp;</span>
+                                    <input class="form-control" type="text" ng-model="daysCount">
+                                </div>
+                            </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">Day's period:</span>
+                            <input class="form-control" type="text" ng-model="period">
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer" ng-hide="todoExample.edit">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal"
-                            ng-click="addNewTodo()">Add</button>
+                            ng-click="addTodoExample(); addNewTodo()">Save & Exit</button>
                 </div>
                 <div class="modal-footer" ng-show="todoExample.edit">
                     <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
