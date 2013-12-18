@@ -12,40 +12,52 @@ App.controller("ModalWindowController", function ($scope, aux, db, $rootScope) {
 
         db.getMedicines();
 
-    }
+    };
 
     $scope.setTimeModal = function(){
         $scope.timeArr.push($scope.time)
-    }
+    };
 
     $scope.getStartDate = function (){
         $scope.startDate = new Date($scope.date);
-    }
+    };
 
     $scope.getStartDate();
 
     $scope.addTodoExample = function() {
-        for (i = 0; i < $scope.daysCount; i++){
-    $scope.todayDay = $scope.startDate.getDate();
-    $scope.period = parseInt($scope.period, 10);
-    var month = $scope.startDate.getMonth()+1;
-    var day = $scope.startDate.getDate();
-    var year = $scope.startDate.getFullYear();
-    $scope.finalyDate = year + '-' + month  + '-' + day
-    $scope.dateArr.push($scope.finalyDate);
-    $scope.startDate.setDate($scope.todayDay + $scope.period);
+        var year = null;
+        var month = null;
+        var day = null;
+        var finalyDate = null;
+        var todayDay = null;
+        var fullDate = null;
+
+        for (var i = 0; i < $scope.daysCount; i++) {
+            month = $scope.startDate.getMonth() + 1;
+            day = $scope.startDate.getDate();
+            year = $scope.startDate.getFullYear();
+
+            todayDay = $scope.startDate.getDate();
+            finalyDate = [year, month, day].join('-');
+            $scope.dateArr.push(finalyDate);
+
+            $scope.period = parseInt($scope.period, 10);
+            $scope.startDate.setDate(todayDay + $scope.period);
         }
 
-        for ( k =0; k < $scope.timeArr.length; k++){
-            for (j = 0; j < $scope.dateArr.length; j++){
-                $scope.fullDate = {time: $scope.timeArr[k], date:$scope.dateArr[j]};
-                $scope.todoExample.time.push($scope.fullDate);
+        for (var timeIndex =0; timeIndex < $scope.timeArr.length; timeIndex++) {
+            for (var dateIndex = 0; dateIndex < $scope.dateArr.length; dateIndex++) {
+                fullDate = {
+                    time: $scope.timeArr[timeIndex],
+                    date:$scope.dateArr[dateIndex]
+                };
+                $scope.todoExample.time.push(fullDate);
             }
         }
-    }
+    };
 
     $scope.removeDateTimeTodo = function(index){
         $scope.timeArr.splice(index, 1);
-    }
+    };
 
 });
