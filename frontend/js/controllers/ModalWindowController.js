@@ -1,10 +1,9 @@
-
 App.controller("ModalWindowController", function ($scope, aux, db, $rootScope) {
 
     init();
 
     function init() {
-        $scope.period = 0;
+        $scope.period = 1;
         $scope.daysCount = 1;
         $scope.timeArr = [];
         $scope.dateArr = [];
@@ -29,12 +28,12 @@ App.controller("ModalWindowController", function ($scope, aux, db, $rootScope) {
         for (i = 0; i < $scope.daysCount; i++){
     $scope.todayDay = $scope.startDate.getDate();
     $scope.period = parseInt($scope.period, 10);
-    $scope.startDate.setDate($scope.todayDay + $scope.period);
     var month = $scope.startDate.getMonth()+1;
     var day = $scope.startDate.getDate();
     var year = $scope.startDate.getFullYear();
     $scope.finalyDate = year + '-' + month  + '-' + day
     $scope.dateArr.push($scope.finalyDate);
+    $scope.startDate.setDate($scope.todayDay + $scope.period);
         }
 
         for ( k =0; k < $scope.timeArr.length; k++){
