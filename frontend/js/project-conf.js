@@ -6,9 +6,9 @@ var App = angular.module(
 ).config(function ($routeProvider) {
 
     $routeProvider.
-    when('/auth', {controller: 'AuthController', templateUrl: 'templates/auth.html'}).
-    when('/auth/:param', {controller: 'AuthController', templateUrl: 'templates/auth.html'}).
-    when('/:type/:login', {controller: 'TodoController', templateUrl: 'templates/todo.html',
+    when('/auth', {templateUrl: 'templates/auth.html'}).
+    when('/auth/:param', {templateUrl: 'templates/auth.html'}).
+    when('/:type/:login', {templateUrl: 'templates/todo.html',
         resolve: {
             data: function (db) {
                 return db.getPatientList();

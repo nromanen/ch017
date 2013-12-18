@@ -12,7 +12,6 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     init();
 
     function init() {
-
         $scope.users = localStorageService.get("users") || [];
         $rootScope.currentUser = localStorageService.get("currentUser");
         $rootScope.userPhoto = config.serverUrl + config.imagesPath + $scope.currentUser.foto;

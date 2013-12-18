@@ -61,7 +61,7 @@ class UserHandler(BaseHandler):
 
 
 class TodoHandler(BaseHandler):
-    allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
+    allowed_methods = ('GET',)
     model = Todo
     fields = (
         'id',
