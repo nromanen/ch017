@@ -45,7 +45,7 @@ App.controller("ModalWindowController", function ($scope, aux, db, $rootScope) {
             $scope.startDate.setDate(todayDay + $scope.period);
         }
 
-        for (var timeIndex =0; timeIndex < $scope.timeArr.length; timeIndex++) {
+        for (var timeIndex = 0; timeIndex < $scope.timeArr.length; timeIndex++) {
             for (var dateIndex = 0; dateIndex < $scope.dateArr.length; dateIndex++) {
                 fullDate = {
                     time: $scope.timeArr[timeIndex],

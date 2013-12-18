@@ -32,7 +32,7 @@ var App = angular.module(
         jsonpCallback: '?callback=JSON_CALLBACK'
     }
 ).constant('dayPart', {
-        morning: 0,
+        morning: 8,
         noon: 12,
         evening: 18
     }
