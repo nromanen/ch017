@@ -46,6 +46,7 @@ App.factory("db", function($rootScope, $http, config, aux) {
                            config.jsonpCallback +
                            '&method=POST' +
                            '&id=' + id +
+                           "&user_id=" + $rootScope.currentUser.id +
                            '&data=' + JSON.stringify(object);
 
             $http.jsonp(queryUrl).
@@ -65,6 +66,7 @@ App.factory("db", function($rootScope, $http, config, aux) {
             var queryUrl = config.serverUrl + config.apiUrl + 'todos/' +
                 config.jsonpCallback +
                 '&method=PUT' +
+                "&user_id=" + $rootScope.currentUser.id +
                 '&data=' + object;
 
             $http.jsonp(queryUrl).
@@ -80,6 +82,7 @@ App.factory("db", function($rootScope, $http, config, aux) {
             var queryUrl = config.serverUrl + config.apiUrl + 'todos/' +
                 config.jsonpCallback +
                 '&method=DELETE' +
+                "&user_id=" + $rootScope.currentUser.id +
                 '&id=' + id;
 
             $http.jsonp(queryUrl).

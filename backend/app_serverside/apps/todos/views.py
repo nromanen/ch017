@@ -84,15 +84,20 @@ class TodoHandler(BaseHandler):
         identify = request.GET.get("id")
         data = request.GET.get("data")
 
+        try:
+            user = Users.objects.get(pk=request.GET.get("user_id"))
+        except Users.DoesNotExist:
+            raise Http404()
+
         if login and password:
             password = base64.b64decode(password)
             user = Users.objects.get(login=login, password=password)
             return user.todo.all() if user else rc.BAD_REQUEST
-        elif method == "PUT":
+        elif method == "PUT" and user.role.edit:
             return self.update(request, data)
-        elif method == "POST":
+        elif method == "POST" and user.role.add:
             return self.create(request, identify, data)
-        elif method == "DELETE":
+        elif method == "DELETE" and user.role.remove:
             return self.delete(request, identify)
         else:
             return Todo.objects.all()
