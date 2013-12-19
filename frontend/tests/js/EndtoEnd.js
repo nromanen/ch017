@@ -2,7 +2,105 @@
  * Created by tarix on 11/17/13.
  */
 'use strict';
-describe('Todo_e2e', function() {
+
+describe("Todo Project tests", function() {
+    describe("Test doctor role", function() {
+        beforeEach(function() {
+            browser().navigateTo('index.html');
+        });
+
+        it("clear localStorage", function() {
+             localStorage.clear();
+        });
+
+        it('should have a working authentification page controller ', function() {
+            browser().navigateTo('#/');
+            expect(browser().location().path()).toBe("/auth");
+            expect(element('div[ng-view]').html()).toContain('AuthController');
+        });
+
+        it('should have not a working "TodoController" controller ', function() {
+            browser().navigateTo('#/');
+            expect(browser().location().path()).toBe("/auth");
+            expect(element('div[ng-view]').html()).toContain('AuthController');
+        });
+
+        it('should be doctor login', function() {
+            input('authLogin').enter('doctor');
+            input('authPassword').enter('apple');
+            element('button.btn.btn-lg.btn-primary.btn-block').click();
+            expect(browser().location().path()).toBe("/Doctor/doctor");
+        });
+
+        it('add to list 2 element', function() {
+            var datetime = new Date();
+
+            expect(repeater('#list li .content').count()).toBe(0);
+            element('button.btn-primary.btn.modalstartbutton').click();
+            input('todoExample.text').enter('learn test');
+            input('date').enter([datetime.getFullYear(), datetime.getMonth() + 1, datetime.getDate()].join('-'));
+            input('time').enter([datetime.getHours(), datetime.getMinutes(), datetime.getSeconds()].join(":"));
+
+            element('#datetimepicker1 .form-control.add-on.datetime').click();
+            element(".set-date-form .set-date").click();
+            element('.well button.btn.btn-primary').click();
+            expect(repeater('.modal-body ul li').count()).toBe(1);
+            element('.modal-footer button.btn.btn-primary').click();
+            element('.modal-footer button.btn.btn-default').click();
+
+            expect(repeater('#list li .content').count()).toBeGreaterThan(0);
+            expect(repeater('#list li .content').count()).toBe(1);
+        });
+
+        it('should save list when reload', function() {
+            browser().reload();
+            expect(repeater('#list li .content').count()).toBe(1);
+        });
+
+        it('should logout from app', function() {
+            element('.nav.navbar-nav.navbar-right a').click();
+            expect(browser().location().path()).toBe("/auth");
+        });
+
+        it('should be nurse login', function() {
+            input('authLogin').enter('patient9');
+            input('authPassword').enter('1111');
+            element('button.btn.btn-lg.btn-primary.btn-block').click();
+            expect(browser().location().path()).toBe("/Nurse/patient9");
+        });
+
+        it('should show last added todo items for Nurse', function() {
+            browser().reload();
+            expect(repeater('#list li .content').count()).toBe(1);
+        });
+
+        it('should mark done last added todo items', function() {
+            element('#list li .content .check_done').click();
+            expect(repeater('#list li .content .done-true').count()).toBe(1);
+        });
+
+        it('Nurse should logout from app', function() {
+            element('.nav.navbar-nav.navbar-right a').click();
+            expect(browser().location().path()).toBe("/auth");
+        });
+
+        it('Doctor should sing in again', function() {
+            input('authLogin').enter('doctor');
+            input('authPassword').enter('apple');
+            element('button.btn.btn-lg.btn-primary.btn-block').click();
+            expect(browser().location().path()).toBe("/Doctor/doctor");
+        });
+
+        it("Doctor should remove last added and checked todo item", function() {
+            element('#list li .content .remove-icon').click();
+            expect(repeater('#list li .content').count()).toBe(0);
+        });
+
+    });
+});
+
+
+xdescribe('Todo_e2e', function() {
     describe('TodoController_e2e', function() {
         beforeEach(function() {
             browser().navigateTo('index.html');
@@ -18,8 +116,8 @@ describe('Todo_e2e', function() {
             expect(element('div[ng-view]').html()).toContain('TodoController');
         });
         it('should be doctor login', function() {
-            input('authLogin').enter('doctor');
-            input('authPassword').enter('1111');
+            input('authLogin').enter('admin');
+            input('authPassword').enter('apple');
             element('button.btn.btn-lg.btn-primary.btn-block').click();
             expect(browser().location().path()).toBe("/doctor/doctor");
         });

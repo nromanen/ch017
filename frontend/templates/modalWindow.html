@@ -50,15 +50,15 @@
                     </ul>
                     <div class="well" hide-picker>
                         <p>Starting date:</p>
-                        <form ng-submit="addNewDateTimeToTodo()" class="form-inline" role="form">
-                        <div id="datetimepicker1" class="input-group input-append left">
-                            <span class="input-group-addon glyphicon glyphicon-calendar"></span>
-                            <input data-format="yyyy-MM-dd" type="text" ng-model="date" date-picker
-                                   class="form-control add-on datetime" placeholder="{{date}}">
-                        </div>
-                        <button type="button" class="btn btn-primary"
-                                ng-click="getStartDate()">Set Date</button>
-                        <br>
+                        <form ng-submit="addNewDateTimeToTodo()" class="form-inline set-date-form" role="form">
+                            <div id="datetimepicker1" class="input-group input-append left">
+                                <span class="input-group-addon glyphicon glyphicon-calendar"></span>
+                                <input data-format="yyyy-MM-dd" type="text" ng-model="date" date-picker
+                                       class="form-control add-on datetime" placeholder="{{date}}">
+                            </div>
+                            <button type="button" class="btn btn-primary set-date"
+                                    ng-click="getStartDate()">Set Date</button>
+                            <br>
                         </form><br>
                             <div>
                                 <div class="input-group">
