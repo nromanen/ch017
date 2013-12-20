@@ -4,7 +4,7 @@
 'use strict';
 
 describe("Todo Project tests", function() {
-    describe("Test doctor role", function() {
+    xdescribe("Test doctor role", function() {
         beforeEach(function() {
             browser().navigateTo('index.html');
         });
@@ -96,6 +96,34 @@ describe("Todo Project tests", function() {
             expect(repeater('#list li .content').count()).toBe(0);
         });
 
+    });
+
+    describe("Test patients capability to delete todo item", function() {
+
+        beforeEach(function() {
+            browser().navigateTo('index.html');
+        });
+
+        it("clear localStorage", function() {
+             localStorage.clear();
+        });
+
+        it("Should sign in like a patient", function() {
+            input('authLogin').enter('patient5');
+            input('authPassword').enter('1111');
+            element('button.btn.btn-lg.btn-primary.btn-block').click();
+            expect(browser().location().path()).toBe("/patient/patient5");
+        });
+
+        it("Should hide remove icon for patient", function() {
+            expect(element('#list li .content .remove-icon:visible').count()).toBe(0);
+        });
+
+        it("Should prevent opportunity to delete todo item by patient", function() {
+            element('#list li .content .remove-icon').click();
+            browser().reload();
+            expect(repeater('#list li .content').count()).toBe(1);
+        });
     });
 });
 
