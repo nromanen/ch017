@@ -29,14 +29,14 @@
                         <div class="content" mouseover mouseout>
                             <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo, time)"
                                    ng-model="time.done" ng-show="canCheckTodo()">
-                                    <span data-target="#myModal"  data-toggle="modal"
-                                          todo-item="{{todo.id}}" time-item="{{ time.id }}"
-                                          edit="{{canEditTodo()}}" class="done-{{time.done}}">
-                                        {{time.time}}: {{todo.text}}
-                                    </span>
-                                    <span class="glyphicon glyphicon-remove pointer right remove-icon"
-                                          ng-click="removeTodo(todo.id, time.id)"
-                                          ng-show="false"></span>
+                            <span data-target="#myModal"  data-toggle="modal"
+                                  todo-item="{{todo.id}}" time-item="{{ time.id }}"
+                                  edit="{{canEditTodo()}}" class="done-{{time.done}}">
+                                {{time.time}}: {{todo.text}}
+                            </span>
+                            <span class="glyphicon glyphicon-remove pointer right remove-icon"
+                                  ng-click="removeTodo(todo.id, time.id)"
+                                  ng-show="false"></span>
                         </div>
                     </div>
                 </li>
@@ -52,14 +52,14 @@
                         <div class="content" mouseover mouseout>
                             <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo, time)"
                                    ng-model="time.done" ng-show="canCheckTodo()">
-                                    <span data-target="#myModal"  data-toggle="modal"
-                                          todo-item="{{todo.id}}" time-item="{{ time.id }}"
-                                          edit="{{canEditTodo()}}" class="done-{{time.done}}">
-                                        {{time.time}}: {{todo.text}}
-                                    </span>
-                                    <span class="glyphicon glyphicon-remove pointer right remove-icon"
-                                          ng-click="removeTodo(todo.id, time.id)"
-                                          ng-show="false"></span>
+                            <span data-target="#myModal"  data-toggle="modal"
+                                  todo-item="{{todo.id}}" time-item="{{ time.id }}"
+                                  edit="{{canEditTodo()}}" class="done-{{time.done}}">
+                                {{time.time}}: {{todo.text}}
+                            </span>
+                            <span class="glyphicon glyphicon-remove pointer right remove-icon"
+                                  ng-click="removeTodo(todo.id, time.id)"
+                                  ng-show="false"></span>
                         </div>
                     </div>
                 </li>

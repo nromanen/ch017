@@ -157,9 +157,6 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
             }
         });
         db.deleteTodo(time);
-    }
-
-
-    //$scope.setTime()
+    };
 
 });
