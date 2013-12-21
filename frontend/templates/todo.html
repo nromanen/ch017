@@ -28,7 +28,7 @@
                     <div ng-repeat="time in todo.time | filter:currentDate | morning:this" class="width9 right">
                         <div class="content" mouseover mouseout>
                             <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo, time)"
-                                   ng-model="time.done" ng-show="canCheckTodo()">
+                                   ng-model="time.done" ng-show="canCheckTodo(time.date,time.time)">
                             <span data-target="#myModal"  data-toggle="modal"
                                   todo-item="{{todo.id}}" time-item="{{ time.id }}"
                                   edit="{{canEditTodo()}}" class="done-{{time.done}}">
@@ -51,7 +51,7 @@
                     <div ng-repeat="time in todo.time | filter:currentDate | noon:this">
                         <div class="content" mouseover mouseout>
                             <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo, time)"
-                                   ng-model="time.done" ng-show="canCheckTodo()">
+                                   ng-model="time.done" ng-show="canCheckTodo(time.date,time.time)">
                             <span data-target="#myModal"  data-toggle="modal"
                                   todo-item="{{todo.id}}" time-item="{{ time.id }}"
                                   edit="{{canEditTodo()}}" class="done-{{time.done}}">
@@ -74,7 +74,7 @@
                     <div ng-repeat="time in todo.time | filter:currentDate | evening:this">
                         <div class="content" mouseover mouseout>
                             <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo, time)"
-                                   ng-model="time.done" ng-show="canCheckTodo()">
+                                   ng-model="time.done" ng-show="canCheckTodo(time.date,time.time)">
                             <span data-target="#myModal"  data-toggle="modal"
                                   todo-item="{{todo.id}}" time-item="{{ time.id }}"
                                   edit="{{canEditTodo()}}" class="done-{{time.done}}">
