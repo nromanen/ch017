@@ -40,11 +40,11 @@ db.runStatement(function() {
         amount: 2
     }).save(function (err, todo, numberAffected) {
         if (err) throw err;
-        db.tables.Role({name: "Patient"}).save(function(err, role){
+        db.tables.Role({name: "Doctor"}).save(function(err, role){
             db.tables.User({
-                first_name: 'Ruslan',
+                first_name: 'Oleg',
                 last_name: 'Fostiy',
-                login: 'doctor',
+                login: 'patient',
                 password: 'admin',
                 _todo: todo._id,
                 _role: role._id

@@ -21,7 +21,7 @@ module.exports = {
 
             //describe schemas for future models
             var roleSchema = new Schema({
-                name: {type: String, require: true},
+                name: {type: String, require: true, index: {unique: true, dropDups: true}},
                 add: {type: Boolean, default: false},
                 edit: {type: Boolean, default: false},
                 remove:  {type: Boolean, default: false},
@@ -54,7 +54,7 @@ module.exports = {
                 first_name: {type: String, require: true},
                 last_name: {type: String, require: true},
                 foto: {type: String, default: ''},
-                login: {type: String, require: true},
+                login: {type: String, require: true, index: {unique: true, dropDups: true}},
                 password: {type: String, require: true},
                 _role:  {
                     type: Number,
@@ -70,7 +70,7 @@ module.exports = {
 
             //create auto increment fields
             var medicinesSchema = new Schema({
-                title: {type: String, require: true}
+                title: {type: String, require: true, index: {unique: true, dropDups: true}}
             });
 
             roleSchema.plugin(pureautoinc.plugin, {
