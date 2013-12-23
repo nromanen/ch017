@@ -1,19 +1,29 @@
-var db = require('../db/mongodb');
+var db = require('../model/mongodb');
 
-exports.index = function(req, res){
-    if (req.method !== "GET") throw "Permission denied!";
+exports.all = function(req, res){
 
     db.initialize(function(err) {
-        if(err) throw err;
+        if(err) res.json(500, {error: err});
 
         var todo = db.mongoDb.collection("todo");
         todo.find().toArray(function(err, result) {
-            if (err) throw err;
+            if(err) res.json(500, {error: err});
 
-            res.writeHead(200, {"Content-Type": "application/json"});
-            res.write(JSON.stringify(result));
-            res.end();
+            res.json(result);
+        });
+    });
+};
 
+exports.forSpecificUser = function(req, res){
+
+    db.initialize(function(err) {
+        if(err) res.json(500, {error: err});
+
+        var todo = db.mongoDb.collection("todo");
+        todo.find().toArray(function(err, result) {
+            if(err) res.json(500, {error: err});
+
+            res.json(result);
         });
     });
 };

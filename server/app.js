@@ -4,14 +4,13 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
-var todo = require('./routes/todo');
 var http = require('http');
 var path = require('path');
-var db = require('./db/mongodb');
+var routes = require("./urls");
+var db = require("./model/mongodb");
 
 var app = express();
+var baseRoute = "/api/";
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -25,31 +24,44 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-//create tables
-/*db.initialize(function(err) {
-    if(err) throw err;
-
-    var todo = db.mongoDb.collection("todo");
-    todo.insert({
-        text: "some text",
-        done: false,
-        datetime_created: new Date(),
-        datetime_finished: new Date(),
-        amount: 2,
-        time: [{time: new Date(), done: false}]
-    }, function(err, result) {
-        if (!err) console.log("success!");
-    });
-});*/
-
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/users', user.list);
-app.get('/todos', todo.index);
+//create test records
+db.runStatement(function() {
+
+    /*db.tables.Todo({
+        text: 'first task',
+        date_created: new Date(),
+        date_finished: new Date(),
+        _time: [],
+        amount: 2
+    }).save(function (err, todo, numberAffected) {
+        if (err) throw err;
+        db.tables.Role({name: "Patient"}).save(function(err, role){
+            db.tables.User({
+                first_name: 'Ruslan',
+                last_name: 'Fostiy',
+                login: 'doctor',
+                password: 'admin',
+                _todo: todo._id,
+                _role: role._id
+            }).save(function (err, todo, numberAffected) {
+                if (err) throw err;
+            });
+        });
+    });*/
+
+    db.tables.User.find().populate('_todo _role').exec(function(err, res) {
+        console.log(res);
+    });
+});
+
+
+//create routes
+routes.route(app, baseRoute);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
