@@ -1,15 +1,13 @@
 var db = require('../model/mongodb');
 
-exports.index = function(req, res){
+exports.index = function(req, res) {
 
-    db.initialize(function(err) {
-        if(err) throw err;
+    db.tables.Medicines.find(function(err, data) {
 
-        var todo = db.mongoDb.collection("todo");
-        todo.find().toArray(function(err, result) {
-            if (err) throw err;
+        if(err) return res.json(500, {error: err});
 
-            returnJsonResponse(res, result);
-        });
+        return res.send(data);
+
     });
+
 };

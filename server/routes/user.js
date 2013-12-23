@@ -1,22 +1,21 @@
 var db = require('../model/mongodb');
 
 exports.all = function(req, res){
-    db.initialize(function(err) {
-        if(err) res.json(500, {error: err});
 
-        var user = db.mongoDb.collection("user");
-        user.find().toArray(function(err, result) {
-            if(err) res.json(500, {error: err});
+    db.tables.User.find(function(err, data) {
 
-            res.json(result);
-        });
+        if(err) return res.json(500, {error: err});
+
+        return res.send(data);
+
     });
+
 };
 
-exports.getUser = function(req, res){
+exports.getUser = function(req, res) {
   res.send("respond with a resource");
 };
 
-exports.usersByRole = function(req, res){
+exports.usersByRole = function(req, res) {
   res.send("respond with a resource");
 };

@@ -2,28 +2,16 @@ var db = require('../model/mongodb');
 
 exports.all = function(req, res){
 
-    db.initialize(function(err) {
-        if(err) res.json(500, {error: err});
+    db.tables.Todo.find(function(err, data) {
 
-        var todo = db.mongoDb.collection("todo");
-        todo.find().toArray(function(err, result) {
-            if(err) res.json(500, {error: err});
+        if(err) return res.json(500, {error: err});
 
-            res.json(result);
-        });
+        return res.send(data);
+
     });
+
 };
 
-exports.forSpecificUser = function(req, res){
-
-    db.initialize(function(err) {
-        if(err) res.json(500, {error: err});
-
-        var todo = db.mongoDb.collection("todo");
-        todo.find().toArray(function(err, result) {
-            if(err) res.json(500, {error: err});
-
-            res.json(result);
-        });
-    });
+exports.forSpecificUser = function(req, res) {
+    res.send("respond with a resource");
 };
