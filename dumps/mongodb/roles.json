@@ -1,0 +1,23 @@
+[
+  {
+    "name": "doctor",
+    "add": true,
+    "edit": true,
+    "remove": true,
+    "check": true
+  },
+  {
+    "name": "nurse",
+    "add": false,
+    "edit": false,
+    "remove": false,
+    "check": true
+  },
+  {
+    "name": "patient",
+    "add": false,
+    "edit": false,
+    "remove": false,
+    "check": false
+  }
+]
