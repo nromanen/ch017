@@ -1,5 +1,6 @@
 [
   {
+    "_id": 1,
     "name": "doctor",
     "add": true,
     "edit": true,
@@ -7,6 +8,7 @@
     "check": true
   },
   {
+    "_id": 2,
     "name": "nurse",
     "add": false,
     "edit": false,
@@ -14,6 +16,7 @@
     "check": true
   },
   {
+    "_id": 3,
     "name": "patient",
     "add": false,
     "edit": false,
