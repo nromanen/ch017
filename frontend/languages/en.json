@@ -2,6 +2,12 @@
     "TITLE": "Todos",
     "TOP_PANEL": {
         "FILTER_BY_DATE": "Filter by Date",
+        "LANGUAGE": "Language",
+        "LANGUAGES": {
+            "en": "English",
+            "ru": "Русский",
+            "ua": "Українська"
+        },
         "LOGOUT": "Log Out"
     },
     "TODO": {

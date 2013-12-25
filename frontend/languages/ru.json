@@ -2,6 +2,12 @@
     "TITLE": "Тодос",
     "TOP_PANEL": {
         "FILTER_BY_DATE": "Фильтр по дате",
+        "LANGUAGE": "Язык",
+        "LANGUAGES": {
+            "en": "English",
+            "ru": "Русский",
+            "ua": "Українська"
+        },
         "LOGOUT": "Выход"
     },
     "TODO": {
