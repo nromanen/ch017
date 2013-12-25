@@ -1,6 +1,4 @@
-App.controller("ModalWindowController", function ($scope, aux, db, $rootScope) {
-
-    init();
+App.controller('ModalWindowController', function($scope, $rootScope, db, aux) {
 
     function init() {
         $scope.period = 1;
@@ -10,9 +8,11 @@ App.controller("ModalWindowController", function ($scope, aux, db, $rootScope) {
         $scope.date = aux.getDateFromUTC(new Date());
         $scope.time = aux.getTimeFromUTC(new Date());
 
+        $scope.getStartDate();
+
         db.getMedicines();
 
-    };
+    }
 
     $scope.setTimeModal = function(){
         $scope.timeArr.push($scope.time)
@@ -21,8 +21,6 @@ App.controller("ModalWindowController", function ($scope, aux, db, $rootScope) {
     $scope.getStartDate = function (){
         $scope.startDate = new Date($scope.date);
     };
-
-    $scope.getStartDate();
 
     $scope.addTodoExample = function() {
         var year = null;
@@ -59,5 +57,7 @@ App.controller("ModalWindowController", function ($scope, aux, db, $rootScope) {
     $scope.removeDateTimeTodo = function(index){
         $scope.timeArr.splice(index, 1);
     };
+
+    init();
 
 });

@@ -5,8 +5,12 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title" id="myModalLabel" ng-hide="todoExample.edit" translate>MODAL_WINDOW.ADD_NEW_ITEM</h4>
-                    <h4 class="modal-title" id="myModalLabel" ng-show="todoExample.edit" translate>MODAL_WINDOW.UPDATE_ITEM</h4>
+                    <h4 class="modal-title" id="myModalLabel" ng-hide="todoExample.edit" translate>
+                        MODAL_WINDOW.ADD_NEW_ITEM
+                    </h4>
+                    <h4 class="modal-title" id="myModalLabel" ng-show="todoExample.edit" translate>
+                        MODAL_WINDOW.UPDATE_ITEM
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <div class="well">
@@ -18,7 +22,8 @@
                             <div class="modalwindow_description-hint">
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3" 
                                     ng-show="todoExample.text.length>2&&(medicines|filter:todoExample.text).length>1">
-                                    <li role="presentation" ng-repeat="medicine in medicines | filter:todoExample.text" 
+                                    <li role="presentation" 
+                                        ng-repeat="medicine in medicines | filter:todoExample.text" 
                                         ng-class="{active:($index==(activeMedicine||0))}">
                                         <a role="menuitem" tabindex="-1"
                                            ng-click="todoExample.text=medicine.title">{{medicine.title}}</a>
@@ -74,12 +79,18 @@
                     </div>
                 </div>
                 <div class="modal-footer" ng-hide="todoExample.edit">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" translate>MODAL_WINDOW.CANCEL</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" translate>
+                        MODAL_WINDOW.CANCEL
+                    </button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal"
-                            ng-click="addTodoExample(); addNewTodo()" translate>MODAL_WINDOW.SAVE</button>
+                            ng-click="addTodoExample(); addNewTodo()" translate>
+                                MODAL_WINDOW.SAVE
+                    </button>
                 </div>
                 <div class="modal-footer" ng-show="todoExample.edit">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" translate>MODAL_WINDOW.CANCEL</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" translate>
+                        MODAL_WINDOW.CANCEL
+                    </button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal"
                             ng-click="updateTodo()" translate>MODAL_WINDOW.UPDATE</button>
                 </div>

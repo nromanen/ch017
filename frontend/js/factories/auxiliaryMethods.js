@@ -1,31 +1,32 @@
-App.factory("aux", function($rootScope, localStorageService, $location) {
+
+App.factory('aux', function($rootScope, localStorageService, $location) {
     return {
 
-        showHint: function (key, value) {
+        showHint: function(key, value) {
             $rootScope[key] = value;
         },
 
-        addToLocalStorage: function (key, value) {
+        addToLocalStorage: function(key, value) {
             localStorageService.add(key, value);
         },
 
-        getFromLocalStorage: function (key) {
+        getFromLocalStorage: function(key) {
             return localStorageService.get(key);
         },
 
-        clearLocalStorage: function () {
+        clearLocalStorage: function() {
             localStorageService.clearAll();
         },
 
-        redirectTo: function (url) {
+        redirectTo: function(url) {
             $location.path(url);
         },
 
-        sortByAlphabet: function (personA, personB) {
+        sortByAlphabet: function(personA, personB) {
             return personA.first_name > personB.first_name;
         },
 
-        getDateFromUTC: function (str) {
+        getDateFromUTC: function(str) {
             var year = str.getFullYear();
             var month = str.getMonth() + 1;
             var date = str.getDate();
@@ -36,7 +37,7 @@ App.factory("aux", function($rootScope, localStorageService, $location) {
             return year + '-' + month + '-' + date;
         },
 
-        getTimeFromUTC: function (str) {
+        getTimeFromUTC: function(str) {
             var hour = str.getHours();
             var minute = str.getMinutes();
             var second = str.getSeconds();

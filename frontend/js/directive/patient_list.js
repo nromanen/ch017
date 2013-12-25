@@ -1,7 +1,7 @@
 
 App.directive('list', function() {
     return {
-        restrict: "E",
+        restrict: 'E',
         templateUrl: './templates/patientList.html'
     }
 });

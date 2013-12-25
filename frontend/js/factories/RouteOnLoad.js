@@ -1,14 +1,15 @@
-App.factory("routeOnLoad", [
-    "localStorageService",
-    "$http",
-    "$location",
-    function (localStorageService, $http, $location) {
+
+App.factory('routeOnLoad', [
+    'localStorageService',
+    '$http',
+    '$location',
+    function(localStorageService, $http, $location) {
 
         var routeOnLoad = {};
 
         routeOnLoad.redirectTo = function(url) {
-            $location.path( url );
-        }
+            $location.path(url);
+        };
 
         routeOnLoad.getUserData = function() {
 
@@ -21,7 +22,7 @@ App.factory("routeOnLoad", [
 
             routeOnLoad.redirectTo( '/' + currentUser.role.name + '/' + currentUser.login );
 
-        }
+        };
 
         return routeOnLoad;
 

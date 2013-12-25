@@ -5,6 +5,6 @@ App.controller("TopPanelController", function($scope, $translate) {
 
     $scope.changeLang = function(lang) {
         $translate.uses(lang);
-    }
+    };
 
 });

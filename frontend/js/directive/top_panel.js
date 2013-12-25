@@ -1,12 +1,11 @@
 
-App.directive('topPanel', function($rootScope, aux, config) {
+App.directive('topPanel', function($rootScope, config, aux) {
     return {
-        restrict: "E",
+        restrict: 'E',
         templateUrl: './templates/topPanel.html',
         link: function() {
-
             $('#datetimepicker3 input').datepicker({
-                format: "yyyy-mm-dd",
+                format: 'yyyy-mm-dd',
                 weekStart: 1,
                 keyboardNavigation: false,
                 autoclose: true,
@@ -15,16 +14,13 @@ App.directive('topPanel', function($rootScope, aux, config) {
             }).
             datepicker('update', (function() {
                 var today = aux.getDateFromUTC(new Date());
-
                 $rootScope.currentDate = today;
 
                 return today;
             })()).
             on('changeDate', function(dateScope) {
-
-                $rootScope.currentDate = aux.getDateFromUTC($('#datetimepicker3 input').datepicker('getDate'));
+                $rootScope.currentDate = aux.getDateFromUTC( $('#datetimepicker3 input').datepicker('getDate') );
                 $rootScope.$apply();
-
             });
         }
     }

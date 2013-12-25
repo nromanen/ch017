@@ -1,7 +1,8 @@
-App.factory("db", function($rootScope, $http, config, aux) {
+
+App.factory('db', function($rootScope, $http, config, aux) {
     return {
 
-        getUserData: function (login, password) {
+        getUserData: function(login, password) {
             var password = btoa(password);
             var path = config.serverUrl + config.apiUrl;
             var queryUrl = path + 'user/' + login + '/' + password + '/' + config.jsonpCallback;
@@ -24,15 +25,17 @@ App.factory("db", function($rootScope, $http, config, aux) {
             });
         },
 
-        getPatientList: function () {
+        getPatientList: function() {
             var queryUrl = config.serverUrl + config.apiUrl + 'users_by_role/patient/' + config.jsonpCallback;
 
             return (
                 $http.jsonp(queryUrl).
                 success(function(data, status) {
+
                     data.sort(aux.sortByAlphabet);
                     $rootScope.patientList = data;
                     aux.addToLocalStorage('users', data);
+
                 }).
                 error(function(data, status) {
                     aux.redirectTo( '/error/' + status );
@@ -40,7 +43,7 @@ App.factory("db", function($rootScope, $http, config, aux) {
             );
         },
 
-        addTodo: function (currentPatient, id, object) {
+        addTodo: function(currentPatient, id, object) {
 
             var queryUrl = config.serverUrl + config.apiUrl + 'todos/' +
                            config.jsonpCallback +
@@ -51,16 +54,18 @@ App.factory("db", function($rootScope, $http, config, aux) {
 
             $http.jsonp(queryUrl).
                 success(function(data) {
+
                     object.id = data.todo_id;
                     $rootScope.currentPatient.todo.push(object);
                     return true;
+
                 }).
                 error(function(data, status) {
                     aux.redirectTo( '/error/' + status );
                 });
         },
 
-        editTodo: function (object) {
+        editTodo: function(object) {
             object = JSON.stringify(object);
 
             var queryUrl = config.serverUrl + config.apiUrl + 'todos/' +
@@ -78,7 +83,7 @@ App.factory("db", function($rootScope, $http, config, aux) {
                 });
         },
 
-        deleteTodo: function (id) {
+        deleteTodo: function(id) {
             var queryUrl = config.serverUrl + config.apiUrl + 'todos/' +
                 config.jsonpCallback +
                 '&method=DELETE' +
@@ -94,14 +99,16 @@ App.factory("db", function($rootScope, $http, config, aux) {
                 });
         },
 
-        getMedicines: function () {
+        getMedicines: function() {
             var queryUrl = config.serverUrl + config.apiUrl + 'medicines/' + config.jsonpCallback;
 
             return (
                 $http.jsonp(queryUrl).
                 success(function(data, status) {
+
                     $rootScope.medicines = data;
                     aux.addToLocalStorage('medicines', data);
+
                 }).
                 error(function(data, status) {
                     aux.redirectTo( '/error/' + status );

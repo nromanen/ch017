@@ -5,9 +5,11 @@
             <ul class="list-group nodecorate ">
                 <li ng-click="setActivePatient(patient.id);" ng-style="activePatient.style"
                     ng-model="text" ng-repeat="patient in patientList">
-                    <center><a href="" class="list-group-item" ng-class="{selected: currentPatient.id==patient.id}">
-                        {{patient.first_name}} {{patient.last_name}}
-                    </a></center>
+                    <center>
+                        <a href="" class="list-group-item" ng-class="{selected: currentPatient.id==patient.id}">
+                            {{patient.first_name}} {{patient.last_name}}
+                        </a>
+                    </center>
                 </li>
             </ul>
         </div>

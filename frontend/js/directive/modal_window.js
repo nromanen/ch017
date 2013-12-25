@@ -1,34 +1,14 @@
+
 App.directive('modal', function($rootScope, aux) {
     return {
-        restrict: "E",
+        restrict: 'E',
         templateUrl: './templates/modalWindow.html',
         link: function() {
-
-/*
-            $('#datetimepicker1 input').datepicker({
-                format: 'yyyy-mm-dd',
-                weekStart: 1,
-                keyboardNavigation: false,
-                autoclose: true
-            }).
-            datepicker('update', (function() {
-                var today = aux.getDateFromUTC(new Date());
-                $rootScope.date = today;
-
-                return today;
-            })());
-
-            $('#datetimepicker2').datetimepicker({
-                pickDate: false
-            });
-*/
-
             $('#myModal').on('shown.bs.modal', function(e) {
-                $("[ng-model='todoExample.text']").focus();
+                $('[ng-model="todoExample.text"]').focus();
             });
 
             $rootScope.currentTime = aux.getTimeFromUTC(new Date());
-
         }
     }
 });

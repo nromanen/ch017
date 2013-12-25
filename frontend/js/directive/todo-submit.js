@@ -1,14 +1,15 @@
 
-App.directive("submit", function () {
+App.directive('submit', function() {
     return {
-        restrict: "A",
-        link: function (scope, elem, attrs) {
-            elem.bind('submit', function () {
+        restrict: 'A',
+        link: function(scope, elem, attrs) {
+            elem.bind('submit', function() {
+                scope.$apply(attrs.blur);
+
                 //get addTodo func from scope
                 var addTodo = scope[attrs.submit];
 
-                scope.$apply(attrs.blur);
-                angular.element(".but_log").trigger("click");
+                angular.element('.but_log').trigger('click');
                 addTodo();
             });
         }

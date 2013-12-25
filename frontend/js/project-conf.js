@@ -1,27 +1,10 @@
-var App = angular.module(
-   "App",
-   [
-       "LocalStorageModule",
-       "pascalprecht.translate"
-   ]
-).config(function($routeProvider) {
-
-    $routeProvider.
-    when('/auth', {templateUrl: 'templates/auth.html'}).
-    when('/auth/:param', {templateUrl: 'templates/auth.html'}).
-    when('/:type/:login', {templateUrl: 'templates/todo.html',
-        resolve: {
-            data: function(db) {
-                return db.getPatientList();
-            }
-        }
-    }).
-    otherwise({redirectTo: '/auth'});
-
-}).run(function($rootScope, localStorageService, $http, $location, $routeParams, routeOnLoad) {
+var App = angular.module('App', [
+    'LocalStorageModule',
+    'pascalprecht.translate'
+]).run(function($rootScope, localStorageService, $http, $location, $routeParams, routeOnLoad) {
 
     $rootScope.$on('$routeChangeSuccess', function() {
-        if($routeParams.param === 'logout') return false;
+        if ($routeParams.param === 'logout') return false;
 
         routeOnLoad.getUserData($rootScope, localStorageService, $http, $location);
     });

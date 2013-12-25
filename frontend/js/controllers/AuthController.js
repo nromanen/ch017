@@ -1,10 +1,10 @@
 
-App.controller("AuthController", function ($scope, $rootScope, $routeParams, db, aux) {
+App.controller('AuthController', function($scope, $rootScope, $routeParams, db, aux) {
 
-    function init () {
+    function init() {
         $rootScope.topPanelHider = true;
         
-        if($routeParams.param === 'logout') $scope.logout();
+        if ($routeParams.param === 'logout') $scope.logout();
     }
 
     $scope.logout = function() {

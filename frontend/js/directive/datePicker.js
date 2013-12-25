@@ -1,4 +1,6 @@
+
 App.directive('datePicker', function() {
+
     this.init = (function() {
         $('#datetimepicker1').datetimepicker({
             pickTime: false,
@@ -8,15 +10,16 @@ App.directive('datePicker', function() {
     })();
 
     return {
-        link: function($scope, elm, attrs) {
-            elm.on('blur', function () {
+        link: function($scope, element, attrs) {
+            element.on('blur', function () {
                 $scope.$apply(function () {
-                   $scope.date = elm.val();
+                   $scope.date = element.val();
                 });
+
                 $('#datetimepicker1').datetimepicker('hide');
             });
 
-            elm.on('focus', function () {
+            element.on('focus', function () {
                 $('#datetimepicker1').datetimepicker('show');
             });
         }
