@@ -336,4 +336,151 @@ describe("Todo Project tests", function() {
         });
 
     });
+	
+		describe("Test of nurse possibility to chek todos from tomorrow date", function() {
+        beforeEach(function() {
+            browser().navigateTo('index.html');
+        });
+
+        it("clear localStorage", function() {
+             localStorage.clear();
+        });
+
+        it('should has a working "AuthController" controller ', function() {
+            browser().navigateTo('#/');
+            expect(browser().location().path()).toBe("/auth");
+            expect(element('div[ng-view]').html()).toContain('AuthController');
+        });
+
+        it('should has not a working "TodoController" controller ', function() {
+            browser().navigateTo('#/');
+            expect(browser().location().path()).toBe("/auth");
+            expect(element('div[ng-view]').html()).toContain('AuthController');
+        });
+
+        it('should login as doctor', function() {
+            input('authLogin').enter('doctor');
+            input('authPassword').enter('apple');
+            element('button.btn.btn-lg.btn-primary.btn-block').click();
+            expect(browser().location().path()).toBe("/Doctor/doctor");
+        });
+
+        it('add an element to the list', function() {
+            var datetime = new Date();
+
+            expect(repeater('#list li .content').count()).toBe(0);
+            element('button.btn-primary.btn.modalstartbutton').click();
+            input('todoExample.text').enter('learn test');
+            input('date').enter([datetime.getFullYear(), datetime.getMonth() + 1, datetime.getDate()].join('-'));
+            input('time').enter([datetime.getHours(), datetime.getMinutes(), datetime.getSeconds()].join(":"));
+
+            element('#datetimepicker1 .form-control.add-on.datetime').click();
+            element(".set-date-form .set-date").click();
+            element('.well button.btn.btn-primary').click();
+            expect(repeater('.modal-body ul li').count()).toBe(1);
+            element('.modal-footer button.btn.btn-primary').click();
+            element('.modal-footer button.btn.btn-default').click();
+
+            expect(repeater('#list li .content').count()).toBeGreaterThan(0);
+            expect(repeater('#list li .content').count()).toBe(1);
+        });
+
+        it('should save list after reload', function() {
+            browser().reload();
+            expect(repeater('#list li .content').count()).toBe(1);
+        });
+
+        it('should logout from app', function() {
+            element('.nav.navbar-nav.navbar-right a').click();
+            expect(browser().location().path()).toBe("/auth");
+        });
+
+        it('should login as nurse ', function() {
+            input('authLogin').enter('patient2');
+            input('authPassword').enter('1111');
+            element('button.btn.btn-lg.btn-primary.btn-block').click();
+            expect(browser().location().path()).toBe("/patient/patient2");
+        });
+		
+		it('set date to tomorrow date', function(){
+			var todayDate = new Date();
+			input('todayDate').enter([todayDate.getFullYear(), todayDate.getMonth() + 1, todayDate.getDate() + 1].join('-'));
+		})
+		
+		 it('should mark "done" last added todo items', function() {
+            element('#list li .content .check_done').click();
+            expect(repeater('#list li .content .done-true').count()).toBe(1);
+        });
+		
+		it('should save mark "done"', function() {
+            browser().reload();
+            expect(repeater('#list li .content .done-true').count()).toBe(1);
+        });
+	});
+	
+	
+	describe("Test of the doctor possibility to delete todos from past date", function() {
+        beforeEach(function() {
+            browser().navigateTo('index.html');
+        });
+
+        it("clear localStorage", function() {
+             localStorage.clear();
+        });
+
+        it('should has a working "AuthController" controller ', function() {
+            browser().navigateTo('#/');
+            expect(browser().location().path()).toBe("/auth");
+            expect(element('div[ng-view]').html()).toContain('AuthController');
+        });
+
+        it('should has not a working "TodoController" controller ', function() {
+            browser().navigateTo('#/');
+            expect(browser().location().path()).toBe("/auth");
+            expect(element('div[ng-view]').html()).toContain('AuthController');
+        });
+
+        it('should login as doctor', function() {
+            input('authLogin').enter('doctor');
+            input('authPassword').enter('apple');
+            element('button.btn.btn-lg.btn-primary.btn-block').click();
+            expect(browser().location().path()).toBe("/Doctor/doctor");
+        });
+
+        it('add an element to the list', function() {
+            var datetime = new Date();
+
+            expect(repeater('#list li .content').count()).toBe(0);
+            element('button.btn-primary.btn.modalstartbutton').click();
+            input('todoExample.text').enter('learn test');
+            input('date').enter([datetime.getFullYear(), datetime.getMonth() + 1, datetime.getDate()].join('-'));
+            input('time').enter([datetime.getHours(), datetime.getMinutes(), datetime.getSeconds()].join(":"));
+
+            element('#datetimepicker1 .form-control.add-on.datetime').click();
+            element(".set-date-form .set-date").click();
+            element('.well button.btn.btn-primary').click();
+            expect(repeater('.modal-body ul li').count()).toBe(1);
+            element('.modal-footer button.btn.btn-primary').click();
+            element('.modal-footer button.btn.btn-default').click();
+
+            expect(repeater('#list li .content').count()).toBeGreaterThan(0);
+            expect(repeater('#list li .content').count()).toBe(1);
+        });
+
+        it('should save list after reload', function() {
+            browser().reload();
+            expect(repeater('#list li .content').count()).toBe(1);
+        });
+		
+		it('set date to yesterday date', function(){
+			var todayDate = new Date();
+			input('todayDate').enter([todayDate.getFullYear(), todayDate.getMonth() + 1, todayDate.getDate() - 1].join('-'));
+		})
+		
+		 it('should allow delete item', function() {
+             element('#list li .content .remove-icon').click();
+             browser().reload();
+             expect(repeater('#list li .content').count()).toBe(0);
+        });
+	});
 });
