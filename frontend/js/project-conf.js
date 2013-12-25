@@ -1,7 +1,8 @@
 var App = angular.module(
    "App",
    [
-       "LocalStorageModule"
+       "LocalStorageModule",
+       "pascalprecht.translate"
    ]
 ).config(function ($routeProvider) {
 
@@ -29,7 +30,8 @@ var App = angular.module(
         serverUrl: 'http://localhost:8000/',
         imagesPath: 'media/',
         apiUrl: 'api/',
-        jsonpCallback: '?callback=JSON_CALLBACK'
+        jsonpCallback: '?callback=JSON_CALLBACK',
+        lang: 'en'
     }
 ).constant('dayPart', {
         morning: 0,

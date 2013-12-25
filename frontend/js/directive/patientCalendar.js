@@ -1,5 +1,5 @@
 
-App.directive('calendar', function($rootScope, aux) {
+App.directive('calendar', function($rootScope, aux, config) {
     return {
         restrict: "E",
         templateUrl: './templates/patientCalendar.html',
@@ -7,14 +7,13 @@ App.directive('calendar', function($rootScope, aux) {
 
             if($rootScope.currentUser.role.check) return false;
 
-            $.fn.datepicker.dates['en'].daysMin = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
             $('#patient-datepicker div').datepicker({
                 format: "yyyy-mm-dd",
                 weekStart: 1,
                 keyboardNavigation: false,
                 startDate: $rootScope.dateMin,
-                endDate: $rootScope.dateMax
+                endDate: $rootScope.dateMax,
+                language: config.lang
             }).
             datepicker('update', (function(){
 

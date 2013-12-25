@@ -10,18 +10,18 @@
     <modal></modal>
 
     <div id="wrapper" class="modal-content">
-        <div class="inform">You have {{ getTodoAmount() }} tasks</div>
+        <div class="inform" translate translate-values="{amount: getTodoAmount()}">TODO.AMOUNT</div>
 
         <div class="moderation-buttons">
             <button class="btn-primary btn modalstartbutton" data-toggle="modal"
-                    clear data-target="#myModal" ng-show="canAddTodo()">Add new task</button>
-            <button ng-click="clearDoneTodos()" class="btn-primary btn btn-block" ng-show="canRemoveTodo()">Clear</button>
+                    clear data-target="#myModal" ng-show="canAddTodo()" translate>TODO.ADD_NEW_ITEM</button>
+            <button ng-click="clearDoneTodos()" class="btn-primary btn btn-block" ng-show="canRemoveTodo()" translate>TODO.CLEAR_DONE_ITEMS</button>
         </div>
 
         <div class="clear"></div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Morning</div>
+            <div class="panel-heading" translate>TODO.PART_MORNING</div>
             <ul id="list" class="list-group" update-local-storage-on-change>
                 <li class="task_list"
                     title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery">
@@ -44,7 +44,7 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Noon</div>
+            <div class="panel-heading" translate>TODO.PART_NOON</div>
             <ul id="list" update-local-storage-on-change>
                 <li class="task_list"
                     title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery">
@@ -67,7 +67,7 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Evening</div>
+            <div class="panel-heading" translate>TODO.PART_EVENING</div>
             <ul id="list" update-local-storage-on-change>
                 <li class="task_list"
                     title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery">
@@ -88,7 +88,7 @@
                 </li>
             </ul>
         </div>
-        <input type="text" ng-model="searchQuery" placeholder="Search" class="form-control search-input">
+        <input type="text" ng-model="searchQuery" placeholder="{{'TODO.SEARCHINPUT_PLACEHOLDER' | translate}}" class="form-control search-input">
         <div class="clear"></div>
     </div>
 

@@ -1,0 +1,44 @@
+{
+    "TITLE": "Todos",
+    "TOP_PANEL": {
+        "FILTER_BY_DATE": "Filter by Date",
+        "LOGOUT": "Log Out"
+    },
+    "TODO": {
+        "AMOUNT": "You have {{amount}} tasks",
+        "ADD_NEW_ITEM": "Add new task",
+        "CLEAR_DONE_ITEMS": "Clear",
+        "PART_MORNING": "Morning",
+        "PART_NOON": "Noon",
+        "PART_EVENING": "Evening",
+        "SEARCHINPUT_PLACEHOLDER": "Search"
+    },
+    "PATIENT_LIST": {
+        "TITLE": "Patients:"
+    },
+    "MODAL_WINDOW": {
+        "ADD_NEW_ITEM": "Add new item",
+        "UPDATE_ITEM": "Update item",
+        "DESCRIPTION": "Description:",
+        "DESCRIPTION_PLACEHOLDER": "Start typing description here",
+        "TIME": "Time:",
+        "ADD_TIME": "Add Time",
+        "DONE_HINT": "This task shall be done at:",
+        "STARTING_DATE": "Starting date:",
+        "SET_DATE": "Set Date",
+        "DAYS_COUNT": "Day's count:",
+        "DAYS_PERIOD": "Day's period:",
+        "CANCEL": "Cancel",
+        "SAVE": "Save & Exit",
+        "UPDATE": "Update & Exit"
+    },
+    "AUTH": {
+        "TITLE": "Please, sign in",
+        "LOGIN_HINT": "At least 3 characters",
+        "LOGIN_PLACEHOLDER": "Login",
+        "PASSWORD_HINT": "At least 4 characters",
+        "PASSWORD_PLACEHOLDER": "Password",
+        "REMEMBER_ME": "Remember me",
+        "SIGN_IN": "Sign in"
+    }
+}

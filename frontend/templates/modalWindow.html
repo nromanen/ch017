@@ -5,15 +5,15 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title" id="myModalLabel" ng-hide="todoExample.edit">Add new item</h4>
-                    <h4 class="modal-title" id="myModalLabel" ng-show="todoExample.edit">Update item</h4>
+                    <h4 class="modal-title" id="myModalLabel" ng-hide="todoExample.edit" translate>MODAL_WINDOW.ADD_NEW_ITEM</h4>
+                    <h4 class="modal-title" id="myModalLabel" ng-show="todoExample.edit" translate>MODAL_WINDOW.UPDATE_ITEM</h4>
                 </div>
                 <div class="modal-body">
                     <div class="well">
                         <form class="form-inline" role="form">
-                            <p>Description:</p>
+                            <p translate>MODAL_WINDOW.DESCRIPTION</p>
                             <input type="text" ng-model="todoExample.text"
-                                   placeholder="Start typing description here"
+                                   placeholder="{{'MODAL_WINDOW.DESCRIPTION_PLACEHOLDER' | translate}}"
                                    class="form-control" ng-show="canEditTodo()">
                             <div class="modalwindow_description-hint">
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3" 
@@ -28,7 +28,7 @@
                         </form>
                     </div>
                     <div class="well" hide-picker>
-                        <p>Time:</p>
+                        <p translate>MODAL_WINDOW.TIME</p>
                         <form ng-submit="addNewDateTimeToTodo()" class="form-inline" role="form">
                             <div id="datetimepicker2" class="input-group input-append left">
                                 <span class="input-group-addon glyphicon glyphicon-time"></span>
@@ -37,10 +37,10 @@
                             </div>
 
                             <button type="button" class="btn btn-primary"
-                                    ng-click="setTimeModal()">Add Time</button>
+                                    ng-click="setTimeModal()" translate>MODAL_WINDOW.ADD_TIME</button>
                         </form>
                     </div>
-                    <p ng-show="todoExample.time.length">This task shall be done at:</p>
+                    <p ng-show="todoExample.time.length" translate>MODAL_WINDOW.DONE_HINT</p>
                     <ul>
                         <li ng-repeat="time in timeArr">
                             <span>{{time}}</span>
@@ -49,7 +49,7 @@
                         </li>
                     </ul>
                     <div class="well" hide-picker>
-                        <p>Starting date:</p>
+                        <p translate>MODAL_WINDOW.STARTING_DATE</p>
                         <form ng-submit="addNewDateTimeToTodo()" class="form-inline set-date-form" role="form">
                             <div id="datetimepicker1" class="input-group input-append left">
                                 <span class="input-group-addon glyphicon glyphicon-calendar"></span>
@@ -57,31 +57,31 @@
                                        class="form-control add-on datetime" placeholder="{{date}}">
                             </div>
                             <button type="button" class="btn btn-primary set-date"
-                                    ng-click="getStartDate()">Set Date</button>
+                                    ng-click="getStartDate()" translate>MODAL_WINDOW.SET_DATE</button>
                             <br>
                         </form><br>
                             <div>
                                 <div class="input-group">
-                                    <span class="input-group-addon">Day's count:&nbsp;</span>
+                                    <span class="input-group-addon" translate>MODAL_WINDOW.DAYS_COUNT</span>
                                     <input class="form-control" type="text" ng-model="daysCount">
                                 </div>
                             </div>
                         <br>
                         <div class="input-group">
-                            <span class="input-group-addon">Day's period:</span>
+                            <span class="input-group-addon" translate>MODAL_WINDOW.DAYS_PERIOD</span>
                             <input class="form-control" type="text" ng-model="period">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer" ng-hide="todoExample.edit">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" translate>MODAL_WINDOW.CANCEL</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal"
-                            ng-click="addTodoExample(); addNewTodo()">Save & Exit</button>
+                            ng-click="addTodoExample(); addNewTodo()" translate>MODAL_WINDOW.SAVE</button>
                 </div>
                 <div class="modal-footer" ng-show="todoExample.edit">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" translate>MODAL_WINDOW.CANCEL</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal"
-                            ng-click="updateTodo()">Update </button>
+                            ng-click="updateTodo()" translate>MODAL_WINDOW.UPDATE</button>
                 </div>
 
             </div>
