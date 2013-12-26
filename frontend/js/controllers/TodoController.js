@@ -88,7 +88,6 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
 
 
     function getTimeById(todoID, timeID) {
-
         for (var index = 0; index < $rootScope.currentPatient.todo.length; index++) {
             if ($rootScope.currentPatient.todo[index].id==todoID){
                 for (var i = 0; i < $rootScope.currentPatient.todo[index].time.length; i++) {

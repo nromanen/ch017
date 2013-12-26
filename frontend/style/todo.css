@@ -3,7 +3,7 @@ body {
 }
 
 .main {
-    margin: 0 auto;
+    margin: 20px auto;
     position: relative;
     width: 960px;
 }
@@ -379,7 +379,11 @@ body {
 .form-inline .input-group {
     float: left;
     margin-right: 20px;
-    width: 185px;
+    width: 140px;
+}
+
+.form-inline .input-group.time {
+    width: 122px;
 }
 
 .datepicker table tr td.active.active {
@@ -388,6 +392,10 @@ body {
 
 .datepicker table tr td.active.active:hover {
     background-color: #285E8E;
+}
+
+.modal-footer {
+    margin-top: 0;
 }
 
 .modal-footer .btn+.btn {
@@ -452,4 +460,16 @@ body {
 
 .width-input{
     width:140px;
+}
+
+.number {
+    width: 82px !important;
+}
+
+.modal-dialog {
+    width: 547px;
+}
+
+.time-list {
+    margin-top: 15px;
 }

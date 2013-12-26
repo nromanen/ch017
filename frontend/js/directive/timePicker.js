@@ -13,7 +13,7 @@ App.directive('timePicker', function() {
         link: function($scope, element, attrs) {
             element.on('blur', function() {
                 $scope.$apply(function() {
-                   $scope.time = elm.val();
+                   $scope.time = element.val();
                 });
 
                 $('#datetimepicker2').datetimepicker('hide');

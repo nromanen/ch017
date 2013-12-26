@@ -33,9 +33,29 @@
                         </form>
                     </div>
                     <div class="well" hide-picker>
+                        <p translate>MODAL_WINDOW.STARTING_DATE</p>
+                        <form ng-submit="addNewDateTimeToTodo()" class="form-inline set-date-form" role="form">
+                            <div id="datetimepicker1" class="input-group input-append left">
+                                <span class="input-group-addon glyphicon glyphicon-calendar"></span>
+                                <input data-format="yyyy-MM-dd" type="text" ng-model="date" date-picker
+                                       class="form-control add-on datetime" placeholder="{{date}}">
+                            </div>
+                            <div class="input-group number left" title="{{'MODAL_WINDOW.DAYS_COUNT' | translate}}">
+                                <span class="input-group-addon glyphicon glyphicon-calendar"></span>
+                                <input class="form-control" type="text" ng-model="daysCount">
+                            </div>
+                            <div class="input-group number left" title="{{'MODAL_WINDOW.DAYS_PERIOD' | translate}}">
+                                <span class="input-group-addon glyphicon glyphicon-calendar"></span>
+                                <input class="form-control" type="text" ng-model="period">
+                            </div>
+                            <button type="button" class="btn btn-primary set-date"
+                                    ng-click="getStartDate()" translate>MODAL_WINDOW.SET_DATE</button>
+                        </form>
+                    </div>
+                    <div class="well" hide-picker>
                         <p translate>MODAL_WINDOW.TIME</p>
                         <form ng-submit="addNewDateTimeToTodo()" class="form-inline" role="form">
-                            <div id="datetimepicker2" class="input-group input-append left">
+                            <div id="datetimepicker2" class="input-group input-append time left">
                                 <span class="input-group-addon glyphicon glyphicon-time"></span>
                                 <input type="text" data-format="hh:mm:ss" time-picker ng-model="time"
                                        class="form-control add-on datetime" placeholder="{{time}}">
@@ -44,37 +64,15 @@
                             <button type="button" class="btn btn-primary"
                                     ng-click="setTimeModal()" translate>MODAL_WINDOW.ADD_TIME</button>
                         </form>
-                    </div>
-                    <p ng-show="todoExample.time.length" translate>MODAL_WINDOW.DONE_HINT</p>
-                    <ul>
-                        <li ng-repeat="time in timeArr">
-                            <span>{{time}}</span>
-                            <div class="glyphicon glyphicon-remove edittodo-removedate remove-time-icon"
-                                 ng-click="removeDateTimeTodo($index)"></div>
-                        </li>
-                    </ul>
-                    <div class="well" hide-picker>
-                        <p translate>MODAL_WINDOW.STARTING_DATE</p>
-                        <form ng-submit="addNewDateTimeToTodo()" class="form-inline set-date-form" role="form">
-                            <div id="datetimepicker1" class="input-group input-append left">
-                                <span class="input-group-addon glyphicon glyphicon-calendar"></span>
-                                <input data-format="yyyy-MM-dd" type="text" ng-model="date" date-picker
-                                       class="form-control add-on datetime" placeholder="{{date}}">
-                            </div>
-                            <button type="button" class="btn btn-primary set-date"
-                                    ng-click="getStartDate()" translate>MODAL_WINDOW.SET_DATE</button>
-                            <br>
-                        </form><br>
-                            <div>
-                                <div class="input-group">
-                                    <span class="input-group-addon" translate>MODAL_WINDOW.DAYS_COUNT</span>
-                                    <input class="form-control" type="text" ng-model="daysCount">
-                                </div>
-                            </div>
-                        <br>
-                        <div class="input-group">
-                            <span class="input-group-addon" translate>MODAL_WINDOW.DAYS_PERIOD</span>
-                            <input class="form-control" type="text" ng-model="period">
+                        <div class="time-list">
+                            <p ng-show="todoExample.time.length" translate>MODAL_WINDOW.DONE_HINT</p>
+                            <ul>
+                                <li ng-repeat="time in timeArr">
+                                    <span>{{time}}</span>
+                                    <div class="glyphicon glyphicon-remove edittodo-removedate remove-time-icon"
+                                         ng-click="removeDateTimeTodo($index)"></div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

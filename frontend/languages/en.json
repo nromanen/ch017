@@ -32,8 +32,8 @@
         "DONE_HINT": "This task shall be done at:",
         "STARTING_DATE": "Starting date:",
         "SET_DATE": "Set Date",
-        "DAYS_COUNT": "Day's count:",
-        "DAYS_PERIOD": "Day's period:",
+        "DAYS_COUNT": "Day's count",
+        "DAYS_PERIOD": "Day's period",
         "CANCEL": "Cancel",
         "SAVE": "Save & Exit",
         "UPDATE": "Update & Exit"
