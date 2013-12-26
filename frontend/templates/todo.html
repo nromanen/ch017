@@ -30,7 +30,7 @@
                                    ng-model="time.done" ng-show="canCheckTodo(time.date,time.time)">
                             <span data-target="#myModal"  data-toggle="modal"
                                   todo-item="{{todo.id}}" time-item="{{ time.id }}"
-                                  edit="{{canEditTodo()}}" class="done-{{time.done}}">
+                                  edit="{{canEditTodo(todo.id, time.id)}}" class="done-{{time.done}}">
                                 {{time.time}}: {{todo.text}}
                             </span>
                             <span class="glyphicon glyphicon-remove pointer right remove-icon"
@@ -53,7 +53,7 @@
                                    ng-model="time.done" ng-show="canCheckTodo(time.date,time.time)">
                             <span data-target="#myModal"  data-toggle="modal"
                                   todo-item="{{todo.id}}" time-item="{{ time.id }}"
-                                  edit="{{canEditTodo()}}" class="done-{{time.done}}">
+                                  edit="{{canEditTodo(todo.id, time.id)}}" class="done-{{time.done}}">
                                 {{time.time}}: {{todo.text}}
                             </span>
                             <span class="glyphicon glyphicon-remove pointer right remove-icon"
@@ -76,7 +76,7 @@
                                    ng-model="time.done" ng-show="canCheckTodo(time.date,time.time)">
                             <span data-target="#myModal"  data-toggle="modal"
                                   todo-item="{{todo.id}}" time-item="{{ time.id }}"
-                                  edit="{{canEditTodo()}}" class="done-{{time.done}}">
+                                  edit="{{canEditTodo(todo.id, time.id)}}" class="done-{{time.done}}">
                                 {{time.time}}: {{todo.text}}
                             </span>
                             <span class="glyphicon glyphicon-remove pointer right remove-icon"
