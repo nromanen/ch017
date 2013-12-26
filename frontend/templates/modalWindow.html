@@ -50,7 +50,12 @@
                             </div>
                             <button type="button" class="btn btn-primary set-date"
                                     ng-click="getStartDate()" translate>MODAL_WINDOW.SET_DATE</button>
-                        </form>
+                        </form><br/>
+                        <ul>
+                            <li ng-repeat="date in dateArr">{{date}}
+                                <div class="glyphicon glyphicon-remove edittodo-removedate remove-time-icon"
+                                     ng-click="removeDateTodo($index)"></div></li>
+                        </ul>
                     </div>
                     <div class="well" hide-picker>
                         <p translate>MODAL_WINDOW.TIME</p>
@@ -70,7 +75,7 @@
                                 <li ng-repeat="time in timeArr">
                                     <span>{{time}}</span>
                                     <div class="glyphicon glyphicon-remove edittodo-removedate remove-time-icon"
-                                         ng-click="removeDateTimeTodo($index)"></div>
+                                         ng-click="removeTimeTodo($index)"></div>
                                 </li>
                             </ul>
                         </div>

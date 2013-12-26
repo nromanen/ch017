@@ -151,21 +151,6 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         return count;
     };
 
-    $scope.clearDoneTodos = function() {
-        $scope.todoToRemove.forEach(function(todo, index) {
-            var todoItem = $.grep($rootScope.currentPatient.todo, function(todoItem) {
-                return todoItem.id === todo.todo;
-            })[0];
-
-            todoItem.time.forEach(function(timeItem, index) {
-                if (timeItem.id === todo.time) {
-                    todoItem.time.splice(index, 1);
-                    db.deleteTodo(todo.time);
-                }
-            });
-        });
-    };
-
     $scope.prepareToRemove = function(todo, time) {
         if (time.done) {
             $scope.todoToRemove.push({todo: todo.id, time: time.id});
