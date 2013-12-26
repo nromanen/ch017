@@ -3,6 +3,8 @@
  */
 'use strict';
 
+
+
 describe("Todo Project tests", function() {
     xdescribe("Test of doctor's role", function() {
         beforeEach(function() {
@@ -10,7 +12,7 @@ describe("Todo Project tests", function() {
         });
 
         it("clear localStorage", function() {
-             localStorage.clear();
+            localStorage.clear();
         });
 
         it('should has a working "AuthController" controller ', function() {
@@ -58,7 +60,7 @@ describe("Todo Project tests", function() {
         });
 
         it('should logout from app', function() {
-            element('.nav.navbar-nav.navbar-right a').click();
+            element('.exit.ng-scope').click();
             expect(browser().location().path()).toBe("/auth");
         });
 
@@ -80,7 +82,7 @@ describe("Todo Project tests", function() {
         });
 
         it('Nurse should logout from app', function() {
-            element('.nav.navbar-nav.navbar-right a').click();
+            element('.exit.ng-scope').click();
             expect(browser().location().path()).toBe("/auth");
         });
 
@@ -105,7 +107,7 @@ describe("Todo Project tests", function() {
         });
 
         it("clear localStorage", function() {
-             localStorage.clear();
+            localStorage.clear();
         });
 
         it('should has a working "AuthController" controller ', function() {
@@ -148,7 +150,7 @@ describe("Todo Project tests", function() {
         });
 
         it('should logout from app', function() {
-            element('.nav.navbar-nav.navbar-right a').click();
+            element('.exit.ng-scope').click();
             expect(browser().location().path()).toBe("/auth");
         });
 
@@ -168,6 +170,8 @@ describe("Todo Project tests", function() {
             browser().reload();
             expect(repeater('#list li .content').count()).toBe(1);
         });
+
+        clearTodo();
     });
 
     xdescribe("Test of nurse's role", function() {
@@ -176,7 +180,7 @@ describe("Todo Project tests", function() {
         });
 
         it("clear localStorage", function() {
-             localStorage.clear();
+            localStorage.clear();
         });
 
         it('should has a working "AuthController" controller ', function() {
@@ -198,7 +202,7 @@ describe("Todo Project tests", function() {
             expect(browser().location().path()).toBe("/doctor/doctor");
         });
 
-        it('add an element to the list', function() {
+        xit('add an element to the list', function() {
             var datetime = new Date();
 
             expect(repeater('#list li .content').count()).toBe(0);
@@ -225,7 +229,7 @@ describe("Todo Project tests", function() {
         });
 
         it('should logout from app', function() {
-            element('.nav.navbar-nav.navbar-right a').click();
+            element('.exit.ng-scope').click();
             expect(browser().location().path()).toBe("/auth");
         });
 
@@ -242,15 +246,17 @@ describe("Todo Project tests", function() {
         });
 
         it('should not allow delete item', function() {
-             element('#list li .content .remove-icon').click();
-             browser().reload();
-             expect(repeater('#list li .content').count()).toBe(1);
+            element('#list li .content .remove-icon').click();
+            browser().reload();
+            expect(repeater('#list li .content').count()).toBe(1);
         });
 
         it('Nurse should logout from app', function() {
-            element('.nav.navbar-nav.navbar-right a').click();
+            element('.exit.ng-scope').click();
             expect(browser().location().path()).toBe("/auth");
         });
+
+        clearTodo();
 
     });
 
@@ -260,7 +266,7 @@ describe("Todo Project tests", function() {
         });
 
         it("clear localStorage", function() {
-             localStorage.clear();
+            localStorage.clear();
         });
 
         it('should has a working "AuthController" controller ', function() {
@@ -308,7 +314,7 @@ describe("Todo Project tests", function() {
         });
 
         it('should logout from app', function() {
-            element('.nav.navbar-nav.navbar-right a').click();
+            element('.exit.ng-scope').click();
             expect(browser().location().path()).toBe("/auth");
         });
 
@@ -331,19 +337,21 @@ describe("Todo Project tests", function() {
         });
 
         it('Patient should logout from app', function() {
-            element('.nav.navbar-nav.navbar-right a').click();
+            element('.exit.ng-scope').click();
             expect(browser().location().path()).toBe("/auth");
         });
 
+        clearTodo()
+
     });
-	
-		xdescribe("Test of nurse possibility to chek todos from tomorrow date", function() {
+
+    xdescribe("Test of nurse possibility to chek todos from tomorrow date", function() {
         beforeEach(function() {
             browser().navigateTo('index.html');
         });
 
         it("clear localStorage", function() {
-             localStorage.clear();
+            localStorage.clear();
         });
 
         it('should has a working "AuthController" controller ', function() {
@@ -390,7 +398,7 @@ describe("Todo Project tests", function() {
         });
 
         it('should logout from app', function() {
-            element('.nav.navbar-nav.navbar-right a').click();
+            element('.exit.ng-scope').click();
             expect(browser().location().path()).toBe("/auth");
         });
 
@@ -400,31 +408,33 @@ describe("Todo Project tests", function() {
             element('button.btn.btn-lg.btn-primary.btn-block').click();
             expect(browser().location().path()).toBe("/nurse/patient10");
         });
-		
-		it('set date to tomorrow date', function(){
-			var todayDate = new Date();
-			input('todayDate').enter([todayDate.getFullYear(), todayDate.getMonth() + 1, todayDate.getDate() + 1].join('-'));
-		})
-		
-		 it('should mark "done" last added todo items', function() {
+
+        it('set date to tomorrow date', function(){
+            var todayDate = new Date();
+            input('todayDate').enter([todayDate.getFullYear(), todayDate.getMonth() + 1, todayDate.getDate() + 1].join('-'));
+        })
+
+        it('should mark "done" last added todo items', function() {
             element('#list li .content .check_done').click();
             expect(repeater('#list li .content .done-true').count()).toBe(1);
         });
-		
-		it('should save mark "done"', function() {
+
+        it('should save mark "done"', function() {
             browser().reload();
             expect(repeater('#list li .content .done-true').count()).toBe(1);
         });
-	});
-	
-	
-	describe("Test of the doctor possibility to delete todos from past date", function() {
+
+        clearTodo()
+    });
+
+
+    describe("Test of the doctor possibility to delete todos from past date", function() {
         beforeEach(function() {
             browser().navigateTo('index.html');
         });
 
         it("clear localStorage", function() {
-             localStorage.clear();
+            localStorage.clear();
         });
 
         it('should has a working "AuthController" controller ', function() {
@@ -468,17 +478,27 @@ describe("Todo Project tests", function() {
             browser().reload();
             expect(repeater('#list li .content').count()).toBe(1);
         });
-		
-		it('set date to yesterday date', function(){
-			var todayDate = new Date();
-			input('todayDate').enter([todayDate.getFullYear(), todayDate.getMonth() + 1, todayDate.getDate() - 1].join('-'));
-		})
-		
-		 it('should allow delete item', function() {
-             expect(repeater('#list li .content').count()).toBe(1);
-             element('#list li .content .remove-icon').click();
-             browser().reload();
-             expect(repeater('#list li .content').count()).toBe(0);
+
+        it('set date to yesterday date', function(){
+            var todayDate = new Date();
+            input('todayDate').enter([todayDate.getFullYear(), todayDate.getMonth() + 1, todayDate.getDate() - 1].join('-'));
+        })
+
+        it('should allow delete item', function() {
+            expect(repeater('#list li .content').count()).toBe(1);
+            element('#list li .content .remove-icon').click();
+            browser().reload();
+            expect(repeater('#list li .content').count()).toBe(0);
         });
-	});
+    });
 });
+
+function clearTodo(){
+    it("clear todo after test", function() {
+        element('.exit.ng-scope').click();
+        input('authLogin').enter('doctor');
+        input('authPassword').enter('1111');
+        element('button.btn.btn-lg.btn-primary.btn-block').click();
+        element('#list li .content .remove-icon').click();
+    });
+}
