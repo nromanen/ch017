@@ -105,8 +105,16 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         return $scope.currentUser.role.add;
     };
 
-    $scope.canEditTodo = function() {
-        return $scope.currentUser.role.edit;
+    $scope.canEditTodo = function(todoID,timeID) {
+        var can = true;
+        var current_date = new Date();
+        if (($scope.currentUser.role.edit) && (todoID != undefined)){
+            var tododate = new Date(getTimeById(todoID,timeID));
+            can = (current_date.getDate() <= tododate.getDate()) &&
+                (current_date.getMonth() <= tododate.getMonth()) &&
+                (current_date.getYear() <= tododate.getYear());
+        }
+        return can;
     };
 
     $scope.canRemoveTodo = function(todoID, timeID) {
