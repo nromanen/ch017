@@ -1,28 +1,20 @@
 
-App.directive('datePicker', function() {
-
-    this.init = (function() {
-        $('#datetimepicker1').datetimepicker({
-            pickTime: false,
-            weekStart: 1,
-            maskInput: true
-        });
-    })();
-
+App.directive('datePicker', function($rootScope, config, aux) {
     return {
         link: function($scope, element, attrs) {
-            element.on('blur', function() {
-                $scope.$apply(function() {
-                   $scope.date = element.val();
-                });
-
-                $('#datetimepicker1').datetimepicker('hide');
-            });
-
-            element.on('focus', function() {
-                $('#datetimepicker1').datetimepicker('show');
+            $(element).datepicker({
+                format: 'yyyy-mm-dd',
+                weekStart: 1,
+                keyboardNavigation: false,
+                autoclose: true,
+                forceParse: true,
+                language: $rootScope.lang || config.lang
+            }).
+            datepicker('update', aux.getDateFromUTC(new Date())).
+            on('changeDate', function(dateScope) {
+                $rootScope.currentDate = aux.getDateFromUTC(dateScope.date);
+                $rootScope.$apply();
             });
         }
     };
-
 });

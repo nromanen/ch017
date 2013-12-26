@@ -1,4 +1,4 @@
-App.controller('TodoController', function($scope, $rootScope, localStorageService, config, db) {
+App.controller('TodoController', function($scope, $rootScope, localStorageService, config, db, aux) {
 
     // this variable uses for edit todos and here will be new todo_item before save
     $rootScope.todoExample = {
@@ -15,7 +15,7 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         $scope.users = localStorageService.get('users') || [];
         $rootScope.currentUser = localStorageService.get('currentUser');
         $rootScope.userPhoto = config.serverUrl + config.imagesPath + $scope.currentUser.foto;
-
+        $rootScope.currentDate = aux.getDateFromUTC(new Date());
         $rootScope.topPanelHider = false;
 
         if (!$scope.currentUser.role.add && !$scope.currentUser.role.edit &&

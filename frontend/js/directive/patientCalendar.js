@@ -3,7 +3,7 @@ App.directive('calendar', function($rootScope, config, aux) {
     return {
         restrict: 'E',
         templateUrl: './templates/patientCalendar.html',
-        link: function(scope, element, attrs) {
+        link: function($scope, element, attrs) {
             if ($rootScope.currentUser.role.check) return false;
 
             $('#patient-datepicker div').datepicker({
@@ -12,7 +12,7 @@ App.directive('calendar', function($rootScope, config, aux) {
                 keyboardNavigation: false,
                 startDate: $rootScope.dateMin,
                 endDate: $rootScope.dateMax,
-                language: config.lang
+                language: $rootScope.lang || config.lang
             }).
             datepicker('update', (function() {
                 var dayMax = new Date($rootScope.dateMax || 0).getDay() + 1;

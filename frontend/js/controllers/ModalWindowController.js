@@ -11,15 +11,14 @@ App.controller('ModalWindowController', function($scope, $rootScope, db, aux) {
         $scope.getStartDate();
 
         db.getMedicines();
-
     }
 
-    $scope.setTimeModal = function(){
-        $scope.timeArr.push($scope.time)
+    $scope.setTimeModal = function() {
+        $scope.timeArr.push($scope.time);
     };
 
-    $scope.getStartDate = function (){
-        $scope.startDate = new Date($scope.date);
+    $scope.getStartDate = function() {
+        $scope.startDate = new Date($rootScope.currentDate);
 
         var year = null;
         var month = null;
@@ -58,11 +57,11 @@ App.controller('ModalWindowController', function($scope, $rootScope, db, aux) {
         $scope.dateArr = [];
     };
 
-    $scope.removeTimeTodo = function(index){
+    $scope.removeTimeTodo = function(index) {
         $scope.timeArr.splice(index, 1);
     };
 
-    $scope.removeDateTodo = function(index){
+    $scope.removeDateTodo = function(index) {
         $scope.dateArr.splice(index, 1);
     };
 

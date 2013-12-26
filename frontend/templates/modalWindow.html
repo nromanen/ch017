@@ -35,9 +35,9 @@
                     <div class="well" hide-picker>
                         <p translate>MODAL_WINDOW.STARTING_DATE</p>
                         <form ng-submit="addNewDateTimeToTodo()" class="form-inline set-date-form" role="form">
-                            <div id="datetimepicker1" class="input-group input-append left">
+                            <div class="input-group input-append left">
                                 <span class="input-group-addon glyphicon glyphicon-calendar"></span>
-                                <input data-format="yyyy-MM-dd" type="text" ng-model="date" date-picker
+                                <input type="text" ng-model="date" date-picker ng-model="todayDate"
                                        class="form-control add-on datetime" placeholder="{{date}}">
                             </div>
                             <div class="input-group number left" title="{{'MODAL_WINDOW.DAYS_COUNT' | translate}}">

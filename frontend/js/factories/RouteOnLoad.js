@@ -1,9 +1,9 @@
 
 App.factory('routeOnLoad', [
-    'localStorageService',
     '$http',
     '$location',
-    function(localStorageService, $http, $location) {
+    'aux',
+    function($http, $location, aux) {
 
         var routeOnLoad = {};
 
@@ -13,12 +13,21 @@ App.factory('routeOnLoad', [
 
         routeOnLoad.getUserData = function() {
 
-            if (localStorageService.get('currentUser') === null) {
+            if (aux.getFromLocalStorage('currentUser') === null) {
                 routeOnLoad.redirectTo('/auth');
                 return false;
             }
 
-            var currentUser = localStorageService.get('currentUser');
+            if (aux.getFromLocalStorage('remember_me') === 'false') {
+                routeOnLoad.redirectTo('/auth/logout');
+                return false;
+            }
+
+            if (aux.getFromLocalStorage('remember_me_temp') === 'true') {
+                aux.addToLocalStorage('remember_me', 'true');
+            } else aux.addToLocalStorage('remember_me', 'false');
+
+            var currentUser = aux.getFromLocalStorage('currentUser');
 
             routeOnLoad.redirectTo( '/' + currentUser.role.name + '/' + currentUser.login );
 

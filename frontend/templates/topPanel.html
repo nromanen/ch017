@@ -12,10 +12,9 @@
                         <label for="current-date" class="left datetime-filter" translate>
                             TOP_PANEL.FILTER_BY_DATE
                         </label>
-                        <div id="datetimepicker3" class="input-append">
-                            <input id="current-date"  type="text" ng-change="setCurrentDate()"
-                                   ng-model="todayDate"  class="add-on form-control"
-                                   placeholder="{{currentDate}}" datePicker>
+                        <div class="input-append">
+                            <input id="current-date" type="text" ng-change="setCurrentDate()" ng-model="todayDate"
+                                   class="add-on form-control" date-picker placeholder="{{currentDate}}">
                         </div>
                     </div>
                 </div>
