@@ -6,28 +6,30 @@ App.directive('calendar', function($rootScope, config, aux) {
         link: function($scope, element, attrs) {
             if ($rootScope.currentUser.role.check) return false;
 
-            $('#patient-datepicker div').datepicker({
-                format: "yyyy-mm-dd",
-                weekStart: 1,
-                keyboardNavigation: false,
-                startDate: $rootScope.dateMin,
-                endDate: $rootScope.dateMax,
-                language: $rootScope.lang || config.lang
-            }).
-            datepicker('update', (function() {
-                var dayMax = new Date($rootScope.dateMax || 0).getDay() + 1;
-                var today = new Date().getDay() + 1;
+            $rootScope.$watch('lang', function() {
+                $('#patient-datepicker div')
+                .datepicker('remove')
+                .datepicker({
+                    format: "yyyy-mm-dd",
+                    weekStart: 1,
+                    keyboardNavigation: false,
+                    startDate: $rootScope.dateMin,
+                    endDate: $rootScope.dateMax,
+                    language: $rootScope.lang || config.lang
+                }).
+                datepicker('update', (function() {
+                    var dayMax = new Date($rootScope.dateMax || 0).getDay() + 1;
+                    var today = new Date().getDay() + 1;
 
-                if (dayMax < today) return $rootScope.dateMax;
+                    if (dayMax < today) return $rootScope.dateMax;
 
-                return $rootScope.dateMax.replace(dayMax, today);
-            })()).
-            on('changeDate', function(dateScope) {
-                $rootScope.currentDate = aux.getDateFromUTC(dateScope.date);
-                $rootScope.$apply();
-            });
-
-            $rootScope.currentDate = aux.getDateFromUTC( $('#patient-datepicker div').datepicker('getDate') );
+                    return $rootScope.dateMax.replace(dayMax, today);
+                })()).
+                on('changeDate', function(dateScope) {
+                    $rootScope.currentDate = aux.getDateFromUTC(dateScope.date);
+                    $rootScope.$apply();
+                });
+            }, true);
         }
     }
 });
