@@ -1,5 +1,5 @@
 
-App.controller('TopPanelController', function($scope, $translate, $rootScope) {
+App.controller('TopPanelController', function($scope, $translate, $rootScope, aux) {
 
     $scope.languagesList = ['en', 'ru', 'ua'];
 

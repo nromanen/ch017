@@ -343,7 +343,7 @@ body {
 }
 
 #patient-datepicker th, .datepicker .datepicker-days .table-condensed thead tr th {
-    padding: 3px;
+    padding: 2px;
 }
 
 #patient-datepicker .day:not(.disabled) {
@@ -472,4 +472,8 @@ body {
 
 .time-list {
     margin-top: 15px;
+}
+
+.dropdown > a {
+    cursor: pointer;
 }
