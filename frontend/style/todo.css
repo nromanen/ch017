@@ -135,7 +135,7 @@ body {
 }
 
 .content {
-    height: 40px;
+   /* height: 40px;*/
 }
 
 .content > input[type=checkbox] {
@@ -145,6 +145,9 @@ body {
 .content > span {
     display: inline-block;
     margin-top: 10px;
+    margin-bottom: 10px;
+    width:360px;
+    word-wrap: break-word;
 }
 
 .remove-icon {
@@ -336,7 +339,8 @@ body {
 }
 
 .edittodo-removedate {
-    margin-right: 10px;
+    margin-right: 0px;
+    margin-left: 3px;
     margin-top: 1px;
     display: inline-table;
     cursor: pointer;
@@ -373,7 +377,7 @@ body {
 }
 
 .glyphicon {
-    top: 0;
+    top: 2px;
 }
 
 .form-inline .input-group {
@@ -472,4 +476,14 @@ body {
 
 .time-list {
     margin-top: 15px;
+}
+
+.modalWindowListBadges li{
+    display:inline-block;
+    margin-right: 5px;
+    padding-left: 0px;
+}
+
+.modalWindowListBadges{
+    padding-left: 0px;
 }

@@ -51,10 +51,11 @@
                             <button type="button" class="btn btn-primary set-date"
                                     ng-click="getStartDate()" translate>MODAL_WINDOW.SET_DATE</button>
                         </form><br/>
-                        <ul>
-                            <li ng-repeat="date in dateArr">{{date}}
-                                <div class="glyphicon glyphicon-remove edittodo-removedate remove-time-icon"
-                                     ng-click="removeDateTodo($index)"></div></li>
+                        <ul class="modalWindowListBadges">
+                            <li ng-repeat="date in dateArr"><span class="label label-primary">{{date}}
+                                <span class="glyphicon glyphicon-remove edittodo-removedate remove-time-icon"
+                                ng-click="removeDateTodo($index)" ></span></span>
+                            </li>
                         </ul>
                     </div>
                     <div class="well" hide-picker>
@@ -71,11 +72,10 @@
                         </form>
                         <div class="time-list">
                             <p ng-show="todoExample.time.length" translate>MODAL_WINDOW.DONE_HINT</p>
-                            <ul>
-                                <li ng-repeat="time in timeArr">
-                                    <span>{{time}}</span>
-                                    <div class="glyphicon glyphicon-remove edittodo-removedate remove-time-icon"
-                                         ng-click="removeTimeTodo($index)"></div>
+                            <ul class="modalWindowListBadges">
+                                <li ng-repeat="time in timeArr"><span class="label label-primary">{{time}}
+                                        <span class="glyphicon glyphicon-remove edittodo-removedate remove-time-icon"
+                                        ng-click="removeTimeTodo($index)" ></span></span>
                                 </li>
                             </ul>
                         </div>

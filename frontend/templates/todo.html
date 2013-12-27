@@ -26,7 +26,7 @@
                     title="click if you want to edit" ng-repeat="todo in currentPatient.todo | filter:searchQuery">
                     <div ng-repeat="time in todo.time | filter:currentDate | morning:this" class="width9 right">
                         <div class="content" mouseover mouseout>
-                            <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo, time)"
+                            <input type="checkbox" class="left check_done " ng-click="prepareToRemove(todo, time)"
                                    ng-model="time.done" ng-show="canCheckTodo(time.date,time.time)">
                             <span data-target="#myModal"  data-toggle="modal"
                                   todo-item="{{todo.id}}" time-item="{{ time.id }}"
