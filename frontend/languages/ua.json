@@ -17,7 +17,8 @@
         "PART_MORNING": "Ранок",
         "PART_NOON": "Полудень",
         "PART_EVENING": "Вечір",
-        "SEARCHINPUT_PLACEHOLDER": "Пошук"
+        "SEARCHINPUT_PLACEHOLDER": "Пошук",
+        "ITEM_TITLE": "Натисніть для редагування"
     },
     "PATIENT_LIST": {
         "TITLE": "Пацієнти:"
@@ -29,7 +30,6 @@
         "DESCRIPTION_PLACEHOLDER": "Почніть вводити опис тут",
         "TIME": "Час:",
         "ADD_TIME": "Додати час",
-        "DONE_HINT": "Ця задача повинна бути зроблена у:",
         "STARTING_DATE": "Дата:",
         "SET_DATE": "Додати дату",
         "DAYS_COUNT": "Період",

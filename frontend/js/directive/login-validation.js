@@ -1,6 +1,6 @@
 
 App.directive('login', function() {
     return function(scope, element) {
-        element.attr('pattern', '^[a-zA-Z][a-zA-Z0-9-_\.]{2,}$');
+        element.attr('pattern', '^[a-zA-Z0-9-_\.]{3,}$');
     }
 });

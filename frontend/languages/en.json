@@ -17,7 +17,8 @@
         "PART_MORNING": "Morning",
         "PART_NOON": "Noon",
         "PART_EVENING": "Evening",
-        "SEARCHINPUT_PLACEHOLDER": "Search"
+        "SEARCHINPUT_PLACEHOLDER": "Search",
+        "ITEM_TITLE": "Click to edit"
     },
     "PATIENT_LIST": {
         "TITLE": "Patients:"
@@ -29,7 +30,6 @@
         "DESCRIPTION_PLACEHOLDER": "Start typing description here",
         "TIME": "Time:",
         "ADD_TIME": "Add Time",
-        "DONE_HINT": "This task shall be done at:",
         "STARTING_DATE": "Date:",
         "SET_DATE": "Add Date",
         "DAYS_COUNT": "Period",

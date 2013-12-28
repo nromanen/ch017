@@ -38,13 +38,9 @@ body {
 }
 
 .actualTime {
-    position: relative;
-    width: 30em;
-    left: 50%;
-    margin-left: -20em;
-    float:left;
     padding-top: 14px;
-    display:inline-flex;
+    display: inline-flex;
+    margin-left: 155px;
 }
 
 .actualTime input {
@@ -84,6 +80,10 @@ body {
     cursor: pointer;
 }
 
+.cursor-default {
+    cursor: default !important;
+}
+
 .clear {
     clear: both;
 }
@@ -119,7 +119,7 @@ body {
     list-style-type: none;
 }
 
-#list .task_list:hover {
+#list .task_list span:hover {
     background: #ffffff;
     cursor: pointer;
 }
@@ -270,6 +270,7 @@ body {
 
 .navbar {
     border: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .navbar .container {
@@ -354,22 +355,9 @@ body {
     font-weight: bold;
 }
 
-.moderation-buttons {
-    margin-bottom: 10px;
+.modalstartbutton {
     float: right;
-}
-
-.moderation-buttons button {
-    padding: 6px;
-}
-
-.moderation-buttons .modalstartbutton {
-    float: left;
-    margin-right: 6px;
-}
-
-.moderation-buttons .btn-block {
-    width: auto;
+    margin-bottom: 10px;
 }
 
 .btn {

@@ -7,7 +7,6 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         done: false,
         time: []
     };
-    $scope.todoToRemove = [];
 
     init();
 
@@ -100,44 +99,55 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         return 0;
     }
 
-    //check rules
     $scope.canAddTodo = function() {
         return $scope.currentUser.role.add;
     };
 
-    $scope.canEditTodo = function(todoID,timeID) {
+    $scope.canEditTodo = function(todoID, timeID) {
         var can = true;
         var current_date = new Date();
-        if (($scope.currentUser.role.edit) && (todoID != undefined)){
-            var tododate = new Date(getTimeById(todoID,timeID));
+
+        if (($scope.currentUser.role.edit) && (todoID !== undefined)) {
+            var tododate = new Date(getTimeById(todoID, timeID));
+
             can = (current_date.getDate() <= tododate.getDate()) &&
-                (current_date.getMonth() <= tododate.getMonth()) &&
-                (current_date.getYear() <= tododate.getYear());
+                  (current_date.getMonth() <= tododate.getMonth()) &&
+                  (current_date.getYear() <= tododate.getYear());
         }
+
         return can;
     };
 
     $scope.canRemoveTodo = function(todoID, timeID) {
+        if ($scope.currentUser.role.remove === false) return false;
+
         var can = true;
         var current_date = new Date();
-        if (($scope.currentUser.role.remove) && (todoID != undefined)) {
-            var tododate = new Date(getTimeById(todoID,timeID));
+
+        if (($scope.currentUser.role.remove) && (todoID !== undefined)) {
+            var tododate = new Date(getTimeById(todoID, timeID));
+
             can = (current_date.getDate() <= tododate.getDate()) &&
-                (current_date.getMonth() <= tododate.getMonth()) &&
-                (current_date.getYear() <= tododate.getYear());
-            }
+                  (current_date.getMonth() <= tododate.getMonth()) &&
+                  (current_date.getYear() <= tododate.getYear());
+        }
+
         return can;
     };
 
-    $scope.canCheckTodo = function(date,time) {
-       var can = true;
-       var current_date = new Date();
-       var todo_date = new Date(date);
-       if ($scope.currentUser.role.check) {
+    $scope.canCheckTodo = function(date, time) {
+        if ($scope.currentUser.role.check === false) return false;
+
+        var can = true;
+        var current_date = new Date();
+        var todo_date = new Date(date);
+
+        if ($scope.currentUser.role.check) {
             can = (current_date.getDate() == todo_date.getDate()) &&
                   (current_date.getMonth() == todo_date.getMonth()) &&
                   (current_date.getYear() == todo_date.getYear());
         }
+
         return can;
     };
 
@@ -159,14 +169,7 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         return count;
     };
 
-    $scope.prepareToRemove = function(todo, time) {
-        if (time.done) {
-            $scope.todoToRemove.push({todo: todo.id, time: time.id});
-        } else {
-            var index = $scope.todoToRemove.indexOf({todo: todo.id, time: time.id});
-            $scope.todoToRemove.splice(index, 1);
-        }
-
+    $scope.prepareToRemove = function(todo) {
         db.editTodo(todo);
     };
 
