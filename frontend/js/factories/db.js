@@ -90,10 +90,10 @@ App.factory('db', function($rootScope, $http, config, aux) {
         },
 
         getMedicines: function() {
-            var queryUrl = config.serverUrl + config.apiUrl + 'medicines/' + config.jsonpCallback;
+            var queryUrl = config.apiUrl + 'medicines/';
 
             return (
-                $http.jsonp(queryUrl).
+                $http.get(queryUrl).
                 success(function(data, status) {
 
                     $rootScope.medicines = data;
