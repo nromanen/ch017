@@ -85,7 +85,7 @@ class TodoHandler(BaseHandler):
         if request.content_type:
             patient_id = request.data["patient_id"]
             todo = loads(request.data["data"])
-            new_todo = Todo.objects.create(text=todo["text"], done=todo["done"])
+            new_todo = Todo.objects.create(text=todo["text"])
             new_todo.users_set.add(Users.objects.get(pk=patient_id))
             new_todo.save()
             for date in todo["time"]:
@@ -104,7 +104,6 @@ class TodoHandler(BaseHandler):
             todo = loads(todo)
             todo_item = get_object_or_404(Todo, pk=todo_id)
             todo_item.text = todo["text"]
-            todo_item.done = todo["done"]
             todo_item.save()
             Time.objects.filter(todo__id=todo_id).delete()
             for date in todo["time"]:
