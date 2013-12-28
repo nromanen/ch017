@@ -21,22 +21,20 @@ class Users(models.Model):
     password = models.CharField(max_length=255, blank=False, null=False)
     role = models.ForeignKey(Role, blank=False, null=False)
     todo = models.ManyToManyField("Todo", blank=True, null=True)
-    access_token = models.CharField(max_length=40, blank=False, null=False)
 
     def __unicode__(self):
         return "{} {}".format(self.first_name, self.last_name)
 
     class Meta:
         unique_together = ['login']
+        verbose_name_plural = "Users"
 
 
 class Todo(models.Model):
     text = models.TextField(blank=False, null=False)
     datetime_created = models.DateTimeField(auto_now=True)
     datetime_finished = models.DateTimeField(null=True)
-    amount = models.IntegerField(default=1)
     time = models.ManyToManyField("Time", blank=False, null=False)
-    done = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.text
@@ -56,6 +54,9 @@ class Medicines(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    class Meta:
+        verbose_name_plural = "Medicines"
 
 
 class Time(models.Model):
@@ -85,7 +86,7 @@ class ViewUserInAdmin(admin.ModelAdmin):
 
 
 class ViewTodoInAdmin(admin.ModelAdmin):
-    list_display = ['text', 'date_created', 'date_finished', 'amount']
+    list_display = ['text', 'date_created', 'date_finished']
 
 
 class ViewMedicinesInAdmin(admin.ModelAdmin):

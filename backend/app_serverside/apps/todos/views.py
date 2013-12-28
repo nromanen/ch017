@@ -26,14 +26,11 @@ class UserHandler(BaseHandler):
             'remove',
             'check'
         )),
-        'access_token',
         ('todo',
             (
                 'text',
                 'date_created',
                 'date_finished',
-                'amount',
-                'done',
                 ('time',
                     ('id',
                      'date',
@@ -44,32 +41,24 @@ class UserHandler(BaseHandler):
         )
     )
 
-    def get_user(self, login, password):
-        password = base64.b64decode(password)
-        return Users.objects.get(login=login, password=password)
-
     def read(self, request, role=None, login=None, password=None):
         if role:
-            try:
-                return Users.objects.filter(role__name=role)
-            except AttributeError:
-                return rc.BAD_REQUEST
+            return Users.objects.filter(role__name=role)
         elif login and password:
-            return self.get_user(login, password)
+            password = base64.b64decode(password)
+            return Users.objects.get(login=login, password=password)
         else:
             return Users.objects.all()
 
 
 class TodoHandler(BaseHandler):
-    allowed_methods = ('GET', 'PUT', 'POST', 'DELETE')
+    allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
     model = Todo
     fields = (
         'id',
         'text',
         'date_created',
         'date_finished',
-        'amount',
-        'done',
         ('time',
             ('id',
              'date',
@@ -79,67 +68,59 @@ class TodoHandler(BaseHandler):
         )
     )
 
-    def read(self, request, login=None, password=None):
-        method = request.GET.get("method")
-        identify = request.GET.get("id")
-        data = request.GET.get("data")
-
-        try:
-            user = Users.objects.get(pk=request.GET.get("user_id"))
-        except Users.DoesNotExist:
-            raise Http404()
-
-        if login and password:
+    def read(self, request, login=None, password=None, user_id=None, todo_id=None):
+        if user_id:
+            user = Users.objects.get(pk=user_id)
+            return user.todo.all()
+        elif login and password:
             password = base64.b64decode(password)
             user = Users.objects.get(login=login, password=password)
-            return user.todo.all() if user else rc.BAD_REQUEST
-        elif method == "PUT" and user.role.edit:
-            return self.update(request, data)
-        elif method == "POST" and user.role.add:
-            return self.create(request, identify, data)
-        elif method == "DELETE" and user.role.remove:
-            return self.delete(request, identify)
+            return user.todo.all()
+        elif todo_id:
+            return Todo.objects.get(pk=todo_id)
         else:
             return Todo.objects.all()
 
-    def create(self, request, user_id, data):
-        todo = loads(urllib.unquote(data))
-        new_todo = Todo.objects.create(text=todo["text"], done=todo["done"])
-        new_todo.users_set.add(Users.objects.get(pk=user_id))
-        new_todo.save()
-        for date in todo["time"]:
-            time = Time.objects.create(
-                datetime=datetime.datetime.strptime(' '.join([date["date"], date["time"]]), '%Y-%m-%d %H:%M:%S')
-            )
-            time.todo_set.add(new_todo)
-            time.save()
+    def create(self, request, user_id):
+        if request.content_type:
+            patient_id = request.data["patient_id"]
+            todo = loads(request.data["data"])
+            new_todo = Todo.objects.create(text=todo["text"], done=todo["done"])
+            new_todo.users_set.add(Users.objects.get(pk=patient_id))
+            new_todo.save()
+            for date in todo["time"]:
+                time = Time.objects.create(
+                    datetime=datetime.datetime.strptime(' '.join([date["date"], date["time"]]), '%Y-%m-%d %H:%M:%S')
+                )
+                time.todo_set.add(new_todo)
+                time.save()
 
-        return {"todo_id": new_todo.id}
+            return {"todo_id": new_todo.id}
+        return rc.BAD_REQUEST
 
+    def update(self, request, todo_id, user_id):
+        if request.content_type:
+            todo = loads(urllib.unquote(request.data["data"]))
+            todo = loads(todo)
+            todo_item = get_object_or_404(Todo, pk=todo_id)
+            todo_item.text = todo["text"]
+            todo_item.done = todo["done"]
+            todo_item.save()
+            Time.objects.filter(todo__id=todo_id).delete()
+            for date in todo["time"]:
+                time = Time.objects.create(
+                    datetime=datetime.datetime.strptime(' '.join([date["date"], date["time"]]), '%Y-%m-%d %H:%M:%S'),
+                    done=date["done"]
+                )
+                time.todo_set.add(todo_item)
+                time.save()
+            return rc.ALL_OK
+        return rc.BAD_REQUEST
 
-    def update(self, request, data):
-        todo = loads(urllib.unquote(data))
-        todo_item = get_object_or_404(Todo, pk=todo["id"])
-        todo_item.text = todo["text"]
-        todo_item.done = todo["done"]
-        todo_item.save()
-        Time.objects.filter(todo__id=todo["id"]).delete()
-        for date in todo["time"]:
-            time = Time.objects.create(
-                datetime=datetime.datetime.strptime(' '.join([date["date"], date["time"]]), '%Y-%m-%d %H:%M:%S'),
-                done=date["done"]
-            )
-            time.todo_set.add(todo_item)
-            time.save()
-
-        return {"success": True}
-
-    def delete(self, request, time_id):
-        todo_time = get_object_or_404(Time, pk=time_id)
-
+    def delete(self, request, todo_id, user_id):
+        todo_time = get_object_or_404(Time, pk=todo_id)
         todo_time.delete()
-
-        return {"success": True}
+        return rc.DELETED
 
 
 class MedicineHandler(BaseHandler):
