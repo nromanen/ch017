@@ -2,7 +2,7 @@
 <html ng-app="App">
     <head>
         <meta charset="utf-8">
-        <title>Todos</title>
+        <title translate>TITLE</title>
         <link rel="stylesheet" href="frameworks/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="frameworks/bootstrap/css/bootstrap-datetimepicker.min.css">
         <link rel="stylesheet" href="frameworks/bootstrap/css/bootstrap-datepicker.min.css">
@@ -10,20 +10,27 @@
     </head>
     <body>
         <top_panel></top_panel>
-
         <div class="main">
             <div ng-view ng-animate="{enter: 'enter-animation', leave: 'leave-animation'}"></div>
         </div>
         <script type="text/javascript" src="frameworks/jquery/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="frameworks/angular/angular.min.js"></script>
+        <script type="text/javascript" src="frameworks/angular/angular-translate.min.js"></script>
+        <script type="text/javascript" src="frameworks/angular/angular-translate-loader-static-files.min.js"></script>
         <script type="text/javascript" src="frameworks/angular/angular-local-storage.js"></script>
         <script type="text/javascript" src="frameworks/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="frameworks/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
         <script type="text/javascript" src="frameworks/bootstrap/js/bootstrap-datepicker.min.js"></script>
+        <script type="text/javascript" src="frameworks/bootstrap/js/locales/bootstrap-datepicker.ru.js"></script>
+        <script type="text/javascript" src="frameworks/bootstrap/js/locales/bootstrap-datepicker.ua.js"></script>
 
 
         <!--config file-->
         <script type="text/javascript" src="js/project-conf.js"></script>
+
+        <!--configs-->
+        <script type="text/javascript" src="js/configs/route.js"></script>
+        <script type="text/javascript" src="js/configs/translate.js"></script>
 
         <!--factories-->
         <script type="text/javascript" src="js/factories/auxiliaryMethods.js"></script>

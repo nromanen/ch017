@@ -1,4 +1,4 @@
-App.controller("TodoController", function ($scope, $rootScope, localStorageService, config, db) {
+App.controller('TodoController', function($scope, $rootScope, localStorageService, config, db, aux) {
 
     // this variable uses for edit todos and here will be new todo_item before save
     $rootScope.todoExample = {
@@ -7,15 +7,14 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         done: false,
         time: []
     };
-    $scope.todoToRemove = [];
 
     init();
 
     function init() {
-        $scope.users = localStorageService.get("users") || [];
-        $rootScope.currentUser = localStorageService.get("currentUser");
+        $scope.users = localStorageService.get('users') || [];
+        $rootScope.currentUser = localStorageService.get('currentUser');
         $rootScope.userPhoto = config.serverUrl + config.imagesPath + $scope.currentUser.foto;
-
+        $rootScope.currentDate = aux.getDateFromUTC(new Date());
         $rootScope.topPanelHider = false;
 
         if (!$scope.currentUser.role.add && !$scope.currentUser.role.edit &&
@@ -39,14 +38,14 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
 
     function getPatientFromUsers(patientId) {
 
-        var activeUser = $scope.users.filter(function (user) {
+        var activeUser = $scope.users.filter(function(user) {
             return user.id === patientId;
         });
         return activeUser[0];
     }
 
     function updatePatientFromUsers(patientId) {
-        $scope.users.forEach(function (user, index) {
+        $scope.users.forEach(function(user, index) {
             if (user.id === patientId) {
                 $scope.users[index] = $rootScope.currentPatient;
             }
@@ -57,7 +56,7 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     $scope.updateLocalStorage = function() {
         updatePatientFromUsers($rootScope.currentPatient.id);
         localStorageService.add('users', $scope.users);
-    }
+    };
 
     $scope.addNewTodo = function() {
         if (!$rootScope.todoExample.text) return false;
@@ -78,21 +77,20 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
     $scope.getTodoAmount = function() {
         var amount = 0;
 
-        for(var index = 0; index < $rootScope.currentPatient.todo.length; index++) {
+        for (var index = 0; index < $rootScope.currentPatient.todo.length; index++) {
             amount += $rootScope.currentPatient.todo[index].time.filter(function(time) {
-                return time.date.split("-").reverse()[0] === $scope.currentDate.split("-").reverse()[0] && !time.done;
+                return time.date.split('-').reverse()[0] === $scope.currentDate.split('-').reverse()[0] && !time.done;
             }).length;
         }
         return amount;
     };
 
 
-    function getTimeById(todoID,timeID) {
-
-        for( var index = 0; index < $rootScope.currentPatient.todo.length; index++){
-            if($rootScope.currentPatient.todo[index].id==todoID){
-                for(i=0; i < $rootScope.currentPatient.todo[index].time.length; i++){
-                    if($rootScope.currentPatient.todo[index].time[i].id == timeID){
+    function getTimeById(todoID, timeID) {
+        for (var index = 0; index < $rootScope.currentPatient.todo.length; index++) {
+            if ($rootScope.currentPatient.todo[index].id==todoID){
+                for (var i = 0; i < $rootScope.currentPatient.todo[index].time.length; i++) {
+                    if ($rootScope.currentPatient.todo[index].time[i].id == timeID) {
                         return $rootScope.currentPatient.todo[index].time[i].date;
                     }
                 }
@@ -101,51 +99,66 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         return 0;
     }
 
-    //check rules
     $scope.canAddTodo = function() {
         return $scope.currentUser.role.add;
     };
 
-    $scope.canEditTodo = function() {
-        return $scope.currentUser.role.edit;
-    };
-
-    $scope.canRemoveTodo = function(todoID,timeID) {
-        var can=true;
+    $scope.canEditTodo = function(todoID, timeID) {
+        var can = true;
         var current_date = new Date();
-        if (($scope.currentUser.role.remove)&&(todoID != undefined)) {
-            var tododate = new Date(getTimeById(todoID,timeID));
-            can = (current_date.getDate() <= tododate.getDate())&&
-                (current_date.getMonth() <= tododate.getMonth())&&
-                (current_date.getYear() <= tododate.getYear());
-            }
+
+        if (($scope.currentUser.role.edit) && (todoID !== undefined)) {
+            var tododate = new Date(getTimeById(todoID, timeID));
+
+            can = (current_date.getDate() <= tododate.getDate()) &&
+                  (current_date.getMonth() <= tododate.getMonth()) &&
+                  (current_date.getYear() <= tododate.getYear());
+        }
+
         return can;
     };
 
-    $scope.canCheckTodo = function(date,time) {
-       var can=true;
-       var current_date = new Date();
-       var todo_date = new Date(date);
-       if ($scope.currentUser.role.check) {
-            can = (current_date.getDate() == todo_date.getDate())&&
-                  (current_date.getMonth() == todo_date.getMonth())&&
+    $scope.canRemoveTodo = function(todoID, timeID) {
+        if ($scope.currentUser.role.remove === false) return false;
+
+        var can = true;
+        var current_date = new Date();
+
+        if (($scope.currentUser.role.remove) && (todoID !== undefined)) {
+            var tododate = new Date(getTimeById(todoID, timeID));
+
+            can = (current_date.getDate() <= tododate.getDate()) &&
+                  (current_date.getMonth() <= tododate.getMonth()) &&
+                  (current_date.getYear() <= tododate.getYear());
+        }
+
+        return can;
+    };
+
+    $scope.canCheckTodo = function(date, time) {
+        if ($scope.currentUser.role.check === false) return false;
+
+        var can = true;
+        var current_date = new Date();
+        var todo_date = new Date(date);
+
+        if ($scope.currentUser.role.check) {
+            can = (current_date.getDate() == todo_date.getDate()) &&
+                  (current_date.getMonth() == todo_date.getMonth()) &&
                   (current_date.getYear() == todo_date.getYear());
         }
+
         return can;
     };
-
-
-
-
 
     $scope.setActivePatient = function(patientId) {
         $rootScope.currentPatient = getPatientFromUsers(patientId);
-    }
+    };
 
     $scope.getActiveTaskQuantity = function() {
         var count = 0;
 
-        if(!$rootScope.currentPatient.todo.length) return 0;
+        if (!$rootScope.currentPatient.todo.length) return 0;
 
         $rootScope.currentPatient.todo.forEach(function(todo) {
             if (!todo.done) {
@@ -156,27 +169,7 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
         return count;
     };
 
-    $scope.clearDoneTodos = function() {
-        $scope.todoToRemove.forEach(function(todo, index) {
-            var todoItem = $.grep($rootScope.currentPatient.todo, function(todoItem) {
-                return todoItem.id === todo.todo;
-            })[0];
-            todoItem.time.forEach(function(timeItem, index) {
-                if (timeItem.id === todo.time) {
-                    todoItem.time.splice(index, 1);
-                    db.deleteTodo(todo.time);
-                }
-            });
-        });
-    };
-
-    $scope.prepareToRemove = function(todo, time) {
-        if (time.done) {
-            $scope.todoToRemove.push({todo: todo.id, time: time.id});
-        } else {
-            var index = $scope.todoToRemove.indexOf({todo: todo.id, time: time.id});
-            $scope.todoToRemove.splice(index, 1);
-        }
+    $scope.prepareToRemove = function(todo) {
         db.editTodo(todo);
     };
 
@@ -190,6 +183,7 @@ App.controller("TodoController", function ($scope, $rootScope, localStorageServi
                 todoItem.time.splice(index, 1);
             }
         });
+
         db.deleteTodo(time);
     };
 

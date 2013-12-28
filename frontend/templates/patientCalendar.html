@@ -1,3 +1,4 @@
-<div ng-controller="PatientCalendarController" id="patient-datepicker" ng-hide="canCheckTodo()" class="patient-calendar">
+<div ng-controller="PatientCalendarController" id="patient-datepicker" 
+     ng-show="(currentUser.role.name == 'patient' || false)" class="patient-calendar">
     <div></div>
 </div>

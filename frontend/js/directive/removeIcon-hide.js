@@ -1,13 +1,12 @@
 
-App.directive("mouseout", function () {
+App.directive('mouseout', function() {
     return {
-        restrict: "A",
-        link: function (scope, elem, attrs) {
-            elem.bind('mouseout', function () {
+        restrict: 'A',
+        link: function(scope, elem, attrs) {
+            elem.bind('mouseout', function() {
                 scope.$apply(attrs.mouseout);
-                elem.children(".remove-icon").hide();
+                elem.children('.remove-icon').hide();
             });
         }
     }
 });
-

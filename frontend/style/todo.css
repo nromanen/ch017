@@ -3,7 +3,7 @@ body {
 }
 
 .main {
-    margin: 0 auto;
+    margin: 20px auto;
     position: relative;
     width: 960px;
 }
@@ -38,13 +38,9 @@ body {
 }
 
 .actualTime {
-    position: relative;
-    width: 30em;
-    left: 50%;
-    margin-left: -20em;
-    float:left;
     padding-top: 14px;
-    display:inline-flex;
+    display: inline-flex;
+    margin-left: 155px;
 }
 
 .actualTime input {
@@ -84,6 +80,10 @@ body {
     cursor: pointer;
 }
 
+.cursor-default {
+    cursor: default !important;
+}
+
 .clear {
     clear: both;
 }
@@ -119,7 +119,7 @@ body {
     list-style-type: none;
 }
 
-#list .task_list:hover {
+#list .task_list span:hover {
     background: #ffffff;
     cursor: pointer;
 }
@@ -135,7 +135,7 @@ body {
 }
 
 .content {
-    height: 40px;
+   /* height: 40px;*/
 }
 
 .content > input[type=checkbox] {
@@ -145,6 +145,9 @@ body {
 .content > span {
     display: inline-block;
     margin-top: 10px;
+    margin-bottom: 10px;
+    width:360px;
+    word-wrap: break-word;
 }
 
 .remove-icon {
@@ -267,6 +270,7 @@ body {
 
 .navbar {
     border: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .navbar .container {
@@ -324,7 +328,7 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.2);
     background-color: #F5F5F5;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    margin-left: 28px;
+    margin-left: 38px;
 }
 
 .datepicker .datepicker-days .table-condensed {
@@ -336,37 +340,24 @@ body {
 }
 
 .edittodo-removedate {
-    margin-right: 10px;
+    margin-right: 0px;
+    margin-left: 3px;
     margin-top: 1px;
     display: inline-table;
     cursor: pointer;
 }
 
 #patient-datepicker th, .datepicker .datepicker-days .table-condensed thead tr th {
-    padding: 3px;
+    padding: 2px;
 }
 
 #patient-datepicker .day:not(.disabled) {
     font-weight: bold;
 }
 
-.moderation-buttons {
-    margin-bottom: 10px;
+.modalstartbutton {
     float: right;
-    width: 153px;
-}
-
-.moderation-buttons button {
-    padding: 6px;
-}
-
-.moderation-buttons .modalstartbutton {
-    float: left;
-    margin-right: 6px;
-}
-
-.moderation-buttons .btn-block {
-    width: auto;
+    margin-bottom: 10px;
 }
 
 .btn {
@@ -374,13 +365,17 @@ body {
 }
 
 .glyphicon {
-    top: 0;
+    top: 2px;
 }
 
 .form-inline .input-group {
     float: left;
     margin-right: 20px;
-    width: 185px;
+    width: 140px;
+}
+
+.form-inline .input-group.time {
+    width: 122px;
 }
 
 .datepicker table tr td.active.active {
@@ -389,6 +384,10 @@ body {
 
 .datepicker table tr td.active.active:hover {
     background-color: #285E8E;
+}
+
+.modal-footer {
+    margin-top: 0;
 }
 
 .modal-footer .btn+.btn {
@@ -453,4 +452,30 @@ body {
 
 .width-input{
     width:140px;
+}
+
+.number {
+    width: 82px !important;
+}
+
+.modal-dialog {
+    width: 590px;
+}
+
+.time-list {
+    margin-top: 15px;
+}
+
+.modalWindowListBadges li{
+    display:inline-block;
+    margin-right: 5px;
+    padding-left: 0px;
+}
+
+.modalWindowListBadges{
+    padding-left: 0px;
+}
+
+.dropdown > a {
+    cursor: pointer;
 }

@@ -1,5 +1,5 @@
 
-App.controller("PatientListController", function () {
+App.controller('PatientListController', function() {
 
 
 

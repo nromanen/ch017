@@ -1,10 +1,11 @@
 
-App.controller("AuthController", function ($scope, $rootScope, $routeParams, db, aux) {
+App.controller('AuthController', function($scope, $rootScope, $routeParams, db, aux) {
 
-    function init () {
+    function init() {
+        $scope.authRemember = true;
         $rootScope.topPanelHider = true;
         
-        if($routeParams.param === 'logout') $scope.logout();
+        if ($routeParams.param === 'logout') $scope.logout();
     }
 
     $scope.logout = function() {
@@ -15,7 +16,8 @@ App.controller("AuthController", function ($scope, $rootScope, $routeParams, db,
         return false;
     };
 
-    $scope.sendData = function() {
+    $scope.submit = function() {
+        aux.addToLocalStorage('remember_me_temp', $scope.authRemember);
         db.getUserData($scope.authLogin, $scope.authPassword);
     };
 
