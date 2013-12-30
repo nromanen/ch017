@@ -67,7 +67,8 @@ class Time(models.Model):
         return "{}".format(self.datetime)
 
     def get_time(self):
-        return str(self.datetime).split(' ')[::-1][0]
+        datetime = str(self.datetime).split(' ')[::-1][0]
+        return datetime[:datetime.rfind(':')]
 
     def get_date(self):
         return str(self.datetime).split(' ')[0]

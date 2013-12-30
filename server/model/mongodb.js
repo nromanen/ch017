@@ -8,7 +8,7 @@ module.exports = {
     runStatement: function(makeQuery) {
         this.initializeDb(makeQuery);
     },
-    initializeDb: function(makeQuery){
+    initializeDb: function(makeQuery) {
 
         mongoose.connect("mongodb://localhost:27017/todoDb");
 

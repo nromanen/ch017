@@ -43,7 +43,6 @@ App.controller('ModalWindowController', function($scope, $rootScope, db, aux) {
 
     $scope.addTodoExample = function() {
 
-
         for (var timeIndex = 0; timeIndex < $scope.timeArr.length; timeIndex++) {
             for (var dateIndex = 0; dateIndex < $scope.dateArr.length; dateIndex++) {
                 fullDate = {

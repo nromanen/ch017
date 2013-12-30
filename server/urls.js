@@ -9,4 +9,7 @@ exports.route = function(app, baseRoute) {
     app.get([baseRoute, 'todos/'].join(''), todo.all);
     app.get([baseRoute, 'todo/:login/:password/'].join(''), todo.forSpecificUser);
     app.get([baseRoute, 'medicines/'].join(''), medicines.index);
+    app.post([baseRoute, 'todo/:user_id'].join(''), todo.createTodo);
+    app.put([baseRoute, 'todo/:todo_id/:user_id'].join(''), todo.updateTodo);
+    app.delete([baseRoute, 'todo/:todo_id/:user_id'].join(''), todo.deleteTodo);
 };
