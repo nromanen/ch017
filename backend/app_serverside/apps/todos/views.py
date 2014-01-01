@@ -102,8 +102,7 @@ class TodoHandler(BaseHandler):
     def update(self, request, todo_id, user_id):
         if request.content_type:
             user = Users.objects.get(pk=user_id)
-            todo = loads(urllib.unquote(request.data["data"]))
-            todo = loads(todo)
+            todo = loads(request.data["data"])
             todo_item = get_object_or_404(Todo, pk=todo_id)
             todo_item.text = todo["text"]
             todo_item.save()

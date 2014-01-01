@@ -60,10 +60,8 @@ App.factory('db', function($rootScope, $http, config, aux) {
                 });
         },
 
-        editTodo: function(object, id) {
-            object = JSON.stringify(object);
-
-            var queryUrl = config.apiUrl + 'update_todo/' + id + '/' + $rootScope.currentUser.id + '/';
+        editTodo: function(object) {
+            var queryUrl = config.apiUrl + 'update_todo/' + object.id + '/' + $rootScope.currentUser.id + '/';
             var param = {
                 data: JSON.stringify(object)
             };
