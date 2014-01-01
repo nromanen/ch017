@@ -39,7 +39,7 @@ App.factory('db', function($rootScope, $http, config, aux) {
            })
         },
 
-        addTodo: function(currentPatient, id, object) {
+        addTodo: function(id, object) {
 
             var queryUrl = config.apiUrl + 'create_todo/' + $rootScope.currentUser.id + '/';
             var param = {
