@@ -10,7 +10,9 @@
     <modal></modal>
 
     <div id="wrapper" class="modal-content">
-        <div ng-show="currentUser.role.check" class="inform" translate translate-values="{amount: getTodoAmount()}">TODO.AMOUNT</div>
+        <div ng-show="currentUser.role.check" class="inform" translate translate-values="{amount: getTodoAmount()}">
+            TODO.AMOUNT
+        </div>
 
         <button class="btn-primary btn modalstartbutton" data-toggle="modal" data-target="#myModal"
                 ng-show="canAddTodo()" clear translate>TODO.ADD_NEW_ITEM</button>

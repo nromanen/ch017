@@ -11,7 +11,7 @@
         "LOGOUT": "Log Out"
     },
     "TODO": {
-        "AMOUNT": "You have {{amount}} tasks",
+        "AMOUNT": "Amount of procedures for today: {{amount}}",
         "ADD_NEW_ITEM": "Add new task",
         "CLEAR_DONE_ITEMS": "Clear",
         "PART_MORNING": "Morning",

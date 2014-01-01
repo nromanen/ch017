@@ -11,7 +11,7 @@
         "LOGOUT": "Выход"
     },
     "TODO": {
-        "AMOUNT": "У вас есть {{amount}} задач",
+        "AMOUNT": "Количество процедур на сегодня: {{amount}}",
         "ADD_NEW_ITEM": "Добавить новую задачу",
         "CLEAR_DONE_ITEMS": "Очистить",
         "PART_MORNING": "Утро",

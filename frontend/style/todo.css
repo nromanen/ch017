@@ -20,7 +20,7 @@ body {
     font-size: 16px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    width: 30em;
+    width: 35em;
     box-shadow: 10px -3px 20px rgba(100, 100, 100, 0.5);
 
 }
@@ -38,7 +38,7 @@ body {
 }
 
 .actualTime {
-    width: 320px;
+    width: 350px;
     padding-top: 14px;
     display: inline-flex;
     margin-left: 155px;
@@ -222,7 +222,7 @@ body {
     position: relative;
     width: 20em;
     border: 1px solid #ccc;
-    right: 39px !important;
+    right: 80px !important;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
 
