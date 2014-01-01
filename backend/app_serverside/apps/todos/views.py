@@ -83,6 +83,7 @@ class TodoHandler(BaseHandler):
 
     def create(self, request, user_id):
         if request.content_type:
+            user = Users.objects.get(pk=user_id)
             patient_id = request.data["patient_id"]
             todo = loads(request.data["data"])
             new_todo = Todo.objects.create(text=todo["text"])
@@ -90,7 +91,7 @@ class TodoHandler(BaseHandler):
             new_todo.save()
             for date in todo["time"]:
                 time = Time.objects.create(
-                    datetime=datetime.datetime.strptime(' '.join([date["date"], date["time"]]), '%Y-%m-%d %H:%M')
+                    datetime=datetime.datetime.strptime(' '.join([date["date"], date["time"]]), '%Y-%m-%d %H:%M:%S')
                 )
                 time.todo_set.add(new_todo)
                 time.save()
@@ -100,6 +101,7 @@ class TodoHandler(BaseHandler):
 
     def update(self, request, todo_id, user_id):
         if request.content_type:
+            user = Users.objects.get(pk=user_id)
             todo = loads(urllib.unquote(request.data["data"]))
             todo = loads(todo)
             todo_item = get_object_or_404(Todo, pk=todo_id)
@@ -108,7 +110,7 @@ class TodoHandler(BaseHandler):
             Time.objects.filter(todo__id=todo_id).delete()
             for date in todo["time"]:
                 time = Time.objects.create(
-                    datetime=datetime.datetime.strptime(' '.join([date["date"], date["time"]]), '%Y-%m-%d %H:%M'),
+                    datetime=datetime.datetime.strptime(' '.join([date["date"], date["time"]]), '%Y-%m-%d %H:%M:%S'),
                     done=date["done"]
                 )
                 time.todo_set.add(todo_item)
@@ -117,9 +119,13 @@ class TodoHandler(BaseHandler):
         return rc.BAD_REQUEST
 
     def delete(self, request, todo_id, user_id):
-        todo_time = get_object_or_404(Time, pk=todo_id)
-        todo_time.delete()
-        return rc.DELETED
+        user = Users.objects.get(pk=user_id)
+
+        if user.role.remove:
+            todo_time = get_object_or_404(Time, pk=todo_id)
+            todo_time.delete()
+            return rc.DELETED
+        return rc.BAD_REQUEST
 
 
 class MedicineHandler(BaseHandler):

@@ -21,6 +21,9 @@ class Users(models.Model):
     password = models.CharField(max_length=255, blank=False, null=False)
     role = models.ForeignKey(Role, blank=False, null=False)
     todo = models.ManyToManyField("Todo", blank=True, null=True)
+    is_doctor = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
 
     def __unicode__(self):
         return "{} {}".format(self.first_name, self.last_name)
@@ -83,7 +86,7 @@ class ViewRoleInAdmin(admin.ModelAdmin):
 
 
 class ViewUserInAdmin(admin.ModelAdmin):
-    list_display = ['first_name', 'last_name', 'role']
+    list_display = ['first_name', 'last_name', 'role', 'is_active', 'is_staff', 'is_doctor']
 
 
 class ViewTodoInAdmin(admin.ModelAdmin):

@@ -38,6 +38,7 @@ body {
 }
 
 .actualTime {
+    width: 320px;
     padding-top: 14px;
     display: inline-flex;
     margin-left: 155px;
