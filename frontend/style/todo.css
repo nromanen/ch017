@@ -347,7 +347,10 @@ body {
     display: inline-table;
     cursor: pointer;
 }
-
+#patient-datepicker{
+    position: relative;
+    right: 40px;
+}
 #patient-datepicker th, .datepicker .datepicker-days .table-condensed thead tr th {
     padding: 2px;
 }

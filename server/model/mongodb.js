@@ -5,10 +5,7 @@ var ObjectId = Schema.Types.ObjectId;
 
 module.exports = {
 
-    runStatement: function(makeQuery) {
-        this.initializeDb(makeQuery);
-    },
-    initializeDb: function(makeQuery) {
+    initializeDb: function(next) {
 
         mongoose.connect("mongodb://localhost:27017/todoDb");
 
@@ -112,7 +109,7 @@ module.exports = {
                 Medicines: mongoose.model('Medicines', medicinesSchema)
             };
 
-            makeQuery();
+            next();
         });
     }
 };

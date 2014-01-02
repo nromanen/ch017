@@ -36,11 +36,10 @@ App.factory('db', function($rootScope, $http, config, aux) {
             }).
             error(function(data, status) {
                 aux.redirectTo( '/error/' + status );
-           })
+            });
         },
 
         addTodo: function(id, object) {
-
             var queryUrl = config.apiUrl + 'create_todo/' + $rootScope.currentUser.id + '/';
             var param = {
                 patient_id: id,

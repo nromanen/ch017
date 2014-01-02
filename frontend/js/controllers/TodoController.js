@@ -61,7 +61,7 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
     $scope.addNewTodo = function() {
         if (!$rootScope.todoExample.text) return false;
 
-        db.addTodo($rootScope.currentPatient.todo, $rootScope.currentPatient.id, $rootScope.todoExample);
+        db.addTodo($rootScope.currentPatient.id, $rootScope.todoExample);
         clearTodoExamle();
     };
 

@@ -29,36 +29,10 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-//create test records
-db.runStatement(function() {
-
-    /*db.tables.Todo({
-        text: 'first task',
-        date_created: new Date(),
-        date_finished: new Date(),
-        _time: [],
-        amount: 2
-    }).save(function (err, todo, numberAffected) {
-        if (err) throw err;
-        db.tables.Role({name: "Doctor"}).save(function(err, role){
-            db.tables.User({
-                first_name: 'Oleg',
-                last_name: 'Fostiy',
-                login: 'patient',
-                password: 'admin',
-                _todo: todo._id,
-                _role: role._id
-            }).save(function (err, todo, numberAffected) {
-                if (err) throw err;
-            });
-        });
-    });*/
-
-    db.tables.User.find().populate('_todo _role').exec(function(err, res) {
-        console.log(res);
-    });
+//connect to db
+db.initializeDb(function() {
+    console.log('Connect to DataBase')
 });
-
 
 //create routes
 routes.route(app, baseRoute);

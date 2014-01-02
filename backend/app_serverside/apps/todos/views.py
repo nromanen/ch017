@@ -68,15 +68,8 @@ class TodoHandler(BaseHandler):
         )
     )
 
-    def read(self, request, login=None, password=None, user_id=None, todo_id=None):
-        if user_id:
-            user = Users.objects.get(pk=user_id)
-            return user.todo.all()
-        elif login and password:
-            password = base64.b64decode(password)
-            user = Users.objects.get(login=login, password=password)
-            return user.todo.all()
-        elif todo_id:
+    def read(self, request, todo_id=None):
+        if todo_id:
             return Todo.objects.get(pk=todo_id)
         else:
             return Todo.objects.all()
@@ -109,7 +102,7 @@ class TodoHandler(BaseHandler):
             Time.objects.filter(todo__id=todo_id).delete()
             for date in todo["time"]:
                 time = Time.objects.create(
-                    datetime=datetime.datetime.strptime(' '.join([date["date"], date["time"]]), '%Y-%m-%d %H:%M:%S'),
+                    datetime=datetime.datetime.strptime(' '.join([date["date"], date["time"]]), '%Y-%m-%d %H:%M'),
                     done=date["done"]
                 )
                 time.todo_set.add(todo_item)
