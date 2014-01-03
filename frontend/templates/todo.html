@@ -22,7 +22,7 @@
         <div class="panel panel-default">
             <div class="panel-heading" translate>TODO.PART_MORNING</div>
             <ul id="list" class="list-group" update-local-storage-on-change>
-                <li class="task_list" title="{{'TODO.ITEM_TITLE' | translate}}" 
+                <li class="task_list" title="{{'TODO.ITEM_TITLE' | translate}}"
                     ng-repeat="todo in currentPatient.todo | filter:searchQuery">
                     <div ng-repeat="time in todo.time | filter:currentDate | morning:this" class="width9 right">
                         <div class="content" mouseover mouseout>

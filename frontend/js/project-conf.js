@@ -5,7 +5,6 @@ var App = angular.module('App', [
 
     $rootScope.$on('$routeChangeSuccess', function() {
         if ($routeParams.param === 'logout') return false;
-
         routeOnLoad.getUserData($rootScope, localStorageService, $http, $location);
     });
 

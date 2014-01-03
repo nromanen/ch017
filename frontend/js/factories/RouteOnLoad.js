@@ -3,7 +3,8 @@ App.factory('routeOnLoad', [
     '$http',
     '$location',
     'aux',
-    function($http, $location, aux) {
+    'db',
+    function($http, $location, aux, db) {
 
         var routeOnLoad = {};
 
@@ -29,8 +30,7 @@ App.factory('routeOnLoad', [
 
             var currentUser = aux.getFromLocalStorage('currentUser');
 
-            routeOnLoad.redirectTo( '/' + currentUser.role.name + '/' + currentUser.login );
-
+            db.getPatientList(currentUser);
         };
 
         return routeOnLoad;

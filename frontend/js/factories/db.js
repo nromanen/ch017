@@ -2,28 +2,31 @@ App.factory('db', function($rootScope, $http, config, aux) {
     return {
 
         getUserData: function(login, password) {
+            var self = this;
             var password = btoa(password);
             var queryUrl = config.apiUrl + 'user/' + login + '/' + password + '/';
 
             $http.get(queryUrl).
-            success(function(data, status) {
+            success(function(user, status) {
 
-                if (data.result === false) {
-                    aux.showHint('hintText', data.error);
+                if (user.result === false) {
+                    aux.showHint('hintText', user.error);
                     return false;
                 }
+                aux.addToLocalStorage('currentUser', user);
 
-                aux.addToLocalStorage('currentUser', data);
-
-                aux.redirectTo( '/' + data.role.name + '/' + data.login );
-
+                if (!user.is_staff && !user.is_doctor) {
+                    self.getPatientList(user);
+                } else {
+                    aux.redirectTo( '/' + user.role.name + '/' + user.login );
+                }
             }).
             error(function(data, status) {
                 aux.showHint('hintText', data.error);
             });
         },
 
-        getPatientList: function() {
+        getPatientList: function(currentUser) {
             var queryUrl = config.apiUrl + 'users_by_role/patient/';
 
             $http.get(queryUrl).
@@ -32,11 +35,12 @@ App.factory('db', function($rootScope, $http, config, aux) {
                 data.sort(aux.sortByAlphabet);
                 $rootScope.patientList = data;
                 aux.addToLocalStorage('users', data);
+                aux.redirectTo( '/' + currentUser.role.name + '/' + currentUser.login );
 
             }).
             error(function(data, status) {
                 aux.redirectTo( '/error/' + status );
-            });
+           });
         },
 
         addTodo: function(id, object) {
