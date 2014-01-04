@@ -73,7 +73,7 @@ describe("Test all directives of our project", function () {
     it("test login validation directive", function () {
         var element = $compile('<input login>')($rootScope);
 
-        expect(element.attr("pattern")).toBe("^[a-zA-Z][a-zA-Z0-9-_\.]{2,}$");
+        expect(element.attr("pattern")).toBe("^[a-zA-Z0-9-_.]{3,}$");
     });
 
     it('test modal window directive', inject(function($compile, $rootScope, $templateCache) {

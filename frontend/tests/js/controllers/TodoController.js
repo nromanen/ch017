@@ -1,6 +1,7 @@
 describe('TodoController', function() {
 
     var localStorage = {};
+    var $httpBackend;
 
     beforeEach(function () {
         var store = {};
@@ -25,6 +26,14 @@ describe('TodoController', function() {
 
     beforeEach(module('App'));
 
+    beforeEach(inject(function($injector) {
+        $httpBackend = $injector.get('$httpBackend');
+        //$httpBackend.when('GET', '/api/create_todo/1/').respond({userId: 'userX'}, {'A-Token': 'xxx'});
+        $httpBackend.when('POST', 'api/create_todo/1/').respond({});
+        $httpBackend.when('PUT', 'api/update_todo/2/1/').respond({});
+        $httpBackend.when('DELETE', 'api/delete_todo/1/1/').respond({});
+    }));
+
     beforeEach(function () {
         var store = {};
 
@@ -46,22 +55,14 @@ describe('TodoController', function() {
         //localStorageService.get("currentUser");
     });
 
+    afterEach(function() {
+        $httpBackend.verifyNoOutstandingExpectation();
+        $httpBackend.verifyNoOutstandingRequest();
+    });
+
     it('Should initialize contorller', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
         $rootScope.todoExample = {};
-/*
-        $rootScope.todoExample.text = false;
-        expect($rootScope.addNewTodo()).toBe(false);
-
-        $rootScope.todoExample.text = true;
-        expect($rootScope.addNewTodo()).toBeUndefined();
-*/
-    }));
-
-    it('Should add new DateTime to todo', inject(function ($controller, $rootScope) {
-        var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-
-        expect($rootScope.addNewDateTimeToTodo()).toBeUndefined();
     }));
 
     it('Should update HTML5 Local Storage', inject(function ($controller, $rootScope) {
@@ -74,18 +75,6 @@ describe('TodoController', function() {
 
         $rootScope.currentPatient.id = 3;
         expect($rootScope.updateLocalStorage()).toBeUndefined();
-    }));
-
-    it('Should add new DateTime to todo', inject(function ($controller, $rootScope) {
-        var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-
-        expect($rootScope.addNewDateTimeToTodo()).toBeUndefined();
-    }));
-
-    it('Should remove DateTime from todo', inject(function ($controller, $rootScope) {
-        var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-
-        expect($rootScope.removeDateTimeTodo()).toBeUndefined();
     }));
 
     it('Should check rights to add item', inject(function ($controller, $rootScope) {
@@ -125,22 +114,30 @@ describe('TodoController', function() {
 
     it('Should add item', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-        $rootScope.currentPatient = {todo: []};
+
+        $rootScope.currentPatient = {id: 1, todo: []};
+        $rootScope.currentUser = {id: 1};
         $rootScope.todoExample = {};
 
         $rootScope.todoExample.text = false;
         expect($rootScope.addNewTodo()).toBe(false);
-
         $rootScope.todoExample.text = true;
+
+        $httpBackend.expectPOST('api/create_todo/1/');
         expect($rootScope.addNewTodo()).toBeUndefined();
+        $httpBackend.flush();
     }));
 
     it('Should update item', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-        $rootScope.currentPatient = {"todo": [{"id": 1}, {"id": 2}]};
-        $rootScope.todoExample = {"id": 2};
 
+        $rootScope.currentPatient = {id: 1, "todo": [{"id": 1}, {"id": 2}]};
+        $rootScope.currentUser = {id: 1};
+        $rootScope.todoExample = {id: 2};
+
+        $httpBackend.expectPUT('api/update_todo/2/1/');
         expect($rootScope.updateTodo()).toBeUndefined();
+        $httpBackend.flush();
     }));
 
     it('Should get number of active items', inject(function ($controller, $rootScope) {
@@ -192,29 +189,43 @@ describe('TodoController', function() {
 
     it('Should clear done items', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-        $rootScope.currentPatient = {todo: [{}]};
 
-        $rootScope.currentPatient.todo[0].done = false;
-        expect($rootScope.clearDoneTodos()).toBeUndefined();
-
-        $rootScope.currentPatient.todo[0].done = true;
-        expect($rootScope.clearDoneTodos()).toBeUndefined();
+        $rootScope.currentPatient = {
+            todo: [
+                {id: 1, time: [{id: 1, date: '2013-12-12', time: '12:12:12', done: false}]},
+                {id: 2, time: [{id: 2, date: '2013-12-13', time: '14:12:12', done: true}]}
+            ]};
+        $rootScope.currentUser = {id: 1}
+        $httpBackend.expectDELETE('api/delete_todo/1/1/');
+        expect($rootScope.removeTodo(
+            $rootScope.currentPatient.todo[0].id,
+            $rootScope.currentPatient.todo[0].time[0].id)
+        ).toBeUndefined();
+        $httpBackend.flush();
     }));
 
     it('Should prepare to remove', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-        var todo = {id: 1};
+        var todo = {id: 2};
         var time = {id: 1};
 
         time.done = true;
+        $rootScope.currentUser = {id: 1};
+
+
+        $httpBackend.expectPUT('api/update_todo/2/1/');
         expect($rootScope.prepareToRemove(todo, time)).toBeUndefined();
+        $httpBackend.flush();
 
         time.done = false;
+        $httpBackend.expectPUT('api/update_todo/2/1/');
         expect($rootScope.prepareToRemove(todo, time)).toBeUndefined();
+        $httpBackend.flush();
     }));
 
     it('Should remove item', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
+
         $rootScope.currentPatient = {"todo": [{
             "time": [
                 {"id": 1, "time": ""},
@@ -224,6 +235,9 @@ describe('TodoController', function() {
         var todo = 1;
         var time = 1;
 
+        $rootScope.currentUser = {id: 1}
+        $httpBackend.expectDELETE('api/delete_todo/1/1/');
         expect($rootScope.removeTodo(todo, time)).toBeUndefined();
+        $httpBackend.flush();
     }));
 });

@@ -40,7 +40,7 @@ describe('Authorization controller', function() {
     it('Should check user data from server', inject(function($controller, $rootScope) {
         var controller = $controller('AuthController', {$scope: $rootScope});
 
-        expect($rootScope.sendData()).toBeUndefined();
+        expect($rootScope.submit()).toBeUndefined();
     }));
 
 });
