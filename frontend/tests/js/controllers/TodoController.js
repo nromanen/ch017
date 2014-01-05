@@ -28,7 +28,6 @@ describe('TodoController', function() {
 
     beforeEach(inject(function($injector) {
         $httpBackend = $injector.get('$httpBackend');
-        //$httpBackend.when('GET', '/api/create_todo/1/').respond({userId: 'userX'}, {'A-Token': 'xxx'});
         $httpBackend.when('POST', 'api/create_todo/1/').respond({});
         $httpBackend.when('PUT', 'api/update_todo/2/1/').respond({});
         $httpBackend.when('DELETE', 'api/delete_todo/1/1/').respond({});
