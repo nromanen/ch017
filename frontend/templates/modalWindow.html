@@ -34,7 +34,7 @@
                     </div>
                     <div class="well" hide-picker>
                         <p translate>MODAL_WINDOW.STARTING_DATE</p>
-                        <form ng-submit="addNewDateTimeToTodo()" class="form-inline set-date-form" role="form">
+                        <form class="form-inline set-date-form" role="form">
                             <div class="input-group input-append left">
                                 <span class="input-group-addon glyphicon glyphicon-calendar"></span>
                                 <input type="text" ng-model="date" date-picker ng-model="todayDate"
@@ -60,7 +60,7 @@
                     </div>
                     <div class="well" hide-picker>
                         <p translate>MODAL_WINDOW.TIME</p>
-                        <form ng-submit="addNewDateTimeToTodo()" class="form-inline" role="form">
+                        <form class="form-inline" role="form">
                             <div id="datetimepicker2" class="input-group input-append time left">
                                 <span class="input-group-addon glyphicon glyphicon-time"></span>
                                 <input type="text" data-format="hh:mm:ss" time-picker ng-model="time"

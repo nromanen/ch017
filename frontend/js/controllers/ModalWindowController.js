@@ -8,8 +8,6 @@ App.controller('ModalWindowController', function($scope, $rootScope, db, aux) {
         $scope.date = aux.getDateFromUTC(new Date());
         $scope.time = aux.getTimeFromUTC(new Date());
 
-        //$scope.getStartDate();
-
         db.getMedicines();
     }
 

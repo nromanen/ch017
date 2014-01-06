@@ -8,7 +8,6 @@ App.directive('clear', ['$rootScope', function($rootScope) {
                     $rootScope.todoExample = {
                         edit: false,
                         text: '',
-                        done: false,
                         time: []
                     };
                 });

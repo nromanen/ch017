@@ -4,7 +4,6 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
     $rootScope.todoExample = {
         edit: false,
         text: '',
-        done: false,
         time: []
     };
 
@@ -31,7 +30,6 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         $rootScope.todoExample = {
             edit: false,
             text: '',
-            done: false,
             time: []
         };
     }
@@ -44,7 +42,7 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         return activeUser[0];
     }
 
-    function updatePatientFromUsers(patientId) {
+    function putUpdatedPatientInUserScope(patientId) {
         $scope.users.forEach(function(user, index) {
             if (user.id === patientId) {
                 $scope.users[index] = $rootScope.currentPatient;
@@ -52,9 +50,8 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         });
     }
 
-    //function update data in local storage after each change
-    $scope.updateLocalStorage = function() {
-        updatePatientFromUsers($rootScope.currentPatient.id);
+    $scope.updateUserScope = function() {
+        putUpdatedPatientInUserScope($rootScope.currentPatient.id);
         localStorageService.add('users', $scope.users);
     };
 
@@ -66,7 +63,7 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
     };
 
     $scope.updateTodo = function() {
-        $rootScope.currentPatient.todo.forEach(function (todo, index) {
+        $rootScope.currentPatient.todo.forEach(function(todo, index) {
             if (todo.id !== $rootScope.todoExample.id) return false;
 
             $rootScope.currentPatient.todo[index] = $rootScope.todoExample;
@@ -116,7 +113,7 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
             return can;
         }
 
-        return $scope.currentUser.role.edit;
+        return can;
     };
 
     $scope.canRemoveTodo = function(todoID, timeID) {
