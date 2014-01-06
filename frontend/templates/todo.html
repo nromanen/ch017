@@ -28,10 +28,11 @@
                         <div class="content" mouseover mouseout>
                             <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo)"
                                    ng-model="time.done" ng-show="canCheckTodo(time.date, time.time)">
-                            <span data-target="{{canEditTodo()&&'#myModal'}}" data-toggle="modal"
+                            <span data-target="{{canEditTodo(todo.id, time.id)&&'#myModal'}}" data-toggle="modal"
                                   todo-item="{{todo.id}}" time-item="{{time.id}}"
                                   edit="{{canEditTodo(todo.id, time.id)}}" 
-                                  class="done-{{time.done}} {{canEditTodo()&&'pointer'||'cursor-default'}}">
+                                  class="done-{{time.done}} 
+                                         {{canEditTodo(todo.id, time.id)&&'pointer'||'cursor-default'}}">
                                 {{time.time}}: {{todo.text}}
                             </span>
                             <span class="glyphicon glyphicon-remove pointer right remove-icon"
@@ -51,10 +52,11 @@
                         <div class="content" mouseover mouseout>
                             <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo)"
                                    ng-model="time.done" ng-show="canCheckTodo(time.date, time.time)">
-                            <span data-target="{{canEditTodo()&&'#myModal'}}" data-toggle="modal"
+                            <span data-target="{{canEditTodo(todo.id, time.id)&&'#myModal'}}" data-toggle="modal"
                                   todo-item="{{todo.id}}" time-item="{{time.id}}"
                                   edit="{{canEditTodo(todo.id, time.id)}}" 
-                                  class="done-{{time.done}} {{canEditTodo()&&'pointer'||'cursor-default'}}">
+                                  class="done-{{time.done}} 
+                                         {{canEditTodo(todo.id, time.id)&&'pointer'||'cursor-default'}}">
                                 {{time.time}}: {{todo.text}}
                             </span>
                             <span class="glyphicon glyphicon-remove pointer right remove-icon"
@@ -74,10 +76,11 @@
                         <div class="content" mouseover mouseout>
                             <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo)"
                                    ng-model="time.done" ng-show="canCheckTodo(time.date, time.time)">
-                            <span data-target="{{canEditTodo()&&'#myModal'}}" data-toggle="modal"
+                            <span data-target="{{canEditTodo(todo.id, time.id)&&'#myModal'}}" data-toggle="modal"
                                   todo-item="{{todo.id}}" time-item="{{time.id}}"
                                   edit="{{canEditTodo(todo.id, time.id)}}" 
-                                  class="done-{{time.done}} {{canEditTodo()&&'pointer'||'cursor-default'}}">
+                                  class="done-{{time.done}} 
+                                         {{canEditTodo(todo.id, time.id)&&'pointer'||'cursor-default'}}">
                                 {{time.time}}: {{todo.text}}
                             </span>
                             <span class="glyphicon glyphicon-remove pointer right remove-icon"

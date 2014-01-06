@@ -1,12 +1,5 @@
 App.controller('TodoController', function($scope, $rootScope, localStorageService, config, db, aux) {
 
-    // this variable uses for edit todos and here will be new todo_item before save
-    $rootScope.todoExample = {
-        edit: false,
-        text: '',
-        time: []
-    };
-
     init();
 
     function init() {
@@ -15,6 +8,8 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         $rootScope.userPhoto = config.mediaUrl + $scope.currentUser.foto;
         $rootScope.currentDate = aux.getDateFromUTC(new Date());
         $rootScope.topPanelHider = false;
+
+        mockTodoExamle();
 
         if (!$scope.currentUser.role.add && !$scope.currentUser.role.edit &&
             !$scope.currentUser.role.remove && !$scope.currentUser.role.check) {
@@ -26,7 +21,7 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         }
     }
 
-    function clearTodoExamle() {
+    function mockTodoExamle() {
         $rootScope.todoExample = {
             edit: false,
             text: '',
@@ -35,10 +30,10 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
     }
 
     function getPatientFromUserScope(patientId) {
-
         var activeUser = $scope.users.filter(function(user) {
             return user.id === patientId;
         });
+
         return activeUser[0];
     }
 
@@ -59,7 +54,7 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         if (!$rootScope.todoExample.text) return false;
 
         db.addTodo($rootScope.currentPatient.id, $rootScope.todoExample);
-        clearTodoExamle();
+        mockTodoExamle();
     };
 
     $scope.updateTodo = function() {
@@ -79,11 +74,12 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
                 return time.date.split('-').reverse()[0] === $scope.currentDate.split('-').reverse()[0] && !time.done;
             }).length;
         }
+
         return amount;
     };
 
 
-    function getTimeById(todoID, timeID) {
+    function getDateById(todoID, timeID) {
         for (var index = 0; index < $rootScope.currentPatient.todo.length; index++) {
             if ($rootScope.currentPatient.todo[index].id==todoID){
                 for (var i = 0; i < $rootScope.currentPatient.todo[index].time.length; i++) {
@@ -93,6 +89,7 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
                 }
             }
         }
+
         return 0;
     }
 
@@ -101,16 +98,16 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
     };
 
     $scope.canEditTodo = function(todoID, timeID) {
+        if ($scope.currentUser.role.edit === false) return false;
+
         var can = true;
-        var current_date = new Date();
+        var currentDate = new Date();
+        var todoDate = new Date(getDateById(todoID, timeID));
 
         if (($scope.currentUser.role.edit) && (todoID !== undefined)) {
-            var tododate = new Date(getTimeById(todoID, timeID));
-
-            can = (current_date.getDate() <= tododate.getDate()) &&
-                  (current_date.getMonth() <= tododate.getMonth()) &&
-                  (current_date.getYear() <= tododate.getYear());
-            return can;
+            can = (currentDate.getDate() <= todoDate.getDate()) &&
+                  (currentDate.getMonth() <= todoDate.getMonth()) &&
+                  (currentDate.getYear() <= todoDate.getYear());
         }
 
         return can;
@@ -120,14 +117,13 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         if ($scope.currentUser.role.remove === false) return false;
 
         var can = true;
-        var current_date = new Date();
+        var currentDate = new Date();
+        var todoDate = new Date(getDateById(todoID, timeID));
 
         if (($scope.currentUser.role.remove) && (todoID !== undefined)) {
-            var tododate = new Date(getTimeById(todoID, timeID));
-
-            can = (current_date.getDate() <= tododate.getDate()) &&
-                  (current_date.getMonth() <= tododate.getMonth()) &&
-                  (current_date.getYear() <= tododate.getYear());
+            can = (currentDate.getDate() <= todoDate.getDate()) &&
+                  (currentDate.getMonth() <= todoDate.getMonth()) &&
+                  (currentDate.getYear() <= todoDate.getYear());
         }
 
         return can;
@@ -137,13 +133,13 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         if ($scope.currentUser.role.check === false) return false;
 
         var can = true;
-        var current_date = new Date();
-        var todo_date = new Date(date);
+        var currentDate = new Date();
+        var todoDate = new Date(date);
 
         if ($scope.currentUser.role.check) {
-            can = (current_date.getDate() == todo_date.getDate()) &&
-                  (current_date.getMonth() == todo_date.getMonth()) &&
-                  (current_date.getYear() == todo_date.getYear());
+            can = (currentDate.getDate() == todoDate.getDate()) &&
+                  (currentDate.getMonth() == todoDate.getMonth()) &&
+                  (currentDate.getYear() == todoDate.getYear());
         }
 
         return can;
