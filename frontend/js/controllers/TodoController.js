@@ -113,9 +113,10 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
             can = (current_date.getDate() <= tododate.getDate()) &&
                   (current_date.getMonth() <= tododate.getMonth()) &&
                   (current_date.getYear() <= tododate.getYear());
+            return can;
         }
 
-        return can;
+        return $scope.currentUser.role.edit;
     };
 
     $scope.canRemoveTodo = function(todoID, timeID) {

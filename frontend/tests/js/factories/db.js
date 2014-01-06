@@ -1,7 +1,7 @@
 describe('Database factory', function() {
 
-    var localStorage,
-        db;
+    var localStorage, db;
+    var $httpBackend;
 
     beforeEach(function () {
         var store = {};
@@ -26,49 +26,76 @@ describe('Database factory', function() {
         module("App");
     });
 
+    beforeEach(inject(function($rootScope) {
+        $rootScope.currentUser = {
+            id: 1,
+            login: 'Doctor',
+            password: 'apple',
+            role: {
+                add: true,
+                edit: true,
+                remove: true,
+                check: true}
+        };
+        $rootScope.todoExample = {
+            edit: false,
+            text: '',
+            done: false,
+            time: []
+        };
+        $rootScope.currentPatient = {id: 1, "todo": [{"id": 1}, {"id": 2}]};
+    }));
+
     beforeEach(inject(function ($injector) {
         db = $injector.get('db');
     }));
 
-    beforeEach(inject(
-        ['$httpBackend', function($h) {
-            $httpBackend = $h;
-            $httpBackend.whenJSONP('http://localhost:8000/api/todos/' +
-                '?callback=JSON_CALLBACK&method=POST&id=1&object={}').respond();
-            $httpBackend.whenJSONP('http://localhost:8000/api/todos/' +
-                '?callback=JSON_CALLBACK&method=PUT&id=1&object={}').respond();
-            $httpBackend.whenJSONP('http://localhost:8000/api/todos/' +
-                '?callback=JSON_CALLBACK&method=DELETE&id=1').respond();
-        }]
-    ));
+     beforeEach(inject(function($injector) {
+        $httpBackend = $injector.get('$httpBackend');
+        $httpBackend.when('GET', 'api/user/doctor/MTExMQ==/').respond({role: {name: 'Doctor'}, login: 'doctor'});
+        $httpBackend.when('GET', 'api/users_by_role/patient/').respond([1, 2, 3]);
+        $httpBackend.when('POST', 'api/create_todo/1/').respond({});
+        $httpBackend.when('PUT', 'api/update_todo/1/1/').respond({});
+        $httpBackend.when('DELETE', 'api/delete_todo/1/1/').respond({});
+    }));
 
     it('Should get user data', inject(function () {
         var login = 'doctor';
         var password = '1111';
 
+        $httpBackend.expectGET('api/user/doctor/MTExMQ==/');
         db.getUserData(login, password);
+        $httpBackend.flush();
     }));
 
-    it('Should get patient list', inject(function () {
-        db.getPatientList();
+    it('Should get patient list', inject(function($rootScope) {
+        $httpBackend.expectGET('api/users_by_role/patient/');
+        db.getPatientList($rootScope.currentUser);
+        $httpBackend.flush();
     }));
 
-    it('Should add todo', inject(function () {
+    it('Should add todo', inject(function($rootScope) {
         var id = 1;
         var object = {};
 
+        $httpBackend.expectPOST('api/create_todo/1/');
         db.addTodo(id, object);
+        $httpBackend.flush();
     }));
 
-    it('Should edit todo', inject(function () {
-        var object = {};
+    it('Should edit todo', inject(function($rootScope) {
+        var object = {id: 1};
 
+        $httpBackend.expectPUT('api/update_todo/1/1/');
         db.editTodo(object);
+        $httpBackend.flush();
     }));
 
-    it('Should delete todo', inject(function () {
+    it('Should delete todo', inject(function($rootScope) {
         var id = 1;
 
+        $httpBackend.expectDELETE('api/delete_todo/1/1/');
         db.deleteTodo(id);
+        $httpBackend.flush();
     }));
 });

@@ -2,6 +2,7 @@ describe('Route on load controller', function() {
 
     var localStorage,
         routeOnLoad;
+    var $httpBackend;
 
     beforeEach(function () {
         var store = {};
@@ -31,6 +32,16 @@ describe('Route on load controller', function() {
         this.$httpBackend = $httpBackend;
         routeOnLoad = $injector.get('routeOnLoad');
     }));
+
+    beforeEach(inject(function($injector) {
+        $httpBackend = $injector.get('$httpBackend');
+        $httpBackend.when('GET', 'api/users_by_role/patient/').respond(['a', 'b', 'c']);
+    }));
+
+    afterEach(function() {
+        $httpBackend.verifyNoOutstandingExpectation();
+        $httpBackend.verifyNoOutstandingRequest();
+    });
     
     it('Should redirect to the path', inject(function () {
         var url = '/auth';
@@ -44,9 +55,7 @@ describe('Route on load controller', function() {
         runs(function() {
             flag = false;
             localStorageService.add('currentUser', null);
-
             expect(routeOnLoad.getUserData()).toBe(false);
-
             setTimeout(function() {
                 flag = true;
             }, 500);
@@ -58,7 +67,9 @@ describe('Route on load controller', function() {
         }, "User login should not be empty", 750);
 
         runs(function() {
+            $httpBackend.expectGET('api/users_by_role/patient/');
             expect(routeOnLoad.getUserData()).toBeUndefined();
+            $httpBackend.flush();
         });
     }));
     

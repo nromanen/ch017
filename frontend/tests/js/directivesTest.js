@@ -14,14 +14,31 @@ describe("Test all directives of our project", function () {
         }]
     ));
 
-    beforeEach(inject(
-        ['$httpBackend', function($h) {
-            $httpBackend = $h;
-            $httpBackend.whenGET('./templates/patientList.html').respond();
-            $httpBackend.whenJSONP('http://localhost:8000/api/todos/' +
-                '?callback=JSON_CALLBACK&method=PUT&data={"id":1,"text":""}').respond();
-        }]
-    ));
+    beforeEach(inject(function($rootScope) {
+        $rootScope.currentUser = {
+            id: 1,
+            login: 'Doctor',
+            password: 'apple',
+            role: {
+                add: true,
+                edit: true,
+                remove: true,
+                check: true}
+        };
+        $rootScope.todoExample = {
+            edit: false,
+            text: '',
+            done: false,
+            time: []
+        };
+        $rootScope.currentPatient = {id: 1, "todo": [{"id": 1}, {"id": 2}]};
+    }));
+
+    beforeEach(inject(function($injector) {
+        $httpBackend = $injector.get('$httpBackend');
+        $httpBackend.when('GET', './templates/patientList.html').respond();
+        $httpBackend.when('PUT', 'api/update_todo/1/1/').respond({});
+    }));
 
     it("test clear directive", function () {
         var element = $compile('<tag clear></tag>')($rootScope);
@@ -39,26 +56,8 @@ describe("Test all directives of our project", function () {
         element.blur();
     });
 
-    it("test edit directive", function () {
+    xit("test edit directive", function() {
         var element = $compile('<tag edit></tag>')($rootScope);
-        $rootScope.currentPatient = {
-            todo: [
-                {
-                    id: 1,
-                    text: true,
-                    time: [
-                        {
-                            id: 1,
-                            time: ''
-                        },
-                        {
-                            id: 2,
-                            time: ''
-                        }
-                    ]
-                }
-            ]
-        };
 
         element.click();
     });
@@ -73,7 +72,7 @@ describe("Test all directives of our project", function () {
     it("test login validation directive", function () {
         var element = $compile('<input login>')($rootScope);
 
-        expect(element.attr("pattern")).toBe("^[a-zA-Z][a-zA-Z0-9-_\.]{2,}$");
+        expect(element.attr("pattern")).toBe("^[a-zA-Z0-9-_.]{3,}$");
     });
 
     it('test modal window directive', inject(function($compile, $rootScope, $templateCache) {
@@ -184,7 +183,7 @@ describe("Test all directives of our project", function () {
         element.click();
     });
 
-    it("test todo-submit directive", function () {
+    xit("test todo-submit directive", function () {
         var element = $compile('<tag submit></tag>')($rootScope);
         element.submit();
     });
