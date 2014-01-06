@@ -28,7 +28,7 @@ module.exports = {
             var timeSchema = new Schema({
                 datetime: Date,
                 done: {type: Boolean, default: false},
-                _todo: [{
+                todo: [{
                     type: Number,
                     ref: 'Todo',
                     index: true
@@ -39,7 +39,7 @@ module.exports = {
                 text: {type: String, require: true},
                 date_created: {type: Date, default: new Date()},
                 date_finished: Date,
-                _time:  [{
+                time:  [{
                     type: Number,
                     ref: 'Time',
                     index: true
@@ -53,12 +53,12 @@ module.exports = {
                 foto: {type: String, default: ''},
                 login: {type: String, require: true, index: {unique: true, dropDups: true}},
                 password: {type: String, require: true},
-                _role:  {
+                role:  {
                     type: Number,
                     ref: 'Role',
                     index: true
                 },
-                _todo:  [{
+                todo:  [{
                     type: Number,
                     ref: 'Todo',
                     index: true
@@ -95,11 +95,41 @@ module.exports = {
                 field: '_id'
             });
 
+            //set virtual
+            userSchema.virtual('id').get(function(){
+                return this._id;
+            });
+            userSchema.set('toJSON', {
+                virtuals: true
+            });
+
+            todoSchema.virtual('id').get(function(){
+                return this._id;
+            });
+            todoSchema.set('toJSON', {
+                virtuals: true
+            });
+
+            timeSchema.virtual('id').get(function(){
+                return this._id;
+            });
+            timeSchema.set('toJSON', {
+                virtuals: true
+            });
+
+            roleSchema.virtual('id').get(function(){
+                return this._id;
+            });
+            roleSchema.set('toJSON', {
+                virtuals: true
+            });
+
+
             //show exists model
             db.db.collectionNames(function (err, names) {
                 console.log(names);
             });
-
+          //  db.friends.ensureIndex( { "id" : 1 } );
             //create tables
             module.exports.tables = {
                 Time: mongoose.model('Time', timeSchema),
