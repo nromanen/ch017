@@ -12,7 +12,7 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
     function init() {
         $scope.users = localStorageService.get('users') || [];
         $rootScope.currentUser = localStorageService.get('currentUser');
-        $rootScope.userPhoto = config.serverUrl + config.imagesPath + $scope.currentUser.foto;
+        $rootScope.userPhoto = config.mediaUrl + $scope.currentUser.foto;
         $rootScope.currentDate = aux.getDateFromUTC(new Date());
         $rootScope.topPanelHider = false;
 
@@ -34,7 +34,7 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         };
     }
 
-    function getPatientFromUsers(patientId) {
+    function getPatientFromUserScope(patientId) {
 
         var activeUser = $scope.users.filter(function(user) {
             return user.id === patientId;
@@ -150,21 +150,7 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
     };
 
     $scope.setActivePatient = function(patientId) {
-        $rootScope.currentPatient = getPatientFromUsers(patientId);
-    };
-
-    $scope.getActiveTaskQuantity = function() {
-        var count = 0;
-
-        if (!$rootScope.currentPatient.todo.length) return 0;
-
-        $rootScope.currentPatient.todo.forEach(function(todo) {
-            if (!todo.done) {
-                ++count;
-            }
-        });
-
-        return count;
+        $rootScope.currentPatient = getPatientFromUserScope(patientId);
     };
 
     $scope.prepareToRemove = function(todo) {

@@ -70,10 +70,10 @@ describe('TodoController', function() {
         $rootScope.users = [{"id": 1}, {"id": 2}];
 
         $rootScope.currentPatient.id = 1;
-        expect($rootScope.updateLocalStorage()).toBeUndefined();
+        expect($rootScope.updateUserScope()).toBeUndefined();
 
         $rootScope.currentPatient.id = 3;
-        expect($rootScope.updateLocalStorage()).toBeUndefined();
+        expect($rootScope.updateUserScope()).toBeUndefined();
     }));
 
     it('Should check rights to add item', inject(function ($controller, $rootScope) {
@@ -137,53 +137,6 @@ describe('TodoController', function() {
         $httpBackend.expectPUT('api/update_todo/2/1/');
         expect($rootScope.updateTodo()).toBeUndefined();
         $httpBackend.flush();
-    }));
-
-    it('Should get number of active items', inject(function ($controller, $rootScope) {
-        var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-        var flag;
-        var count = 0;
-        $rootScope.currentPatient = {"todo":[]};
-
-        runs(function() {
-            flag = false;
-
-            expect($rootScope.getActiveTaskQuantity()).toEqual(0);
-
-            setTimeout(function() {
-                flag = true;
-            }, 500);
-        });
-
-        waitsFor(function() {
-            count = 3;
-            $rootScope.currentPatient = {"todo":[{},{},{}]};
-            return flag;
-        }, "Should action forEach to count active items", 750);
-
-        runs(function() {
-            runs(function() {
-                flag = false;
-
-                expect($rootScope.getActiveTaskQuantity()).toBe(count);
-
-                setTimeout(function() {
-                    flag = true;
-                }, 500);
-            });
-
-            waitsFor(function() {
-                count = 2;
-                $rootScope.currentPatient = {"todo":[{done: true},{},{}]};
-                return flag;
-            }, "Should be some active items", 750);
-
-            runs(function() {
-                expect($rootScope.getActiveTaskQuantity()).toBe(count);
-            });
-
-            expect($rootScope.getActiveTaskQuantity()).toBe(count);
-        });
     }));
 
     it('Should clear done items', inject(function ($controller, $rootScope) {

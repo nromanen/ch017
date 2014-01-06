@@ -16,8 +16,6 @@ App.controller('ModalWindowController', function($scope, $rootScope, db, aux) {
     };
 
     $scope.getStartDate = function() {
-        $scope.startDate = new Date($rootScope.currentDate);
-
         var year = null;
         var month = null;
         var day = null;
@@ -25,13 +23,11 @@ App.controller('ModalWindowController', function($scope, $rootScope, db, aux) {
         var todayDay = null;
         var fullDate = null;
 
-        for (var i = 0; i < $scope.daysCount; i++) {
-            month = $scope.startDate.getMonth() + 1;
-            day = $scope.startDate.getDate();
-            year = $scope.startDate.getFullYear();
+        $scope.startDate = new Date($rootScope.currentDate);
 
+        for (var i = 0; i < $scope.daysCount; i++) {
             todayDay = $scope.startDate.getDate();
-            finalyDate = [year, month, day].join('-');
+            finalyDate = aux.getDateFromUTC($scope.startDate);
             $scope.dateArr.push(finalyDate);
 
             $scope.period = parseInt($scope.period, 10);
@@ -51,6 +47,7 @@ App.controller('ModalWindowController', function($scope, $rootScope, db, aux) {
                 $scope.todoExample.time.push(fullDate);
             }
         }
+
         $scope.dateArr = [];
     };
 

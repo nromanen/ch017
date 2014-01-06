@@ -5,14 +5,13 @@ var App = angular.module('App', [
 
     $rootScope.$on('$routeChangeSuccess', function() {
         if ($routeParams.param === 'logout') return false;
+
         routeOnLoad.getUserData($rootScope, localStorageService, $http, $location);
     });
 
 }).constant('config', {
-    serverUrl: 'http://localhost:8000/',
-    imagesPath: 'media/',
+    mediaUrl: 'http://localhost:8000/media/',
     apiUrl: 'api/',
-    jsonpCallback: '?callback=JSON_CALLBACK',
     lang: 'en'
 }).constant('dayPart', {
     morning: 0,
