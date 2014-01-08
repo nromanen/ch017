@@ -3,120 +3,120 @@
     "_id": 1,
     "first_name": "Elma",
     "last_name": "Harry",
-    "access_token": "ElmaHarry",
+    "password": "1111",
     "foto": "fotos/282d1ba64e43854190124147f175b188.jpeg",
     "login": "patient2",
-    "_role": 3,
-    "_todo": []
+    "role": 3,
+    "todo": []
   },
   {
     "_id": 2,
     "first_name": "Rick",
     "last_name": "Miller",
-    "access_token": "RickMiller",
+    "password": "1111",
     "foto": "fotos/perello_ibarionex_e.jpg",
     "login": "patient3",
-    "_role": 3,
-    "_todo": []
+    "role": 3,
+    "todo": []
   },
   {
     "_id": 3,
     "first_name": "Otto",
     "last_name": "Bismark",
-    "access_token": "Doctor",
+    "password": "1111",
     "foto": "fotos/image_thumb_man6.png",
     "login": "doctor",
-    "_role": 1,
-    "_todo": []
+    "role": 1,
+    "todo": []
   },
   {
     "_id": 4,
     "first_name": "Elizabeth",
     "last_name": "Mary",
-    "access_token": "Nurse",
+    "password": "1111",
     "foto": "fotos/picture-1766.jpg",
     "login": "nurse",
-    "_role": 2,
-    "_todo": []
+    "role": 2,
+    "todo": []
   },
   {
     "_id": 5,
     "first_name": "Vilma",
     "last_name": "Graice",
-    "access_token": "VilmaGraice",
+    "password": "1111",
     "foto": "fotos/smith_dori_e.jpg",
     "login": "patient4",
-    "_role": 3,
-    "_todo": []
+    "role": 3,
+    "todo": []
   },
   {
     "_id": 6,
     "first_name": "Wilhelm",
     "last_name": "Adler",
-    "access_token": "WilhelmAdler",
+    "password": "1111",
     "foto": "fotos/845.thumbnail.jpg",
     "login": "patient6",
-    "_role": 3,
-    "_todo": []
+    "role": 3,
+    "todo": []
   },
   {
     "_id": 7,
     "first_name": "Evan",
     "last_name": "Olister",
-    "access_token": "EvanOlister",
+    "password": "1111",
     "foto": "fotos/man.jpg",
     "login": "patient7",
-    "_role": 3,
-    "_todo": []
+    "role": 3,
+    "todo": []
   },
   {
     "_id": 8,
     "first_name": "Liza",
     "last_name": "Shelon",
-    "access_token": "LizaShelon",
+    "password": "1111",
     "foto": "fotos/5d530c569a8536e33dfb9c0fb3300d17.jpeg",
     "login": "patient8",
-    "_role": 3,
-    "_todo": []
+    "role": 3,
+    "todo": []
   },
   {
     "_id": 9,
     "first_name": "Marry",
     "last_name": "Summer",
-    "access_token": "MarrySummer",
+    "password": "1111",
     "foto": "fotos/87debccac4f47f3839bd6759e31998ad.jpeg",
     "login": "patient9",
-    "_role": 3,
-    "_todo": []
+    "role": 3,
+    "todo": []
   },
   {
     "_id": 10,
     "first_name": "Samuel",
     "last_name": "Didi",
-    "access_token": "SamuelDidi",
+    "password": "1111",
     "foto": "fotos/myqd1t3h_5bf4_0_51.jpg",
     "login": "patient10",
-    "_role": 3,
-    "_todo": []
+    "role": 3,
+    "todo": []
   },
   {
     "_id": 11,
     "first_name": "Leonardo",
     "last_name": "Vinci",
-    "access_token": "Patient",
+    "password": "1111",
     "foto": "fotos/images-4.jpg",
     "login": "patient1",
-    "_role": 3,
-    "_todo": []
+    "role": 3,
+    "todo": []
   },
   {
     "_id": 12,
     "first_name": "Craig",
     "last_name": "Ozz",
-    "access_token": "CraigOzz",
+    "password": "1111",
     "foto": "fotos/FIFA1221-51x51.jpg",
     "login": "patient5",
-    "_role": 3,
-    "_todo": []
+    "role": 3,
+    "todo": []
   }
 ]
