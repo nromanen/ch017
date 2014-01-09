@@ -1,0 +1,26 @@
+[
+  {
+    "_id": 1,
+    "name": "doctor",
+    "add": true,
+    "edit": true,
+    "remove": true,
+    "check": true
+  },
+  {
+    "_id": 2,
+    "name": "nurse",
+    "add": false,
+    "edit": false,
+    "remove": false,
+    "check": true
+  },
+  {
+    "_id": 3,
+    "name": "patient",
+    "add": false,
+    "edit": false,
+    "remove": false,
+    "check": false
+  }
+]

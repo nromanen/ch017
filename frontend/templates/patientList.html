@@ -1,0 +1,17 @@
+<div ng-controller="PatientListController" ng-hide="patientListHide">
+    <div class="patientListWidth modal-content">
+        <div class="panel panel-default">
+            <div class="panel-heading" translate>PATIENT_LIST.TITLE</div>
+            <ul class="list-group nodecorate ">
+                <li ng-click="setActivePatient(patient.id);" ng-style="activePatient.style"
+                    ng-model="text" ng-repeat="patient in patientList">
+                    <center>
+                        <a href="" class="list-group-item" ng-class="{selected: currentPatient.id==patient.id}">
+                            {{patient.first_name}} {{patient.last_name}}
+                        </a>
+                    </center>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

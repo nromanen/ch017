@@ -1,0 +1,411 @@
+@red: #CE2F2F;
+
+.relative {
+  position: relative;
+}
+.set_position(@pos: absolute) {
+  position: @pos;
+}
+
+dropdown {
+    & > a {
+        cursor: pointer;
+    }
+}
+.form-inline {
+    .input-group.time {
+        width: 122px;
+    }
+    .input-group {
+        float: left;
+        margin-right: 20px;
+        width: 140px;
+    }
+}
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+    .form-control:focus {
+        z-index: 2;
+    }
+    input[type="text"] {
+        margin-bottom: -1px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .form-control {
+        .relative;
+        font-size: 16px;
+        height: auto;
+        padding: 10px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    button[type="submit"] {
+        outline: none;
+    }
+    input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .checkbox {
+        font-weight: normal;
+    }
+}
+.remove-icon {
+    .relative;
+    top: 0.2em !important;
+}
+.content {
+    & > input[type=checkbox] {
+        margin-top: 6px;
+    }
+    & > span {
+        display: inline-block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width:360px;
+        word-wrap: break-word;
+    }
+}
+.check_done {
+    .relative;
+    right: 20px;
+    top: 8px;
+}
+.done-true {
+    text-decoration: line-through;
+    color: #777;
+}
+.actualTime {
+    width: 350px;
+    padding-top: 14px;
+    display: inline-flex;
+    margin-left: 155px;
+    .btn-info {
+        margin-top: -2px;
+        height: 25px;
+        margin-left: 10px;
+        width: 100px;
+        padding-left: 7px;
+        outline: none;
+        padding-top: 2px;
+    }
+    input {
+        width: 200px;
+        margin-top: -0.4em;
+        margin-left: 1em;
+    }
+}
+.number {
+    width: 82px !important;
+}
+.modalstartbutton {
+    float: right;
+    margin-bottom: 10px;
+}
+.input-width {
+    width: 150px;
+}
+.view-animate.ng-leave.ng-leave-active {
+    left: -100%;
+}
+.view-animate.ng-enter.ng-enter-active {
+    left: 0;
+}
+.hint {
+    margin-bottom: 10px;
+    color: @red;
+}
+.form-signin .form-signin-heading, .form-signin .checkbox {
+    margin-bottom: 10px;
+}
+#list {
+    overflow: auto;
+    margin-bottom: 0;
+    width: 97%;
+    .task_list {
+        .relative;
+        list-style-type: none;
+        span:hover {
+            background: #ffffff;
+            cursor: pointer;
+        }
+        & > div {
+            & > span {
+                height: 0px;
+                margin-right: 5px;
+            }
+        }
+    }
+}
+.width9 {
+    width: 91%;
+}
+.remove-time-icon {
+    margin: 1em 2em;
+    padding-top: 2px;
+}
+.panel-heading {
+    font-weight: bold;
+    color: #555 !important;
+}
+#patient-datepicker {
+    .relative;
+    right: 40px;
+    .day:not(.disabled) {
+        font-weight: bold;
+    }
+}
+.patient-calendar {
+    display: inline-block;
+    border-radius: 6px 0 0 6px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #F5F5F5;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    margin-left: 38px;
+}
+.button-delete {
+    height: 25px;
+    padding-top: 3px;
+    width: 5px;
+}
+.view-animate.ng-enter, .view-animate.ng-leave {
+    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+    display: block;
+    width: 100%;
+    border-left: 1px solid black;
+    .set_position(absolute);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+}
+.controll-button {
+    margin: 5px;
+}
+.cursor-default {
+    cursor: default !important;
+}
+body {
+    background-image: url("../images/bodybg.jpg");
+}
+.glyphicon {
+    top: 2px;
+}
+.edittodo-removedate {
+    margin-right: 0px;
+    margin-left: 3px;
+    margin-top: 1px;
+    display: inline-table;
+    cursor: pointer;
+}
+.datepicker {
+    table {
+        tr {
+            td.active.active {
+                background-color: #3276B1;
+            }
+            td.active.active:hover {
+                background-color: #285E8E;
+            }
+        }
+    }
+    .datepicker-days {
+        .table-condensed {
+            font-size: 85%;
+        }
+    }
+}
+.inform {
+    font-size: 125%;
+    margin-top: 2px;
+    float: left;
+    margin-bottom: 5px;
+    color: #555;
+}
+.modal-dialog {
+    width: 590px;
+}
+.dropdown-menu {
+    & > li {
+        cursor: pointer;
+        & > a {
+            outline: none;
+        }
+    }
+}
+.margin-left20 {
+    margin-left: 20px;
+}
+.view-animate.ng-enter {
+    left: 100%;
+}
+.edit {
+    .set_position(absolute);
+    width: 200px;
+}
+.time-list {
+    margin-top: 15px;
+}
+.btn {
+    margin-bottom: 5px;
+    outline: none !important;
+}
+#wrapper {
+    .relative;
+    margin: auto;
+    background: #f5f5f5;
+    padding: 10px;
+    font-size: 16px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    width: 35em;
+    box-shadow: 10px -3px 20px rgba(100, 100, 100, 0.5);
+}
+.modalwindow_description-hint {
+    .set_position(absolute);
+    width: 390px;
+    .dropdown-menu {
+        display: block;
+        width: 100%;
+    }
+}
+.no-display {
+    display: none !important;
+}
+.pointer {
+    cursor: pointer;
+}
+.modalWindowListBadges {
+    padding-left: 0px;
+    li {
+        display:inline-block;
+        margin-right: 5px;
+        padding-left: 0px;
+    }
+}
+.margin-left5 {
+    margin-left: 5px;
+}
+.view-animate {
+    padding: 10px;
+}
+.main {
+    margin: 20px auto;
+    .relative;
+    width: 960px;
+}
+.bootstrap-datetimepicker-widget .timepicker-hour, .bootstrap-datetimepicker-widget .timepicker-minute {
+    width: 40px;
+    margin-left: 11px;
+}
+.datepicker-inline {
+    width: auto;
+}
+.patientListWidth {
+    .relative;
+    width: 20em;
+    border: 1px solid #ccc;
+    right: 80px !important;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    .panel {
+        border-radius: 6px !important;
+        margin-bottom: 0 !important;
+    }
+}
+.done-false {
+    color: #333;
+}
+.nodecorate {
+    list-style: none;
+}
+.bootstrap-datetimepicker-widget {
+    width: auto;
+    .separator {
+        width: 3px;
+        padding: 0;
+    }
+    td {
+        span {
+            height: 30px;
+            line-height: 30px;
+        }
+    }
+    .btn {
+        padding: 3px 10px;
+        margin: 0;
+    }
+}
+.selected {
+    background-color: #F7F7F7;
+    font-weight: bold;
+}
+.modal-footer {
+    margin-top: 0;
+    .btn+.btn {
+        margin-bottom: 4px;
+    }
+}
+.button-input {
+    height: 25px;
+    padding-top: 2px;
+}
+:invalid {
+    color: @red;
+}
+.absolute {
+    .set_position;
+}
+.right {
+    float: right;
+    float: right;
+}
+.clear {
+    clear: both;
+}
+.width-input {
+    width:140px;
+}
+.search-input {
+    margin-top: 10px;
+}
+#patient-datepicker th, .datepicker .datepicker-days .table-condensed thead tr th {
+    padding: 2px;
+}
+.edittodo-liremovedate {
+    list-style-type: none;
+}
+.navbar {
+    border: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    .user-name {
+        float: left;
+        padding: 15px 15px;
+        font-size: 18px;
+        line-height: 20px;
+        color: #777;
+        margin-left: 15px;
+    }
+    .user-photo {
+        width: 51px;
+        float: left;
+    }
+    .container {
+        padding-left: 0;
+    }
+}
+.left {
+    float: left;
+}
+.buttonChengeDate {
+    height: 21px;
+    padding-top: 2px;
+    margin-left: 5px;
+}

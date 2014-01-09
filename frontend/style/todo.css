@@ -1,0 +1,485 @@
+body {
+    background-image: url("../images/bodybg.jpg");
+}
+
+.main {
+    margin: 20px auto;
+    position: relative;
+    width: 960px;
+}
+
+.nodecorate {
+    list-style: none;
+}
+
+#wrapper {
+    position: relative;
+    margin: auto;
+    background: #f5f5f5;
+    padding: 10px;
+    font-size: 16px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    width: 35em;
+    box-shadow: 10px -3px 20px rgba(100, 100, 100, 0.5);
+
+}
+
+.buttonChengeDate {
+    height: 21px;
+    padding-top: 2px;
+    margin-left: 5px;
+
+}
+
+.remove-time-icon {
+    margin: 1em 2em;
+    padding-top: 2px;
+}
+
+.actualTime {
+    width: 350px;
+    padding-top: 14px;
+    display: inline-flex;
+    margin-left: 155px;
+}
+
+.actualTime input {
+    width: 200px;
+    margin-top: -0.4em;
+    margin-left: 1em;
+}
+
+.actualTime .btn-info {
+    margin-top: -2px;
+    height: 25px;
+    margin-left: 10px;
+    width: 100px;
+    padding-left: 7px;
+    outline: none;
+    padding-top: 2px;
+}
+
+.done-true {
+    text-decoration: line-through;
+    color: #777;
+}
+
+.done-false {
+    color: #333;
+}
+
+.inform {
+    font-size: 125%;
+    margin-top: 2px;
+    float: left;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.cursor-default {
+    cursor: default !important;
+}
+
+.clear {
+    clear: both;
+}
+
+.left {
+    float: left;
+}
+
+.controll-button {
+    margin: 5px;
+}
+
+.check_done {
+    position: relative;
+    right: 20px;
+    top: 8px;
+}
+.width9{
+    width: 91%;
+}
+.right {
+    float: right;
+}
+
+#list {
+    overflow: auto;
+    margin-bottom: 0;
+    width: 97%;
+}
+
+#list .task_list {
+    position: relative;
+    list-style-type: none;
+}
+
+#list .task_list span:hover {
+    background: #ffffff;
+    cursor: pointer;
+}
+
+#list .task_list > div > span {
+    height: 0px;
+    margin-right: 5px;
+}
+
+.edit {
+    position: absolute;
+    width: 200px;
+}
+
+.content {
+   /* height: 40px;*/
+}
+
+.content > input[type=checkbox] {
+    margin-top: 6px;
+}
+
+.content > span {
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width:360px;
+    word-wrap: break-word;
+}
+
+.remove-icon {
+    position: relative;
+    top: 0.2em !important;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.no-display {
+    display: none !important;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+    font-weight: normal;
+}
+
+.form-signin .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+:invalid {
+    color: #B32C2C;
+}
+
+.hint {
+    margin-bottom: 10px;
+    color: #CE2F2F;
+}
+
+.form-signin button[type="submit"] {
+    outline: none;
+}
+
+.patientListWidth {
+    position: relative;
+    width: 20em;
+    border: 1px solid #ccc;
+    right: 80px !important;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+
+}
+
+.patientListWidth .panel {
+    border-radius: 6px !important;
+    margin-bottom: 0 !important;
+}
+
+.view-animate {
+    padding: 10px;
+}
+
+.view-animate.ng-enter, .view-animate.ng-leave {
+    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+
+    display: block;
+    width: 100%;
+    border-left: 1px solid black;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+}
+
+.view-animate.ng-enter {
+    left: 100%;
+}
+
+.view-animate.ng-enter.ng-enter-active {
+    left: 0;
+}
+
+.view-animate.ng-leave.ng-leave-active {
+    left: -100%;
+}
+
+.btn {
+    margin-bottom: 5px;
+}
+
+.navbar {
+    border: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.navbar .container {
+    padding-left: 0;
+}
+
+.navbar .user-name {
+    float: left;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    color: #777;
+    margin-left: 15px;
+}
+
+.navbar .user-photo {
+    width: 51px;
+    float: left;
+}
+
+.input-width {
+    width: 150px;
+}
+
+.right {
+    float: right;
+}
+
+.button-input {
+    height: 25px;
+    padding-top: 2px;
+
+}
+.margin-left20 {
+    margin-left: 20px;
+}
+
+.button-delete {
+    height: 25px;
+    padding-top: 3px;
+    width: 5px;
+}
+
+.margin-left5 {
+    margin-left: 5px;
+}
+
+.datepicker-inline {
+    width: auto;
+}
+
+.patient-calendar {
+    display: inline-block;
+    border-radius: 6px 0 0 6px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #F5F5F5;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    margin-left: 38px;
+}
+
+.datepicker .datepicker-days .table-condensed {
+    font-size: 85%;
+}
+
+.edittodo-liremovedate {
+    list-style-type: none;
+}
+
+.edittodo-removedate {
+    margin-right: 0px;
+    margin-left: 3px;
+    margin-top: 1px;
+    display: inline-table;
+    cursor: pointer;
+}
+#patient-datepicker{
+    position: relative;
+    right: 40px;
+}
+#patient-datepicker th, .datepicker .datepicker-days .table-condensed thead tr th {
+    padding: 2px;
+}
+
+#patient-datepicker .day:not(.disabled) {
+    font-weight: bold;
+}
+
+.modalstartbutton {
+    float: right;
+    margin-bottom: 10px;
+}
+
+.btn {
+    outline: none !important;
+}
+
+.glyphicon {
+    top: 2px;
+}
+
+.form-inline .input-group {
+    float: left;
+    margin-right: 20px;
+    width: 140px;
+}
+
+.form-inline .input-group.time {
+    width: 122px;
+}
+
+.datepicker table tr td.active.active {
+    background-color: #3276B1;
+}
+
+.datepicker table tr td.active.active:hover {
+    background-color: #285E8E;
+}
+
+.modal-footer {
+    margin-top: 0;
+}
+
+.modal-footer .btn+.btn {
+    margin-bottom: 4px;
+}
+
+.search-input {
+    margin-top: 10px;
+}
+
+.selected {
+    background-color: #F7F7F7;
+    font-weight: bold;
+}
+
+.panel-heading {
+    font-weight: bold;
+    color: #555 !important;
+}
+
+.modalwindow_description-hint {
+    position: absolute;
+    width: 390px;
+}
+
+.modalwindow_description-hint .dropdown-menu {
+    display: block;
+    width: 100%;
+}
+
+.dropdown-menu > li > a {
+    outline: none;
+}
+
+.dropdown-menu > li {
+    cursor: pointer;
+}
+
+.bootstrap-datetimepicker-widget {
+    width: auto;
+}
+
+.bootstrap-datetimepicker-widget .btn {
+    padding: 3px 10px;
+    margin: 0;
+}
+
+.bootstrap-datetimepicker-widget .timepicker-hour, .bootstrap-datetimepicker-widget .timepicker-minute {
+    width: 40px;
+    margin-left: 11px;
+}
+
+.bootstrap-datetimepicker-widget .separator {
+    width: 3px;
+    padding: 0;
+}
+
+.bootstrap-datetimepicker-widget td span {
+    height: 30px;
+    line-height: 30px;
+}
+
+.width-input{
+    width:140px;
+}
+
+.number {
+    width: 82px !important;
+}
+
+.modal-dialog {
+    width: 590px;
+}
+
+.time-list {
+    margin-top: 15px;
+}
+
+.modalWindowListBadges li{
+    display:inline-block;
+    margin-right: 5px;
+    padding-left: 0px;
+}
+
+.modalWindowListBadges{
+    padding-left: 0px;
+}
+
+.dropdown > a {
+    cursor: pointer;
+}
