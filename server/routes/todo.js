@@ -22,10 +22,6 @@ exports.forSpecificUser = function(req, res) {
     });
 };
 
-exports.getTodo = function(req, res) {
-
-};
-
 exports.createTodo = function(req, res) {
     db.tables.User.findOne({_id: req.body.patient_id}, function (err, user){
 

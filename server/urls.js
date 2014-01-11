@@ -7,14 +7,10 @@ exports.route = function(app, baseRoute) {
     app.get([baseRoute, 'users_by_role/:role/'].join(''), user.usersByRole);
     app.get([baseRoute, 'users/'].join(''), user.all);
     app.get([baseRoute, 'todos/'].join(''), todo.all);
-    app.get([baseRoute, 'get_todo/:todo_id'].join(''), todo.getTodo);
     app.post([baseRoute, 'create_todo/:user_id'].join(''), todo.createTodo);
     app.put([baseRoute, 'update_todo/:todo_id/:user_id'].join(''), todo.updateTodo);
     app.delete([baseRoute, 'delete_todo/:todo_id/:user_id'].join(''), todo.deleteTodo);
     app.get([baseRoute, 'medicines/'].join(''), medicines.index);
 
     app.get([baseRoute, 'todo/:login/:password/'].join(''), todo.forSpecificUser);
-    app.get('/api/articles', function(req, res) {
-    res.send('This is not implemented now');
-    });
 };
