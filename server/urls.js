@@ -11,6 +11,4 @@ exports.route = function(app, baseRoute) {
     app.put([baseRoute, 'update_todo/:todo_id/:user_id'].join(''), todo.updateTodo);
     app.delete([baseRoute, 'delete_todo/:todo_id/:user_id'].join(''), todo.deleteTodo);
     app.get([baseRoute, 'medicines/'].join(''), medicines.index);
-
-    app.get([baseRoute, 'todo/:login/:password/'].join(''), todo.forSpecificUser);
 };
