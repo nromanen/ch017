@@ -95,6 +95,7 @@ module.exports = {
                 field: '_id'
             });
 
+
             //set virtual
             userSchema.virtual('id').get(function(){
                 return this._id;
@@ -108,6 +109,14 @@ module.exports = {
             });
             todoSchema.set('toJSON', {
                 virtuals: true
+            });
+
+            timeSchema.virtual('date').get(function(){
+                return this.datetime.toISOString().slice(0,10);
+            });
+
+            timeSchema.virtual('time').get(function(){
+                return this.datetime.toISOString().slice(11,19);;
             });
 
             timeSchema.virtual('id').get(function(){

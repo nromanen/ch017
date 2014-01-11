@@ -14,6 +14,7 @@ App.factory('db', function($rootScope, $http, config, aux) {
                     return false;
                 }
                 aux.addToLocalStorage('currentUser', user);
+
                 if (!user.is_staff && !user.is_doctor) {
                     self.getPatientList(user);
                 } else {

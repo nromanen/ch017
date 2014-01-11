@@ -10,6 +10,8 @@ module.exports = function(config) {
 	'../frameworks/angular/angular.min.js',
 	'../frameworks/angular/angular-local-storage.js',
 	'../frameworks/angular/angular-mocks.js',
+	'../frameworks/angular/angular-translate.min.js',
+	'../frameworks/angular/angular-translate-loader-static-files.min.js',
     '../frameworks/bootstrap/js/bootstrap-datepicker.min.js',
 
 	'../js/project-conf.js',
@@ -44,10 +46,10 @@ module.exports = function(config) {
     plugins: [
         'karma-jasmine',
         'karma-coverage',
-        'karma-firefox-launcher'
+        'karma-chrome-launcher'
     ],
 
-    browsers: ['Firefox'],
+    browsers: ['Chrome'],
     port: 7000,
     colors: true,
     logLevel: config.LOG_INFO,

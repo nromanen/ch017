@@ -45,12 +45,6 @@ describe("Test all directives of our project", function () {
         element.click();
     });
 
-    it("test contenteditable directive", function () {
-        var element = $compile('<tag contenteditable todo-item="0"></tag>')($rootScope);
-        $rootScope.currentPatient = {todo: [{id: 1, text: true}]};
-        element.blur();
-    });
-
     it("test datePicker directive", function () {
         var element = $compile('<tag date-picker></tag>')($rootScope);
         element.blur();
@@ -173,21 +167,6 @@ describe("Test all directives of our project", function () {
         element.blur();
     });
 
-    it("test todo-blur directive", function () {
-        var element = $compile('<tag blur></tag>')($rootScope);
-        element.blur();
-    });
-
-    it("test todo-click directive", function () {
-        var element = $compile('<tag click></tag>')($rootScope);
-        element.click();
-    });
-
-    xit("test todo-submit directive", function () {
-        var element = $compile('<tag submit></tag>')($rootScope);
-        element.submit();
-    });
-
     it('test top-panel directive', inject(function($compile, $rootScope, $templateCache) {
         $templateCache.put('./templates/topPanel.html', '<tag></tag>');
 
@@ -197,9 +176,9 @@ describe("Test all directives of our project", function () {
         scope.$apply();
     }));
 
-    it("test updateLocalStorageOnChange directive", function () {
-        var element = $compile('<ul update-local-storage-on-change></ul>')($rootScope);
-        $rootScope.updateLocalStorage = function(){};
+    it("test updateUserScope directive", function () {
+        var element = $compile('<ul update-user-scope></ul>')($rootScope);
+        $rootScope.updateUserScope = function(){};
         element.scope().$apply();
     });
 

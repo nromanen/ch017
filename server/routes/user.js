@@ -5,7 +5,7 @@ exports.usersByRole = function(req, res){
     db.tables.Role.findOne({name: req.params.role}, function(err, role) {
 
         if(err) return res.json(500, {error: err});
-        console.log(role.id);
+
         db.tables.User.find({role: role.id}).populate("role todo").exec(function(err, users) {
 
             if(err) return res.json(500, {error: err});
@@ -22,12 +22,12 @@ exports.usersByRole = function(req, res){
 exports.getUser = function(req, res) {
    var password = new Buffer(req.params.password, 'base64').toString();
 
-   db.tables.User.find({login: req.params.login, password: password}).
+   db.tables.User.findOne({login: req.params.login, password: password}).
    populate("role todo").exec(function(err, users) {
 
         if(err) return res.json(500, {error: err});
 
-        res.json(users[0]);
+        res.json(users);
     });
 };
 
@@ -39,7 +39,6 @@ exports.all = function(req, res)
 
         db.tables.Todo.populate(users, {
             path: 'todo.time',
-           // select: 'datetime'
             model: db.tables.Time
         }, function(err, users){  res.json(users);});
     });

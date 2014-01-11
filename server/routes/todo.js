@@ -2,11 +2,11 @@ var db = require('../model/mongodb');
 
 exports.all = function(req, res){
 
-    db.tables.Todo.find(function(err, data) {
+    db.tables.Todo.find().populate("time").exec(function(err, todos) {
 
         if(err) return res.json(500, {error: err});
 
-        return res.send(data);
+        return res.send(todos);
 
     });
 };
@@ -22,10 +22,6 @@ exports.forSpecificUser = function(req, res) {
     });
 };
 
-exports.getTodo = function(req, res) {
-
-};
-
 exports.createTodo = function(req, res) {
     db.tables.User.findOne({_id: req.body.patient_id}, function (err, user){
 
@@ -35,19 +31,19 @@ exports.createTodo = function(req, res) {
         var todoID = 0;
         db.tables.Todo.create( {  text: todo.text }, function(err, todoBase){
             todoID = todoBase.id;
-            console.log(todoID);
 
             for(index = 0; index<todo.time.length; index++){
-                var date = todo.time[index].date.split("-");
-                var yyyy = date[0];
-                var mm = date[1]-1;
-                var dd = date[2];
+
+                var datetime = new Date(todo.time[index].date);
 
                 var time = todo.time[index].time.split(":");
-                var h = time[0]+2;
-                var m = time[1];
-                var s = time[2];
-                db.tables.Time.create( {  datetime: new Date(yyyy,mm,dd,h,m,s),
+                datetime.setHours(time[0]*1+2);
+                datetime.setMinutes(time[1]);
+                datetime.setSeconds(time[2]);
+
+                console.log(datetime);
+
+                db.tables.Time.create( {datetime: datetime,  //new Date(yyyy,mm,dd,h,m,s),
                      done: todo.time[index].done, todo: todoID }, function(err, timeBase){
                     if(err) return res.json(500, {error: err});
                     db.tables.Todo.update( { _id: todoID },{ $push: {time: timeBase.id}}, { upsert : true }, function(err){
@@ -60,10 +56,7 @@ exports.createTodo = function(req, res) {
             db.tables.User.update( { _id: req.body.patient_id }, { $push: {todo: todoID}}, { upsert : true }, function(err){
                 if(err) return res.json(500, {error: err});
             });
-
-            console.log(todoID);
         });
-
     });
 
     console.log(req.body.data);
@@ -79,5 +72,12 @@ exports.updateTodo = function(req, res) {
 };
 
 exports.deleteTodo = function(req, res) {
-    db.tables.Todo.remove({ _id: req.body.patient_id});
+    db.tables.Todo.findOneAndRemove({ _id: req.params.todo_id-1}, function(err){
+
+        if(err) return res.json(500, {error: err});
+        db.tables.User.findOneAndUpdate({_id: req.params.user_id},{$pull: {todo: req.params.todo_id}},function(err){
+
+            if(err) return res.json(500, {error: err});
+        });
+    });
 };
