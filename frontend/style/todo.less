@@ -7,14 +7,14 @@
   position: @pos;
 }
 
-dropdown {
+.dropdown {
     & > a {
         cursor: pointer;
     }
 }
 .form-inline {
     .input-group.time {
-        width: 122px;
+        width: 102px;
     }
     .input-group {
         float: left;
@@ -196,7 +196,7 @@ body {
     background-image: url("../images/bodybg.jpg");
 }
 .glyphicon {
-    top: 2px;
+    top: 0;
 }
 .edittodo-removedate {
     margin-right: 0px;
@@ -283,11 +283,20 @@ body {
     cursor: pointer;
 }
 .modalWindowListBadges {
-    padding-left: 0px;
+    padding-left: 0;
+    margin-top: 15px;
+    margin-bottom: 20px;
     li {
         display:inline-block;
         margin-right: 5px;
-        padding-left: 0px;
+        padding-left: 0;
+    }
+}
+.modalWindowListBadges.time {
+    li {
+        .label {
+            width: 58px;
+        }
     }
 }
 .margin-left5 {
@@ -408,4 +417,17 @@ body {
     height: 21px;
     padding-top: 2px;
     margin-left: 5px;
+}
+.label {
+    width: 84px;
+    display: inline-block;
+    height: 21px;
+    margin-bottom: 6px;
+}
+.text-form {
+    margin-bottom: 20px;
+}
+.well {
+    padding: 20px;
+    padding-bottom: 0;
 }
