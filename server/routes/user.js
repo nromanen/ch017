@@ -23,11 +23,10 @@ exports.getUser = function(req, res) {
    var password = new Buffer(req.params.password, 'base64').toString();
 
    db.tables.User.findOne({login: req.params.login, password: password}).
-   populate("role todo").exec(function(err, users) {
-
+   populate("role todo").exec(function(err, user) {
         if(err) return res.json(500, {error: err});
 
-        res.json(users);
+        res.json(user);
     });
 };
 
@@ -39,6 +38,7 @@ exports.all = function(req, res)
 
         db.tables.Todo.populate(users, {
             path: 'todo.time',
+           // select: 'datetime'
             model: db.tables.Time
         }, function(err, users){  res.json(users);});
     });

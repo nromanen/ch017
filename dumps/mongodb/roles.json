@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
   {
     "_id": 1,
@@ -24,3 +25,8 @@
     "check": false
   }
 ]
+=======
+{ "_id": 1, "name": "doctor", "add": true, "edit": true, "remove": true, "check": true }
+{ "_id": 2, "name": "nurse", "add": false, "edit": false, "remove": false, "check": true }
+{ "_id": 3, "name": "patient", "add": false, "edit": false, "remove": false, "check": false }
+>>>>>>> 1116713a84a67d9d7ed73231675aeea31270c44a
