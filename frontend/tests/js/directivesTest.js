@@ -78,7 +78,17 @@ describe("Should test all directives of our project", function () {
     it("Should test keywatcher directive", function () {
         var element = $compile('<tag keywatcher></tag>')($rootScope);
 
-        element.trigger('keydown');
+        var e = $.Event("keydown");
+        e.keyCode = 13; /* Enter */
+        element.trigger(e);
+
+        var e = $.Event("keydown");
+        e.keyCode = 38; /* Up-arrow */
+        element.trigger(e);
+
+        var e = $.Event("keydown");
+        e.keyCode = 40; /* Down-arrow */
+        element.trigger(e);
     });
 
     it("Should test login validation directive", function () {

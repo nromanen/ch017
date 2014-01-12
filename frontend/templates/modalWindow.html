@@ -16,9 +16,8 @@
                     <div class="well">
                         <form class="form-inline text-form" role="form">
                             <p translate>MODAL_WINDOW.DESCRIPTION</p>
-                            <input type="text" ng-model="todoExample.text"
-                                   placeholder="{{'MODAL_WINDOW.DESCRIPTION_PLACEHOLDER' | translate}}"
-                                   class="form-control" ng-show="canEditTodo()">
+                            <input type="text" ng-model="todoExample.text" class="form-control"
+                                   placeholder="{{'MODAL_WINDOW.DESCRIPTION_PLACEHOLDER' | translate}}">
                             <div class="modalwindow_description-hint">
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3" 
                                     ng-show="todoExample.text.length>2&&(medicines|filter:todoExample.text).length>1">
