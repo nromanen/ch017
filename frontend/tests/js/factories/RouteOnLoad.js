@@ -51,6 +51,7 @@ describe('Route on load controller', function() {
     
     it('Should get user data from local storage', inject(function(localStorageService) {
         var flag;
+        var flag1;
 
         runs(function() {
             flag = false;
@@ -67,9 +68,29 @@ describe('Route on load controller', function() {
         }, "User login should not be empty", 750);
 
         runs(function() {
-            /*$httpBackend.expectGET('api/users_by_role/patient/');*/
-            expect(routeOnLoad.getUserData()).toBeUndefined();
-            /*$httpBackend.flush();*/
+
+            /* currentUser.is_staff condition begin */
+            runs(function() {
+                flag1 = false;
+                localStorageService.add('currentUser', {login: true, role: {name: true}});
+                expect(routeOnLoad.getUserData()).toBeUndefined();
+                setTimeout(function() {
+                    flag1 = true;
+                }, 500);
+            });
+
+            waitsFor(function() {
+                localStorageService.add('currentUser', {login: true, role: {name: true}, is_staff: true});
+                return flag1;
+            }, "currentUser.is_staff should be === true", 750);
+
+            runs(function() {
+                $httpBackend.expectGET('api/users_by_role/patient/');
+                expect(routeOnLoad.getUserData()).toBeUndefined();
+                $httpBackend.flush();
+            });
+            /* currentUser.is_staff condition end */
+
         });
     }));
     

@@ -29,8 +29,8 @@ describe('Database factory', function() {
     beforeEach(inject(function($rootScope) {
         $rootScope.currentUser = {
             id: 1,
-            login: 'Doctor',
-            password: 'apple',
+            login: 'doctor',
+            password: '1111',
             role: {
                 add: true,
                 edit: true,
@@ -59,9 +59,9 @@ describe('Database factory', function() {
         $httpBackend.when('DELETE', 'api/delete_todo/1/1/').respond({});
     }));
 
-    it('Should get user data', inject(function () {
-        var login = 'doctor';
-        var password = '1111';
+    it('Should get user data', inject(function($rootScope) {
+        var login = $rootScope.currentUser.login;
+        var password = $rootScope.currentUser.password;
 
         $httpBackend.expectGET('api/user/doctor/MTExMQ==/');
         db.getUserData(login, password);
@@ -75,8 +75,8 @@ describe('Database factory', function() {
     }));
 
     it('Should add todo', inject(function($rootScope) {
-        var id = 1;
-        var object = {};
+        var id = $rootScope.currentPatient.id;
+        var object = $rootScope.currentPatient.todo;
 
         $httpBackend.expectPOST('api/create_todo/1/');
         db.addTodo(id, object);
@@ -84,7 +84,7 @@ describe('Database factory', function() {
     }));
 
     it('Should edit todo', inject(function($rootScope) {
-        var object = {id: 1};
+        var object = $rootScope.currentPatient;
 
         $httpBackend.expectPUT('api/update_todo/1/1/');
         db.editTodo(object);
@@ -92,7 +92,7 @@ describe('Database factory', function() {
     }));
 
     it('Should delete todo', inject(function($rootScope) {
-        var id = 1;
+        var id = $rootScope.currentPatient.todo[0].id;
 
         $httpBackend.expectDELETE('api/delete_todo/1/1/');
         db.deleteTodo(id);

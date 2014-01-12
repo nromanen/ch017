@@ -1,4 +1,4 @@
-describe('Authorization controller', function() {
+describe('AuthController', function() {
 
     var localStorage = {};
     var $routeParams = {};
@@ -38,7 +38,7 @@ describe('Authorization controller', function() {
         $httpBackend.verifyNoOutstandingRequest();
     });
 
-    it('Should initialize contorller', inject(function ($controller, $rootScope) {
+    it('Should initialize the contorller', inject(function ($controller, $rootScope) {
         var ctrl = $controller('AuthController', {$scope: $rootScope, $routeParams: $routeParams});
     }));
 

@@ -15,7 +15,7 @@ App.directive('edit', ['$rootScope', 'aux', function($rootScope, aux) {
                     });
 
                     $rootScope.timeArr = $rootScope.todoExample.time.filter(function(time) {
-                        return time.date == aux.getDateFromUTC(new Date());
+                        return time.date == $rootScope.todoExample.time[0].date;
                     }).map(function(time) {
                         return time.time;
                     });
