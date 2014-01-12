@@ -2,7 +2,6 @@
 App.controller('AuthController', function($scope, $rootScope, $routeParams, db, aux) {
 
     function init() {
-        $scope.authRemember = true;
         $rootScope.topPanelHider = true;
         
         if ($routeParams.param === 'logout') $scope.logout();

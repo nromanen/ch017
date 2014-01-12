@@ -7,6 +7,8 @@ App.controller('ModalWindowController', function($scope, $rootScope, db, aux) {
         $rootScope.dateArr = [];
         $scope.date = aux.getDateFromUTC(new Date());
         $scope.time = aux.getTimeFromUTC(new Date());
+
+        if ($rootScope.currentUser.is_doctor) db.getMedicines();
     }
 
     $scope.setTimeModal = function() {
