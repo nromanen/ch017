@@ -29,8 +29,8 @@ describe('Authorization controller', function() {
 
     beforeEach(inject(function($injector) {
         $httpBackend = $injector.get('$httpBackend');
-        $httpBackend.when('GET', 'api/user/doctor/YXBwbGU=/').respond({role: {name: 'Doctor'}, login: 'doctor'});
-        $httpBackend.when('GET', 'api/users_by_role/patient/').respond([1, 2, 3]);
+        $httpBackend.when('GET', 'api/user/doctor/MTExMQ==/').respond({role: {name: 'Doctor'}, login: 'doctor'});
+        /*$httpBackend.when('GET', 'api/users_by_role/patient/').respond([1, 2, 3]);*/
     }));
 
     afterEach(function() {
@@ -52,11 +52,11 @@ describe('Authorization controller', function() {
         var controller = $controller('AuthController', {$scope: $rootScope});
 
         $rootScope.authLogin = 'doctor';
-        $rootScope.authPassword = 'apple';
+        $rootScope.authPassword = '1111';
 
-        $httpBackend.expectGET('api/user/doctor/YXBwbGU=/');
-        $httpBackend.expectGET('api/users_by_role/patient/');
+        $httpBackend.expectGET('api/user/doctor/MTExMQ==/');
         expect($rootScope.submit()).toBeUndefined();
+        /*$httpBackend.expectGET('api/users_by_role/patient/');*/
         $httpBackend.flush();
     }));
 

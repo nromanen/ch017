@@ -35,7 +35,7 @@ describe('Route on load controller', function() {
 
     beforeEach(inject(function($injector) {
         $httpBackend = $injector.get('$httpBackend');
-        $httpBackend.when('GET', 'api/users_by_role/patient/').respond(['a', 'b', 'c']);
+        $httpBackend.when('GET', 'api/users_by_role/patient/').respond([1, 2, 3]);
     }));
 
     afterEach(function() {
@@ -67,9 +67,9 @@ describe('Route on load controller', function() {
         }, "User login should not be empty", 750);
 
         runs(function() {
-            $httpBackend.expectGET('api/users_by_role/patient/');
+            /*$httpBackend.expectGET('api/users_by_role/patient/');*/
             expect(routeOnLoad.getUserData()).toBeUndefined();
-            $httpBackend.flush();
+            /*$httpBackend.flush();*/
         });
     }));
     
