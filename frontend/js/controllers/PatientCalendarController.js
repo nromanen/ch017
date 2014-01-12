@@ -2,24 +2,23 @@
 App.controller('PatientCalendarController', function($scope, $rootScope) {
 
     function init() {
-
         var dates = $scope.getDates();
 
         if(dates.length === 0) return false;
 
-        var dateLimit = $scope.getDateLimit( $scope.sortDates( dates ) );
-
-        $rootScope.dateMin = $scope.parseDate( dateLimit.min );
-        $rootScope.dateMax = $scope.parseDate( dateLimit.max );
-
+        $rootScope.dateLimit = $scope.getDateLimit( $scope.sortDates( dates ) );
     }
 
     $scope.getDates = function() {
+        var todoIndex = 0
+        var timeIndex = 0
+        var todo = $scope.currentPatient.todo;
+
         $scope.allDates = [];
 
-        for (var i = 0; i < $scope.currentPatient.todo.length; i++) {
-            for (var j = 0; j < $scope.currentPatient.todo[i].time.length; j++) {
-                $scope.allDates.push( $scope.currentPatient.todo[i].time[j].date );
+        for (todoIndex; todoIndex < todo.length; todoIndex++) {
+            for (timeIndex; timeIndex < todo[ todoIndex ].time.length; timeIndex++) {
+                $scope.allDates.push( todo[ todoIndex ].time[ timeIndex ].date );
             }
         }
 
@@ -35,10 +34,6 @@ App.controller('PatientCalendarController', function($scope, $rootScope) {
             min: sortedDatesArray[0], 
             max: sortedDatesArray[ sortedDatesArray.length - 1 ]
         };
-    };
-
-    $scope.parseDate = function(dateStr) {
-        return dateStr.substring(0, 10);
     };
 
     init();

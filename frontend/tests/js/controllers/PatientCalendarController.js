@@ -24,7 +24,7 @@ describe('PatientCalendarController', function() {
     beforeEach(module('App'));
 
     it('Should get all dates from all todos', inject(function ($controller, $rootScope) {
-        var currentPatient = {"todo": [{"time": [{"time": ""}, {"time": ""}]}]};
+        var currentPatient = {"todo": [{"time": [{"date": "11-12-2013"}, {"date": "12-12-2013"}]}]};
         $rootScope.currentPatient = currentPatient;
 
         var ctrl = $controller('PatientCalendarController', {
@@ -36,7 +36,10 @@ describe('PatientCalendarController', function() {
         runs(function() {
             flag = false;
 
-            expect($rootScope.getDates()).toBeUndefined();
+            expect($rootScope.getDates()).toEqual([
+                currentPatient.todo[0].time[0].date, 
+                currentPatient.todo[0].time[1].date
+            ]);
 
             setTimeout(function() {
                 flag = true;
@@ -49,7 +52,7 @@ describe('PatientCalendarController', function() {
         }, "Should not be empty", 750);
 
         runs(function() {
-            expect($rootScope.getDates()).toBeUndefined();
+            expect($rootScope.getDates()).toEqual([]);
 
             /* dates.length === 0 => begin */
             $rootScope.currentPatient = {"todo": [{"time": []}]};
@@ -60,7 +63,7 @@ describe('PatientCalendarController', function() {
             runs(function() {
                 flag1 = false;
 
-                expect($rootScope.getDates()).toBeUndefined();
+                expect($rootScope.getDates()).toEqual([]);
 
                 setTimeout(function() {
                     flag1 = true;
@@ -73,7 +76,7 @@ describe('PatientCalendarController', function() {
             }, "Should not be empty", 750);
 
             runs(function() {
-                expect($rootScope.getDates()).toBeUndefined();
+                expect($rootScope.getDates()).toEqual([]);
             });
             /* dates.length === 0 => end */
         });

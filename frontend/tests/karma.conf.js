@@ -13,6 +13,7 @@ module.exports = function(config) {
 	'../frameworks/angular/angular-translate.min.js',
 	'../frameworks/angular/angular-translate-loader-static-files.min.js',
     '../frameworks/bootstrap/js/bootstrap-datepicker.min.js',
+    '../frameworks/bootstrap/js/bootstrap-datetimepicker.min.js',
 
 	'../js/project-conf.js',
 

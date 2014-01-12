@@ -13,17 +13,17 @@ App.directive('calendar', function($rootScope, config, aux) {
                     format: "yyyy-mm-dd",
                     weekStart: 1,
                     keyboardNavigation: false,
-                    startDate: $rootScope.dateMin,
-                    endDate: $rootScope.dateMax,
+                    startDate: $rootScope.dateLimit.min,
+                    endDate: $rootScope.dateLimit.max,
                     language: $rootScope.lang || config.lang
                 }).
                 datepicker('update', (function() {
-                    var dayMax = new Date($rootScope.dateMax || 0).getDay() + 1;
-                    var today = new Date().getDay() + 1;
+                    var dayMax = new Date($rootScope.dateLimit.max || 0).getDate();
+                    var today = new Date().getDate();
 
-                    if (dayMax < today) return $rootScope.dateMax;
+                    if (dayMax < today) return $rootScope.dateLimit.max;
 
-                    return $rootScope.dateMax.replace(dayMax, today);
+                    return $rootScope.dateLimit.max.replace(dayMax, today);
                 })()).
                 on('changeDate', function(dateScope) {
                     $rootScope.currentDate = aux.getDateFromUTC(dateScope.date);

@@ -28,7 +28,6 @@ describe("Test all directives of our project", function () {
         $rootScope.todoExample = {
             edit: false,
             text: '',
-            done: false,
             time: []
         };
         $rootScope.currentPatient = {id: 1, "todo": [{"id": 1}, {"id": 2}]};
@@ -97,7 +96,7 @@ describe("Test all directives of our project", function () {
             scope.$apply();
         }));
 
-        it('Role should be === false AND dateMax should be ++than today', inject(function($compile, $rootScope, $templateCache) {
+        it('Role should be === false AND dateLimit.max should be ++than today', inject(function($compile, $rootScope, $templateCache) {
             $templateCache.put('./templates/patientCalendar.html', '<tag id="patient-datepicker"><div></div></tag>');
 
             var element = $compile('<calendar></calendar>')($rootScope);
@@ -105,12 +104,12 @@ describe("Test all directives of our project", function () {
 
             $rootScope.currentUser = {"role": {}};
             $rootScope.currentUser.role.check = false;
-            $rootScope.dateMax = '2013-12-31';
+            $rootScope.dateLimit = {max: '2013-12-31'};
 
             scope.$apply();
         }));
 
-        it('Role should be === false AND dateMax should be --than today', inject(function($compile, $rootScope, $templateCache) {
+        it('Role should be === false AND dateLimit.max should be --than today', inject(function($compile, $rootScope, $templateCache) {
             $templateCache.put('./templates/patientCalendar.html', '<tag id="patient-datepicker"><div></div></tag>');
 
             var element = $compile('<calendar></calendar>')($rootScope);
@@ -118,7 +117,7 @@ describe("Test all directives of our project", function () {
 
             $rootScope.currentUser = {"role": {}};
             $rootScope.currentUser.role.check = false;
-            $rootScope.dateMax = '2013-11-31';
+            $rootScope.dateLimit = {max: '2013-11-31'};
             dateScope = '2013-11-31';
 
             scope.$apply();
