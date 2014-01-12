@@ -13,6 +13,7 @@ exports.all = function(req, res){
 
 exports.forSpecificUser = function(req, res) {
     var password = new Buffer(req.params.password, 'base64').toString();
+
     db.tables.User.findOne({login: req.params.login, password: password}).
     populate("_todo").exec(function(err, user) {
 
@@ -23,47 +24,53 @@ exports.forSpecificUser = function(req, res) {
 };
 
 exports.createTodo = function(req, res) {
-    db.tables.User.findOne({ _id: req.params.user_id }).populate("role").exec(function(err, user){
+
+    db.tables.User.findOne({ _id: req.params.user_id }).populate("role").exec(function(err, user) {
 
         if(err) return res.json(500, {error: err});
         if (!user.role.add) return res.json(500, {error: "you have no permission"});
 
         var todo = JSON.parse(req.body.data);
         var todoID = 0;
-        db.tables.Todo.create( {  text: todo.text }, function(err, todoNew){
+
+        db.tables.Todo.create( {  text: todo.text }, function(err, todoNew) {
             todoID = todoNew.id;
 
-            for(index = 0; index<todo.time.length; index++){
+            for(var index = 0; index<todo.time.length; index++) {
+                var date = todo.time[index].date.split('-');
+                var time = todo.time[index].time.split(':');
 
-                var datetime = new Date(todo.time[index].date);
-
-                var time = todo.time[index].time.split(":");
-                datetime.setHours(time[0]*1+2);
-                datetime.setMinutes(time[1]);
-                datetime.setSeconds(time[2]);
-
+                var datetime = new Date(date[0], date[1] - 1, date[2], parseInt(time[0]) + 2, time[1], '00');
                 console.log(datetime);
 
-                db.tables.Time.create( {datetime: datetime,  //new Date(yyyy,mm,dd,h,m,s),
-                     done: todo.time[index].done, todo: todoID }, function(err, time){
+                db.tables.Time.create( {
+                    datetime: datetime,
+                    done: todo.time[index].done, todo: todoID }, function(err, time) {
 
                     if(err) return res.json(500, {error: err});
-                    db.tables.Todo.update( { _id: todoID },{ $push: {time: time.id}}, { upsert : true }, function(err){
+                    db.tables.Todo.update(
+                        { _id: todoID },
+                        { $push: {time: time.id}},
+                        { upsert : true }, function(err) {
 
-                        if(err) return res.json(500, {error: err});
+                            if(err) return res.json(500, {error: err});
                     });
                 });
                 console.log(todo.time[index].time);
                 console.log(todo.time[index].date);
-            };
-            db.tables.User.update( { _id: req.body.patient_id }, { $push: {todo: todoID}}, { upsert : true }, function(err){
-                if(err) return res.json(500, {error: err});
-            });
-        });
-    console.log(req.body.data);
-    res.json(req.body.patient_id);
+            }
+            db.tables.User.update(
+                { _id: req.body.patient_id },
+                { $push: {todo: todoID}},
+                { upsert : true }, function(err) {
 
-    })
+                    if(err) return res.json(500, {error: err});
+            });
+            console.log(todoNew.id)
+            return res.json( {todo_id: todoNew.id} );
+        });
+
+    });
 };
 
 exports.updateTodo = function(req, res) {
@@ -74,39 +81,63 @@ exports.updateTodo = function(req, res) {
     });
     var todo = JSON.parse(req.body.data);
     var todoID = todo.id;
-    db.tables.Todo.update({ _id: todoID },{ text: todo.text,
-                                            date_created: todo.date_created,
-                                            amount: todo.amount,
-                                            time: todo.time
-                                            },{upsert: true}).exec(function(err){
+
+    db.tables.Todo.update(
+        { _id: todoID },
+        { text: todo.text, time: [] }).exec(function(err){
+
             if(err) return res.json(500, {error: err});
-            for(index = 0; index<todo.time.length; index ++){
-                db.tables.Time.update({_id: todo.time[index]._id},{datetime: todo.time[index].datetime,
-                                                                   done: todo.time[index].done,
-                                                                   todo: todo.time  [index].todo},
-                    {upsert: true}).exec(function(err){
+
+            db.tables.Time.find({todo: todoID}).remove().exec(function(err) {
+                for(var index = 0; index<todo.time.length; index++) {
+                    var date = todo.time[index].date.split('-');
+                    var time = todo.time[index].time.split(':');
+                    var datetime = new Date(date[0], date[1] - 1, date[2], parseInt(time[0]) + 2, time[1], '00');
+                    console.log(datetime, todoID)
+
+                    db.tables.Time.create( {
+                        datetime: datetime,
+                        done: todo.time[index].done,
+                        todo: todoID }, function(err, time) {
+
                         if(err) return res.json(500, {error: err});
+
+                        db.tables.Todo.update(
+                            { _id: todoID },
+                            { $push: {time: time.id}},
+                            { upsert : true }, function(err) {
+
+                                if(err) return res.json(500, {error: err});
+                            }
+                        );
                     });
-            }
+                }
+            });
         });
-    res.json(todoID);
+    return res.json(todoID);
 };
 
 exports.deleteTodo = function(req, res) {
+
     db.tables.User.findOne({ _id: req.params.user_id }).populate("role").exec(function(err, user){
-       if (user.role.remove) {
-           db.tables.Time.findOneAndRemove({ _id: req.params.time_id }, function(err){
+
+        if (!user.role.remove) return res.json(500, {error: "you have no permission"});
+
+        db.tables.Time.findOneAndRemove({ _id: req.params.time_id }, function(err){
+
+           if(err) return res.json(500, {error: err});
+
+           db.tables.Todo.find( {time : req.params.time_id }, function(err, todo){
 
                if(err) return res.json(500, {error: err});
-               db.tables.Todo.find( {time : req.params.time_id }, function(err, todo){
 
+               db.tables.Todo.update(
+                   {time : req.params.time_id},
+                   { $pull: { time: req.params.time_id}}, function(err){
 
-                   if(err) return res.json(500, {error: err});
-                   db.tables.Todo.update({time : req.params.time_id},{ $pull: { time: req.params.time_id}},function(err){
                        if(err) return res.json(500, {error: err});
-                   });
-                });
-           });
-       };
+               });
+            });
+        });
     });
 };
