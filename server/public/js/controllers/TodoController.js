@@ -62,7 +62,8 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
             if (todo.id !== $rootScope.todoExample.id) return false;
 
             $rootScope.currentPatient.todo[index] = $rootScope.todoExample;
-            db.editTodo($rootScope.todoExample, $rootScope.todoExample.id);
+            console.log($rootScope.todoExample.time);
+            db.editTodo($rootScope.todoExample);
         });
     };
 

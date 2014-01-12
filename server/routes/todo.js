@@ -23,14 +23,15 @@ exports.forSpecificUser = function(req, res) {
 };
 
 exports.createTodo = function(req, res) {
-    db.tables.User.findOne({_id: req.body.patient_id}, function (err, user){
+    db.tables.User.findOne({ _id: req.params.user_id }).populate("role").exec(function(err, user){
 
         if(err) return res.json(500, {error: err});
+        if (!user.role.add) return res.json(500, {error: "you have no permission"});
 
         var todo = JSON.parse(req.body.data);
         var todoID = 0;
-        db.tables.Todo.create( {  text: todo.text }, function(err, todoBase){
-            todoID = todoBase.id;
+        db.tables.Todo.create( {  text: todo.text }, function(err, todoNew){
+            todoID = todoNew.id;
 
             for(index = 0; index<todo.time.length; index++){
 
@@ -44,9 +45,11 @@ exports.createTodo = function(req, res) {
                 console.log(datetime);
 
                 db.tables.Time.create( {datetime: datetime,  //new Date(yyyy,mm,dd,h,m,s),
-                     done: todo.time[index].done, todo: todoID }, function(err, timeBase){
+                     done: todo.time[index].done, todo: todoID }, function(err, time){
+
                     if(err) return res.json(500, {error: err});
-                    db.tables.Todo.update( { _id: todoID },{ $push: {time: timeBase.id}}, { upsert : true }, function(err){
+                    db.tables.Todo.update( { _id: todoID },{ $push: {time: time.id}}, { upsert : true }, function(err){
+
                         if(err) return res.json(500, {error: err});
                     });
                 });
@@ -57,27 +60,53 @@ exports.createTodo = function(req, res) {
                 if(err) return res.json(500, {error: err});
             });
         });
-    });
-
     console.log(req.body.data);
     res.json(req.body.patient_id);
+
+    })
 };
 
 exports.updateTodo = function(req, res) {
-    db.tables.Todo.update(
-        { _id: req.body.patient_id},
-        { $set : { todo: req.body.data } },
-        { upsert : true }
-    )
+    db.tables.User.findOne({ _id: req.params.user_id }).populate("role").exec(function(err, user){
+
+        if(err) return res.json(500, {error: err});
+        if (!user.role.edit) return res.json(500, {error: "you have no permission"});
+    });
+    var todo = JSON.parse(req.body.data);
+    var todoID = todo.id;
+    db.tables.Todo.update({ _id: todoID },{ text: todo.text,
+                                            date_created: todo.date_created,
+                                            amount: todo.amount,
+                                            time: todo.time
+                                            },{upsert: true}).exec(function(err){
+            if(err) return res.json(500, {error: err});
+            for(index = 0; index<todo.time.length; index ++){
+                db.tables.Time.update({_id: todo.time[index]._id},{datetime: todo.time[index].datetime,
+                                                                   done: todo.time[index].done,
+                                                                   todo: todo.time  [index].todo},
+                    {upsert: true}).exec(function(err){
+                        if(err) return res.json(500, {error: err});
+                    });
+            }
+        });
+    res.json(todoID);
 };
 
 exports.deleteTodo = function(req, res) {
-    db.tables.Todo.findOneAndRemove({ _id: req.params.todo_id-1}, function(err){
+    db.tables.User.findOne({ _id: req.params.user_id }).populate("role").exec(function(err, user){
+       if (user.role.remove) {
+           db.tables.Time.findOneAndRemove({ _id: req.params.time_id }, function(err){
 
-        if(err) return res.json(500, {error: err});
-        db.tables.User.findOneAndUpdate({_id: req.params.user_id},{$pull: {todo: req.params.todo_id}},function(err){
+               if(err) return res.json(500, {error: err});
+               db.tables.Todo.find( {time : req.params.time_id }, function(err, todo){
 
-            if(err) return res.json(500, {error: err});
-        });
+
+                   if(err) return res.json(500, {error: err});
+                   db.tables.Todo.update({time : req.params.time_id},{ $pull: { time: req.params.time_id}},function(err){
+                       if(err) return res.json(500, {error: err});
+                   });
+                });
+           });
+       };
     });
 };
