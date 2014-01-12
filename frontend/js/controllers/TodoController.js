@@ -97,51 +97,36 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
     };
 
     $scope.canEditTodo = function(todoID, timeID) {
-        if ($scope.currentUser.role.edit === false) return false;
+        if (!$scope.currentUser.role.edit) return false;
 
-        var can = true;
         var currentDate = new Date();
         var todoDate = new Date(getDateById(todoID, timeID));
 
-        if (($scope.currentUser.role.edit) && (todoID !== undefined)) {
-            can = (currentDate.getDate() <= todoDate.getDate()) &&
-                  (currentDate.getMonth() <= todoDate.getMonth()) &&
-                  (currentDate.getYear() <= todoDate.getYear());
-        }
-
-        return can;
+        return (currentDate.getDate() <= todoDate.getDate()) &&
+               (currentDate.getMonth() <= todoDate.getMonth()) &&
+               (currentDate.getYear() <= todoDate.getYear());
     };
 
     $scope.canRemoveTodo = function(todoID, timeID) {
-        if ($scope.currentUser.role.remove === false) return false;
+        if (!$scope.currentUser.role.remove) return false;
 
-        var can = true;
         var currentDate = new Date();
         var todoDate = new Date(getDateById(todoID, timeID));
 
-        if (($scope.currentUser.role.remove) && (todoID !== undefined)) {
-            can = (currentDate.getDate() <= todoDate.getDate()) &&
-                  (currentDate.getMonth() <= todoDate.getMonth()) &&
-                  (currentDate.getYear() <= todoDate.getYear());
-        }
-
-        return can;
+        return (currentDate.getDate() <= todoDate.getDate()) &&
+               (currentDate.getMonth() <= todoDate.getMonth()) &&
+               (currentDate.getYear() <= todoDate.getYear());
     };
 
     $scope.canCheckTodo = function(date, time) {
-        if ($scope.currentUser.role.check === false) return false;
+        if (!$scope.currentUser.role.check) return false;
 
-        var can = true;
         var currentDate = new Date();
         var todoDate = new Date(date);
 
-        if ($scope.currentUser.role.check) {
-            can = (currentDate.getDate() == todoDate.getDate()) &&
-                  (currentDate.getMonth() == todoDate.getMonth()) &&
-                  (currentDate.getYear() == todoDate.getYear());
-        }
-
-        return can;
+        return (currentDate.getDate() == todoDate.getDate()) &&
+               (currentDate.getMonth() == todoDate.getMonth()) &&
+               (currentDate.getYear() == todoDate.getYear());
     };
 
     $scope.setActivePatient = function(patientId) {

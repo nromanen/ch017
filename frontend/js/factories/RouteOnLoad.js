@@ -21,7 +21,7 @@ App.factory('routeOnLoad', [
 
             var currentUser = aux.getFromLocalStorage('currentUser');
 
-            db.getPatientList(currentUser);
+            if (currentUser.is_staff) db.getPatientList(currentUser);
         };
 
         return routeOnLoad;

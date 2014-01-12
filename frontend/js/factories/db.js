@@ -13,13 +13,15 @@ App.factory('db', function($rootScope, $http, config, aux) {
                     aux.showHint('hintText', user.error);
                     return false;
                 }
+
                 aux.addToLocalStorage('currentUser', user);
 
-                if (!user.is_staff && !user.is_doctor) {
+                if (user.is_staff) {
                     self.getPatientList(user);
-                } else {
-                    aux.redirectTo( '/' + user.role.name + '/' + user.login );
+                    return false;
                 }
+
+                aux.redirectTo( '/' + user.role.name + '/' + user.login );
             }).
             error(function(data, status) {
                 aux.showHint('hintText', data.error);
