@@ -53,6 +53,9 @@ module.exports = {
                 foto: {type: String, default: ''},
                 login: {type: String, require: true, index: {unique: true, dropDups: true}},
                 password: {type: String, require: true},
+                is_doctor: {type: Boolean, default: false},
+                is_staff: {type: Boolean, default: false},
+                is_active: {type: Boolean, default: false},
                 role:  {
                     type: Number,
                     ref: 'Role',
@@ -95,6 +98,7 @@ module.exports = {
                 field: '_id'
             });
 
+
             //set virtual
             userSchema.virtual('id').get(function(){
                 return this._id;
@@ -108,6 +112,14 @@ module.exports = {
             });
             todoSchema.set('toJSON', {
                 virtuals: true
+            });
+
+            timeSchema.virtual('date').get(function(){
+                return this.datetime.toISOString().slice(0,10);
+            });
+
+            timeSchema.virtual('time').get(function(){
+                return this.datetime.toISOString().slice(11,19);;
             });
 
             timeSchema.virtual('id').get(function(){

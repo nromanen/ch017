@@ -19,6 +19,9 @@ class UserHandler(BaseHandler):
         'last_name',
         'foto',
         'login',
+        'is_doctor',
+        'is_staff',
+        'is_active',
         ('role', (
             'name',
             'add',
@@ -91,7 +94,7 @@ class TodoHandler(BaseHandler):
             new_todo.save()
             for date in todo["time"]:
                 time = Time.objects.create(
-                    datetime=datetime.datetime.strptime(' '.join([date["date"], date["time"]]), '%Y-%m-%d %H:%M:%S')
+                    datetime=datetime.datetime.strptime(' '.join([date["date"], date["time"]]), '%Y-%m-%d %H:%M')
                 )
                 time.todo_set.add(new_todo)
                 time.save()

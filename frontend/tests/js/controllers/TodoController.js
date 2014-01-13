@@ -59,7 +59,7 @@ describe('TodoController', function() {
         $httpBackend.verifyNoOutstandingRequest();
     });
 
-    it('Should initialize contorller', inject(function ($controller, $rootScope) {
+    it('Should initialize the contorller', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
         $rootScope.todoExample = {};
     }));
@@ -76,6 +76,13 @@ describe('TodoController', function() {
         expect($rootScope.updateUserScope()).toBeUndefined();
     }));
 
+    it('Should get count of items, which needs to be done', inject(function ($controller, $rootScope) {
+        var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
+        $rootScope.currentPatient = {todo: [{time: [{date: "11-12-2013"}]}]};
+
+        expect($rootScope.getTodoAmount()).toBe(0);
+    }));
+
     it('Should check rights to add item', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
         $rootScope.currentUser = {role: {add: false}};
@@ -85,23 +92,92 @@ describe('TodoController', function() {
 
     it('Should check rights to edit item', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-        $rootScope.currentUser = {role: {edit: false}};
 
-        expect($rootScope.canEditTodo()).toBe(false);
+        $rootScope.currentUser = {role: {}};
+        $rootScope.currentPatient = {todo: [{id: 1, time: [{id: 1, date: "11-12-2013", time: "00:00"}]}]};
+
+        var flag;
+        var todoID = $rootScope.currentPatient.todo[0].id;
+        var timeID = $rootScope.currentPatient.todo[0].time[0].id;
+
+        runs(function() {
+            flag = false;
+
+            $rootScope.currentUser.role.edit = false;
+            expect($rootScope.canEditTodo(todoID, timeID)).toBe(false);
+
+            setTimeout(function() {
+                flag = true;
+            }, 500);
+        });
+
+        waitsFor(function() {
+            $rootScope.currentUser.role.edit = true;
+            return flag;
+        }, "currentUser.role.edit should be === true", 750);
+
+        runs(function() {
+            expect($rootScope.canEditTodo(todoID, timeID)).toBe(false);
+        });
     }));
 
     it('Should check rights to remove item', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-        $rootScope.currentUser = {role: {remove: false}};
 
-        expect($rootScope.canRemoveTodo()).toBe(false);
+        $rootScope.currentUser = {role: {}};
+        $rootScope.currentPatient = {todo: [{id: 1, time: [{id: 1, date: "11-12-2013", time: "00:00"}]}]};
+
+        var flag;
+        var todoID = $rootScope.currentPatient.todo[0].id;
+        var timeID = $rootScope.currentPatient.todo[0].time[0].id;
+
+        runs(function() {
+            flag = false;
+
+            $rootScope.currentUser.role.remove = false;
+            expect($rootScope.canRemoveTodo(todoID, timeID)).toBe(false);
+
+            setTimeout(function() {
+                flag = true;
+            }, 500);
+        });
+
+        waitsFor(function() {
+            $rootScope.currentUser.role.remove = true;
+            return flag;
+        }, "currentUser.role.remove should be === true", 750);
+
+        runs(function() {
+            expect($rootScope.canRemoveTodo(todoID, timeID)).toBe(false);
+        });
     }));
 
-    it('Should check rights to check item', inject(function ($controller, $rootScope) {
+    it('Should check rights to check item', inject(function ($controller, $rootScope, aux) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-        $rootScope.currentUser = {role: {check: false}};
+        var flag;
+        var date = aux.getDateFromUTC(new Date());
+        var time = aux.getTimeFromUTC(new Date());
+        $rootScope.currentUser = {role: {}};
 
-        expect($rootScope.canCheckTodo()).toBe(false);
+        runs(function() {
+            flag = false;
+
+            $rootScope.currentUser.role.check = false;
+            expect($rootScope.canCheckTodo(date, time)).toBe(false);
+
+            setTimeout(function() {
+                flag = true;
+            }, 500);
+        });
+
+        waitsFor(function() {
+            $rootScope.currentUser.role.check = true;
+            return flag;
+        }, "currentUser.role.check should be === true", 750);
+
+        runs(function() {
+            expect($rootScope.canCheckTodo(date, time)).toBe(true);
+        });
     }));
 
     it('Should set active patient', inject(function ($controller, $rootScope) {

@@ -1,4 +1,4 @@
-describe("Test all directives of our project", function () {
+describe("Should test all directives of our project", function () {
 
     var $compile, $rootScope;
     var $httpBackend;
@@ -17,21 +17,32 @@ describe("Test all directives of our project", function () {
     beforeEach(inject(function($rootScope) {
         $rootScope.currentUser = {
             id: 1,
-            login: 'Doctor',
-            password: 'apple',
+            login: 'doctor',
+            password: '1111',
             role: {
                 add: true,
                 edit: true,
                 remove: true,
-                check: true}
+                check: true},
+            todo: [
+                {
+                    edit: false,
+                    text: '',
+                    time: [
+                        {
+                            date: "",
+                            time: ""
+                        },
+                        {
+                            date: "",
+                            time: ""
+                        }
+                    ]
+                }
+            ]
         };
-        $rootScope.todoExample = {
-            edit: false,
-            text: '',
-            done: false,
-            time: []
-        };
-        $rootScope.currentPatient = {id: 1, "todo": [{"id": 1}, {"id": 2}]};
+        $rootScope.todoExample = $rootScope.currentUser.todo[0];
+        $rootScope.currentPatient = $rootScope.currentUser;
     }));
 
     beforeEach(inject(function($injector) {
@@ -40,36 +51,53 @@ describe("Test all directives of our project", function () {
         $httpBackend.when('PUT', 'api/update_todo/1/1/').respond({});
     }));
 
-    it("test clear directive", function () {
+    it("Should test clear directive", function () {
         var element = $compile('<tag clear></tag>')($rootScope);
         element.click();
     });
 
-    it("test datePicker directive", function () {
+    it("Should test datePicker directive", function () {
         var element = $compile('<tag date-picker></tag>')($rootScope);
+        $rootScope.$apply();
         element.blur();
     });
 
-    xit("test edit directive", function() {
+    it("Should test edit directive", function() {        
         var element = $compile('<tag edit></tag>')($rootScope);
 
         element.click();
     });
 
-    it("test hidePicker directive", function () {
+    it("Should test hidePicker directive", function () {
         var element = $compile('<tag hide-picker></tag>')($rootScope);
         var elm = $compile('<tag class="datepicker-days"></tag>')($rootScope);
 
         angular.element(elm).click();
     });
 
-    it("test login validation directive", function () {
-        var element = $compile('<input login>')($rootScope);
+    it("Should test keywatcher directive", function () {
+        var element = $compile('<tag keywatcher></tag>')($rootScope);
 
-        expect(element.attr("pattern")).toBe("^[a-zA-Z0-9-_.]{3,}$");
+        var e = $.Event("keydown");
+        e.keyCode = 13; /* Enter */
+        element.trigger(e);
+
+        var e = $.Event("keydown");
+        e.keyCode = 38; /* Up-arrow */
+        element.trigger(e);
+
+        var e = $.Event("keydown");
+        e.keyCode = 40; /* Down-arrow */
+        element.trigger(e);
     });
 
-    it('test modal window directive', inject(function($compile, $rootScope, $templateCache) {
+    it("Should test login validation directive", function () {
+        var element = $compile('<input login>')($rootScope);
+
+        element.keydown();
+    });
+
+    it("Should test modal window directive", inject(function($compile, $rootScope, $templateCache) {
         $templateCache.put('./templates/modalWindow.html', '<tag></tag>');
 
         var element = $compile('<modal></modal>')($rootScope);
@@ -78,13 +106,13 @@ describe("Test all directives of our project", function () {
         scope.$apply();
     }));
 
-    it("test password validation directive", function () {
+    it("Should test password validation directive", function () {
         var element = $compile('<input password>')($rootScope);
 
         expect(element.attr("pattern")).toBe("[^]{4,}$");
     });
 
-    describe("test patient calendar directive", function () {
+    describe("Should test patient calendar directive", function () {
         it('Role should be === true', inject(function($compile, $rootScope, $templateCache) {
             $templateCache.put('./templates/patientCalendar.html', '<tag id="patient-datepicker"><div></div></tag>');
 
@@ -97,7 +125,7 @@ describe("Test all directives of our project", function () {
             scope.$apply();
         }));
 
-        it('Role should be === false AND dateMax should be ++than today', inject(function($compile, $rootScope, $templateCache) {
+        it('Role should be === false AND dateLimit.max should be ++than today', inject(function($compile, $rootScope, $templateCache) {
             $templateCache.put('./templates/patientCalendar.html', '<tag id="patient-datepicker"><div></div></tag>');
 
             var element = $compile('<calendar></calendar>')($rootScope);
@@ -105,12 +133,12 @@ describe("Test all directives of our project", function () {
 
             $rootScope.currentUser = {"role": {}};
             $rootScope.currentUser.role.check = false;
-            $rootScope.dateMax = '2013-12-31';
+            $rootScope.dateLimit = {max: '2013-12-31'};
 
             scope.$apply();
         }));
 
-        it('Role should be === false AND dateMax should be --than today', inject(function($compile, $rootScope, $templateCache) {
+        it('Role should be === false AND dateLimit.max should be --than today', inject(function($compile, $rootScope, $templateCache) {
             $templateCache.put('./templates/patientCalendar.html', '<tag id="patient-datepicker"><div></div></tag>');
 
             var element = $compile('<calendar></calendar>')($rootScope);
@@ -118,26 +146,26 @@ describe("Test all directives of our project", function () {
 
             $rootScope.currentUser = {"role": {}};
             $rootScope.currentUser.role.check = false;
-            $rootScope.dateMax = '2013-11-31';
+            $rootScope.dateLimit = {max: '2013-11-31'};
             dateScope = '2013-11-31';
 
             scope.$apply();
         }));
     });
 
-    it("test patient list directive", function () {
+    it("Should test patient list directive", function () {
         var element = $compile('<list class="left absolute"></list>')($rootScope);
 
         expect(element.html()).toBe('');
     });
 
-    it("test removeIcon-hide directive", function () {
+    it("Should test removeIcon-hide directive", function () {
         var element = $compile('<tag mouseout></tag>')($rootScope);
 
         element.mouseout();
     });
 
-    it("test removeIcon-show directive", function () {
+    it("Should test removeIcon-show directive", function () {
         var element = $compile('<tag mouseover></tag>')($rootScope);
         var flag;
 
@@ -162,8 +190,9 @@ describe("Test all directives of our project", function () {
         });
     });
 
-    it("test timePicker directive", function () {
+    it("Should test timePicker directive", function () {
         var element = $compile('<tag time-picker></tag>')($rootScope);
+
         element.blur();
     });
 
@@ -176,7 +205,7 @@ describe("Test all directives of our project", function () {
         scope.$apply();
     }));
 
-    it("test updateUserScope directive", function () {
+    it("Should test updateUserScope directive", function () {
         var element = $compile('<ul update-user-scope></ul>')($rootScope);
         $rootScope.updateUserScope = function(){};
         element.scope().$apply();

@@ -40,13 +40,11 @@ App.factory('aux', function($rootScope, localStorageService, $location) {
         getTimeFromUTC: function(str) {
             var hour = str.getHours();
             var minute = str.getMinutes();
-            var second = str.getSeconds();
 
             if(hour < 10) hour = 0 + hour.toString();
             if(minute < 10) minute = 0 + minute.toString();
-            if(second < 10) second = 0 + second.toString();
 
-            return hour + ':' + minute + ':' + second;
+            return hour + ':' + minute;
         }
 
     }

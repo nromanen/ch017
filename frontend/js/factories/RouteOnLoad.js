@@ -19,18 +19,9 @@ App.factory('routeOnLoad', [
                 return false;
             }
 
-            if (aux.getFromLocalStorage('remember_me') === 'false') {
-                routeOnLoad.redirectTo('/auth/logout');
-                return false;
-            }
-
-            if (aux.getFromLocalStorage('remember_me_temp') === 'true') {
-                aux.addToLocalStorage('remember_me', 'true');
-            } else aux.addToLocalStorage('remember_me', 'false');
-
             var currentUser = aux.getFromLocalStorage('currentUser');
 
-            db.getPatientList(currentUser);
+            if (currentUser.is_staff) db.getPatientList(currentUser);
         };
 
         return routeOnLoad;

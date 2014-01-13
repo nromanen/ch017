@@ -1,5 +1,5 @@
 
-App.directive('modal', function($rootScope, aux) {
+App.directive('modal', function($rootScope, db, aux) {
     return {
         restrict: 'E',
         templateUrl: './templates/modalWindow.html',
