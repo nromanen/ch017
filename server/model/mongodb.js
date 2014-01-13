@@ -53,6 +53,9 @@ module.exports = {
                 foto: {type: String, default: ''},
                 login: {type: String, require: true, index: {unique: true, dropDups: true}},
                 password: {type: String, require: true},
+                is_doctor: {type: Boolean, default: false},
+                is_staff: {type: Boolean, default: false},
+                is_active: {type: Boolean, default: false},
                 role:  {
                     type: Number,
                     ref: 'Role',

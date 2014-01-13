@@ -122,22 +122,39 @@ exports.deleteTodo = function(req, res) {
     db.tables.User.findOne({ _id: req.params.user_id }).populate("role").exec(function(err, user){
 
         if (!user.role.remove) return res.json(500, {error: "you have no permission"});
+        if(err) return res.json(500, {error: err});
+    });
 
         db.tables.Time.findOneAndRemove({ _id: req.params.time_id }, function(err){
 
            if(err) return res.json(500, {error: err});
 
-           db.tables.Todo.find( {time : req.params.time_id }, function(err, todo){
+           db.tables.Todo.findOne( {time : req.params.time_id }, function(err, todo){
 
                if(err) return res.json(500, {error: err});
 
                db.tables.Todo.update(
                    {time : req.params.time_id},
-                   { $pull: { time: req.params.time_id}}, function(err){
+                   { $pull: { time: req.params.time_id}}, function(err, todo){
 
                        if(err) return res.json(500, {error: err});
                });
-            });
+
+               db.tables.User.find({todo : todo._id}, function(err){
+
+                   if(err) return res.json(500, {error: err});
+
+                   db.tables.User.update(
+                       {todo : todo._id},
+                       { $pull: { todo: todo._id }}, function(err){
+
+                           if(err) return res.json(500, {error: err});
+                   });
+               });
+           });
         });
+    db.tables.Todo.findAndRemove({ time: [] }, function(err){
+
+        if(err) return res.json(500, {error: err});
     });
 };
