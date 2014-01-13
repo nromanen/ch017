@@ -67,7 +67,6 @@
         display: inline-block;
         margin-top: 10px;
         margin-bottom: 10px;
-        width:360px;
         word-wrap: break-word;
     }
 }
@@ -194,6 +193,7 @@
 }
 body {
     background-image: url("../images/bodybg.jpg");
+    font-size: 14px;
 }
 .glyphicon {
     top: 0;
@@ -230,7 +230,39 @@ body {
     color: #555;
 }
 .modal-dialog {
-    width: 590px;
+    width: 581px;
+}
+@media(min-width:1199px) {
+    .modal-dialog {
+        width: 581px;
+    }
+}
+@media(max-width:768px) {
+    .modal-dialog {
+        width: 581px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+}
+@media(max-width:595px) {
+    .modal-dialog {
+        width: 465px;
+    }
+    button.set-date {
+        margin-top: 20px;
+    }
+}
+@media(max-width:480px) {
+    .modal-dialog {
+        width: 465px;
+        padding: 0;
+    }
+    button.set-date {
+        margin-top: 20px;
+    }
+}
+.navbar-masthead .navbar-brand {
+    padding-right: 21px;
 }
 .dropdown-menu {
     & > li {
@@ -262,11 +294,45 @@ body {
     margin: auto;
     background: #f5f5f5;
     padding: 10px;
-    font-size: 16px;
     border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    width: 35em;
+    border-top-right-radius: 0;
     box-shadow: 10px -3px 20px rgba(100, 100, 100, 0.5);
+    border: none;
+}
+@media(min-width:1199px) {
+    #wrapper {
+        width: 800px;
+    }
+    .content > span {
+        width: 653px;
+    }
+}
+@media(max-width:1199px) {
+    #wrapper {
+        width: 800px;
+    }
+    .content > span {
+        width: 653px;
+    }
+}
+@media(max-width:800px) {
+    #wrapper {
+        width: 600px;
+    }
+    .content > span {
+        width: 371px;
+    }
+}
+@media(max-width:600px) {
+    #wrapper {
+        width: 480px;
+    }
+}
+@media(max-width:480px) {
+    #wrapper {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
 }
 .modalwindow_description-hint {
     .set_position(absolute);
@@ -306,9 +372,7 @@ body {
     padding: 10px;
 }
 .main {
-    margin: 20px auto;
-    .relative;
-    width: 960px;
+
 }
 .bootstrap-datetimepicker-widget .timepicker-hour, .bootstrap-datetimepicker-widget .timepicker-minute {
     width: 40px;
@@ -316,6 +380,15 @@ body {
 }
 .datepicker-inline {
     width: auto;
+}
+.nav .caret {
+    border-top-color: #777;
+}
+.nav a:hover .caret {
+    border-top-color: #333;
+}
+.bold {
+    font-weight: bold;
 }
 .patientListWidth {
     .relative;
@@ -354,7 +427,21 @@ body {
 }
 .selected {
     background-color: #F7F7F7;
-    font-weight: bold;
+    font-weight: bold !important;
+}
+.patient-list .dropdown-menu {
+    width: 175px;
+}
+.patient-list .dropdown-menu > li > a {
+    height: 35px;
+    line-height: 2.3;
+    color: #555;
+}
+.navbar-collapse.in {
+    /* overflow-y: visible !important; */
+}
+.nav > li > a {
+    padding-left: 15px;
 }
 .modal-footer {
     margin-top: 0;
@@ -391,20 +478,22 @@ body {
 .edittodo-liremovedate {
     list-style-type: none;
 }
+button {
+    outline: none;
+}
 .navbar {
+    margin-bottom: 0;
     border: none;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    .user-name {
-        float: left;
-        padding: 15px 15px;
-        font-size: 18px;
-        line-height: 20px;
-        color: #777;
-        margin-left: 15px;
-    }
-    .user-photo {
-        width: 51px;
-        float: left;
+    .user-photo-block {
+        display: inline-block;
+        height: 0;
+        margin-right: 10px;
+        img {
+            display: block;
+            position: relative;
+            top: -31px;
+        }
     }
     .container {
         padding-left: 0;
@@ -431,3 +520,14 @@ body {
     padding: 20px;
     padding-bottom: 0;
 }
+
+
+
+/* todc-bootstrap theme fixes begin */
+.navbar .user-photo-block > img {
+    width: 46px;
+}
+.panel-default>.panel-heading {
+    background-color: #F5F5F5;
+}
+/* todc-bootstrap theme fixes end */
