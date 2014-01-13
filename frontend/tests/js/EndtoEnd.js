@@ -35,8 +35,8 @@ describe("Project tests", function() {
             expect(repeater('#list li .content').count()).toBe(0);
             element('button.btn-primary.btn.modalstartbutton').click();
             input('todoExample.text').enter('learn test');
-            input('date').enter([datetime.getFullYear(), datetime.getMonth() + 1, datetime.getDate()].join('-'));
-            input('time').enter([datetime.getHours(), datetime.getMinutes(), datetime.getSeconds()].join(":"));
+            input('date').enter("2013-12-11");
+            input('time').enter("11:12");
 
             element('.set-date-form .form-control.add-on.datetime').click();
             element(".set-date-form .set-date").click();
@@ -86,6 +86,7 @@ describe("Project tests", function() {
             input('authPassword').enter('1111');
             element('button.btn.btn-lg.btn-primary.btn-block').click();
             expect(browser().location().path()).toBe("/doctor/doctor");
+            expect(repeater('#list li .content').count()).toBe(1);
         });
 
         it('Should remove added and "checked" item', function() {
@@ -130,8 +131,8 @@ describe("Project tests", function() {
             expect(repeater('#list li .content').count()).toBe(0);
             element('button.btn-primary.btn.modalstartbutton').click();
             input('todoExample.text').enter('learn test');
-            input('date').enter([datetime.getFullYear(), datetime.getMonth() + 1, datetime.getDate()].join('-'));
-            input('time').enter([datetime.getHours(), datetime.getMinutes(), datetime.getSeconds()].join(":"));
+            input('date').enter("2014-01-13");
+            input('time').enter("11:12");
 
             element('.set-date-form .form-control.add-on.datetime').click();
             element(".set-date-form .set-date").click();
@@ -167,7 +168,7 @@ describe("Project tests", function() {
 
         it("Should disallow opportunity to remove the item", function() {
             element('#list li .content .remove-icon').click();
-            browser().reload();
+          //  browser().reload();
             expect(repeater('#list li .content').count()).toBe(1);
         });
 
