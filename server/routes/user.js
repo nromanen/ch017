@@ -24,9 +24,14 @@ exports.getUser = function(req, res) {
 
    db.tables.User.findOne({login: req.params.login, password: password}).
    populate("role todo").exec(function(err, user) {
-        if(err) return res.json(500, {error: err});
 
-        res.json(user);
+        if(err) return res.json(500, {error: err});
+        db.tables.Todo.populate(user, {
+            path: 'todo.time',
+            // select: 'datetime'
+            model: db.tables.Time
+        }, function(err, users){  res.json(users);});
+        //res.json(user);
     });
 };
 

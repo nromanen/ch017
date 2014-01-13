@@ -51,6 +51,8 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
     };
 
     $scope.addNewTodo = function() {
+        if (!$scope.canAddTodo) return false
+
         if (!$rootScope.todoExample.text) return false;
 
         db.addTodo($rootScope.currentPatient.id, $rootScope.todoExample);
@@ -58,6 +60,8 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
     };
 
     $scope.updateTodo = function() {
+        if (!$scope.canEditTodo) return false;
+
         $rootScope.currentPatient.todo.forEach(function(todo, index) {
             if (todo.id !== $rootScope.todoExample.id) return false;
 
@@ -138,6 +142,8 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
     };
 
     $scope.removeTodo = function(todo, time) {
+        if (!$scope.canRemoveTodo) return false;
+
         var todoItem = $.grep($rootScope.currentPatient.todo, function(todoItem) {
             return todoItem.id === todo;
         })[0];

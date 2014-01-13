@@ -153,7 +153,7 @@ exports.deleteTodo = function(req, res) {
                });
            });
         });
-    db.tables.Todo.findAndRemove({ time: [] }, function(err){
+    db.tables.Todo.remove({ time: [] }, function(err){
 
         if(err) return res.json(500, {error: err});
     });

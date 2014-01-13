@@ -1,7 +1,7 @@
 'use strict';
 
 describe("Project tests", function() {
-    xdescribe("Test doctor's role", function() {
+    describe("Test doctor's role", function() {
         beforeEach(function() {
             browser().navigateTo('index.html');
         });
@@ -38,10 +38,10 @@ describe("Project tests", function() {
             input('date').enter([datetime.getFullYear(), datetime.getMonth() + 1, datetime.getDate()].join('-'));
             input('time').enter([datetime.getHours(), datetime.getMinutes(), datetime.getSeconds()].join(":"));
 
-            element('#datetimepicker1 .form-control.add-on.datetime').click();
+            element('.set-date-form .form-control.add-on.datetime').click();
             element(".set-date-form .set-date").click();
-            element('.well button.btn.btn-primary').click();
-            expect(repeater('.modal-body ul li').count()).toBe(1);
+            element('.set-time-form button.btn.btn-primary').click();
+            expect(repeater('.modalWindowListBadges.time li').count()).toBe(1);
             element('.modal-footer button.btn.btn-primary').click();
             element('.modal-footer button.btn.btn-default').click();
 
@@ -60,10 +60,10 @@ describe("Project tests", function() {
         });
 
         it('Should login as nurse', function() {
-            input('authLogin').enter('patient9');
+            input('authLogin').enter('nurse');
             input('authPassword').enter('1111');
             element('button.btn.btn-lg.btn-primary.btn-block').click();
-            expect(browser().location().path()).toBe("/nurse/patient9");
+            expect(browser().location().path()).toBe("/nurse/nurse");
         });
 
         it('Should show added item', function() {
@@ -133,10 +133,10 @@ describe("Project tests", function() {
             input('date').enter([datetime.getFullYear(), datetime.getMonth() + 1, datetime.getDate()].join('-'));
             input('time').enter([datetime.getHours(), datetime.getMinutes(), datetime.getSeconds()].join(":"));
 
-            element('#datetimepicker1 .form-control.add-on.datetime').click();
+            element('.set-date-form .form-control.add-on.datetime').click();
             element(".set-date-form .set-date").click();
-            element('.well button.btn.btn-primary').click();
-            expect(repeater('.modal-body ul li').count()).toBe(1);
+            element('.set-time-form button.btn.btn-primary').click();
+            expect(repeater('.modalWindowListBadges.time li').count()).toBe(1);
             element('.modal-footer button.btn.btn-primary').click();
             element('.modal-footer button.btn.btn-default').click();
 
@@ -202,7 +202,7 @@ describe("Project tests", function() {
             expect(browser().location().path()).toBe("/doctor/doctor");
         });
 
-        xit('Should add an element to the list', function() {
+        it('Should add an element to the list', function() {
             var datetime = new Date();
 
             expect(repeater('#list li .content').count()).toBe(0);
@@ -211,12 +211,13 @@ describe("Project tests", function() {
             input('date').enter([datetime.getFullYear(), datetime.getMonth() + 1, datetime.getDate()].join('-'));
             input('time').enter([datetime.getHours(), datetime.getMinutes(), datetime.getSeconds()].join(":"));
 
-            element('#datetimepicker1 .form-control.add-on.datetime').click();
+            element('.set-date-form .form-control.add-on.datetime').click();
             element(".set-date-form .set-date").click();
-            element('.well button.btn.btn-primary').click();
-            expect(repeater('.modal-body ul li').count()).toBe(1);
+            element('.set-time-form button.btn.btn-primary').click();
+            expect(repeater('.modalWindowListBadges.time li').count()).toBe(1);
             element('.modal-footer button.btn.btn-primary').click();
             element('.modal-footer button.btn.btn-default').click();
+
 
             expect(repeater('#list li .content').count()).toBeGreaterThan(0);
             expect(repeater('#list li .content').count()).toBe(1);
@@ -233,10 +234,10 @@ describe("Project tests", function() {
         });
 
         it('Should login as nurse', function() {
-            input('authLogin').enter('patient9');
+            input('authLogin').enter('nurse');
             input('authPassword').enter('1111');
             element('button.btn.btn-lg.btn-primary.btn-block').click();
-            expect(browser().location().path()).toBe("/nurse/patient9");
+            expect(browser().location().path()).toBe("/nurse/nurse");
         });
 
         it('Should check existence of the item', function() {
@@ -296,10 +297,10 @@ describe("Project tests", function() {
             input('date').enter([datetime.getFullYear(), datetime.getMonth() + 1, datetime.getDate()].join('-'));
             input('time').enter([datetime.getHours(), datetime.getMinutes(), datetime.getSeconds()].join(":"));
 
-            element('#datetimepicker1 .form-control.add-on.datetime').click();
+            element('.set-date-form .form-control.add-on.datetime').click();
             element(".set-date-form .set-date").click();
-            element('.well button.btn.btn-primary').click();
-            expect(repeater('.modal-body ul li').count()).toBe(1);
+            element('.set-time-form button.btn.btn-primary').click();
+            expect(repeater('.modalWindowListBadges.time li').count()).toBe(1);
             element('.modal-footer button.btn.btn-primary').click();
             element('.modal-footer button.btn.btn-default').click();
 
@@ -381,10 +382,10 @@ describe("Project tests", function() {
             input('date').enter([datetime.getFullYear(), datetime.getMonth() + 1, datetime.getDate()].join('-'));
             input('time').enter([datetime.getHours(), datetime.getMinutes(), datetime.getSeconds()].join(":"));
 
-            element('#datetimepicker1 .form-control.add-on.datetime').click();
+            element('.set-date-form .form-control.add-on.datetime').click();
             element(".set-date-form .set-date").click();
-            element('.well button.btn.btn-primary').click();
-            expect(repeater('.modal-body ul li').count()).toBe(1);
+            element('.set-time-form button.btn.btn-primary').click();
+            expect(repeater('.modalWindowListBadges.time li').count()).toBe(1);
             element('.modal-footer button.btn.btn-primary').click();
             element('.modal-footer button.btn.btn-default').click();
             expect(repeater('#list li .content').count()).toBeGreaterThan(0);
@@ -402,10 +403,10 @@ describe("Project tests", function() {
         });
 
         it('Should login as nurse ', function() {
-            input('authLogin').enter('patient10');
+            input('authLogin').enter('nurse');
             input('authPassword').enter('1111');
             element('button.btn.btn-lg.btn-primary.btn-block').click();
-            expect(browser().location().path()).toBe("/nurse/patient10");
+            expect(browser().location().path()).toBe("/nurse/nurse");
         });
 
         it('Should set date to tomorrow date', function(){
@@ -426,7 +427,7 @@ describe("Project tests", function() {
     });
 
 
-    describe("Test doctor's posibility to delete items from past date", function() {
+    xdescribe("Test doctor's posibility to delete items from past date", function() {
         beforeEach(function() {
             browser().navigateTo('index.html');
         });
@@ -459,15 +460,23 @@ describe("Project tests", function() {
 
             element('button.btn-primary.btn.modalstartbutton').click();
             input('todoExample.text').enter('learn test');
-            input('date').enter([datetime.getFullYear(), datetime.getMonth() + 1, datetime.getDate()].join('-'));
+            input('date').enter([datetime.getFullYear(), datetime.getMonth() + 1, datetime.getDate()-1].join('-'));
             input('time').enter([datetime.getHours(), datetime.getMinutes(), datetime.getSeconds()].join(":"));
 
-            element('#datetimepicker1 .form-control.add-on.datetime').click();
+            element('.set-date-form .form-control.add-on.datetime').click();
+            element(".set-date-form .btn.btn-primary.set-date").click();
+            element('.set-time-form button.btn.btn-primary').click();
+            expect(repeater(' .modalWindowListBadges.time li').count()).toBe(1);
+            element('.modal-footer button.btn.btn-primary').click();
+
+/*
+            element('.set-date-form .form-control.add-on.datetime').click();
             element(".set-date-form .set-date").click();
-            element('.well button.btn.btn-primary').click();
-            expect(repeater('.modal-body ul li').count()).toBe(1);
+            element('.set-time-form button.btn.btn-primary').click();
+            expect(repeater('.modalWindowListBadges.time li').count()).toBe(1);
             element('.modal-footer button.btn.btn-primary').click();
             element('.modal-footer button.btn.btn-default').click();
+*/
 
             expect(repeater('#list li .content').count()).toBe(1);
         });
