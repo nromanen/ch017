@@ -10,7 +10,7 @@ var App = angular.module('App', [
     });
 
 }).constant('config', {
-    mediaUrl: 'http://localhost:8000/media/',
+    mediaUrl: '../media/',
     apiUrl: 'api/',
     lang: 'en'
 }).constant('dayPart', {
