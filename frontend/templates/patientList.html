@@ -1,4 +1,4 @@
-<ul ng-controller="PatientListController" class="patient-list nav navbar-nav">
+<ul ng-controller="PatientListController" ng-show="currentUser.is_staff" class="patient-list nav navbar-nav">
     <li class="dropdown">
         <a ng-href="" class="dropdown-toggle" data-toggle="dropdown">
             {{'PATIENT_LIST.TITLE' | translate}}

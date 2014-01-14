@@ -1,7 +1,7 @@
 {
     "TITLE": "Medical prescriptions",
     "TOP_PANEL": {
-        "FILTER_BY_DATE": "Date: ",
+        "FILTER_BY_DATE": "Date:",
         "LANGUAGE": "Language",
         "LANGUAGES": {
             "en": "English",

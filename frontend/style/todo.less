@@ -192,7 +192,8 @@
     cursor: default !important;
 }
 body {
-    background-image: url("../images/bodybg.jpg");
+    /* background-image: url("../images/bodybg.jpg"); */
+    background-color: rgba(48, 121, 237, 0.1);
     font-size: 14px;
 }
 .glyphicon {
@@ -296,7 +297,7 @@ body {
     padding: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    box-shadow: 10px -3px 20px rgba(100, 100, 100, 0.5);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
     border: none;
 }
 @media(min-width:1199px) {
@@ -315,15 +316,23 @@ body {
         width: 653px;
     }
 }
-@media(max-width:800px) {
+@media(max-width:1000px) {
     #wrapper {
-        width: 600px;
+        width: 650px;
     }
     .content > span {
         width: 371px;
     }
 }
-@media(max-width:600px) {
+@media(max-width:800px) {
+    #wrapper {
+        width: 550px;
+    }
+    .content > span {
+        width: 371px;
+    }
+}
+@media(max-width:700px) {
     #wrapper {
         width: 480px;
     }
@@ -484,7 +493,7 @@ button {
 .navbar {
     margin-bottom: 0;
     border: none;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
     .user-photo-block {
         display: inline-block;
         height: 0;
