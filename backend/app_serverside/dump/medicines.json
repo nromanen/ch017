@@ -1,0 +1,2837 @@
+[
+    {
+        "pk": 1, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "A.T.10"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Abaktal"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Avandia"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Avelox"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Avodart"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Avonex"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Adalat SL"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Advantan"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Adgelon"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Addamel N"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Adelphane-Esidrex"
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Adivit"
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Adolor"
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Adrianol"
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Azaran"
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Azaphen"
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Aziwok"
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Azitral"
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Azithrox"
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Azithrus"
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Bagomet"
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Bagopril"
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Bagothyrox"
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Baclosan"
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Bactisubtil"
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Bactroban"
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Baneocin"
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Baralgin M"
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Batrafen"
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Becotide"
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Belogent"
+        }
+    }, 
+    {
+        "pk": 32, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Beloderm"
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Belosalic"
+        }
+    }, 
+    {
+        "pk": 34, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Belosalic Lotion"
+        }
+    }, 
+    {
+        "pk": 35, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ben-Gay"
+        }
+    }, 
+    {
+        "pk": 36, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ben-Gay Sport"
+        }
+    }, 
+    {
+        "pk": 37, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Benacort"
+        }
+    }, 
+    {
+        "pk": 38, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Benalgin"
+        }
+    }, 
+    {
+        "pk": 39, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Benarin"
+        }
+    }, 
+    {
+        "pk": 40, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Benzylbenzoate"
+        }
+    }, 
+    {
+        "pk": 41, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Vagothyl"
+        }
+    }, 
+    {
+        "pk": 42, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Vasaprostan"
+        }
+    }, 
+    {
+        "pk": 43, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Vasilip"
+        }
+    }, 
+    {
+        "pk": 44, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Vasobral"
+        }
+    }, 
+    {
+        "pk": 45, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Vasocardin"
+        }
+    }, 
+    {
+        "pk": 46, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Vasonit"
+        }
+    }, 
+    {
+        "pk": 47, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Vaqta"
+        }
+    }, 
+    {
+        "pk": 48, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Valtrex"
+        }
+    }, 
+    {
+        "pk": 49, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Valparin XR"
+        }
+    }, 
+    {
+        "pk": 50, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Vancocin"
+        }
+    }, 
+    {
+        "pk": 51, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Warfarex"
+        }
+    }, 
+    {
+        "pk": 52, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Warfarin Nycomed"
+        }
+    }, 
+    {
+        "pk": 53, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Vesicare"
+        }
+    }, 
+    {
+        "pk": 54, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Velaxin"
+        }
+    }, 
+    {
+        "pk": 55, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Velafax"
+        }
+    }, 
+    {
+        "pk": 56, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Velcade"
+        }
+    }, 
+    {
+        "pk": 57, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Vensa"
+        }
+    }, 
+    {
+        "pk": 58, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Venitan"
+        }
+    }, 
+    {
+        "pk": 59, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Venolife"
+        }
+    }, 
+    {
+        "pk": 60, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Venoruton"
+        }
+    }, 
+    {
+        "pk": 61, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Venter"
+        }
+    }, 
+    {
+        "pk": 62, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Gadovist"
+        }
+    }, 
+    {
+        "pk": 63, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Halazolin"
+        }
+    }, 
+    {
+        "pk": 64, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Halidor"
+        }
+    }, 
+    {
+        "pk": 65, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Haloperidol"
+        }
+    }, 
+    {
+        "pk": 66, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Haloperidol Forte"
+        }
+    }, 
+    {
+        "pk": 67, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Haloperidol-Akri"
+        }
+    }, 
+    {
+        "pk": 68, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Haloperidol-Ratiopharm"
+        }
+    }, 
+    {
+        "pk": 69, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Haloperidol Decanoate"
+        }
+    }, 
+    {
+        "pk": 70, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Galstena"
+        }
+    }, 
+    {
+        "pk": 71, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Gamimune N"
+        }
+    }, 
+    {
+        "pk": 72, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Gapentek"
+        }
+    }, 
+    {
+        "pk": 73, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Gastal"
+        }
+    }, 
+    {
+        "pk": 74, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Gastrozol"
+        }
+    }, 
+    {
+        "pk": 75, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Gastrosidin"
+        }
+    }, 
+    {
+        "pk": 76, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Gastropharm"
+        }
+    }, 
+    {
+        "pk": 77, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Gastrozepin"
+        }
+    }, 
+    {
+        "pk": 78, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Gewadal"
+        }
+    }, 
+    {
+        "pk": 79, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "D-Panthenol"
+        }
+    }, 
+    {
+        "pk": 80, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Dazolic"
+        }
+    }, 
+    {
+        "pk": 81, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Daivobet"
+        }
+    }, 
+    {
+        "pk": 82, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Daivonex"
+        }
+    }, 
+    {
+        "pk": 83, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Dacarbazin Lachema"
+        }
+    }, 
+    {
+        "pk": 84, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Dalacin"
+        }
+    }, 
+    {
+        "pk": 85, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Dalfaz Retard"
+        }
+    }, 
+    {
+        "pk": 86, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Dalfaz SR"
+        }
+    }, 
+    {
+        "pk": 87, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Dapril"
+        }
+    }, 
+    {
+        "pk": 88, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "De-Nol"
+        }
+    }, 
+    {
+        "pk": 89, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Decaris"
+        }
+    }, 
+    {
+        "pk": 90, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Dexa-Gentamicin"
+        }
+    }, 
+    {
+        "pk": 91, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Dexaven"
+        }
+    }, 
+    {
+        "pk": 92, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Dexalgin 25"
+        }
+    }, 
+    {
+        "pk": 93, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Dexamed"
+        }
+    }, 
+    {
+        "pk": 94, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Dexamethason"
+        }
+    }, 
+    {
+        "pk": 95, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Evra"
+        }
+    }, 
+    {
+        "pk": 96, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Jeanine"
+        }
+    }, 
+    {
+        "pk": 97, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Zavedos"
+        }
+    }, 
+    {
+        "pk": 98, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Zaditen"
+        }
+    }, 
+    {
+        "pk": 99, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Zalain"
+        }
+    }, 
+    {
+        "pk": 100, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Zaldiar"
+        }
+    }, 
+    {
+        "pk": 101, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Zantac"
+        }
+    }, 
+    {
+        "pk": 102, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Zedex"
+        }
+    }, 
+    {
+        "pk": 103, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Zeldox"
+        }
+    }, 
+    {
+        "pk": 104, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Zeptol"
+        }
+    }, 
+    {
+        "pk": 105, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Zerit"
+        }
+    }, 
+    {
+        "pk": 106, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Zerocid"
+        }
+    }, 
+    {
+        "pk": 107, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Zetamax Retard"
+        }
+    }, 
+    {
+        "pk": 108, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Zetrinal"
+        }
+    }, 
+    {
+        "pk": 109, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Zeffix"
+        }
+    }, 
+    {
+        "pk": 110, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Zi-Factor"
+        }
+    }, 
+    {
+        "pk": 111, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ziagen"
+        }
+    }, 
+    {
+        "pk": 112, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Zyvox"
+        }
+    }, 
+    {
+        "pk": 113, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "I.G. Vena N.I.V."
+        }
+    }, 
+    {
+        "pk": 114, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ibuclin"
+        }
+    }, 
+    {
+        "pk": 115, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ibuprofen"
+        }
+    }, 
+    {
+        "pk": 116, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ibuprofen-Hemofarm"
+        }
+    }, 
+    {
+        "pk": 117, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ibufen"
+        }
+    }, 
+    {
+        "pk": 118, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ideos"
+        }
+    }, 
+    {
+        "pk": 119, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Isoket"
+        }
+    }, 
+    {
+        "pk": 120, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Isocomb"
+        }
+    }, 
+    {
+        "pk": 121, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Isoniazid"
+        }
+    }, 
+    {
+        "pk": 122, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Isoptin"
+        }
+    }, 
+    {
+        "pk": 123, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Isoptin SR 240"
+        }
+    }, 
+    {
+        "pk": 124, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Isofra"
+        }
+    }, 
+    {
+        "pk": 125, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ixel"
+        }
+    }, 
+    {
+        "pk": 126, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Imigran"
+        }
+    }, 
+    {
+        "pk": 127, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Immunal"
+        }
+    }, 
+    {
+        "pk": 128, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Immunorm"
+        }
+    }, 
+    {
+        "pk": 129, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Jodbalance"
+        }
+    }, 
+    {
+        "pk": 130, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Iodoxyd"
+        }
+    }, 
+    {
+        "pk": 131, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Iodomarin"
+        }
+    }, 
+    {
+        "pk": 132, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Jodthyrox"
+        }
+    }, 
+    {
+        "pk": 133, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ionosteril"
+        }
+    }, 
+    {
+        "pk": 134, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Kabiven Peripheral"
+        }
+    }, 
+    {
+        "pk": 135, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Kabiven"
+        }
+    }, 
+    {
+        "pk": 136, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Caverject"
+        }
+    }, 
+    {
+        "pk": 137, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Cavinton"
+        }
+    }, 
+    {
+        "pk": 138, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Cavinton Forte"
+        }
+    }, 
+    {
+        "pk": 139, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Kagocel"
+        }
+    }, 
+    {
+        "pk": 140, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Calgel"
+        }
+    }, 
+    {
+        "pk": 141, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Kaletra"
+        }
+    }, 
+    {
+        "pk": 142, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Kalymin 60 N"
+        }
+    }, 
+    {
+        "pk": 143, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Potassium-Magnesium Asparaginate Berlin-Chemie"
+        }
+    }, 
+    {
+        "pk": 144, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Potassium Iodide"
+        }
+    }, 
+    {
+        "pk": 145, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Calpol"
+        }
+    }, 
+    {
+        "pk": 146, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Calumid"
+        }
+    }, 
+    {
+        "pk": 147, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Calchek"
+        }
+    }, 
+    {
+        "pk": 148, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Calcemin"
+        }
+    }, 
+    {
+        "pk": 149, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Calcemin Advance"
+        }
+    }, 
+    {
+        "pk": 150, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Calcigard Retard"
+        }
+    }, 
+    {
+        "pk": 151, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Calcium + Vitamin D3 Vitrum"
+        }
+    }, 
+    {
+        "pk": 152, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Calcium-D3 Nycomed"
+        }
+    }, 
+    {
+        "pk": 153, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Calcium-D3 Nycomed Forte"
+        }
+    }, 
+    {
+        "pk": 154, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Calcium-Sandoz Forte"
+        }
+    }, 
+    {
+        "pk": 155, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Lavasept"
+        }
+    }, 
+    {
+        "pk": 156, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Lavomax"
+        }
+    }, 
+    {
+        "pk": 157, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Lasix"
+        }
+    }, 
+    {
+        "pk": 158, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Lasolvan"
+        }
+    }, 
+    {
+        "pk": 159, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Lykocin"
+        }
+    }, 
+    {
+        "pk": 160, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Lacrisifi"
+        }
+    }, 
+    {
+        "pk": 161, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Lamisil"
+        }
+    }, 
+    {
+        "pk": 162, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Lamisil Dermgel"
+        }
+    }, 
+    {
+        "pk": 163, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Lamican"
+        }
+    }, 
+    {
+        "pk": 164, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Lamictal"
+        }
+    }, 
+    {
+        "pk": 165, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Lamitor"
+        }
+    }, 
+    {
+        "pk": 166, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Lamolep"
+        }
+    }, 
+    {
+        "pk": 167, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Lanzap"
+        }
+    }, 
+    {
+        "pk": 168, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Lantus"
+        }
+    }, 
+    {
+        "pk": 169, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Laticort"
+        }
+    }, 
+    {
+        "pk": 170, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Lacipil"
+        }
+    }, 
+    {
+        "pk": 171, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Levemir Flexpen"
+        }
+    }, 
+    {
+        "pk": 172, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Levitra"
+        }
+    }, 
+    {
+        "pk": 173, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Levomecol"
+        }
+    }, 
+    {
+        "pk": 174, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "M-M-R II"
+        }
+    }, 
+    {
+        "pk": 175, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Maalox"
+        }
+    }, 
+    {
+        "pk": 176, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Maalucol"
+        }
+    }, 
+    {
+        "pk": 177, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Maverex"
+        }
+    }, 
+    {
+        "pk": 178, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Magne C6"
+        }
+    }, 
+    {
+        "pk": 179, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Magnevist"
+        }
+    }, 
+    {
+        "pk": 180, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Magnerot"
+        }
+    }, 
+    {
+        "pk": 181, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Majeptil"
+        }
+    }, 
+    {
+        "pk": 182, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Myfortic"
+        }
+    }, 
+    {
+        "pk": 183, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Macmiror"
+        }
+    }, 
+    {
+        "pk": 184, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Macmiror Complex"
+        }
+    }, 
+    {
+        "pk": 185, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Macropen"
+        }
+    }, 
+    {
+        "pk": 186, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Maxicold"
+        }
+    }, 
+    {
+        "pk": 187, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Maxipime"
+        }
+    }, 
+    {
+        "pk": 188, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Mamomit"
+        }
+    }, 
+    {
+        "pk": 189, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Mandol"
+        }
+    }, 
+    {
+        "pk": 190, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Maninil"
+        }
+    }, 
+    {
+        "pk": 191, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Maraslavin"
+        }
+    }, 
+    {
+        "pk": 192, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Mastodynon"
+        }
+    }, 
+    {
+        "pk": 193, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Materna"
+        }
+    }, 
+    {
+        "pk": 194, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "N-AC-Ratiopharm"
+        }
+    }, 
+    {
+        "pk": 195, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Navelbine"
+        }
+    }, 
+    {
+        "pk": 196, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Navoban"
+        }
+    }, 
+    {
+        "pk": 197, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Nasivin"
+        }
+    }, 
+    {
+        "pk": 198, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Nazol"
+        }
+    }, 
+    {
+        "pk": 199, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Nazol Baby"
+        }
+    }, 
+    {
+        "pk": 200, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Nazol Kids"
+        }
+    }, 
+    {
+        "pk": 201, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Nasonex"
+        }
+    }, 
+    {
+        "pk": 202, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Nise"
+        }
+    }, 
+    {
+        "pk": 203, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Naclof"
+        }
+    }, 
+    {
+        "pk": 204, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Nakom"
+        }
+    }, 
+    {
+        "pk": 205, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Naxogin"
+        }
+    }, 
+    {
+        "pk": 206, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Nalgesin"
+        }
+    }, 
+    {
+        "pk": 207, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Naloxon"
+        }
+    }, 
+    {
+        "pk": 208, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Naniprus"
+        }
+    }, 
+    {
+        "pk": 209, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Naproxen-Akri"
+        }
+    }, 
+    {
+        "pk": 210, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Naramig"
+        }
+    }, 
+    {
+        "pk": 211, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Naropin"
+        }
+    }, 
+    {
+        "pk": 212, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Natalsidum"
+        }
+    }, 
+    {
+        "pk": 213, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Natecal D3"
+        }
+    }, 
+    {
+        "pk": 214, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ovitrelle"
+        }
+    }, 
+    {
+        "pk": 215, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Odeston"
+        }
+    }, 
+    {
+        "pk": 216, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Okacin"
+        }
+    }, 
+    {
+        "pk": 217, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Oki"
+        }
+    }, 
+    {
+        "pk": 218, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Oxadol"
+        }
+    }, 
+    {
+        "pk": 219, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Oxycort"
+        }
+    }, 
+    {
+        "pk": 220, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Oxis Turbuhaler"
+        }
+    }, 
+    {
+        "pk": 221, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Oxytocin"
+        }
+    }, 
+    {
+        "pk": 222, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Oxolin"
+        }
+    }, 
+    {
+        "pk": 223, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Oxsoralen"
+        }
+    }, 
+    {
+        "pk": 224, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Octagam"
+        }
+    }, 
+    {
+        "pk": 225, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Octanine F Filtered"
+        }
+    }, 
+    {
+        "pk": 226, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Octanate"
+        }
+    }, 
+    {
+        "pk": 227, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Octilia"
+        }
+    }, 
+    {
+        "pk": 228, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ocumed"
+        }
+    }, 
+    {
+        "pk": 229, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ocupres-E"
+        }
+    }, 
+    {
+        "pk": 230, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Olicard Retard"
+        }
+    }, 
+    {
+        "pk": 231, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Omacor"
+        }
+    }, 
+    {
+        "pk": 232, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Omaron"
+        }
+    }, 
+    {
+        "pk": 233, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Omez"
+        }
+    }, 
+    {
+        "pk": 234, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Paclitaxel-Lans"
+        }
+    }, 
+    {
+        "pk": 235, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Paclitaxel-Ebewe"
+        }
+    }, 
+    {
+        "pk": 236, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Paxil"
+        }
+    }, 
+    {
+        "pk": 237, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Palin"
+        }
+    }, 
+    {
+        "pk": 238, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Panangin"
+        }
+    }, 
+    {
+        "pk": 239, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Panzynorm Forte-N"
+        }
+    }, 
+    {
+        "pk": 240, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Panklav"
+        }
+    }, 
+    {
+        "pk": 241, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Pankreoflat"
+        }
+    }, 
+    {
+        "pk": 242, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Pansoral"
+        }
+    }, 
+    {
+        "pk": 243, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Pansoral Teething"
+        }
+    }, 
+    {
+        "pk": 244, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Panthenol-Ratiopharm"
+        }
+    }, 
+    {
+        "pk": 245, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Pantogam"
+        }
+    }, 
+    {
+        "pk": 246, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Panthoderm"
+        }
+    }, 
+    {
+        "pk": 247, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Pantocalcin"
+        }
+    }, 
+    {
+        "pk": 248, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Papaverine Hydrochloride"
+        }
+    }, 
+    {
+        "pk": 249, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Para Plus"
+        }
+    }, 
+    {
+        "pk": 250, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Paracetamol-C-Hemofarm"
+        }
+    }, 
+    {
+        "pk": 251, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Paracetamol-Hemofarm"
+        }
+    }, 
+    {
+        "pk": 252, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Rawel SR"
+        }
+    }, 
+    {
+        "pk": 253, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Radedorm 5"
+        }
+    }, 
+    {
+        "pk": 254, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ranisan"
+        }
+    }, 
+    {
+        "pk": 255, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ranitidin"
+        }
+    }, 
+    {
+        "pk": 256, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ranitidine-Akri"
+        }
+    }, 
+    {
+        "pk": 257, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Rantac"
+        }
+    }, 
+    {
+        "pk": 258, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Rapiclav"
+        }
+    }, 
+    {
+        "pk": 259, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Rapten Rapid"
+        }
+    }, 
+    {
+        "pk": 260, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Doktor Mom Rub On Solution"
+        }
+    }, 
+    {
+        "pk": 261, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Rastocin"
+        }
+    }, 
+    {
+        "pk": 262, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Reamberin"
+        }
+    }, 
+    {
+        "pk": 263, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Reyataz"
+        }
+    }, 
+    {
+        "pk": 264, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Rebetol"
+        }
+    }, 
+    {
+        "pk": 265, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Rebif"
+        }
+    }, 
+    {
+        "pk": 266, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Revalgin"
+        }
+    }, 
+    {
+        "pk": 267, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Regaine"
+        }
+    }, 
+    {
+        "pk": 268, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Rehydron"
+        }
+    }, 
+    {
+        "pk": 269, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Regulon"
+        }
+    }, 
+    {
+        "pk": 270, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Recofol"
+        }
+    }, 
+    {
+        "pk": 271, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Sab Simplex"
+        }
+    }, 
+    {
+        "pk": 272, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Sagenit"
+        }
+    }, 
+    {
+        "pk": 273, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Saizen"
+        }
+    }, 
+    {
+        "pk": 274, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Samezil"
+        }
+    }, 
+    {
+        "pk": 275, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Sana-Sol"
+        }
+    }, 
+    {
+        "pk": 276, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Sanason Lek"
+        }
+    }, 
+    {
+        "pk": 277, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Sanval"
+        }
+    }, 
+    {
+        "pk": 278, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Sandimmun Neoral"
+        }
+    }, 
+    {
+        "pk": 279, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Sandostatin Lar"
+        }
+    }, 
+    {
+        "pk": 280, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Sunpraz"
+        }
+    }, 
+    {
+        "pk": 281, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Saridon"
+        }
+    }, 
+    {
+        "pk": 282, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Sevoran"
+        }
+    }, 
+    {
+        "pk": 283, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Sehydrin"
+        }
+    }, 
+    {
+        "pk": 284, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Sedal-M"
+        }
+    }, 
+    {
+        "pk": 285, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Sedalgin-Neo"
+        }
+    }, 
+    {
+        "pk": 286, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Seduxen"
+        }
+    }, 
+    {
+        "pk": 287, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Selemycin"
+        }
+    }, 
+    {
+        "pk": 288, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Selmevit"
+        }
+    }, 
+    {
+        "pk": 289, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Serdol"
+        }
+    }, 
+    {
+        "pk": 290, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Serdolect"
+        }
+    }, 
+    {
+        "pk": 291, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Tabex"
+        }
+    }, 
+    {
+        "pk": 292, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Tavanic"
+        }
+    }, 
+    {
+        "pk": 293, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Tavegyl"
+        }
+    }, 
+    {
+        "pk": 294, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Tadenan"
+        }
+    }, 
+    {
+        "pk": 295, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Tazepam"
+        }
+    }, 
+    {
+        "pk": 296, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Tilade Mint"
+        }
+    }, 
+    {
+        "pk": 297, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Taxol"
+        }
+    }, 
+    {
+        "pk": 298, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Taxotere"
+        }
+    }, 
+    {
+        "pk": 299, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Talliton"
+        }
+    }, 
+    {
+        "pk": 300, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Talcef"
+        }
+    }, 
+    {
+        "pk": 301, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Talcid"
+        }
+    }, 
+    {
+        "pk": 302, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Tamoxifen"
+        }
+    }, 
+    {
+        "pk": 303, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Tamoxifen-Ebewe"
+        }
+    }, 
+    {
+        "pk": 304, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Tanakan"
+        }
+    }, 
+    {
+        "pk": 305, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Tantum Verde"
+        }
+    }, 
+    {
+        "pk": 306, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Tantum Rose"
+        }
+    }, 
+    {
+        "pk": 307, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Tardyferon"
+        }
+    }, 
+    {
+        "pk": 308, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Tarivid"
+        }
+    }, 
+    {
+        "pk": 309, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ultop"
+        }
+    }, 
+    {
+        "pk": 310, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ultravist"
+        }
+    }, 
+    {
+        "pk": 311, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ultracain D-S"
+        }
+    }, 
+    {
+        "pk": 312, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ultracain D-S Forte"
+        }
+    }, 
+    {
+        "pk": 313, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ultraproct"
+        }
+    }, 
+    {
+        "pk": 314, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Uman Albumin"
+        }
+    }, 
+    {
+        "pk": 315, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Uman Complex D.I."
+        }
+    }, 
+    {
+        "pk": 316, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Uregyt"
+        }
+    }, 
+    {
+        "pk": 317, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Uro-Vaxom"
+        }
+    }, 
+    {
+        "pk": 318, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Urographin"
+        }
+    }, 
+    {
+        "pk": 319, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ursosan"
+        }
+    }, 
+    {
+        "pk": 320, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Utrogestan"
+        }
+    }, 
+    {
+        "pk": 321, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Faslodex"
+        }
+    }, 
+    {
+        "pk": 322, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Factiv"
+        }
+    }, 
+    {
+        "pk": 323, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Falimint"
+        }
+    }, 
+    {
+        "pk": 324, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Famvir"
+        }
+    }, 
+    {
+        "pk": 325, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Famosan"
+        }
+    }, 
+    {
+        "pk": 326, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Famotidin"
+        }
+    }, 
+    {
+        "pk": 327, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Famotidine"
+        }
+    }, 
+    {
+        "pk": 328, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Famotidine-Akri"
+        }
+    }, 
+    {
+        "pk": 329, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Famulan"
+        }
+    }, 
+    {
+        "pk": 330, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Fareston"
+        }
+    }, 
+    {
+        "pk": 331, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Faringosept"
+        }
+    }, 
+    {
+        "pk": 332, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Pharmatex"
+        }
+    }, 
+    {
+        "pk": 333, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Farmorubicin Rapid Dissolution"
+        }
+    }, 
+    {
+        "pk": 334, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Fastum"
+        }
+    }, 
+    {
+        "pk": 335, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Febrofid"
+        }
+    }, 
+    {
+        "pk": 336, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Fevarin"
+        }
+    }, 
+    {
+        "pk": 337, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Phezam"
+        }
+    }, 
+    {
+        "pk": 338, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Femara"
+        }
+    }, 
+    {
+        "pk": 339, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Femoden"
+        }
+    }, 
+    {
+        "pk": 340, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Femoston"
+        }
+    }, 
+    {
+        "pk": 341, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Havrix"
+        }
+    }, 
+    {
+        "pk": 342, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Haes-Steril"
+        }
+    }, 
+    {
+        "pk": 343, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Highmix"
+        }
+    }, 
+    {
+        "pk": 344, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Halixol"
+        }
+    }, 
+    {
+        "pk": 345, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Hartil"
+        }
+    }, 
+    {
+        "pk": 346, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Helex"
+        }
+    }, 
+    {
+        "pk": 347, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Hemomycin"
+        }
+    }, 
+    {
+        "pk": 348, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Hiberix"
+        }
+    }, 
+    {
+        "pk": 349, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Hylak Forte"
+        }
+    }, 
+    {
+        "pk": 350, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Hylo-Comod"
+        }
+    }, 
+    {
+        "pk": 351, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Hylozar-comod"
+        }
+    }, 
+    {
+        "pk": 352, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Chlorprothixen"
+        }
+    }, 
+    {
+        "pk": 353, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Holetar"
+        }
+    }, 
+    {
+        "pk": 354, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Cholisal"
+        }
+    }, 
+    {
+        "pk": 355, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Chondroxide"
+        }
+    }, 
+    {
+        "pk": 356, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Chophytol"
+        }
+    }, 
+    {
+        "pk": 357, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Humalog"
+        }
+    }, 
+    {
+        "pk": 358, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Humalog Mix 25"
+        }
+    }, 
+    {
+        "pk": 359, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Humatrope"
+        }
+    }, 
+    {
+        "pk": 360, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Humulin M3"
+        }
+    }, 
+    {
+        "pk": 361, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ceclor"
+        }
+    }, 
+    {
+        "pk": 362, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Celascon Vitamin V"
+        }
+    }, 
+    {
+        "pk": 363, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Centrum"
+        }
+    }, 
+    {
+        "pk": 364, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Centrum Junior"
+        }
+    }, 
+    {
+        "pk": 365, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Centrum Silver"
+        }
+    }, 
+    {
+        "pk": 366, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Cerebrolysin"
+        }
+    }, 
+    {
+        "pk": 367, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Cerepro"
+        }
+    }, 
+    {
+        "pk": 368, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Cernilton"
+        }
+    }, 
+    {
+        "pk": 369, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Cerucal"
+        }
+    }, 
+    {
+        "pk": 370, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Cetirizine Hexal"
+        }
+    }, 
+    {
+        "pk": 371, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Cetirinax"
+        }
+    }, 
+    {
+        "pk": 372, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Cetrine"
+        }
+    }, 
+    {
+        "pk": 373, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Cefazolin"
+        }
+    }, 
+    {
+        "pk": 374, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Cefecon D"
+        }
+    }, 
+    {
+        "pk": 375, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Cefecon N"
+        }
+    }, 
+    {
+        "pk": 376, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Cefobid"
+        }
+    }, 
+    {
+        "pk": 377, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Cefotaxime"
+        }
+    }, 
+    {
+        "pk": 378, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Eucabal"
+        }
+    }, 
+    {
+        "pk": 379, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Eucabal S"
+        }
+    }, 
+    {
+        "pk": 380, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Egilok"
+        }
+    }, 
+    {
+        "pk": 381, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Egilok Retard"
+        }
+    }, 
+    {
+        "pk": 382, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Eglek"
+        }
+    }, 
+    {
+        "pk": 383, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Eglonil"
+        }
+    }, 
+    {
+        "pk": 384, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Edicin"
+        }
+    }, 
+    {
+        "pk": 385, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ednyt"
+        }
+    }, 
+    {
+        "pk": 386, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ezetrol"
+        }
+    }, 
+    {
+        "pk": 387, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Exifine"
+        }
+    }, 
+    {
+        "pk": 388, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Exoderil"
+        }
+    }, 
+    {
+        "pk": 389, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Ecodax"
+        }
+    }, 
+    {
+        "pk": 390, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Exelon"
+        }
+    }, 
+    {
+        "pk": 391, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Extencilline"
+        }
+    }, 
+    {
+        "pk": 392, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Elenium"
+        }
+    }, 
+    {
+        "pk": 393, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Elidel"
+        }
+    }, 
+    {
+        "pk": 394, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Elocom"
+        }
+    }, 
+    {
+        "pk": 395, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Elocom-S"
+        }
+    }, 
+    {
+        "pk": 396, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Eloxatine"
+        }
+    }, 
+    {
+        "pk": 397, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Unidox Solutab"
+        }
+    }, 
+    {
+        "pk": 398, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Unikpef"
+        }
+    }, 
+    {
+        "pk": 399, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Unienzyme C MPS"
+        }
+    }, 
+    {
+        "pk": 400, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "Yarina"
+        }
+    }, 
+    {
+        "pk": 401, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "5-NOK"
+        }
+    }, 
+    {
+        "pk": 402, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "5-Fluorouracil-Fbewe"
+        }
+    }, 
+    {
+        "pk": 403, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "H-V-Vax II"
+        }
+    }, 
+    {
+        "pk": 404, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "L-Thyroxin Berlin-Chemie"
+        }
+    }, 
+    {
+        "pk": 405, 
+        "model": "todos.medicines", 
+        "fields": {
+            "title": "L-Thyroxin-Akri"
+        }
+    }
+]

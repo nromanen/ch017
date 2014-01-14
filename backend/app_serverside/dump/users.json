@@ -1,0 +1,274 @@
+[
+    {
+        "pk": 5, 
+        "model": "todos.users", 
+        "fields": {
+            "first_name": "Rick", 
+            "last_name": "Miller", 
+            "is_active": false, 
+            "foto": "fotos/perello_ibarionex_e.jpg", 
+            "is_doctor": false, 
+            "is_staff": false, 
+            "role": 3, 
+            "login": "patient3", 
+            "password": "1111", 
+            "todo": []
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "todos.users", 
+        "fields": {
+            "first_name": "Vilma", 
+            "last_name": "Graice", 
+            "is_active": false, 
+            "foto": "fotos/smith_dori_e.jpg", 
+            "is_doctor": false, 
+            "is_staff": false, 
+            "role": 3, 
+            "login": "patient4", 
+            "password": "1111", 
+            "todo": []
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "todos.users", 
+        "fields": {
+            "first_name": "Wilhelm", 
+            "last_name": "Adler", 
+            "is_active": false, 
+            "foto": "fotos/845.thumbnail.jpg", 
+            "is_doctor": false, 
+            "is_staff": false, 
+            "role": 3, 
+            "login": "patient6", 
+            "password": "1111", 
+            "todo": []
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "todos.users", 
+        "fields": {
+            "first_name": "Evan", 
+            "last_name": "Olister", 
+            "is_active": false, 
+            "foto": "fotos/man.jpg", 
+            "is_doctor": false, 
+            "is_staff": false, 
+            "role": 3, 
+            "login": "patient7", 
+            "password": "1111", 
+            "todo": [
+                45, 
+                44, 
+                60, 
+                61, 
+                62
+            ]
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "todos.users", 
+        "fields": {
+            "first_name": "Liza", 
+            "last_name": "Shelon", 
+            "is_active": false, 
+            "foto": "fotos/5d530c569a8536e33dfb9c0fb3300d17.jpeg", 
+            "is_doctor": false, 
+            "is_staff": false, 
+            "role": 5, 
+            "login": "patient8", 
+            "password": "1111", 
+            "todo": [
+                44, 
+                43
+            ]
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "todos.users", 
+        "fields": {
+            "first_name": "Craig", 
+            "last_name": "Ozz", 
+            "is_active": false, 
+            "foto": "fotos/FIFA1221-51x51.jpg", 
+            "is_doctor": false, 
+            "is_staff": false, 
+            "role": 3, 
+            "login": "patient5", 
+            "password": "1111", 
+            "todo": [
+                91, 
+                92, 
+                93, 
+                94, 
+                95, 
+                96, 
+                113, 
+                114, 
+                115, 
+                116, 
+                73, 
+                117, 
+                118, 
+                119, 
+                43, 
+                75, 
+                76, 
+                77, 
+                78, 
+                120, 
+                79, 
+                80, 
+                81, 
+                82, 
+                121, 
+                83, 
+                84, 
+                85, 
+                86, 
+                87, 
+                88, 
+                89, 
+                122, 
+                90, 
+                97, 
+                123, 
+                98, 
+                99, 
+                100, 
+                101, 
+                102, 
+                103, 
+                124, 
+                104, 
+                105, 
+                106, 
+                107, 
+                125, 
+                108, 
+                109, 
+                126, 
+                110, 
+                112, 
+                111
+            ]
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "todos.users", 
+        "fields": {
+            "first_name": "Elizabeth", 
+            "last_name": "Mary", 
+            "is_active": false, 
+            "foto": "fotos/picture-1766.jpg", 
+            "is_doctor": false, 
+            "is_staff": false, 
+            "role": 5, 
+            "login": "nurse", 
+            "password": "1111", 
+            "todo": [
+                92
+            ]
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "todos.users", 
+        "fields": {
+            "first_name": "Samuel", 
+            "last_name": "Didi", 
+            "is_active": false, 
+            "foto": "fotos/myqd1t3h_5bf4_0_51.jpg", 
+            "is_doctor": true, 
+            "is_staff": true, 
+            "role": 1, 
+            "login": "patient10", 
+            "password": "1111", 
+            "todo": [
+                91, 
+                92, 
+                71, 
+                72
+            ]
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "todos.users", 
+        "fields": {
+            "first_name": "ruslan", 
+            "last_name": "Fostiy", 
+            "is_active": false, 
+            "foto": "fotos/cheatsheet.png", 
+            "is_doctor": true, 
+            "is_staff": true, 
+            "role": 1, 
+            "login": "doctor", 
+            "password": "1111", 
+            "todo": []
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "todos.users", 
+        "fields": {
+            "first_name": "Marry", 
+            "last_name": "Summer", 
+            "is_active": false, 
+            "foto": "fotos/87debccac4f47f3839bd6759e31998ad.jpeg", 
+            "is_doctor": false, 
+            "is_staff": true, 
+            "role": 4, 
+            "login": "patient9", 
+            "password": "1111", 
+            "todo": []
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "todos.users", 
+        "fields": {
+            "first_name": "Leonardo", 
+            "last_name": "Vinci", 
+            "is_active": true, 
+            "foto": "fotos/images-4.jpg", 
+            "is_doctor": false, 
+            "is_staff": false, 
+            "role": 3, 
+            "login": "patient1", 
+            "password": "1111", 
+            "todo": [
+                91
+            ]
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "todos.users", 
+        "fields": {
+            "first_name": "Elma", 
+            "last_name": "Harry", 
+            "is_active": true, 
+            "foto": "fotos/282d1ba64e43854190124147f175b188.jpeg", 
+            "is_doctor": false, 
+            "is_staff": false, 
+            "role": 3, 
+            "login": "patient2", 
+            "password": "1111", 
+            "todo": [
+                45, 
+                55, 
+                56, 
+                57, 
+                58, 
+                59
+            ]
+        }
+    }
+]
