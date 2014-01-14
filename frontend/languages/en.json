@@ -1,7 +1,7 @@
 {
     "TITLE": "Medical prescriptions",
     "TOP_PANEL": {
-        "FILTER_BY_DATE": "Filter by Date",
+        "FILTER_BY_DATE": "Date:",
         "LANGUAGE": "Language",
         "LANGUAGES": {
             "en": "English",
@@ -21,7 +21,7 @@
         "ITEM_TITLE": "Click to edit"
     },
     "PATIENT_LIST": {
-        "TITLE": "Patients:"
+        "TITLE": "Patient:"
     },
     "MODAL_WINDOW": {
         "ADD_NEW_ITEM": "Add new item",

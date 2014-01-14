@@ -1,7 +1,7 @@
 {
     "TITLE": "Медицинские назначения",
     "TOP_PANEL": {
-        "FILTER_BY_DATE": "Фильтр по дате",
+        "FILTER_BY_DATE": "Дата:",
         "LANGUAGE": "Язык",
         "LANGUAGES": {
             "en": "English",
@@ -21,7 +21,7 @@
         "ITEM_TITLE": "Нажмите для редактирования"
     },
     "PATIENT_LIST": {
-        "TITLE": "Пациенты:"
+        "TITLE": "Пациент:"
     },
     "MODAL_WINDOW": {
         "ADD_NEW_ITEM": "Добавить новый элемент",

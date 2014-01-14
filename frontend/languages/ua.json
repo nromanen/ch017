@@ -1,7 +1,7 @@
 {
     "TITLE": "Медичні призначення",
     "TOP_PANEL": {
-        "FILTER_BY_DATE": "Фільтр по даті",
+        "FILTER_BY_DATE": "Дата:",
         "LANGUAGE": "Мова",
         "LANGUAGES": {
             "en": "English",
@@ -21,7 +21,7 @@
         "ITEM_TITLE": "Натисніть для редагування"
     },
     "PATIENT_LIST": {
-        "TITLE": "Пацієнти:"
+        "TITLE": "Пацієнт:"
     },
     "MODAL_WINDOW": {
         "ADD_NEW_ITEM": "Додати новий елемент",
