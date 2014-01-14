@@ -3,7 +3,7 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
     init();
 
     function init() {
-        $scope.users = localStorageService.get('users') || [];
+        $rootScope.users = localStorageService.get('users') || [];
         $rootScope.currentUser = localStorageService.get('currentUser');
         $rootScope.userPhoto = config.mediaUrl + $scope.currentUser.foto;
         $rootScope.currentDate = aux.getDateFromUTC(new Date());
@@ -17,7 +17,7 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
             $rootScope.currentPatient = $scope.currentUser;
         } else {
             $scope.patientListHide = false;
-            $rootScope.currentPatient = $scope.users[0];
+            $rootScope.currentPatient = $rootScope.users[0];
         }
     }
 
@@ -29,25 +29,17 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         };
     }
 
-    function getPatientFromUserScope(patientId) {
-        var activeUser = $scope.users.filter(function(user) {
-            return user.id === patientId;
-        });
-
-        return activeUser[0];
-    }
-
     function putUpdatedPatientInUserScope(patientId) {
-        $scope.users.forEach(function(user, index) {
+        $rootScope.users.forEach(function(user, index) {
             if (user.id === patientId) {
-                $scope.users[index] = $rootScope.currentPatient;
+                $rootScope.users[index] = $rootScope.currentPatient;
             }
         });
     }
 
     $scope.updateUserScope = function() {
         putUpdatedPatientInUserScope($rootScope.currentPatient.id);
-        localStorageService.add('users', $scope.users);
+        localStorageService.add('users', $rootScope.users);
     };
 
     $scope.addNewTodo = function() {
@@ -131,10 +123,6 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         return (currentDate.getDate() == todoDate.getDate()) &&
                (currentDate.getMonth() == todoDate.getMonth()) &&
                (currentDate.getYear() == todoDate.getYear());
-    };
-
-    $scope.setActivePatient = function(patientId) {
-        $rootScope.currentPatient = getPatientFromUserScope(patientId);
     };
 
     $scope.prepareToRemove = function(todo) {
