@@ -7,7 +7,7 @@ App.directive('calendar', function($rootScope, config, aux) {
             if ($rootScope.currentUser.role.check) return false;
 
             $rootScope.$watch('lang', function() {
-                $('#patient-datepicker div')
+                $('.patient-calendar')
                 .datepicker('remove')
                 .datepicker({
                     format: "yyyy-mm-dd",

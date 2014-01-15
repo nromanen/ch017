@@ -1,4 +1,4 @@
-App.factory('db', function($rootScope, $http, config, aux) {
+App.factory('db', function($rootScope, $http, config, aux, $translate) {
     return {
 
         getUserData: function(login, password) {
@@ -10,7 +10,7 @@ App.factory('db', function($rootScope, $http, config, aux) {
             success(function(user, status) {
 
                 if (user.result === false) {
-                    aux.showHint('hintText', user.error);
+                    aux.showHint('hintText', $translate(user.error));
                     return false;
                 }
 
