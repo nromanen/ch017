@@ -1,5 +1,5 @@
 django==1.4
-psycopg2==2.4.1
+psycopg2==2.4.2
 south
 django-piston
 PIL

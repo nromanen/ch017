@@ -16,7 +16,7 @@ App.controller('ModalWindowController', function($scope, $rootScope, db, aux) {
         $rootScope.timeArr.push($scope.time);
     };
 
-    $scope.getStartDate = function() {
+    $scope.setDateModal = function() {
         $scope.startDate = new Date($rootScope.currentDate);
         //$scope.startDate.setDate($scope.startDate.getDate() + 1);
         for (var i = 0; i < $scope.daysCount; i++) {

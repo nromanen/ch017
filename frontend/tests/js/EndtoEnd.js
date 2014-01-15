@@ -35,12 +35,13 @@ describe("Project tests", function() {
             expect(repeater('#list li .content').count()).toBe(0);
             element('button.btn-primary.btn.modalstartbutton').click();
             input('todoExample.text').enter('learn test');
-            input('date').enter("2013-12-11");
-            input('time').enter("11:12");
 
+            input('date').enter("2014-01-13");
+            input('time').enter("11:12");
             element('.set-date-form .form-control.add-on.datetime').click();
             element(".set-date-form .set-date").click();
             element('.set-time-form button.btn.btn-primary').click();
+
             expect(repeater('.modalWindowListBadges.time li').count()).toBe(1);
             element('.modal-footer button.btn.btn-primary').click();
             element('.modal-footer button.btn.btn-default').click();
