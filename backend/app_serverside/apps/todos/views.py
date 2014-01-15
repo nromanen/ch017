@@ -49,6 +49,9 @@ class UserHandler(BaseHandler):
             return Users.objects.filter(role__name=role)
         elif login and password:
             password = base64.b64decode(password)
+            user = Users.objects.filter(login=login, password=password)
+            if len(user) == 0:
+                return {"result": False, "error": "AUTH.ERROR_PASSWORD"}
             return Users.objects.get(login=login, password=password)
         else:
             return Users.objects.all()

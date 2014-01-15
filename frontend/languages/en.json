@@ -45,6 +45,7 @@
         "PASSWORD_HINT": "At least 4 characters",
         "PASSWORD_PLACEHOLDER": "Password",
         "REMEMBER_ME": "Remember me",
-        "SIGN_IN": "Sign in"
+        "SIGN_IN": "Sign in",
+        "ERROR_PASSWORD": "An error in entered data. Please, try again."
     }
 }
