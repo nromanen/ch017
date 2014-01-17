@@ -4,3 +4,9 @@ list-style:none;
 .noListingStyle {
 list-style:none;
 }
+.border{
+border:1px solid;
+width: 400px;
+margin-bottom: 5px;
+padding-bottom: 5px;
+}
