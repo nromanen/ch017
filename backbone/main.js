@@ -24,7 +24,8 @@
 
 		defaults: {
 		correct: 0,
-		incorrect: 0
+		incorrect: 0,
+		index:0
 		}
 	})
   
@@ -41,15 +42,61 @@
 		className:'noListingStyle',
  
         initialize: function() {
+		this.collection.on('change', function(){
+		index++
+		}, this);
+			//console.log(counterModel.get('index'))
+		
+		this.collection.on('change', this.render, this);
+
+		this.render();
         },
- 
+		
+				events:{
+		'click .correct': 'setCorrect',
+		'click .incorrect': 'setIncorrect',
+		'click .forward': 'indexIncrease',
+		'click .back': 'indexDecrease'
+		},
+		
+		setCorrect: function(){
+		var status = this.collection.at(index).get('correct');
+			if (status != 'not answered yet'){
+				return
+			}
+			
+		var countTrue = counterModel.get('correct' )+ 1;
+			counterModel.set('correct', countTrue);
+			this.collection.at(index).set('correct', 'correct')
+		},
+		
+		setIncorrect: function(){
+			var status = this.collection.at(index).get('correct');
+				if (status != 'not answered yet'){
+					return
+			}
+		
+		this.collection.at(index).set('correct', 'incorrect');
+
+		var countFalse = counterModel.get('incorrect' )+ 1;
+			counterModel.set('incorrect', countFalse);				
+		},
+		
+		indexIncrease: function(){
+		index++
+		this.render();
+		},
+		
+		indexDecrease: function(){
+		index--
+		this.render();
+		},
+		
+		template: template('person-id'),
+		
         render: function() {
-            this.collection.each(function(person) {
-		   
-                var questionView = new App.Views.Question({model: person});
-                this.$el.append(questionView.render().el);
-           }, this);
-            return this;
+			this.$el.html( this.template( this.collection.at(index).toJSON() ) );
+			return this;
         }
  
     });
@@ -63,7 +110,6 @@
         this.model.on('change', this.render, this); 
 		
 		this.model.on('change', function(){
-		//console.log('1');
 		});
 		
         this.render();
@@ -90,33 +136,6 @@
             this.render();
 			this.model.on('change', this.render, this);
         },
-		
-		events:{
-		'click .correct': 'setCorrect',
-		'click .incorrect': 'setIncorrect'
-		},
-		setCorrect: function(){
-		var status = this.model.get('correct');
-			if (status != 'not answered yet'){
-				return
-			}
-			
-		var countTrue = counterModel.get('correct' )+ 1;
-			counterModel.set('correct', countTrue);
-			this.model.set('correct', 'correct')
-		},
-		
-		setIncorrect: function(){
-			var status = this.model.get('correct');
-				if (status != 'not answered yet'){
-					return
-			}
-		
-		this.model.set('correct', 'incorrect');
-
-		var countFalse = counterModel.get('incorrect' )+ 1;
-			counterModel.set('incorrect', countFalse);				
-		},
  
         render: function() {
             this.$el.html( this.template( this.model.toJSON() ) );
@@ -161,13 +180,13 @@
 		   correct: 'not answered yet',
         }
     ]);
- 
-	
+
+	var index = 0;
+	var questionModel = new App.Models.Question();
     var questionsView = new App.Views.Questions({collection: questionCollection});
 	var counterModel = new App.Models.Counter();
 	var counterView = new App.Views.Counter({model: counterModel});
- 
     $(document.body).append(questionsView.render().el);
 	$(document.body).append(counterView.el);
- console.log(questionCollection.at(1))
+
 }());
