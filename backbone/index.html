@@ -10,7 +10,9 @@
 <h1>List of Questions:</h1>
  <script type="text/template"  id="person-id">
  <div class="well noMargin width">
- <%= text %> || <%= correct %><br /><br />
+ <%= text %><br /><br />
+ Status: <%= correct %>
+ <br />
 
  <input type="button" class="correct" value ="Correct" />
  <input type="button" class="incorrect" value ="Incorrect" />
@@ -23,6 +25,7 @@
  <div class="well width">
  Correct: <strong><span class="green"><%= correct %></span></strong> Incorrect<strong>
  <spand class="red"> <%= incorrect %></span> </strong>
+ <span class="right">Not answered:<strong><%= notAnswered %></span></strong>
  </div>
   </script>
  
