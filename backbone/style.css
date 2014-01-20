@@ -7,9 +7,18 @@ list-style:none;
 .noListingStyle {
 list-style:none;
 }
-.border{
-border:1px solid;
-width: 400px;
-margin-bottom: 5px;
-padding-bottom: 5px;
+.noPadding{
+padding-left: 0;
+}
+.width{
+width:450px;
+}
+.green{
+color:green;
+}
+.red{
+color:red;
+}
+.center{
+margin:0 auto;
 }

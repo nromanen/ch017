@@ -39,13 +39,13 @@
     //Вид списка вопросов
     App.Views.Questions = Backbone.View.extend({
         tagName: 'ul',
-		className:'noListingStyle',
+		className:'noListingStyle noPadding width',
  
         initialize: function() {
 		this.collection.on('change', function(){
 		index++
+
 		}, this);
-			//console.log(counterModel.get('index'))
 		
 		this.collection.on('change', this.render, this);
 
@@ -79,7 +79,8 @@
 		this.collection.at(index).set('correct', 'incorrect');
 
 		var countFalse = counterModel.get('incorrect' )+ 1;
-			counterModel.set('incorrect', countFalse);				
+			counterModel.set('incorrect', countFalse);
+
 		},
 		
 		indexIncrease: function(){
@@ -115,8 +116,7 @@
         this.render();
         },
 		
-		template: _.template('Correct: <strong><%= correct %></strong> Incorrect<strong> <%= incorrect %> </strong>'),
-		
+		template: template('counter-id'),
 		  render: function() {
             this.$el.html( this.template( this.model.toJSON() ) );
  

@@ -4,22 +4,32 @@
     <meta charset="utf-8">
     <title>Backbone</title>
 	<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" media="screen" href="frameworks/bootstrap/css/bootstrap.css"></link>
 </head>
 <body>
 <h1>List of Questions:</h1>
  <script type="text/template"  id="person-id">
- <div class="border">
- <%= text %> || <%= correct %><br />
+ <div class="well noMargin width">
+ <%= text %> || <%= correct %><br /><br />
+
  <input type="button" class="correct" value ="Correct" />
  <input type="button" class="incorrect" value ="Incorrect" />
  <input type="button" class="back" value ="<<" />
  <input type="button" class="forward" value =">>" />
+
  </div>
  </script>
-
+ <script type="text/template"  id="counter-id">
+ <div class="well width">
+ Correct: <strong><span class="green"><%= correct %></span></strong> Incorrect<strong>
+ <spand class="red"> <%= incorrect %></span> </strong>
+ </div>
+  </script>
+ 
 <script src="frameworks/underscore.js"></script>
 <script src="frameworks/jquery-1.10.2.js"></script>
 <script src="frameworks/backbone.js"></script>
+
 <script src="main.js"></script>
  <div id="test"></div>
 </body>
