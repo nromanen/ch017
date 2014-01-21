@@ -20,8 +20,11 @@ color:green;
 color:red;
 }
 .center{
-margin:0 auto;
+margin-left:140px;
 }
 .right{
 float:right;
+}
+.navButtons{
+padding-top:3px;
 }

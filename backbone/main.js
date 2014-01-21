@@ -12,6 +12,12 @@
  
     //Модель вопроса
     App.Models.Question = Backbone.Model.extend({
+	validate: function(attrs, options) {
+		  if (attrs.correct != 'not answered yet'){
+	  return 'error';
+	  }
+	  },
+	
         defaults: {
             text: 'Type your question there'
         }
@@ -23,7 +29,7 @@
 	  validate: function(attrs, options) {
 		if (attrs.index < 0 || attrs.index > questionCollection.length - 1) {
       return 'error';
-    }
+	  }    
 	
   },
  
@@ -34,6 +40,7 @@
 		index:0		
 		}
 	});
+	
 	var counterModel = new App.Models.Counter();
  
     //Список вопросов
@@ -54,7 +61,7 @@
 		}, this);
 			
 		this.collection.on('change', this.render, this);
-
+		
 		this.render();
         },
 		
@@ -100,7 +107,7 @@
 			this.render();
 		},
 		
-		template: template('person-id'),
+		template: template('main-id'),
 		
         render: function() {
 			this.$el.html( this.template( this.collection.at(counterModel.get('index')).toJSON() ) );
@@ -129,24 +136,6 @@
             return this;
         }
 	});
- 
-    //Вид одного вопроса
-    App.Views.Question = Backbone.View.extend({
-        tagName: 'li',
- 
-        template:  template('person-id'),
- 
-        initialize: function() {
-            this.render();
-			this.model.on('change', this.render, this);
-        },
- 
-        render: function() {
-            this.$el.html( this.template( this.model.toJSON() ) );
-			
-            return this;
-        }
-    });
  
  //колекция вопросов
     var questionCollection = new App.Collections.Questions([
