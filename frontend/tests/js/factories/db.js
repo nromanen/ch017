@@ -75,10 +75,6 @@ describe('Database factory', function() {
         $httpBackend.expectGET('api/user/doctor/MTExMQ==/').respond(201, user);
         db.getUserData(login, password);
 
-        user.is_staff = false;
-        $httpBackend.expectGET('api/user/doctor/MTExMQ==/').respond(201, user);
-        db.getUserData(login, password);
-
         $httpBackend.expectGET('api/user/doctor/MTExMQ==/').respond(404, {});
         db.getUserData(login, password);
         $httpBackend.flush();

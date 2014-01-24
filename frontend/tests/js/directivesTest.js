@@ -51,6 +51,37 @@ describe("Should test all directives of our project", function () {
         $httpBackend.when('PUT', 'api/update_todo/1/1/').respond({});
     }));
 
+    it("Should controll the button's state  directive", function () {
+        $rootScope.todayPatients = [{}];
+        var element = $compile('<tag button-state></tag>')($rootScope);
+
+        $rootScope.todayPatients = [];
+        var element = $compile('<tag button-state></tag>')($rootScope);
+
+        var flag;
+        $rootScope.buttonState;
+
+        runs(function() {
+            flag = false;
+
+            $rootScope.buttonState = false;
+            element.click();
+
+            setTimeout(function() {
+                flag = true;
+            }, 500);
+        });
+
+        waitsFor(function() {
+            $rootScope.buttonState = true;
+            return flag;
+        }, "buttonState should be === true", 750);
+
+        runs(function() {
+            element.click();
+        });
+    });
+
     it("Should test clear directive", function () {
         var element = $compile('<tag clear></tag>')($rootScope);
         element.click();

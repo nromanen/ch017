@@ -180,13 +180,6 @@ describe('TodoController', function() {
         });
     }));
 
-    it('Should set active patient', inject(function ($controller, $rootScope) {
-        var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-        $rootScope.users = [{"id":1}];
-
-        expect($rootScope.setActivePatient()).toBeUndefined();
-    }));
-
     it('Should add item', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
 
@@ -194,13 +187,33 @@ describe('TodoController', function() {
         $rootScope.currentUser = {id: 1};
         $rootScope.todoExample = {};
 
-        $rootScope.todoExample.text = false;
-        expect($rootScope.addNewTodo()).toBe(false);
-        $rootScope.todoExample.text = true;
+        var flag;
+        $rootScope.canAddTodo;
+        $rootScope.todoExample.text;
 
-        $httpBackend.expectPOST('api/create_todo/1/');
-        expect($rootScope.addNewTodo()).toBeUndefined();
-        $httpBackend.flush();
+        runs(function() {
+            flag = false;
+
+            $rootScope.canAddTodo = false;
+            $rootScope.todoExample.text = false;
+            expect($rootScope.addNewTodo()).toBe(false);
+
+            setTimeout(function() {
+                flag = true;
+            }, 500);
+        });
+
+        waitsFor(function() {
+            $rootScope.canAddTodo = true;
+            $rootScope.todoExample.text = true;
+            return flag;
+        }, "canAddTodo and todoExample.text should be === true", 750);
+
+        runs(function() {
+            $httpBackend.expectPOST('api/create_todo/1/');
+            expect($rootScope.addNewTodo()).toBeUndefined();
+            $httpBackend.flush();
+        });
     }));
 
     it('Should update item', inject(function ($controller, $rootScope) {
@@ -210,9 +223,29 @@ describe('TodoController', function() {
         $rootScope.currentUser = {id: 1};
         $rootScope.todoExample = {id: 2};
 
-        $httpBackend.expectPUT('api/update_todo/2/1/');
-        expect($rootScope.updateTodo()).toBeUndefined();
-        $httpBackend.flush();
+        var flag;
+        $rootScope.canEditTodo;
+
+        runs(function() {
+            flag = false;
+
+            $rootScope.canEditTodo = true;
+            expect($rootScope.updateTodo()).toBeUndefined();
+
+            setTimeout(function() {
+                flag = true;
+            }, 500);
+        });
+
+        waitsFor(function() {
+            $rootScope.canEditTodo = false;
+            return flag;
+        }, "canEditTodo should be === false", 750);
+
+        runs(function() {
+            expect($rootScope.updateTodo()).toBe(false);
+            $httpBackend.flush();
+        });
     }));
 
     it('Should clear done items', inject(function ($controller, $rootScope) {
@@ -222,14 +255,34 @@ describe('TodoController', function() {
             todo: [
                 {id: 1, time: [{id: 1, date: '2013-12-12', time: '12:12:12', done: false}]},
                 {id: 2, time: [{id: 2, date: '2013-12-13', time: '14:12:12', done: true}]}
-            ]};
+            ]
+        };
+        var patientId = $rootScope.currentPatient.todo[0].id;
+        var timeId = $rootScope.currentPatient.todo[0].time[0].id;
         $rootScope.currentUser = {id: 1}
-        $httpBackend.expectDELETE('api/delete_todo/1/1/');
-        expect($rootScope.removeTodo(
-            $rootScope.currentPatient.todo[0].id,
-            $rootScope.currentPatient.todo[0].time[0].id)
-        ).toBeUndefined();
-        $httpBackend.flush();
+
+        var flag;
+        $rootScope.canRemoveTodo;
+
+        runs(function() {
+            flag = false;
+
+            $rootScope.canRemoveTodo = false;
+            expect($rootScope.removeTodo(patientId, timeId)).toBe(false);
+
+            setTimeout(function() {
+                flag = true;
+            }, 500);
+        });
+
+        waitsFor(function() {
+            $rootScope.canRemoveTodo = false;
+            return flag;
+        }, "canRemoveTodo should be === trye", 750);
+
+        runs(function() {
+            expect($rootScope.removeTodo(patientId, timeId)).toBe(false);
+        });
     }));
 
     it('Should prepare to remove', inject(function ($controller, $rootScope) {

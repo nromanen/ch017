@@ -43,9 +43,7 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
     };
 
     $scope.addNewTodo = function() {
-        if (!$scope.canAddTodo) return false
-
-        if (!$rootScope.todoExample.text) return false;
+        if (!$scope.canAddTodo && !$rootScope.todoExample.text) return false
 
         db.addTodo($rootScope.currentPatient.id, $rootScope.todoExample);
         createItemPrototype();

@@ -7,7 +7,7 @@ App.controller('ModalWindowController', function($scope, $rootScope, db, aux) {
         $rootScope.dateArr = [];
         $scope.date = aux.getDateFromUTC(new Date());
         $scope.time = aux.getTimeFromUTC(new Date());
-	$scope.todayDateForChek = aux.getDateFromUTC(new Date)
+        $scope.todayDateForCheck = aux.getDateFromUTC(new Date());
 
         if ($rootScope.currentUser.is_doctor) db.getMedicines();
     }
@@ -18,7 +18,7 @@ App.controller('ModalWindowController', function($scope, $rootScope, db, aux) {
 
     $scope.getStartDate = function() {
         $scope.startDate = new Date($rootScope.currentDate);
-        //$scope.startDate.setDate($scope.startDate.getDate() + 1);
+
         for (var i = 0; i < $scope.daysCount; i++) {
             var todayDay = $scope.startDate.getDate();
             var finallyDate = aux.getDateFromUTC($scope.startDate);
@@ -26,9 +26,7 @@ App.controller('ModalWindowController', function($scope, $rootScope, db, aux) {
             $scope.period = parseInt($scope.period, 10);
             $scope.startDate.setDate(todayDay + $scope.period + 1);
 
-		if(finallyDate >= $scope.todayDateForChek ){
-            		$rootScope.dateArr.push(finallyDate);
-			}
+            if(finallyDate >= $scope.todayDateForCheck) $rootScope.dateArr.push(finallyDate);
         }
 
         $scope.daysCount = 1;
