@@ -2,6 +2,7 @@
     "TITLE": "Medical prescriptions",
     "TOP_PANEL": {
         "FILTER_BY_DATE": "Date:",
+        "TODAY_BUTTON": "Today's patient",
         "LANGUAGE": "Language",
         "LANGUAGES": {
             "en": "English",

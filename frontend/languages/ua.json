@@ -2,6 +2,7 @@
     "TITLE": "Медичні призначення",
     "TOP_PANEL": {
         "FILTER_BY_DATE": "Дата:",
+        "TODAY_BUTTON": "Пациенты на сегодня",
         "LANGUAGE": "Мова",
         "LANGUAGES": {
             "en": "English",
