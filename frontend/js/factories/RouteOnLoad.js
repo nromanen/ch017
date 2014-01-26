@@ -22,7 +22,11 @@ App.factory('routeOnLoad', [
             var currentUser = aux.getFromLocalStorage('currentUser');
 
             if (currentUser.is_staff) db.getPatientList(currentUser);
+
+            aux.redirectTo( '/' + currentUser.role.name + '/' + currentUser.login );
         };
+
+
 
         return routeOnLoad;
 

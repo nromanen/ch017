@@ -1,7 +1,7 @@
 'use strict';
 
 describe("Project tests", function() {
-    describe("Test doctor's role", function() {
+    xdescribe("Test doctor's role", function() {
         beforeEach(function() {
             browser().navigateTo('index.html');
         });
@@ -157,22 +157,29 @@ describe("Project tests", function() {
         });
 
         it("Should login as patient", function() {
-            input('authLogin').enter('patient5');
+            input('authLogin').enter('patient2');
             input('authPassword').enter('1111');
             element('button.btn.btn-lg.btn-primary.btn-block').click();
-            expect(browser().location().path()).toBe("/patient/patient5");
+            expect(browser().location().path()).toBe("/patient/patient2");
         });
 
         it('Should check visibility of "remove icon"', function() {
+            expect(browser().location().path()).toBe("/patient/patient2");
             expect(element('#list li .content .remove-icon:visible').count()).toBe(0);
         });
 
         it("Should disallow opportunity to remove the item", function() {
+            expect(browser().location().path()).toBe("/patient/patient2");
+            expect(element('#list li .content').count()).toBe(1);
             element('#list li .content .remove-icon').click();
           //  browser().reload();
             expect(repeater('#list li .content').count()).toBe(1);
         });
 
+        it('Should logout from app', function() {
+            element('.exit.ng-scope').click();
+            expect(browser().location().path()).toBe("/auth");
+        });
         clearTodo();
     });
 
@@ -210,8 +217,8 @@ describe("Project tests", function() {
             expect(repeater('#list li .content').count()).toBe(0);
             element('button.btn-primary.btn.modalstartbutton').click();
             input('todoExample.text').enter('learn test');
-            input('date').enter([datetime.getFullYear(), datetime.getMonth() + 1, datetime.getDate()].join('-'));
-            input('time').enter([datetime.getHours(), datetime.getMinutes(), datetime.getSeconds()].join(":"));
+            input('date').enter("2014-01-13");
+            input('time').enter("11:12");
 
             element('.set-date-form .form-control.add-on.datetime').click();
             element(".set-date-form .set-date").click();
@@ -219,7 +226,6 @@ describe("Project tests", function() {
             expect(repeater('.modalWindowListBadges.time li').count()).toBe(1);
             element('.modal-footer button.btn.btn-primary').click();
             element('.modal-footer button.btn.btn-default').click();
-
 
             expect(repeater('#list li .content').count()).toBeGreaterThan(0);
             expect(repeater('#list li .content').count()).toBe(1);
@@ -296,8 +302,8 @@ describe("Project tests", function() {
             expect(repeater('#list li .content').count()).toBe(0);
             element('button.btn-primary.btn.modalstartbutton').click();
             input('todoExample.text').enter('learn test');
-            input('date').enter([datetime.getFullYear(), datetime.getMonth() + 1, datetime.getDate()].join('-'));
-            input('time').enter([datetime.getHours(), datetime.getMinutes(), datetime.getSeconds()].join(":"));
+            input('date').enter("2014-01-13");
+            input('time').enter("11:12");
 
             element('.set-date-form .form-control.add-on.datetime').click();
             element(".set-date-form .set-date").click();
@@ -321,10 +327,10 @@ describe("Project tests", function() {
         });
 
         it('Should login as patient', function() {
-            input('authLogin').enter('patient5');
+            input('authLogin').enter('patient2');
             input('authPassword').enter('1111');
             element('button.btn.btn-lg.btn-primary.btn-block').click();
-            expect(browser().location().path()).toBe("/patient/patient5");
+            expect(browser().location().path()).toBe("/patient/patient2");
         });
 
         it('Should show last added items for', function() {
@@ -381,8 +387,8 @@ describe("Project tests", function() {
             expect(repeater('#list li .content').count()).toBe(0);
             element('button.btn-primary.btn.modalstartbutton').click();
             input('todoExample.text').enter('learn test');
-            input('date').enter([datetime.getFullYear(), datetime.getMonth() + 1, datetime.getDate()].join('-'));
-            input('time').enter([datetime.getHours(), datetime.getMinutes(), datetime.getSeconds()].join(":"));
+            input('date').enter("2014-01-13");
+            input('time').enter("11:12");
 
             element('.set-date-form .form-control.add-on.datetime').click();
             element(".set-date-form .set-date").click();
@@ -390,6 +396,7 @@ describe("Project tests", function() {
             expect(repeater('.modalWindowListBadges.time li').count()).toBe(1);
             element('.modal-footer button.btn.btn-primary').click();
             element('.modal-footer button.btn.btn-default').click();
+
             expect(repeater('#list li .content').count()).toBeGreaterThan(0);
             expect(repeater('#list li .content').count()).toBe(1);
         });
@@ -425,11 +432,16 @@ describe("Project tests", function() {
             expect(repeater('#list li .content .done-true').count()).toBe(1);
         });
 
+        it('Should logout from app', function() {
+            element('.exit.ng-scope').click();
+            expect(browser().location().path()).toBe("/auth");
+        });
+
         clearTodo()
     });
 
 
-    xdescribe("Test doctor's posibility to delete items from past date", function() {
+    describe("Test doctor's posibility to delete items from past date", function() {
         beforeEach(function() {
             browser().navigateTo('index.html');
         });
@@ -460,26 +472,20 @@ describe("Project tests", function() {
         it('Should add an element to the list', function() {
             var datetime = new Date();
 
+            expect(repeater('#list li .content').count()).toBe(0);
             element('button.btn-primary.btn.modalstartbutton').click();
             input('todoExample.text').enter('learn test');
-            input('date').enter([datetime.getFullYear(), datetime.getMonth() + 1, datetime.getDate()-1].join('-'));
-            input('time').enter([datetime.getHours(), datetime.getMinutes(), datetime.getSeconds()].join(":"));
+            input('date').enter("2014-01-13");
+            input('time').enter("11:12");
 
-            element('.set-date-form .form-control.add-on.datetime').click();
-            element(".set-date-form .btn.btn-primary.set-date").click();
-            element('.set-time-form button.btn.btn-primary').click();
-            expect(repeater(' .modalWindowListBadges.time li').count()).toBe(1);
-            element('.modal-footer button.btn.btn-primary').click();
-
-/*
             element('.set-date-form .form-control.add-on.datetime').click();
             element(".set-date-form .set-date").click();
             element('.set-time-form button.btn.btn-primary').click();
             expect(repeater('.modalWindowListBadges.time li').count()).toBe(1);
             element('.modal-footer button.btn.btn-primary').click();
             element('.modal-footer button.btn.btn-default').click();
-*/
 
+            expect(repeater('#list li .content').count()).toBeGreaterThan(0);
             expect(repeater('#list li .content').count()).toBe(1);
         });
 
@@ -503,10 +509,12 @@ describe("Project tests", function() {
 
 function clearTodo(){
     it("clear todo after test", function() {
-        element('.exit.ng-scope').click();
+
         input('authLogin').enter('doctor');
         input('authPassword').enter('1111');
         element('button.btn.btn-lg.btn-primary.btn-block').click();
         element('#list li .content .remove-icon').click();
+        element('.exit.ng-scope').click();
+        expect(browser().location().path()).toBe("/auth");
     });
 }
