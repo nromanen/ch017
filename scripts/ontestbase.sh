@@ -11,4 +11,5 @@ sed -i -e "s/'mongodb:\/\/localhost:27017\/todoDb'/'mongodb:\/\/localhost:27017\
 mongoimport --db todoDb_test --collection medicines --file $MEDICINES --jsonArray
 mongoimport --db todoDb_test --collection roles --file $ROLES --jsonArray
 mongoimport --db todoDb_test --collection users --file $USERS --jsonArray
+su postgres
 psql -U developer -d todos_test -a -f $SQLSCRIPT --password
