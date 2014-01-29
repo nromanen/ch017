@@ -6,8 +6,10 @@ App.directive('calendar', function($rootScope, config, aux) {
         link: function($scope, element, attrs) {
             if ($rootScope.currentUser.role.check) return false;
 
+            var $calendar = $('.patient-calendar');
+
             $rootScope.$watch('lang', function() {
-                $('.patient-calendar')
+                $calendar
                 .datepicker('remove')
                 .datepicker({
                     format: "yyyy-mm-dd",
@@ -21,11 +23,15 @@ App.directive('calendar', function($rootScope, config, aux) {
                     var dayMax = new Date($rootScope.dateLimit.max || 0).getDate();
                     var today = new Date().getDate();
 
-                    if (dayMax < today) return $rootScope.dateLimit.max;
+                    if (dayMax < today) {
+                        $rootScope.currentDate = $rootScope.dateLimit.max.replace(today, dayMax);
+                        return $rootScope.dateLimit.max;
+                    }
 
                     return $rootScope.dateLimit.max.replace(dayMax, today);
                 })()).
                 on('changeDate', function(dateScope) {
+                    $calendar.datepicker('hide');
                     $rootScope.currentDate = aux.getDateFromUTC(dateScope.date);
                     $rootScope.$apply();
                 });

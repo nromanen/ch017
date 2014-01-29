@@ -15,6 +15,7 @@ App.directive('datePicker', function($rootScope, config, aux) {
                 }).
                 datepicker('update', aux.getDateFromUTC(new Date())).
                 on('changeDate', function(dateScope) {
+                    $(element).datepicker('hide');
                     $rootScope.currentDate = aux.getDateFromUTC(dateScope.date);
                     $rootScope.$apply();
                 });
