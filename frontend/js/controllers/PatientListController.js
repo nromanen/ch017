@@ -5,6 +5,7 @@ App.controller('PatientListController', function($scope, $rootScope, $filter, lo
 
 	function init() {
 		$scope.buttonState = false;
+        $rootScope.calendarVisibility = true;
         $rootScope.todayPatients = $filter('filter')($rootScope.patientList, $rootScope.currentDate) || [];
 	}
 
@@ -25,9 +26,11 @@ App.controller('PatientListController', function($scope, $rootScope, $filter, lo
 
     	if (!$scope.buttonState) {
     		$scope.buttonState = true;
+            $rootScope.calendarVisibility = false;
     		$rootScope.patientList = $filter('filter')($rootScope.patientList, $rootScope.currentDate);
     	} else {
     		$scope.buttonState = false;
+            $rootScope.calendarVisibility = true;
     		$rootScope.patientList = localStorageService.get('users');
     		
     	}

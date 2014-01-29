@@ -1,5 +1,5 @@
 <ul ng-controller="PatientListController" ng-show="currentUser.is_staff" class="patient-list nav navbar-nav">
-    <button ng-click="showOnlyTodaysPatient()" button-state
+    <button ng-click="showOnlyTodaysPatient()" ng-show="!currentUser.is_doctor&&currentUser.is_staff" button-state
             type="button" class="navbar-btn-custom" translate>
         TOP_PANEL.TODAY_BUTTON
     </button>
