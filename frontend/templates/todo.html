@@ -22,13 +22,15 @@
                     ng-repeat="todo in currentPatient.todo | filter:searchQuery">
                     <div ng-repeat="time in todo.time | filter:currentDate | morning:this" class="width9 right">
                         <div class="content" mouseover mouseout>
-                            <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo)"
-                                   ng-model="time.done" ng-show="canCheckTodo(time.date, time.time)">
-                            <span data-target="{{canEditTodo(todo.id, time.id)&&'#myModal'}}" data-toggle="modal"
+                            <div class="check-block">
+                                <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo)"
+                                       ng-model="time.done" ng-show="canCheckTodo(time)">
+                            </div>
+                            <span data-target="{{(canEditTodo(todo.id, time.id)&&!time.done)&&'#myModal'}}" data-toggle="modal"
                                   todo-item="{{todo.id}}" time-item="{{time.id}}"
                                   edit="{{canEditTodo(todo.id, time.id)}}" 
                                   class="done-{{time.done}} 
-                                         {{canEditTodo(todo.id, time.id)&&'pointer'||'cursor-default'}}">
+                                         {{(canEditTodo(todo.id, time.id)&&!time.done)&&'pointer'||'cursor-default'}}">
                                 {{time.time}}: {{todo.text}}
                             </span>
                             <span class="glyphicon glyphicon-remove pointer right remove-icon"
@@ -46,13 +48,15 @@
                     ng-repeat="todo in currentPatient.todo | filter:searchQuery">
                     <div ng-repeat="time in todo.time | filter:currentDate | noon:this" class="width9 right">
                         <div class="content" mouseover mouseout>
-                            <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo)"
-                                   ng-model="time.done" ng-show="canCheckTodo(time.date, time.time)">
-                            <span data-target="{{canEditTodo(todo.id, time.id)&&'#myModal'}}" data-toggle="modal"
+                            <div class="check-block">
+                                <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo)"
+                                       ng-model="time.done" ng-show="canCheckTodo(time)">
+                            </div>
+                            <span data-target="{{(canEditTodo(todo.id, time.id)&&!time.done)&&'#myModal'}}" data-toggle="modal"
                                   todo-item="{{todo.id}}" time-item="{{time.id}}"
                                   edit="{{canEditTodo(todo.id, time.id)}}" 
                                   class="done-{{time.done}} 
-                                         {{canEditTodo(todo.id, time.id)&&'pointer'||'cursor-default'}}">
+                                         {{(canEditTodo(todo.id, time.id)&&!time.done)&&'pointer'||'cursor-default'}}">
                                 {{time.time}}: {{todo.text}}
                             </span>
                             <span class="glyphicon glyphicon-remove pointer right remove-icon"
@@ -70,13 +74,15 @@
                     ng-repeat="todo in currentPatient.todo | filter:searchQuery">
                     <div ng-repeat="time in todo.time | filter:currentDate | evening:this" class="width9 right">
                         <div class="content" mouseover mouseout>
-                            <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo)"
-                                   ng-model="time.done" ng-show="canCheckTodo(time.date, time.time)">
-                            <span data-target="{{canEditTodo(todo.id, time.id)&&'#myModal'}}" data-toggle="modal"
+                            <div class="check-block">
+                                <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo)"
+                                       ng-model="time.done" ng-show="canCheckTodo(time)">
+                            </div>
+                            <span data-target="{{(canEditTodo(todo.id, time.id)&&!time.done)&&'#myModal'}}" data-toggle="modal"
                                   todo-item="{{todo.id}}" time-item="{{time.id}}"
                                   edit="{{canEditTodo(todo.id, time.id)}}" 
                                   class="done-{{time.done}} 
-                                         {{canEditTodo(todo.id, time.id)&&'pointer'||'cursor-default'}}">
+                                         {{(canEditTodo(todo.id, time.id)&&!time.done)&&'pointer'||'cursor-default'}}">
                                 {{time.time}}: {{todo.text}}
                             </span>
                             <span class="glyphicon glyphicon-remove pointer right remove-icon"

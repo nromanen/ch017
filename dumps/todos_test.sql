@@ -1,7 +1,7 @@
 #drop database todos_test;
 #create database todos_test;
 
-INSERT INTO todos_role (id, name, add, edit, remove, "check") VALUES (1, 'doctor', true, true, true, true);
+INSERT INTO todos_role (id, name, add, edit, remove, "check") VALUES (1, 'doctor', true, true, true, false);
 INSERT INTO todos_role (id, name, add, edit, remove, "check") VALUES (2, 'nurse', false, false, false, true);
 INSERT INTO todos_role (id, name, add, edit, remove, "check") VALUES (3, 'patient', false, false, false, false);
 

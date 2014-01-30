@@ -112,11 +112,11 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
                (currentDate.getYear() <= todoDate.getYear());
     };
 
-    $scope.canCheckTodo = function(date, time) {
-        if (!$scope.currentUser.role.check) return false;
+    $scope.canCheckTodo = function(time) {
+        if (!$scope.currentUser.role.check || time.done) return false;
 
         var currentDate = new Date();
-        var todoDate = new Date(date);
+        var todoDate = new Date(time.date);
 
         return (currentDate.getDate() == todoDate.getDate()) &&
                (currentDate.getMonth() == todoDate.getMonth()) &&

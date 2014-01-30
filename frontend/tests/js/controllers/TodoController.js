@@ -155,15 +155,17 @@ describe('TodoController', function() {
     it('Should check rights to check item', inject(function ($controller, $rootScope, aux) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
         var flag;
-        var date = aux.getDateFromUTC(new Date());
-        var time = aux.getTimeFromUTC(new Date());
+        var time = {
+            date: aux.getDateFromUTC(new Date())
+        };
         $rootScope.currentUser = {role: {}};
 
         runs(function() {
             flag = false;
 
             $rootScope.currentUser.role.check = false;
-            expect($rootScope.canCheckTodo(date, time)).toBe(false);
+            time.done = true;
+            expect($rootScope.canCheckTodo(time)).toBe(false);
 
             setTimeout(function() {
                 flag = true;
@@ -172,11 +174,12 @@ describe('TodoController', function() {
 
         waitsFor(function() {
             $rootScope.currentUser.role.check = true;
+            time.done = false;
             return flag;
         }, "currentUser.role.check should be === true", 750);
 
         runs(function() {
-            expect($rootScope.canCheckTodo(date, time)).toBe(true);
+            expect($rootScope.canCheckTodo(time)).toBe(true);
         });
     }));
 

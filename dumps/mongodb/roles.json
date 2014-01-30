@@ -5,7 +5,7 @@
     "add": true,
     "edit": true,
     "remove": true,
-    "check": true
+    "check": false
   },
   {
     "_id": 2,
