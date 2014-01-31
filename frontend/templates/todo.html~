@@ -1,0 +1,101 @@
+<div ng-controller="TodoController">
+
+    <top_panel></top_panel>
+
+    <!--modal window-->
+    <modal></modal>
+
+    <div id="wrapper" class="modal-content">
+        <div ng-show="currentUser.role.check" class="inform" translate translate-values="{amount: getTodoAmount()}">
+            TODO.AMOUNT
+        </div>
+
+        <button class="btn-primary btn modalstartbutton" data-toggle="modal" data-target="#myModal"
+                ng-show="canAddTodo()" clear translate>TODO.ADD_NEW_ITEM</button>
+
+        <div class="clear"></div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" translate>TODO.PART_MORNING</div>
+            <ul id="list" class="list-group" update-user-scope>
+                <li class="task_list" title="{{'TODO.ITEM_TITLE' | translate}}"
+                    ng-repeat="todo in currentPatient.todo | filter:searchQuery">
+                    <div ng-repeat="time in todo.time | filter:currentDate | morning:this" class="width9 right">
+                        <div class="content" mouseover mouseout>
+                            <div class="check-block">
+                                <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo)"
+                                       ng-model="time.done" ng-show="canCheckTodo(time)">
+                            </div>
+                            <span data-target="{{(canEditTodo(todo.id, time.id)&&!time.done)&&'#myModal'}}" data-toggle="modal"
+                                  todo-item="{{todo.id}}" time-item="{{time.id}}"
+                                  edit="{{canEditTodo(todo.id, time.id)}}" 
+                                  class="done-{{time.done}} 
+                                         {{(canEditTodo(todo.id, time.id)&&!time.done)&&'pointer'||'cursor-default'}}">
+                                {{time.time}}: {{todo.text}}
+                            </span>
+                            <span class="glyphicon glyphicon-remove pointer right remove-icon"
+                                  ng-click="removeTodo(todo.id, time.id)" hidden="false"></span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" translate>TODO.PART_NOON</div>
+            <ul id="list" class="list-group" update-user-scope>
+                <li class="task_list" title="{{'TODO.ITEM_TITLE' | translate}}" 
+                    ng-repeat="todo in currentPatient.todo | filter:searchQuery">
+                    <div ng-repeat="time in todo.time | filter:currentDate | noon:this" class="width9 right">
+                        <div class="content" mouseover mouseout>
+                            <div class="check-block">
+                                <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo)"
+                                       ng-model="time.done" ng-show="canCheckTodo(time)">
+                            </div>
+                            <span data-target="{{(canEditTodo(todo.id, time.id)&&!time.done)&&'#myModal'}}" data-toggle="modal"
+                                  todo-item="{{todo.id}}" time-item="{{time.id}}"
+                                  edit="{{canEditTodo(todo.id, time.id)}}" 
+                                  class="done-{{time.done}} 
+                                         {{(canEditTodo(todo.id, time.id)&&!time.done)&&'pointer'||'cursor-default'}}">
+                                {{time.time}}: {{todo.text}}
+                            </span>
+                            <span class="glyphicon glyphicon-remove pointer right remove-icon"
+                                  ng-click="removeTodo(todo.id, time.id)" ng-show="false"></span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" translate>TODO.PART_EVENING</div>
+            <ul id="list" class="list-group" update-user-scope>
+                <li class="task_list" title="{{'TODO.ITEM_TITLE' | translate}}" 
+                    ng-repeat="todo in currentPatient.todo | filter:searchQuery">
+                    <div ng-repeat="time in todo.time | filter:currentDate | evening:this" class="width9 right">
+                        <div class="content" mouseover mouseout>
+                            <div class="check-block">
+                                <input type="checkbox" class="left check_done" ng-click="prepareToRemove(todo)"
+                                       ng-model="time.done" ng-show="canCheckTodo(time)">
+                            </div>
+                            <span data-target="{{(canEditTodo(todo.id, time.id)&&!time.done)&&'#myModal'}}" data-toggle="modal"
+                                  todo-item="{{todo.id}}" time-item="{{time.id}}"
+                                  edit="{{canEditTodo(todo.id, time.id)}}" 
+                                  class="done-{{time.done}} 
+                                         {{(canEditTodo(todo.id, time.id)&&!time.done)&&'pointer'||'cursor-default'}}">
+                                {{time.time}}: {{todo.text}}
+                            </span>
+                            <span class="glyphicon glyphicon-remove pointer right remove-icon"
+                                  ng-click="removeTodo(todo.id, time.id)" hidden="false"></span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <input type="text" ng-model="searchQuery" placeholder="{{'TODO.SEARCHINPUT_PLACEHOLDER' | translate}}" 
+               class="form-control search-input">
+        <div class="clear"></div>
+    </div>
+
+</div>
