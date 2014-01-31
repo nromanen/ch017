@@ -1,23 +1,23 @@
-App.directive('buttonState', ['$rootScope', function($rootScope) {
-    return {
-        link: function($scope, element, attrs) {
-            if ($rootScope.todayPatients.length === 0) $(element).addClass("disabled");
+App.directive('buttonState', ['$rootScope', '$filter', function($rootScope, $filter) {
+    this.reloadPatientListVisual = function() {
+        $('.patient-list .dropdown').fadeOut(150, function() {
+            $('.patient-list .dropdown').fadeIn(150);
+        });
+    };
 
-            element.on('click', function() {
-                $scope.$apply(function() {
-                    if (!$scope.buttonState) {
-                        $(element).removeClass("active");
-                        $(".patient-list .dropdown").fadeOut(150, function() {
-                            $(".patient-list .dropdown").fadeIn(150);
-                        });
-                    } else {
-                        $(element).addClass("active");
-                        $(".patient-list .dropdown").fadeOut(150, function() {
-                            $(".patient-list .dropdown").fadeIn(150);
-                        });
-                    }
-                });
-            });
-        }
-    }
+    return function($scope, element) {
+        element.on('click', function() {
+            if ($filter('filter')($rootScope.patientList, $rootScope.currentDate).length === 0) {
+                $(element).addClass('disabled');
+                return;
+            }
+
+            $(element).removeClass('disabled').removeClass('active');
+
+            if ($scope.buttonState) $(element).addClass('active');
+
+            reloadPatientListVisual();
+        });
+    };
+
 }]);

@@ -16,6 +16,7 @@ App.controller('AuthController', function($scope, $rootScope, $routeParams, db, 
     };
 
     $scope.submit = function() {
+        aux.showHint('hintText', '');
         db.getUserData($scope.authLogin, $scope.authPassword);
     };
 

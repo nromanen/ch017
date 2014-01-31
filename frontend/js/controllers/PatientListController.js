@@ -6,7 +6,6 @@ App.controller('PatientListController', function($scope, $rootScope, $filter, lo
 	function init() {
 		$scope.buttonState = false;
         $rootScope.calendarVisibility = true;
-        $rootScope.todayPatients = $filter('filter')($rootScope.patientList, $rootScope.currentDate) || [];
 	}
 
     function getPatientFromUserScope(patientId) {
@@ -22,6 +21,8 @@ App.controller('PatientListController', function($scope, $rootScope, $filter, lo
     };
 
     $scope.showOnlyTodaysPatient = function() {
+        if ($filter('filter')($rootScope.patientList, $rootScope.currentDate).length === 0) return;
+
     	$scope.setActivePatient($rootScope.patientList[0].id);
 
     	if (!$scope.buttonState) {
