@@ -35,16 +35,26 @@ describe("Project tests", function() {
             expect(repeater('#list li .content').count()).toBe(0);
             element('button.btn-primary.btn.modalstartbutton').click();
             input('todoExample.text').enter('learn test');
+/*            element('.set-date-form input.form-control.add-on.datetime:first').query(function(elements, done) {
+                elements.focus();
 
-            input('currentDate').enter("2014-01-13");
-            input('time').enter("11:12");
-            element('.set-date-form .form-control.add-on.datetime').click();
+                elements.attr('placeholder','2014-02-02');
+                done();
+            });
+            pause();*/
+            //input('date').enter([datetime.getFullYear(), datetime.getMonth()+1, datetime.getDate()+1].join("-"));
+            input('date').enter('2014-02-02');
+            input('daysCount').enter(1);
+            input('period').enter(0);
+
             element(".set-date-form .set-date").click();
-            element('.set-time-form button.btn.btn-primary').click();
+            expect(repeater('.modalWindowListBadges.date li').count()).toBe(1);
+            input('time').enter([datetime.getHours()+1, datetime.getMinutes()].join(":"));
 
+            element('.set-time-form button.btn.btn-primary').click();
             expect(repeater('.modalWindowListBadges.time li').count()).toBe(1);
+
             element('.modal-footer button.btn.btn-primary').click();
-            element('.modal-footer button.btn.btn-default').click();
 
             expect(repeater('#list li .content').count()).toBeGreaterThan(0);
             expect(repeater('#list li .content').count()).toBe(1);
@@ -91,13 +101,15 @@ describe("Project tests", function() {
         });
 
         it('Should remove added and "checked" item', function() {
+            browser().reload();
             element('#list li .content .remove-icon').click();
+            browser().reload();
             expect(repeater('#list li .content').count()).toBe(0);
         });
 
     });
 
-    describe("Test patient's capability to remove todo item", function() {
+    xdescribe("Test patient's capability to remove todo item", function() {
 
         beforeEach(function() {
             browser().navigateTo('index.html');
@@ -132,7 +144,7 @@ describe("Project tests", function() {
             expect(repeater('#list li .content').count()).toBe(0);
             element('button.btn-primary.btn.modalstartbutton').click();
             input('todoExample.text').enter('learn test');
-            input('currentDate').enter("2014-01-13");
+            input('date').enter("2014-01-13");
             input('time').enter("11:12");
 
             element('.set-date-form .form-control.add-on.datetime').click();
@@ -171,8 +183,8 @@ describe("Project tests", function() {
         it("Should disallow opportunity to remove the item", function() {
             expect(browser().location().path()).toBe("/patient/patient5");
             expect(element('#list li .content').count()).toBe(1);	   
-            element("#list li .content .remove-icon:visible").click();
-          //  browser().reload();
+            element("#list li .content .remove-icon").click();
+            browser().reload();
             expect(repeater('#list li .content').count()).toBe(1);
         });
 
@@ -327,10 +339,10 @@ describe("Project tests", function() {
         });
 
         it('Should login as patient', function() {
-            input('authLogin').enter('patient2');
+            input('authLogin').enter('patient5');
             input('authPassword').enter('1111');
             element('button.btn.btn-lg.btn-primary.btn-block').click();
-            expect(browser().location().path()).toBe("/patient/patient2");
+            expect(browser().location().path()).toBe("/patient/patient5");
         });
 
         it('Should show last added items for', function() {

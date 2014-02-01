@@ -36,7 +36,7 @@
                         <form class="form-inline set-date-form" role="form">
                             <div class="input-group input-append left">
                                 <span class="input-group-addon glyphicon glyphicon-calendar"></span>
-                                <input type="text" ng-model="currentDate" date-picker
+                                <input type="text" ng-model="date" data-format="yyyy-mm-dd" date-picker
                                        class="form-control add-on datetime" placeholder="{{date}}">
                             </div>
                             <div class="input-group number left" title="{{'MODAL_WINDOW.DAYS_COUNT' | translate}}">
@@ -50,7 +50,7 @@
                             <button type="button" class="btn btn-primary set-date"
                                     ng-click="getStartDate()" translate>MODAL_WINDOW.SET_DATE</button>
                         </form>
-                        <ul class="modalWindowListBadges">
+                        <ul class="modalWindowListBadges date">
                             <li ng-repeat="date in dateArr">
                                 <span class="label label-primary">{{date}}
                                     <span class="glyphicon glyphicon-remove edittodo-removedate remove-time-icon"

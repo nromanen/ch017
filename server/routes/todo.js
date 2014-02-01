@@ -119,11 +119,11 @@ exports.updateTodo = function(req, res) {
 
 exports.deleteTodo = function(req, res) {
 
-    db.tables.User.findOne({ _id: req.params.user_id }).populate("role").exec(function(err, user){
+    db.tables.User.findOne({ _id: req.params.user_id }).populate("role").exec( function(err, user){
+
+        if(err) return res.json(500, {error: err});
 
         if (!user.role.remove) return res.json(500, {error: "you have no permission"});
-        if(err) return res.json(500, {error: err});
-    });
 
         db.tables.Time.findOneAndRemove({ _id: req.params.time_id }, function(err){
 
@@ -153,10 +153,14 @@ exports.deleteTodo = function(req, res) {
                });
            });
         });
-    return res.json(req.params);
-    db.tables.Todo.remove({ time: [] }, function(err){
 
-        if(err) return res.json(500, {error: err});
+        db.tables.Todo.remove({ time: [] }, function(err){
+
+            if(err) return res.json(500, {error: err});
+
+        });
+
+        return res.json(req.params);
     });
-    
+
 };
