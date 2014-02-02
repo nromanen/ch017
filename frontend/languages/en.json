@@ -18,8 +18,7 @@
         "PART_MORNING": "Morning",
         "PART_NOON": "Noon",
         "PART_EVENING": "Evening",
-        "SEARCHINPUT_PLACEHOLDER": "Search",
-        "ITEM_TITLE": "Click to edit"
+        "SEARCHINPUT_PLACEHOLDER": "Search"
     },
     "PATIENT_LIST": {
         "TITLE": "Patient:"

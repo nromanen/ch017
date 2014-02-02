@@ -18,8 +18,7 @@
         "PART_MORNING": "Ранок",
         "PART_NOON": "Полудень",
         "PART_EVENING": "Вечір",
-        "SEARCHINPUT_PLACEHOLDER": "Пошук",
-        "ITEM_TITLE": "Натисніть для редагування"
+        "SEARCHINPUT_PLACEHOLDER": "Пошук"
     },
     "PATIENT_LIST": {
         "TITLE": "Пацієнт:"
