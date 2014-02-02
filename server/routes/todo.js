@@ -35,7 +35,6 @@ exports.createTodo = function(req, res) {
 
         db.tables.Todo.create( {  text: todo.text }, function(err, todoNew) {
             todoID = todoNew.id;
-
             for(var index = 0; index<todo.time.length; index++) {
                 var date = todo.time[index].date.split('-');
                 var time = todo.time[index].time.split(':');
@@ -55,10 +54,11 @@ exports.createTodo = function(req, res) {
 
                             if(err) return res.json(500, {error: err});
                     });
+                    console.log('time');
+                    console.log(time);
                 });
-                console.log(todo.time[index].time);
-                console.log(todo.time[index].date);
             }
+
             db.tables.User.update(
                 { _id: req.body.patient_id },
                 { $push: {todo: todoID}},
@@ -66,10 +66,16 @@ exports.createTodo = function(req, res) {
 
                     if(err) return res.json(500, {error: err});
             });
-            console.log(todoNew.id)
-            return res.json( {todo_id: todoNew.id} );
+            db.tables.Todo.findOne( { _id: todoNew.id}).exec( function(err, todo){
+                db.tables.Todo.findOne( { _id: todoNew.id}).exec( function(err, todo){
+                    db.tables.Todo.findOne( { _id: todoNew.id}).select('time').exec( function(err, todo){
+                        console.log('time');
+                        console.log(todo);
+                        return res.json( {todo_id: todoNew.id, time_ids: todo.time});
+                    });
+                });
+            });
         });
-
     });
 };
 

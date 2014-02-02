@@ -7,7 +7,7 @@ module.exports = {
 
     initializeDb: function(next) {
 
-        mongoose.connect('mongodb://localhost:27017/todoDb_test');
+        mongoose.connect('mongodb://localhost:27017/todoDb');
 
         var db = mongoose.connection;
 
