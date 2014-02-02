@@ -56,6 +56,9 @@ App.factory('db', function($rootScope, $http, config, aux, $translate) {
                 success(function(data) {
 
                     object.id = data.todo_id;
+                    object.time.forEach(function(element, index) {
+                        element.id = data.time_ids[index];
+                    });
                     $rootScope.currentPatient.todo.push(object);
                     return true;
 

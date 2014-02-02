@@ -63,8 +63,6 @@ class TodoHandler(BaseHandler):
     fields = (
         'id',
         'text',
-        'date_created',
-        'date_finished',
         ('time',
             ('id',
              'date',
@@ -89,6 +87,7 @@ class TodoHandler(BaseHandler):
 
     def create(self, request, user_id):
         if request.content_type:
+            timeIDs = []
             user = Users.objects.get(pk=user_id)
             patient_id = request.data["patient_id"]
             todo = loads(request.data["data"])
@@ -101,8 +100,9 @@ class TodoHandler(BaseHandler):
                 )
                 time.todo_set.add(new_todo)
                 time.save()
+                timeIDs.append(time.id)
 
-            return {"todo_id": new_todo.id}
+            return {"todo_id": new_todo.id, "time_ids": timeIDs}
         return rc.BAD_REQUEST
 
     def update(self, request, todo_id, user_id):
