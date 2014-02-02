@@ -87,7 +87,7 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
     }
 
     $scope.canAddTodo = function() {
-        return $scope.currentUser.role.add;
+        return $scope.currentUser.role.add && ($rootScope.currentDate >= aux.getDateFromUTC(new Date()));
     };
 
     $scope.canEditTodo = function(todoID, timeID) {
