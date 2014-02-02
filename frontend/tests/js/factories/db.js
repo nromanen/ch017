@@ -35,7 +35,8 @@ describe('Database factory', function() {
                 add: true,
                 edit: true,
                 remove: true,
-                check: true}
+                check: true
+            }
         };
         $rootScope.todoExample = {
             edit: false,
@@ -43,7 +44,7 @@ describe('Database factory', function() {
             done: false,
             time: []
         };
-        $rootScope.currentPatient = {id: 1, "todo": [{"id": 1}, {"id": 2}]};
+        $rootScope.currentPatient = {id: 1, "todo": [{"id": 1, time: []}, {"id": 2, time: []}]};
     }));
 
     beforeEach(inject(function ($injector) {
@@ -90,7 +91,7 @@ describe('Database factory', function() {
 
     it('Should add todo', inject(function($rootScope) {
         var id = $rootScope.currentPatient.id;
-        var object = $rootScope.currentPatient.todo;
+        var object = $rootScope.currentPatient.todo[0];
 
         $httpBackend.expectPOST('api/create_todo/1/').respond(201, '');
         db.addTodo(id, object);

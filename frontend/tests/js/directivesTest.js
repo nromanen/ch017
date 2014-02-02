@@ -52,7 +52,8 @@ describe("Should test all directives of our project", function () {
     }));
 
     it("Should controll the button's state  directive", function () {
-        $rootScope.todayPatients = [{}];
+        $rootScope.patientList = [{}];
+        $rootScope.currentDate = "2013-12-11";
         var element = $compile('<tag button-state></tag>')($rootScope);
 
         $rootScope.todayPatients = [];

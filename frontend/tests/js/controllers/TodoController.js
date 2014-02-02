@@ -209,6 +209,7 @@ describe('TodoController', function() {
         waitsFor(function() {
             $rootScope.canAddTodo = true;
             $rootScope.todoExample.text = true;
+            $rootScope.todoExample.time = [];
             return flag;
         }, "canAddTodo and todoExample.text should be === true", 750);
 
