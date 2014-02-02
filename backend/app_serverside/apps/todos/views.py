@@ -129,7 +129,6 @@ class TodoHandler(BaseHandler):
         if user.role.remove:
             todo_time = get_object_or_404(Time, pk=todo_id)
             for todo in todo_time.todo_set.all():
-                print(todo.time.count())
                 if todo.time.count() == 1:
                     todo.delete()
             todo_time.delete()
