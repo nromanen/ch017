@@ -21,18 +21,20 @@ App.controller('PatientListController', function($scope, $rootScope, $filter, lo
     };
 
     $scope.showOnlyTodaysPatient = function() {
-        if ($filter('filter')($rootScope.patientList, $rootScope.currentDate).length === 0) return;
+        var patientsForToday = $filter('filter')($rootScope.patientList, $rootScope.currentDate);
+
+        if (patientsForToday.length === 0) return;
 
     	$scope.setActivePatient($rootScope.patientList[0].id);
 
     	if (!$scope.buttonState) {
     		$scope.buttonState = true;
             $rootScope.calendarVisibility = false;
-    		$rootScope.patientList = $filter('filter')($rootScope.patientList, $rootScope.currentDate);
+    		$rootScope.patientList = patientsForToday;
     	} else {
     		$scope.buttonState = false;
             $rootScope.calendarVisibility = true;
-    		$rootScope.patientList = localStorageService.get('users');
+    		$rootScope.patientList = localStorageService.get('users') || [];
     		
     	}
     };
