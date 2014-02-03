@@ -11,6 +11,7 @@ App.directive('datePicker', function($rootScope, config, aux) {
                     keyboardNavigation: false,
                     autoclose: true,
                     forceParse: true,
+                    todayBtn: 'linked',
                     language: $rootScope.lang || config.lang
                 }).
                 datepicker('update', aux.getDateFromUTC(new Date())).

@@ -15,6 +15,7 @@ App.directive('calendar', function($rootScope, config, aux) {
                     format: "yyyy-mm-dd",
                     weekStart: 1,
                     keyboardNavigation: false,
+                    todayBtn: 'linked',
                     startDate: $rootScope.dateLimit.min,
                     endDate: $rootScope.dateLimit.max,
                     language: $rootScope.lang || config.lang
