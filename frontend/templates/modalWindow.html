@@ -87,7 +87,7 @@
                     MODAL_WINDOW.CANCEL
                 </button>
                 <button type="button" 
-                        class="btn btn-primary {{(dateArr.length==0||timeArr.length==0)&&'disabled'}}"
+                        class="btn btn-primary {{(todoExample.text==''||dateArr.length==0||timeArr.length==0)&&'disabled'}}"
                         data-dismiss="modal" ng-click="addTodoExample(); addNewTodo();" translate>
                             MODAL_WINDOW.SAVE
                 </button>
