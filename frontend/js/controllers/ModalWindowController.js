@@ -16,7 +16,7 @@ App.controller('ModalWindowController', function($scope, $rootScope, db, aux) {
         $rootScope.timeArr.push($scope.time);
     };
 
-    $scope.getStartDate = function() {
+    $scope.pushValidDate = function() {
         $scope.startDate = new Date($rootScope.currentDate);
 
         for (var i = 0; i < $scope.daysCount; i++) {
@@ -26,7 +26,9 @@ App.controller('ModalWindowController', function($scope, $rootScope, db, aux) {
             $scope.period = parseInt($scope.period, 10);
             $scope.startDate.setDate(todayDay + $scope.period + 1);
 
-            if(finallyDate >= $scope.todayDateForCheck) $rootScope.dateArr.push(finallyDate);
+            if(finallyDate >= $scope.todayDateForCheck){
+                $rootScope.dateArr.push(finallyDate);
+            }
         }
 
         $scope.daysCount = 1;
