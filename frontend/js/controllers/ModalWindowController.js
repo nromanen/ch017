@@ -26,7 +26,7 @@ App.controller('ModalWindowController', function($scope, $rootScope, db, aux) {
             $scope.period = parseInt($scope.period, 10);
             $scope.startDate.setDate(todayDay + $scope.period + 1);
 
-            if(finallyDate >= $scope.todayDateForCheck){
+            if (finallyDate >= $scope.todayDateForCheck) {
                 $rootScope.dateArr.push(finallyDate);
             }
         }

@@ -44,7 +44,7 @@ describe('Database factory', function() {
             done: false,
             time: []
         };
-        $rootScope.currentPatient = {id: 1, "todo": [{"id": 1, time: []}, {"id": 2, time: []}]};
+        $rootScope.currentPatient = {id: 1, "todo": [{"id": 1, time: [{id: 1}]}, {"id": 2, time: []}]};
     }));
 
     beforeEach(inject(function ($injector) {
@@ -61,20 +61,39 @@ describe('Database factory', function() {
         $httpBackend.when('GET', 'api/medicines/');
     }));
 
-    it('Should get user data', inject(function($rootScope) {
+    it('Should get user data with error response', inject(function($rootScope) {
         var login = $rootScope.currentUser.login;
         var password = $rootScope.currentUser.password;
-        var flag;
-        var flag1;
-        var user = $rootScope.currentUser;
 
-        user.result = true;
-        $httpBackend.expectGET('api/user/doctor/MTExMQ==/').respond(201, user);
+        $httpBackend.expectGET('api/user/doctor/MTExMQ==/').respond(404, {});
         db.getUserData(login, password);
+        $httpBackend.flush();
+    }));
+
+    it('Should get user data with Result === false', inject(function($rootScope) {
+        var login = $rootScope.currentUser.login;
+        var password = $rootScope.currentUser.password;
+        var user = $rootScope.currentUser;
 
         user.result = false;
         $httpBackend.expectGET('api/user/doctor/MTExMQ==/').respond(201, user);
         db.getUserData(login, password);
+
+        $httpBackend.expectGET('api/user/doctor/MTExMQ==/').respond(404, {});
+        db.getUserData(login, password);
+        $httpBackend.flush();
+    }));
+
+    it('Should get user data with is_staff === true', inject(function($rootScope) {
+        var login = $rootScope.currentUser.login;
+        var password = $rootScope.currentUser.password;
+        var user = $rootScope.currentUser;
+
+        user.is_staff = true;
+        $httpBackend.expectGET('api/user/doctor/MTExMQ==/').respond(201, user);
+        $httpBackend.expectGET('api/users_by_role/patient/').respond(201, [1, 2, 3]);
+        db.getUserData(login, password);
+        $httpBackend.flush();
 
         $httpBackend.expectGET('api/user/doctor/MTExMQ==/').respond(404, {});
         db.getUserData(login, password);
@@ -93,7 +112,7 @@ describe('Database factory', function() {
         var id = $rootScope.currentPatient.id;
         var object = $rootScope.currentPatient.todo[0];
 
-        $httpBackend.expectPOST('api/create_todo/1/').respond(201, '');
+        $httpBackend.expectPOST('api/create_todo/1/').respond(201, {"time_ids": [1]});
         db.addTodo(id, object);
         $httpBackend.expectPOST('api/create_todo/1/').respond(404, '');
         db.addTodo(id, object);
