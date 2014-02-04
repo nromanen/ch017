@@ -19,6 +19,9 @@ describe("Should test all directives of our project", function () {
             id: 1,
             login: 'doctor',
             password: '1111',
+            is_active: false,
+            is_doctor: false,
+            is_staff: true,
             role: {
                 add: true,
                 edit: true,
@@ -51,36 +54,28 @@ describe("Should test all directives of our project", function () {
         $httpBackend.when('PUT', 'api/update_todo/1/1/').respond({});
     }));
 
-    it("Should controll the button's state  directive", function () {
+    it("Should controll the button's state directive with Dates", function () {
+        $rootScope.currentUser.is_doctor = true;
+        $rootScope.patientList = [{time: [{date: "2013-12-11"}]}];
+        $rootScope.currentDate = "2013-12-11";
+        var element = $compile('<tag button-state></tag>')($rootScope);
+
+        $rootScope.currentUser.is_doctor = false;
+        var element = $compile('<tag button-state></tag>')($rootScope);
+
+        element.click();
+    });
+
+    it("Should controll the button's state directive without Dates", function () {
+        $rootScope.currentUser.is_doctor = true;
         $rootScope.patientList = [{}];
         $rootScope.currentDate = "2013-12-11";
         var element = $compile('<tag button-state></tag>')($rootScope);
 
-        $rootScope.todayPatients = [];
+        $rootScope.currentUser.is_doctor = false;
         var element = $compile('<tag button-state></tag>')($rootScope);
 
-        var flag;
-        $rootScope.buttonState;
-
-        runs(function() {
-            flag = false;
-
-            $rootScope.buttonState = false;
-            element.click();
-
-            setTimeout(function() {
-                flag = true;
-            }, 500);
-        });
-
-        waitsFor(function() {
-            $rootScope.buttonState = true;
-            return flag;
-        }, "buttonState should be === true", 750);
-
-        runs(function() {
-            element.click();
-        });
+        element.click();
     });
 
     it("Should test clear directive", function () {

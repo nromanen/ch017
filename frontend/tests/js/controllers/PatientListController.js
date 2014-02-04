@@ -34,7 +34,16 @@ describe('PatientListController', function() {
         expect($rootScope.setActivePatient()).toBeUndefined();
     }));
 
-    it('Should show patients, whom have prescriptions only for today', inject(function ($controller, $rootScope, $filter) {
+    it('Should show patients, whom have prescriptions only for today without patients', inject(function ($controller, $rootScope, $filter) {
+        var ctrl = $controller('PatientListController', {
+            $scope: $rootScope, localStorageService: localStorage, $filter: $filter
+        });
+        $rootScope.patientList = [];
+
+        expect($rootScope.showOnlyTodaysPatient()).toBeUndefined();
+    }));
+
+    it('Should show patients, whom have prescriptions only for today with patients', inject(function ($controller, $rootScope, $filter) {
         var ctrl = $controller('PatientListController', {
         	$scope: $rootScope, localStorageService: localStorage, $filter: $filter
         });

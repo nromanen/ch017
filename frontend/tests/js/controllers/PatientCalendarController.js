@@ -23,14 +23,16 @@ describe('PatientCalendarController', function() {
 
     beforeEach(module('App'));
 
-    it('Should get all dates from all todos', inject(function ($controller, $rootScope) {
+    it('Should initialize the controller with dates', inject(function ($controller, $rootScope) {
         var currentPatient = {"todo": [{"time": [{"date": "11-12-2013"}, {"date": "12-12-2013"}]}]};
         $rootScope.currentPatient = currentPatient;
+        var ctrl = $controller('PatientCalendarController', {$scope: $rootScope, localStorageService: localStorage});
+    }));
 
-        var ctrl = $controller('PatientCalendarController', {
-            $scope: $rootScope, localStorageService: localStorage
-        });
-
+    it('Should initialize the controller without dates', inject(function ($controller, $rootScope) {
+        var currentPatient = {"todo": [{"time": []}]};
+        $rootScope.currentPatient = currentPatient;
+        var ctrl = $controller('PatientCalendarController', {$scope: $rootScope, localStorageService: localStorage});
     }));
 
 });

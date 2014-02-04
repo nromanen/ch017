@@ -33,31 +33,16 @@ describe('TodoController', function() {
         $httpBackend.when('DELETE', 'api/delete_todo/1/1/').respond({});
     }));
 
-    beforeEach(function () {
-        var store = {};
-
-        //create mock-object for localStorageService
-        localStorage = {
-            get: function (key) {
-                return store[key];
-            },
-
-            add: function (key, value) {
-                return store[key] = value;
-            },
-
-            clear: function () {
-                store = {};
-            }
-        }
-        localStorage.add("currentUser", {role: {add: true, edit: true, remove: true, check: true}});
-        //localStorageService.get("currentUser");
-    });
-
     afterEach(function() {
         $httpBackend.verifyNoOutstandingExpectation();
         $httpBackend.verifyNoOutstandingRequest();
     });
+
+    it('Should initialize the contorller', inject(function ($controller, $rootScope) {
+        localStorage.add("currentUser", {role: {add: false, edit: false, remove: false, check: false}});
+        var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
+        $rootScope.todoExample = {};
+    }));
 
     it('Should initialize the contorller', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
@@ -79,15 +64,16 @@ describe('TodoController', function() {
     it('Should get count of items, which needs to be done', inject(function ($controller, $rootScope) {
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
         $rootScope.currentPatient = {todo: [{time: [{date: "11-12-2013"}]}]};
+        $rootScope.currentDate = "11-12-2013";
 
-        expect($rootScope.getTodoAmount()).toBe(0);
+        expect($rootScope.getTodoAmount()).toBe(1);
     }));
 
     it('Should check rights to add item', inject(function ($controller, $rootScope) {
+        $rootScope.currentDate = new Date();
         var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
-        $rootScope.currentUser = {role: {add: false}};
 
-        expect($rootScope.canAddTodo()).toBe(false);
+        expect($rootScope.canAddTodo()).toBe(true);
     }));
 
     it('Should check rights to edit item', inject(function ($controller, $rootScope) {
@@ -118,6 +104,68 @@ describe('TodoController', function() {
 
         runs(function() {
             expect($rootScope.canEditTodo(todoID, timeID)).toBe(false);
+        });
+    }));
+
+    it('Should check rights to remove item with different Todo and Time ids', inject(function ($controller, $rootScope) {
+        var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
+
+        $rootScope.currentUser = {role: {}};
+        $rootScope.currentPatient = {todo: [{id: 1, time: [{id: 1, date: "11-12-2013", time: "00:00"}]}]};
+
+        var flag;
+        var todoID = 1;
+        var timeID = 2;
+
+        runs(function() {
+            flag = false;
+
+            $rootScope.currentUser.role.remove = false;
+            expect($rootScope.canRemoveTodo(todoID, timeID)).toBe(false);
+
+            setTimeout(function() {
+                flag = true;
+            }, 500);
+        });
+
+        waitsFor(function() {
+            $rootScope.currentUser.role.remove = true;
+            return flag;
+        }, "currentUser.role.remove should be === true", 750);
+
+        runs(function() {
+            expect($rootScope.canRemoveTodo(todoID, timeID)).toBe(false);
+        });
+    }));
+
+    it('Should check rights to remove item with different Todo and Time ids', inject(function ($controller, $rootScope) {
+        var ctrl = $controller('TodoController', {$scope: $rootScope, localStorageService: localStorage});
+
+        $rootScope.currentUser = {role: {}};
+        $rootScope.currentPatient = {todo: [{id: 1, time: [{id: 1, date: "11-12-2013", time: "00:00"}]}]};
+
+        var flag;
+        var todoID = 2;
+        var timeID = 2;
+
+        runs(function() {
+            flag = false;
+
+            $rootScope.currentUser.role.remove = false;
+            expect($rootScope.canRemoveTodo(todoID, timeID)).toBe(false);
+
+            setTimeout(function() {
+                flag = true;
+            }, 500);
+        });
+
+        waitsFor(function() {
+            $rootScope.currentUser.role.remove = true;
+            return flag;
+        }, "currentUser.role.remove should be === true", 750);
+
+        runs(function() {
+            expect($rootScope.canRemoveTodo(todoID, timeID)).toBe(false);
         });
     }));
 

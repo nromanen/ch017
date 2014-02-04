@@ -35,14 +35,17 @@ describe('ModalWindowController', function() {
         $httpBackend.verifyNoOutstandingRequest();
     });
 
-    it('Should initialize the controller', inject(function ($controller, $rootScope) {
-        $rootScope.currentUser = {
-            "is_doctor": "true"
-        };
+    it('Should initialize the controller with property "is_doctor" === true', inject(function ($controller, $rootScope) {
+        $rootScope.currentUser = {"is_doctor": true};
 
         $httpBackend.expectGET('api/medicines/');
         var ctrl = $controller('ModalWindowController', {$scope: $rootScope, localStorageService: localStorage});
         $httpBackend.flush();
+    }));
+
+    it('Should initialize the controller with property "is_doctor" === false', inject(function ($controller, $rootScope) {
+        $rootScope.currentUser = {"is_doctor": false};
+        var ctrl = $controller('ModalWindowController', {$scope: $rootScope, localStorageService: localStorage});
     }));
 
     it('Should set time array in modalWindow scope', inject(function ($controller, $rootScope) {
@@ -55,7 +58,7 @@ describe('ModalWindowController', function() {
         $httpBackend.flush();
     }));
 
-    it('Should get date start date', inject(function ($controller, $rootScope) {
+    it('Should push valid date', inject(function ($controller, $rootScope) {
         $rootScope.currentUser = {
             "is_doctor": "true"
         };
@@ -69,7 +72,7 @@ describe('ModalWindowController', function() {
 
             finallyDate = 1;
             $rootScope.todayDateForCheck = 0;
-            expect($rootScope.getStartDate()).toBeUndefined();
+            expect($rootScope.pushValidDate()).toBeUndefined();
 
             setTimeout(function() {
                 flag = true;
@@ -83,12 +86,12 @@ describe('ModalWindowController', function() {
         }, "finallyDate and todayDateForChek should be different", 750);
 
         runs(function() {
-            expect($rootScope.getStartDate()).toBeUndefined();
+            expect($rootScope.pushValidDate()).toBeUndefined();
         });
 
         var ctrl = $controller('ModalWindowController', {$scope: $rootScope, localStorageService: localStorage});
 
-        expect($rootScope.getStartDate()).toBeUndefined();
+        expect($rootScope.pushValidDate()).toBeUndefined();
         $httpBackend.flush();
     }));
 
