@@ -25,6 +25,7 @@ exports.getUser = function(req, res) {
    db.tables.User.findOne({login: req.params.login, password: password}).
    populate("role todo").exec(function(err, user) {
 
+        if (user === null) return res.json(500, {error: "Wrong password or username"});
         if(err) return res.json(500, {error: err});
         db.tables.Todo.populate(user, {
             path: 'todo.time',

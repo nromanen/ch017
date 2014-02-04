@@ -2,10 +2,10 @@
     <form class="form-signin" ng-submit="submit()">
         <h2 class="form-signin-heading" translate>AUTH.TITLE</h2>
 
-        <input type="text" ng-model="authLogin" title="{{'AUTH.LOGIN_HINT' | translate}}"
+        <input type="text" ng-model="authLogin" title="{{'AUTH.LOGIN_HINT' | translate}}" ng-change="clearMessage()"
                class="form-control" placeholder="{{'AUTH.LOGIN_PLACEHOLDER' | translate}}" required login autofocus>
 
-        <input type="password" ng-model="authPassword" title="{{'AUTH.PASSWORD_HINT' | translate}}"
+        <input type="password" ng-model="authPassword" title="{{'AUTH.PASSWORD_HINT' | translate}}" ng-change="clearMessage()"
                class="form-control" placeholder="{{'AUTH.PASSWORD_PLACEHOLDER' | translate}}" required password>
 
         <div ng-style="hintStyle" class="hint">{{hintText}}</div>

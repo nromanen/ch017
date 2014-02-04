@@ -20,6 +20,12 @@ App.controller('AuthController', function($scope, $rootScope, $routeParams, db, 
         db.getUserData($scope.authLogin, $scope.authPassword);
     };
 
+    $scope.clearMessage = function() {
+
+        aux.showHint('hintText', '');
+
+    };
+
     init();
 
 });
