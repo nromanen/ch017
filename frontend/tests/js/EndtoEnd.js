@@ -35,15 +35,8 @@ describe("Project tests", function() {
             expect(repeater('#list li .content').count()).toBe(0);
             element('button.btn-primary.btn.modalstartbutton').click();
             input('todoExample.text').enter('learn test');
-/*            element('.set-date-form input.form-control.add-on.datetime:first').query(function(elements, done) {
-                elements.focus();
-
-                elements.attr('placeholder','2014-02-02');
-                done();
-            });
-            pause();*/
-            //input('date').enter([datetime.getFullYear(), datetime.getMonth()+1, datetime.getDate()+1].join("-"));
-            input('date').enter('2014-02-02');
+            input('currentDate').enter([datetime.getFullYear(), datetime.getMonth()+1, datetime.getDate()+1].join("-"));
+            //input('currentDate').enter('2014-02-04');
             input('daysCount').enter(1);
             input('period').enter(0);
 
@@ -82,9 +75,10 @@ describe("Project tests", function() {
             expect(repeater('#list li .content').count()).toBe(1);
         });
 
-        it('Should "check" the item', function() {
-            element('#list li .content .check_done').click();
-            expect(repeater('#list li .content .done-true').count()).toBe(1);
+        it('Should disallow "check" the item', function() {
+
+            expect(repeater("#list li .content .check_done:visible]").count()).toBe(0);
+
         });
 
         it('Should logout from app', function() {
@@ -100,7 +94,7 @@ describe("Project tests", function() {
             expect(repeater('#list li .content').count()).toBe(1);
         });
 
-        it('Should remove added and "checked" item', function() {
+        it('Should remove added item', function() {
             browser().reload();
             element('#list li .content .remove-icon').click();
             browser().reload();
@@ -144,7 +138,7 @@ describe("Project tests", function() {
             expect(repeater('#list li .content').count()).toBe(0);
             element('button.btn-primary.btn.modalstartbutton').click();
             input('todoExample.text').enter('learn test');
-            input('date').enter("2014-01-13");
+            input('currentDate').enter("2014-01-13");
             input('time').enter("11:12");
 
             element('.set-date-form .form-control.add-on.datetime').click();
@@ -229,7 +223,7 @@ describe("Project tests", function() {
             expect(repeater('#list li .content').count()).toBe(0);
             element('button.btn-primary.btn.modalstartbutton').click();
             input('todoExample.text').enter('learn test');
-            input('date').enter("2014-01-13");
+            input('currentDate').enter("2014-01-13");
             input('time').enter("11:12");
 
             element('.set-date-form .form-control.add-on.datetime').click();
@@ -263,6 +257,9 @@ describe("Project tests", function() {
         it('Should check existence of the item', function() {
             browser().reload();
             expect(repeater('#list li .content').count()).toBe(1);
+            element('#list li .content .check_done').click();
+            browser().reload();
+            expect(repeater('#list li .content .done-true').count()).toBe(1);
         });
 
         it('Should disallow to remove item', function() {
@@ -314,7 +311,7 @@ describe("Project tests", function() {
             expect(repeater('#list li .content').count()).toBe(0);
             element('button.btn-primary.btn.modalstartbutton').click();
             input('todoExample.text').enter('learn test');
-            input('date').enter("2014-01-13");
+            input('currentDate').enter("2014-01-13");
             input('time').enter("11:12");
 
             element('.set-date-form .form-control.add-on.datetime').click();
@@ -365,7 +362,7 @@ describe("Project tests", function() {
 
     });
 
-    xdescribe("Test nurse's posibility to check items from past date", function() {
+    xdescribe("Test nurse's posibility to check items ", function() {
         beforeEach(function() {
             browser().navigateTo('index.html');
         });
@@ -399,8 +396,9 @@ describe("Project tests", function() {
             expect(repeater('#list li .content').count()).toBe(0);
             element('button.btn-primary.btn.modalstartbutton').click();
             input('todoExample.text').enter('learn test');
-            input('date').enter("2014-01-13");
+            input('currentDate').enter("2014-02-04");
             input('time').enter("11:12");
+            input('daysCount').enter("2");
 
             element('.set-date-form .form-control.add-on.datetime').click();
             element(".set-date-form .set-date").click();
@@ -433,7 +431,12 @@ describe("Project tests", function() {
         it('Should set date to tomorrow date', function(){
             var todayDate = new Date();
             input('todayDate').enter([todayDate.getFullYear(), todayDate.getMonth() + 1, todayDate.getDate() + 1].join('-'));
-        })
+        });
+
+        it('Should show added item', function() {
+            browser().reload();
+            expect(repeater('#list li .content').count()).toBe(1);
+        });
 
         it('Should "check" the item', function() {
             element('#list li .content .check_done').click();
@@ -450,72 +453,6 @@ describe("Project tests", function() {
         });
 
         clearTodo()
-    });
-
-
-    xdescribe("Test doctor's posibility to delete items from past date", function() {
-        beforeEach(function() {
-            browser().navigateTo('index.html');
-        });
-
-        it("Should clear localStorage", function() {
-            localStorage.clear();
-        });
-
-        it('Should have the working "AuthController"', function() {
-            browser().navigateTo('#/');
-            expect(browser().location().path()).toBe("/auth");
-            expect(element('div[ng-view]').html()).toContain('AuthController');
-        });
-
-        it('Should have non working "TodoController"', function() {
-            browser().navigateTo('#/');
-            expect(browser().location().path()).toBe("/auth");
-            expect(element('div[ng-view]').html()).toContain('AuthController');
-        });
-
-        it('Should login as doctor', function() {
-            input('authLogin').enter('doctor');
-            input('authPassword').enter('1111');
-            element('button.btn.btn-lg.btn-primary.btn-block').click();
-            expect(browser().location().path()).toBe("/doctor/doctor");
-        });
-
-        it('Should add an element to the list', function() {
-            var datetime = new Date();
-
-            expect(repeater('#list li .content').count()).toBe(0);
-            element('button.btn-primary.btn.modalstartbutton').click();
-            input('todoExample.text').enter('learn test');
-            input('date').enter("2014-01-13");
-            input('time').enter("11:12");
-
-            element('.set-date-form .form-control.add-on.datetime').click();
-            element(".set-date-form .set-date").click();
-            element('.set-time-form button.btn.btn-primary').click();
-            expect(repeater('.modalWindowListBadges.time li').count()).toBe(1);
-            element('.modal-footer button.btn.btn-primary').click();
-            element('.modal-footer button.btn.btn-default').click();
-
-            expect(repeater('#list li .content').count()).toBeGreaterThan(0);
-            expect(repeater('#list li .content').count()).toBe(1);
-        });
-
-        it('Should check if item was saved', function() {
-            browser().reload();
-            expect(repeater('#list li .content').count()).toBe(1);
-        });
-
-        it('Should set date to yesterday date', function(){
-            var todayDate = new Date();
-            input('todayDate').enter([todayDate.getFullYear(), todayDate.getMonth() + 1, todayDate.getDate() - 1].join('-'));
-        })
-
-        it('Should disallow removing the item', function() {
-            element('#list li .content .remove-icon').click();
-            browser().reload();
-            expect(repeater('#list li .content').count()).toBe(1);
-        });
     });
 });
 
