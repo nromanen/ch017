@@ -17,24 +17,24 @@ App.controller('ModalWindowController', function($scope, $rootScope, db, aux) {
     };
 
     $scope.pushValidDate = function() {
-        if ($scope.period >=0){
-            $scope.startDate = new Date($rootScope.currentDate);
+        if ($scope.period < 0) return;
 
-            for (var i = 0; i < $scope.daysCount; i++) {
-                var todayDay = $scope.startDate.getDate();
-                var finallyDate = aux.getDateFromUTC($scope.startDate);
+        $scope.startDate = new Date($rootScope.currentDate);
 
-                $scope.period = parseInt($scope.period, 10);
-                $scope.startDate.setDate(todayDay + $scope.period + 1);
+        for (var i = 0; i < $scope.daysCount; i++) {
+            var todayDay = $scope.startDate.getDate();
+            var finallyDate = aux.getDateFromUTC($scope.startDate);
 
-                if (finallyDate >= $scope.todayDateForCheck) {
-                    $rootScope.dateArr.push(finallyDate);
-                }
+            $scope.period = parseInt($scope.period, 10);
+            $scope.startDate.setDate(todayDay + $scope.period + 1);
+
+            if (finallyDate >= $scope.todayDateForCheck) {
+                $rootScope.dateArr.push(finallyDate);
             }
+        }
 
-            $scope.daysCount = 1;
-            $scope.period = 0;
-        };
+        $scope.daysCount = 1;
+        $scope.period = 0;
     };
 
     $scope.addTodoExample = function() {

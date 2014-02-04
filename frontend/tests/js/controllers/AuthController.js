@@ -60,4 +60,10 @@ describe('AuthController', function() {
         $httpBackend.flush();
     }));
 
+    it('Should clear message', inject(function($controller, $rootScope) {
+        var controller = $controller('AuthController', {$scope: $rootScope});
+
+        expect($rootScope.clearMessage()).toBeUndefined();
+    }));
+
 });

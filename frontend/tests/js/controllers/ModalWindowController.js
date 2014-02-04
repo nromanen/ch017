@@ -66,6 +66,7 @@ describe('ModalWindowController', function() {
         var flag;
         var finallyDate;
         $rootScope.todayDateForCheck;
+        $rootScope.period = 1;
 
         runs(function() {
             flag = false;
@@ -90,6 +91,16 @@ describe('ModalWindowController', function() {
         });
 
         var ctrl = $controller('ModalWindowController', {$scope: $rootScope, localStorageService: localStorage});
+
+        expect($rootScope.pushValidDate()).toBeUndefined();
+        $httpBackend.flush();
+    }));
+
+    it('Should push valid date with period less than 0', inject(function ($controller, $rootScope) {
+        $rootScope.currentUser = {"is_doctor": true};
+
+        var ctrl = $controller('ModalWindowController', {$scope: $rootScope, localStorageService: localStorage});
+        $rootScope.period = -1;
 
         expect($rootScope.pushValidDate()).toBeUndefined();
         $httpBackend.flush();
