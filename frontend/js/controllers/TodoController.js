@@ -77,14 +77,16 @@ App.controller('TodoController', function($scope, $rootScope, localStorageServic
         var timeIndex = 0;
 
         for (todoIndex; todoIndex < $rootScope.currentPatient.todo.length; todoIndex++) {
-            if ($rootScope.currentPatient.todo[todoIndex].id != todoID) return 0;
-
-            for (timeIndex; timeIndex < $rootScope.currentPatient.todo[todoIndex].time.length; timeIndex++) {
-                if ($rootScope.currentPatient.todo[todoIndex].time[timeIndex].id != timeID) return 0;
-
-                return $rootScope.currentPatient.todo[todoIndex].time[timeIndex].date;
+            if ($rootScope.currentPatient.todo[todoIndex].id == todoID) {
+                for (timeIndex; timeIndex < $rootScope.currentPatient.todo[todoIndex].time.length; timeIndex++) {
+                    if ($rootScope.currentPatient.todo[todoIndex].time[timeIndex].id == timeID) {
+                        return $rootScope.currentPatient.todo[todoIndex].time[timeIndex].date;
+                    }
+                }
             }
         }
+
+        return 0;
     }
 
     $scope.canAddTodo = function() {
